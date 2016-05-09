@@ -8,8 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const kBeanIdKey;
+
 @interface BaseModel : NSObject <NSCoding>
 
+///use for DB
+@property (copy, nonatomic, readonly) NSArray *columnArray;
+@property (strong, nonatomic, readonly) NSArray *valueArray;
+@property (copy, nonatomic) NSString *idKey;
+
+
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
+
+-(BOOL)deleteBean;
 
 @end

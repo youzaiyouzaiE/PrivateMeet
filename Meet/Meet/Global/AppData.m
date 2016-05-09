@@ -92,9 +92,9 @@ NSString *const databaseName = @"BusinessInfo.db";
 }
 
 
-+ (NSString *)getCachesDirectoryWeChatDocumetPathDocument:(NSString *)document {/////得到当前微信用户微信文件
++ (NSString *)getCachesDirectoryUserInfoDocumetPathDocument:(NSString *)document {/////得到当前微信用户微信文件
     NSString *cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [cacheDirectoryPath stringByAppendingPathComponent:[[WXUserInfo shareInstance].unionid stringByAppendingPathComponent:document]];
+    NSString *path = [cacheDirectoryPath stringByAppendingPathComponent:[[UserInfo shareInstance].userId stringByAppendingPathComponent:document]];
     NSFileManager *mager = [NSFileManager defaultManager];
     if (![mager fileExistsAtPath:path]) {
         //        NSLog(@"File not found Couldn't find the file at path: %@",path);

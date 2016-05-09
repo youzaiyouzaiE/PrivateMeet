@@ -83,7 +83,8 @@
     if (state) {
         NSString *unionid = [WXUserInfo shareInstance].unionid;
         ////判断是不是真的是老用户，此微信号是否真的注册过！！
-        if (unionid) {/////是老用户，退出登陆页面 isLogin YES 
+        if (unionid) {/////是老用户，退出登陆页面 isLogin YES
+#warning  是老用户 从网获取用户信息 并保存本地
             [self dismissViewControllerAnimated:YES completion:^{
                 
             }];

@@ -9,9 +9,6 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "WXApi.h"
-#import "UserInfo.h"
-#import "WXAccessModel.h"
-#import "WXUserInfo.h"
 #import "TalkingData.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
@@ -19,6 +16,9 @@
 #import "AFNetWorking.h"
 #import "NetWorkObject.h"
 
+#import "UserInfo.h"
+#import "WXAccessModel.h"
+#import "WXUserInfo.h"
 
 @interface AppDelegate ()<WXApiDelegate,NSURLConnectionDelegate> {
     NSURLConnection *_connection;
@@ -142,6 +142,7 @@ static NSString *keyWXUserInfo = @"WeChatUserInfoKey";
         
     } success:^(NSURLSessionDataTask *task, NSDictionary *userInfo) {
         [[WXUserInfo shareInstance] initWithDictionary:userInfo];
+        
         [[UITools shareInstance] showMessageToView:self.window message:@"登录成功" autoHide:YES];
          NSLog(@"请求微信用户信息成功！");
         [[NSUserDefaults standardUserDefaults] setObject:userInfo forKey:keyWXUserInfo];

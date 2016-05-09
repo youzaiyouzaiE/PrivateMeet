@@ -9,8 +9,8 @@
 #import "WeChatLonginViewController.h"
 #import "MyProfileViewController.h"
 #import "WXApi.h"
-#import "WXApiObject.h"
 
+#import "WXApiObject.h"
 
 
 @interface WeChatLonginViewController ()
@@ -63,7 +63,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NewUserLoginWihtWechat" object:nil];
     NSNumber *state = [notification object];
     if (state.intValue) {
-        //
+        [[UserInfo shareInstance] mappingValuesFormWXUserInfo:[WXUserInfo shareInstance]];
+        
         UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
         MyProfileViewController *myProfileVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
         myProfileVC.isFristLogin = YES;

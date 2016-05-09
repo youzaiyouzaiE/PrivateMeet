@@ -15,6 +15,7 @@
 
 @interface MeViewController () <UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource> {
     NSMutableArray *_imagesArray;
+    UIImage *_headImage;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -36,6 +37,11 @@
 //    [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context: nil];
 //    [self setNeedsStatusBarAppearanceUpdate];
     _imagesArray = [NSMutableArray array];
+    
+    ////应该得到
+    NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
+    NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
+    _headImage = [UIImage imageWithContentsOfFile:saveImagePath];
     [self checkDocumentGetSmallImages];
 }
 
@@ -117,6 +123,20 @@
     if (indexPath.row == 0) {
         NSString *const cellIdentifier = @"MeInfoIdentifierCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        
+        UIImageView *imageView = (UIImageView *)[cell viewWithTag:1];
+        imageView.layer.cornerRadius = imageView.bounds.size.width/2;
+        imageView.layer.masksToBounds = YES;
+        if (_headImage) {
+            imageView.image = _headImage;
+        } else
+            imageView.image = [UIImage imageNamed:@"RadarKeyboard_HL"];
+        
+        UILabel *nameLabel = (UILabel *)[cell viewWithTag:2];
+        nameLabel.text = @"xxx";
+        UILabel *detailLabel = (UILabel *)[cell viewWithTag:3];
+        detailLabel.text = @"68%p完成度";
+        
         return cell;
     } else if(indexPath.row == 1){
         NSString *const imageCellIdentifier = @"threeImageIdentifierCell";

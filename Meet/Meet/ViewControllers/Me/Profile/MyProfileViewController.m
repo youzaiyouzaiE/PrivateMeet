@@ -14,7 +14,8 @@
 #import "MoreProfileViewController.h"
 #import "AddInformationViewController.h"
 #import "AddStarViewController.h"
-#import "WXUserInfo.h"
+
+//#import "WXUserInfo.h"
 #import "NetWorkObject.h"
 
 typedef NS_ENUM(NSUInteger, SectonContentType) {
@@ -86,7 +87,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     } else {
         ///1.load User info  image and informations
         ///2. load WeChat Info
-        NSString *saveFilePath = [AppData getCachesDirectoryWeChatDocumetPathDocument:@"headimg"];
+        NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
         NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
         UIImage *image = [UIImage imageWithContentsOfFile:saveImagePath];
          _dicValues[_titleContentArray[0]] = image;
@@ -94,7 +95,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 }
 
 - (void)loadUserWeChatImage {
-    [NetWorkObject downloadTask:[WXUserInfo shareInstance].headimgurl progress:^(NSProgress *downloadProgress) {
+    [NetWorkObject downloadTask:[UserInfo shareInstance].headimgurl progress:^(NSProgress *downloadProgress) {
         
     } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
         NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
@@ -103,7 +104,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
         NSLog(@"File downloaded to: %@", filePath.path);
         UIImage *image = [UIImage imageWithContentsOfFile:filePath.path];
         NSData *imgData = UIImageJPEGRepresentation(image, 1);
-        NSString *saveFilePath = [AppData getCachesDirectoryWeChatDocumetPathDocument:@"headimg"];
+        NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
         NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
         if ([imgData writeToFile:saveImagePath atomically:NO]) {
              NSLog(@"保存 成功");
@@ -306,6 +307,8 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
         NSString *const cellIdentifier = @"profileImageCell";
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
+        imageView.layer.cornerRadius = imageView.bounds.size.width/2;
+        imageView.layer.masksToBounds = YES;
         _dicValues[_titleContentArray[0]] ? (imageView.image = _dicValues[_titleContentArray[0]]) :(imageView.image = [UIImage imageNamed:@"RadarKeyboard_HL"]) ;
         return cell;
     } else if(section == 0) {

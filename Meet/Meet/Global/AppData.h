@@ -26,7 +26,7 @@
 + (NSString *)getCachesDirectoryDocumentPath:(NSString *)documentName;
 + (NSString *)getCachesDirectoryBigDocumentPath:(NSString *)documentName;
 + (NSString *)getCachesDirectorySmallDocumentPath:(NSString *)documentName;
-+ (NSString *)getCachesDirectoryWeChatDocumetPathDocument:(NSString *)document;
++ (NSString *)getCachesDirectoryUserInfoDocumetPathDocument:(NSString *)document;
 
 
 + (NSDate *)curretnDate;

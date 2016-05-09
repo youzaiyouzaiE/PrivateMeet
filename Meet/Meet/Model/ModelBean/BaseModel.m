@@ -8,6 +8,8 @@
 
 #import "BaseModel.h"
 
+NSString *const kBeanIdKey = @"idKey";
+
 @implementation BaseModel
 
 
@@ -33,9 +35,24 @@
     if (!self) {
         return nil;
     }
-    
-    
     return self;
+}
+
+
+#pragma mark - DB use
+- (NSArray *)columnArray {
+    NSAssert(NO, @"SubClass: columnString");
+    return nil;
+}
+
+- (NSArray *)valueArray {
+    NSAssert(NO, @"SubClass: valueArray");
+    return nil;
+}
+
+- (BOOL)deleteBean {
+    NSLog(@"the method not implement");
+    return NO;
 }
 
 @end

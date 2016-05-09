@@ -21,7 +21,14 @@
     return shareInstance;
 }
 
-
+- (void)mappingValuesFormWXUserInfo:(WXUserInfo *)wxUser {
+    self.userId = wxUser.unionid;
+    self.sex = wxUser.sex;
+    self.headimgurl = wxUser.headimgurl;
+    self.city = wxUser.city;
+    self.country = wxUser.country;
+    self.name = wxUser.nickname;
+}
 
 
 @end

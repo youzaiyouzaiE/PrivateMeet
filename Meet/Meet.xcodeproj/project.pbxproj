@@ -39,8 +39,6 @@
 		DA3626671CD1A75C00A8AE39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA3626651CD1A75C00A8AE39 /* LaunchScreen.storyboard */; };
 		DA36267C1CD1A98E00A8AE39 /* AppData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3626721CD1A98E00A8AE39 /* AppData.m */; };
 		DA36267D1CD1A98E00A8AE39 /* UITools.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3626741CD1A98E00A8AE39 /* UITools.m */; };
-		DA36267E1CD1A98E00A8AE39 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3626771CD1A98E00A8AE39 /* BaseModel.m */; };
-		DA36267F1CD1A98E00A8AE39 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3626791CD1A98E00A8AE39 /* UserInfo.m */; };
 		DA4A88F61CDB1DD900649983 /* AddStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4A88F51CDB1DD900649983 /* AddStarViewController.m */; };
 		DA4A88F81CDB2BFD00649983 /* LabelAndTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA4A88F71CDB2BFC00649983 /* LabelAndTextFieldCell.xib */; };
 		DA4A88FB1CDB5CB700649983 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4A88FA1CDB5CB700649983 /* UITextView+Placeholder.m */; };
@@ -57,8 +55,6 @@
 		DA4A892A1CDD957100649983 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA4A89251CDD957100649983 /* libWeChatSDK.a */; };
 		DA4A892B1CDD957100649983 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = DA4A89261CDD957100649983 /* read_me.txt */; };
 		DA4A892D1CDD95C100649983 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA4A892C1CDD95C100649983 /* CoreTelephony.framework */; };
-		DA4A89361CDDD16A00649983 /* WXAccessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4A89351CDDD16A00649983 /* WXAccessModel.m */; };
-		DA4A89391CDDE8F500649983 /* WXUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4A89381CDDE8F500649983 /* WXUserInfo.m */; };
 		DA6CEEEA1CD97E9A00EEABFF /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA6CEEE91CD97E9A00EEABFF /* Me.storyboard */; };
 		DA6CEEF21CD9EF9D00EEABFF /* CellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEEF11CD9EF9D00EEABFF /* CellButton.m */; };
 		DA6CEEF61CD9EFA800EEABFF /* CellTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEEF51CD9EFA800EEABFF /* CellTextField.m */; };
@@ -72,6 +68,12 @@
 		DAF5C8001CDF490000DA7901 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */; };
 		DAF5C8021CDF491700DA7901 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8011CDF491700DA7901 /* CoreMotion.framework */; };
 		DAF5C8041CDF492600DA7901 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8031CDF492600DA7901 /* Security.framework */; };
+		DAF5C81E1CE0D0ED00DA7901 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8171CE0D0ED00DA7901 /* BaseModel.m */; };
+		DAF5C81F1CE0D0ED00DA7901 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8191CE0D0ED00DA7901 /* UserInfo.m */; };
+		DAF5C8201CE0D0ED00DA7901 /* WXAccessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C81B1CE0D0ED00DA7901 /* WXAccessModel.m */; };
+		DAF5C8211CE0D0ED00DA7901 /* WXUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C81D1CE0D0ED00DA7901 /* WXUserInfo.m */; };
+		DAF5C8271CE0D1B500DA7901 /* SuperDao.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8261CE0D1B500DA7901 /* SuperDao.m */; };
+		DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8291CE0D3C000DA7901 /* UserInfoDao.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,10 +141,6 @@
 		DA3626721CD1A98E00A8AE39 /* AppData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppData.m; sourceTree = "<group>"; };
 		DA3626731CD1A98E00A8AE39 /* UITools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITools.h; sourceTree = "<group>"; };
 		DA3626741CD1A98E00A8AE39 /* UITools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITools.m; sourceTree = "<group>"; };
-		DA3626761CD1A98E00A8AE39 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
-		DA3626771CD1A98E00A8AE39 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
-		DA3626781CD1A98E00A8AE39 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
-		DA3626791CD1A98E00A8AE39 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		DA3626801CD1A9D300A8AE39 /* Meet.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Meet.pch; sourceTree = "<group>"; };
 		DA3626811CD1AADD00A8AE39 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		DA4A88F41CDB1DD900649983 /* AddStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStarViewController.h; sourceTree = "<group>"; };
@@ -171,10 +169,6 @@
 		DA4A89281CDD957100649983 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		DA4A89291CDD957100649983 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		DA4A892C1CDD95C100649983 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		DA4A89341CDDD16A00649983 /* WXAccessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAccessModel.h; sourceTree = "<group>"; };
-		DA4A89351CDDD16A00649983 /* WXAccessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAccessModel.m; sourceTree = "<group>"; };
-		DA4A89371CDDE8F500649983 /* WXUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUserInfo.h; sourceTree = "<group>"; };
-		DA4A89381CDDE8F500649983 /* WXUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXUserInfo.m; sourceTree = "<group>"; };
 		DA6CEEE91CD97E9A00EEABFF /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		DA6CEEF11CD9EF9D00EEABFF /* CellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellButton.m; sourceTree = "<group>"; };
 		DA6CEEF31CD9EFA800EEABFF /* CellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellButton.h; sourceTree = "<group>"; };
@@ -198,6 +192,18 @@
 		DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		DAF5C8011CDF491700DA7901 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		DAF5C8031CDF492600DA7901 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		DAF5C8161CE0D0ED00DA7901 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		DAF5C8171CE0D0ED00DA7901 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		DAF5C8181CE0D0ED00DA7901 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		DAF5C8191CE0D0ED00DA7901 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		DAF5C81A1CE0D0ED00DA7901 /* WXAccessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAccessModel.h; sourceTree = "<group>"; };
+		DAF5C81B1CE0D0ED00DA7901 /* WXAccessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAccessModel.m; sourceTree = "<group>"; };
+		DAF5C81C1CE0D0ED00DA7901 /* WXUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUserInfo.h; sourceTree = "<group>"; };
+		DAF5C81D1CE0D0ED00DA7901 /* WXUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXUserInfo.m; sourceTree = "<group>"; };
+		DAF5C8251CE0D1B500DA7901 /* SuperDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperDao.h; sourceTree = "<group>"; };
+		DAF5C8261CE0D1B500DA7901 /* SuperDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDao.m; sourceTree = "<group>"; };
+		DAF5C8281CE0D3C000DA7901 /* UserInfoDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoDao.h; sourceTree = "<group>"; };
+		DAF5C8291CE0D3C000DA7901 /* UserInfoDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDao.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,14 +438,8 @@
 		DA3626751CD1A98E00A8AE39 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DA3626761CD1A98E00A8AE39 /* BaseModel.h */,
-				DA3626771CD1A98E00A8AE39 /* BaseModel.m */,
-				DA4A89341CDDD16A00649983 /* WXAccessModel.h */,
-				DA4A89351CDDD16A00649983 /* WXAccessModel.m */,
-				DA4A89371CDDE8F500649983 /* WXUserInfo.h */,
-				DA4A89381CDDE8F500649983 /* WXUserInfo.m */,
-				DA3626781CD1A98E00A8AE39 /* UserInfo.h */,
-				DA3626791CD1A98E00A8AE39 /* UserInfo.m */,
+				DAF5C8141CE0D0ED00DA7901 /* Dao */,
+				DAF5C8151CE0D0ED00DA7901 /* ModelBean */,
 			);
 			name = Model;
 			path = Meet/Model;
@@ -554,6 +554,32 @@
 			);
 			name = 3rd;
 			path = Meet/3rd;
+			sourceTree = "<group>";
+		};
+		DAF5C8141CE0D0ED00DA7901 /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C8251CE0D1B500DA7901 /* SuperDao.h */,
+				DAF5C8261CE0D1B500DA7901 /* SuperDao.m */,
+				DAF5C8281CE0D3C000DA7901 /* UserInfoDao.h */,
+				DAF5C8291CE0D3C000DA7901 /* UserInfoDao.m */,
+			);
+			path = Dao;
+			sourceTree = "<group>";
+		};
+		DAF5C8151CE0D0ED00DA7901 /* ModelBean */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C8161CE0D0ED00DA7901 /* BaseModel.h */,
+				DAF5C8171CE0D0ED00DA7901 /* BaseModel.m */,
+				DAF5C8181CE0D0ED00DA7901 /* UserInfo.h */,
+				DAF5C8191CE0D0ED00DA7901 /* UserInfo.m */,
+				DAF5C81A1CE0D0ED00DA7901 /* WXAccessModel.h */,
+				DAF5C81B1CE0D0ED00DA7901 /* WXAccessModel.m */,
+				DAF5C81C1CE0D0ED00DA7901 /* WXUserInfo.h */,
+				DAF5C81D1CE0D0ED00DA7901 /* WXUserInfo.m */,
+			);
+			path = ModelBean;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -701,9 +727,9 @@
 			files = (
 				DA6CEF131CDAF42300EEABFF /* AddInformationViewController.m in Sources */,
 				DA4A88FB1CDB5CB700649983 /* UITextView+Placeholder.m in Sources */,
+				DAF5C8271CE0D1B500DA7901 /* SuperDao.m in Sources */,
 				DA018F2E1CD39D570051D2D7 /* ManListCell.m in Sources */,
 				DA018EE01CD1D36E0051D2D7 /* HomeMainViewController.m in Sources */,
-				DA4A89361CDDD16A00649983 /* WXAccessModel.m in Sources */,
 				DA4A89081CDC9A3200649983 /* GetCodeViewController.m in Sources */,
 				DA6CEEFA1CD9FA7200EEABFF /* LabelAndTextFieldCell.m in Sources */,
 				DA4A88F61CDB1DD900649983 /* AddStarViewController.m in Sources */,
@@ -716,22 +742,23 @@
 				DA018EF51CD1D7DF0051D2D7 /* EatViewController.m in Sources */,
 				DA6CEF101CDAF33300EEABFF /* MyProfileViewController.m in Sources */,
 				DA018F4E1CD4C03B0051D2D7 /* MyPhotoItem.m in Sources */,
+				DAF5C8201CE0D0ED00DA7901 /* WXAccessModel.m in Sources */,
 				DA018F391CD44B210051D2D7 /* ThreeImageCell.m in Sources */,
 				DA018F3C1CD47FAA0051D2D7 /* MyPhotosViewController.m in Sources */,
 				DA018EF81CD1D7EB0051D2D7 /* MoveViewController.m in Sources */,
 				DA018F331CD43F2A0051D2D7 /* ActivityViewController.m in Sources */,
+				DAF5C81F1CE0D0ED00DA7901 /* UserInfo.m in Sources */,
 				DA018F361CD443670051D2D7 /* UINavigationBar+BackgroundColor.m in Sources */,
 				DA36265C1CD1A75C00A8AE39 /* AppDelegate.m in Sources */,
 				DA6CEF021CDA402C00EEABFF /* TextViewCell.m in Sources */,
 				DA3626591CD1A75C00A8AE39 /* main.m in Sources */,
-				DA4A89391CDDE8F500649983 /* WXUserInfo.m in Sources */,
+				DAF5C8211CE0D0ED00DA7901 /* WXUserInfo.m in Sources */,
+				DAF5C81E1CE0D0ED00DA7901 /* BaseModel.m in Sources */,
 				DA4A890B1CDCA0C000649983 /* WeChatLonginViewController.m in Sources */,
-				DA36267E1CD1A98E00A8AE39 /* BaseModel.m in Sources */,
 				DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */,
 				DA018EDB1CD1BCD90051D2D7 /* MainViewController.m in Sources */,
 				DA6CEEF61CD9EFA800EEABFF /* CellTextField.m in Sources */,
 				DA018F5E1CD79D4A0051D2D7 /* RemindImageCell.m in Sources */,
-				DA36267F1CD1A98E00A8AE39 /* UserInfo.m in Sources */,
 				DA36267D1CD1A98E00A8AE39 /* UITools.m in Sources */,
 				DA018EE31CD1D39B0051D2D7 /* HomeBaseViewController.m in Sources */,
 				DA018EFE1CD1D8150051D2D7 /* TravelViewController.m in Sources */,
@@ -739,6 +766,7 @@
 				DA018F271CD38AEF0051D2D7 /* MeViewController.m in Sources */,
 				DA018F611CD833650051D2D7 /* HomeMoreViewController.m in Sources */,
 				DA6CEEF21CD9EF9D00EEABFF /* CellButton.m in Sources */,
+				DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */,
 				DA6CEF0F1CDAF33300EEABFF /* MoreProfileViewController.m in Sources */,
 				DA4A89051CDC473700649983 /* LoginMainViewController.m in Sources */,
 				DA018F481CD4BAC60051D2D7 /* PhotoTableCell.m in Sources */,

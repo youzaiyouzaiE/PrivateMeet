@@ -1,0 +1,30 @@
+//
+//  Meet.pch
+//  Meet
+//
+//  Created by jiahui on 16/4/28.
+//  Copyright © 2016年 Meet. All rights reserved.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 7.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import "Define.h"
+#import "AppData.h"
+#import "UserInfo.h"
+#import "UITools.h"
+#import "AppDelegate.h"
+
+#endif
+
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define NSLog(...) {}
+
+
+#endif

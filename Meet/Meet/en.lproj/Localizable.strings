@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  Meet
+
+  Created by jiahui on 16/4/30.
+  Copyright © 2016年 Meet. All rights reserved.
+*/
+"Cancel" = "Cancel";
+
+"Moments" = "Moments";
+
+"Cannot Download photo" = "Cannot Download photo";
+
+"OK" = "OK";
+
+"There was an error downloading this photo from your iCloud photo Library.Please try again later." = "There was an error downloading this photo from your iCloud photo Library.Please try again later.";
+
+"of" = "/";
+
+"Done" = "Done";
+
+"Home" = "HOME";
+"Choiceness" = "Choiceness";
+"Choose" = "choose";

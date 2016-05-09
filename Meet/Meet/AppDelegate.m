@@ -42,7 +42,7 @@ static NSString *keyWXUserInfo = @"WeChatUserInfoKey";
     [self logUser];
     
     [WXApi registerApp:@"wx49c4b6f590f83469"];
-//    [TalkingData sessionStarted:@"7D6CE6D445B00CD68BBF924B301E789F" withChannelId:@"app store"];
+    [TalkingData sessionStarted:@"7244A450FDAFB46FFEF7C1B68FBA93D3" withChannelId:@"app store"];
     
     NSDictionary *access_TokenDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyAccessModelSave];
     NSDictionary *weChatUserInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyWXUserInfo];

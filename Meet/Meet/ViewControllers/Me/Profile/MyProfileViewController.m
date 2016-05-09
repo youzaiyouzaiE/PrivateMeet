@@ -83,6 +83,13 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     
     if (_isFristLogin) {
         [self loadUserWeChatImage];
+    } else {
+        ///1.load User info  image and informations
+        ///2. load WeChat Info
+        NSString *saveFilePath = [AppData getCachesDirectoryWeChatDocumetPathDocument:@"headimg"];
+        NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
+        UIImage *image = [UIImage imageWithContentsOfFile:saveImagePath];
+         _dicValues[_titleContentArray[0]] = image;
     }
 }
 
@@ -95,9 +102,28 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
         NSLog(@"File downloaded to: %@", filePath.path);
         UIImage *image = [UIImage imageWithContentsOfFile:filePath.path];
-        NSString *savePath = [AppData getCachesDirectoryDocumentPath:[[WXUserInfo shareInstance].unionid stringByAppendingPathComponent:@"/headimg"]];
+        NSData *imgData = UIImageJPEGRepresentation(image, 1);
+        NSString *saveFilePath = [AppData getCachesDirectoryWeChatDocumetPathDocument:@"headimg"];
+        NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
+        if ([imgData writeToFile:saveImagePath atomically:NO]) {
+             NSLog(@"保存 成功");
+            NSError *error;
+            if (![[NSFileManager defaultManager] removeItemAtPath:filePath.path error:&error]) {
+                 NSLog(@"error :%@",error.localizedDescription);
+            }
+            [self reloadUerImage:saveImagePath];
+        } else {
         
+        }
     }];
+}
+
+- (void)reloadUerImage:(NSString *)imagePath {
+    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    if (image) {
+        _dicValues[_titleContentArray[0]] = image;
+//        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 
 - (void)updateViewConstraints {
@@ -280,7 +306,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
         NSString *const cellIdentifier = @"profileImageCell";
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
-        _dicValues[_titleContentArray[0]] ? (imageView.image = [UIImage imageNamed:_dicValues[_titleContentArray[0]]]) :(imageView.image = [UIImage imageNamed:@"RadarKeyboard_HL"]) ;
+        _dicValues[_titleContentArray[0]] ? (imageView.image = _dicValues[_titleContentArray[0]]) :(imageView.image = [UIImage imageNamed:@"RadarKeyboard_HL"]) ;
         return cell;
     } else if(section == 0) {
         if (row == 1 || row == 4 || row == 5 || row == 6 || row == 8) {

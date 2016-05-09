@@ -100,28 +100,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meet/ViewControllers/Me/Profile/MyProfileViewController.m"
-            timestampString = "484477912.853242"
+            timestampString = "484483516.855752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-loadUserWeChatImage"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Meet/ViewControllers/Me/Profile/MyProfileViewController.m"
-            timestampString = "484477913.917498"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "-loadUserWeChatImage"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-reloadUerImage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

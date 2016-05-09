@@ -73,6 +73,7 @@ NSString *const databaseName = @"BusinessInfo.db";
         return bigImagePath;
 }
 
+
 + (NSString *)getCachesDirectorySmallDocumentPath:(NSString *)documentName {
     NSString *cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *bigImagePath = [cacheDirectoryPath stringByAppendingPathComponent:documentName];
@@ -88,7 +89,23 @@ NSString *const databaseName = @"BusinessInfo.db";
         }
     } else
         return smallImagePath;
-    
+}
+
+
++ (NSString *)getCachesDirectoryWeChatDocumetPathDocument:(NSString *)document {/////得到当前微信用户微信文件
+    NSString *cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [cacheDirectoryPath stringByAppendingPathComponent:[[WXUserInfo shareInstance].unionid stringByAppendingPathComponent:document]];
+    NSFileManager *mager = [NSFileManager defaultManager];
+    if (![mager fileExistsAtPath:path]) {
+        //        NSLog(@"File not found Couldn't find the file at path: %@",path);
+        if ([mager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil]) {
+            return path;
+        } else {
+            NSLog(@"创建 %@ 失败",document);
+            return nil;
+        }
+    } else
+        return path;
 }
 
 #pragma mark - other
@@ -128,7 +145,7 @@ NSString *const databaseName = @"BusinessInfo.db";
 {
     NSDate *date = [NSDate date];
     NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate: date];//28800
+    NSInteger interval = [zone secondsFromGMTForDate:date];//28800
     NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
     return localeDate;
 }

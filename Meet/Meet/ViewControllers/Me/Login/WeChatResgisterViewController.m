@@ -11,14 +11,20 @@
 #import "WXApi.h"
 #import "WXApiObject.h"
 #import "WXAccessModel.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
+#import "WXUserInfo.h"
+//#import <Fabric/Fabric.h>
+//#import <Crashlytics/Crashlytics.h>
 
 @interface WeChatResgisterViewController ()<UIGestureRecognizerDelegate>
 
 @end
 
 @implementation WeChatResgisterViewController
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,8 +33,6 @@
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     }
     [UITools customNavigationLeftBarButtonForController:self action:@selector(backAction:)];
-    
-
 
 }
 
@@ -55,20 +59,38 @@
 #warning check code and into WeChat Longin
     [self performSegueWithIdentifier:@"pushToWeChatLogin" sender:self];
     
-    if([WXAccessModel shareInstance].isLostAccess_token) {
-         NSLog(@"lost Access_token");
-    } else {
-        [SHARE_APPDELEGATE wechatLoginByRequestForUserInfo];
-    }
-    
-    if([WXAccessModel shareInstance].isLostRefresh_token) {
-        NSLog(@"lost Refresh Access_token");
-    }
 }
 
 - (IBAction)useWeChatLogin:(id)sender {
-    [self sendAuthRequest];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oldUerLoginState:) name:@"OldUserLoginWihtWechat" object:nil];
+    if (![WXAccessModel shareInstance].isLostAccess_token) {
+        [SHARE_APPDELEGATE wechatLoginByRequestForUserInfo];
+        return ;
+    }
+    if (![WXAccessModel shareInstance].isLostRefresh_token) {
+        [SHARE_APPDELEGATE weChatRefreshAccess_Token];
+        return ;
+    }
+    if (![WXAccessModel shareInstance].isLostRefresh_token && ![WXAccessModel shareInstance].isLostAccess_token) {
+        [self sendAuthRequest];
+    }
 }
+
+#pragma mark - NSNotificationCenter
+- (void)oldUerLoginState:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"OldUserLoginWihtWechat" object:nil];
+     NSNumber *state = [notification object];
+    if (state) {
+        NSString *unionid = [WXUserInfo shareInstance].unionid;
+        ////判断是不是真的是老用户，此微信号是否真的注册过！！
+        if (unionid) {/////是老用户，退出登陆页面 isLogin YES 
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+            }];
+        }
+    }
+}
+
 
 #pragma mark - sender to WeChat
 -(void)sendAuthRequest {
@@ -88,6 +110,10 @@
         return YES;
     }
     return YES;
+}
+
+- (void)dealloc {
+    
 }
 /*
 #pragma mark - Navigation

@@ -31,7 +31,8 @@
 
 @implementation AppDelegate
 
-static NSString * keyAccessModelSave = @"accessModelSaveKey";
+static NSString *keyAccessModelSave = @"accessModelSaveKey";
+static NSString *keyWXUserInfo = @"WeChatUserInfoKey";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -43,11 +44,13 @@ static NSString * keyAccessModelSave = @"accessModelSaveKey";
     [WXApi registerApp:@"wx49c4b6f590f83469"];
 //    [TalkingData sessionStarted:@"7D6CE6D445B00CD68BBF924B301E789F" withChannelId:@"app store"];
     
-    NSDictionary *responseObject = [[NSUserDefaults standardUserDefaults] objectForKey:keyAccessModelSave];
-    
+    NSDictionary *access_TokenDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyAccessModelSave];
+    NSDictionary *weChatUserInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyWXUserInfo];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-value"
-   [[WXAccessModel shareInstance] initWithDictionary:responseObject];
+    [[WXAccessModel shareInstance] initWithDictionary:access_TokenDic];
+    [[WXUserInfo shareInstance] initWithDictionary:weChatUserInfoDic];
+    
     return YES;
 }
 
@@ -97,22 +100,10 @@ static NSString * keyAccessModelSave = @"accessModelSaveKey";
 
 
 #pragma mark - WXApiDelegate
-/*! @brief 收到一个来自微信的请求，第三方应用程序处理完后调用sendResp向微信发送结果
- *
- * 收到一个来自微信的请求，异步处理完成后必须调用sendResp发送处理结果给微信。
- * 可能收到的请求有GetMessageFromWXReq、ShowMessageFromWXReq等。
- * @param req 具体请求内容，是自动释放的
- */
 -(void) onReq:(BaseReq*)req {
     
 }
 
-/*! @brief 发送一个sendReq后，收到微信的回应
- *
- * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
- * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
- * @param resp具体的回应内容，是自动释放的
- */
 -(void) onResp:(BaseResp*)resp {
     if (resp.errCode != 0) {////确认
         return ;
@@ -121,21 +112,25 @@ static NSString * keyAccessModelSave = @"accessModelSaveKey";
         SendAuthResp *response = (SendAuthResp *)resp;
         if ([response.state isEqualToString:[AppData shareInstance].wxRandomState]) {
         NSString *code = response.code;
-        NSDictionary *rpameters = @{@"appid":[AppData shareInstance].wxAppID,@"secret":[AppData shareInstance].wxAppSecret,@"grant_type":@"authorization_code",@"code":code};
-        [NetWorkObject GET:WX_access_tokenURL_str
-                parameters:rpameters
+        NSDictionary *parameters = @{@"appid":[AppData shareInstance].wxAppID,@"secret":[AppData shareInstance].wxAppSecret,@"grant_type":@"authorization_code",@"code":code};
+          loadingHUD = [[UITools shareInstance] showLoadingViewAddToView:self.window message:NSLocalizedString(@"loading", "加载中") autoHide:NO];
+            [NetWorkObject GET:WX_access_tokenURL_str
+                parameters:parameters
                   progress:^(NSProgress *downloadProgress) {
             }
                    success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-                WXAccessModel *model = [[WXAccessModel shareInstance] initWithDictionary:responseObject];
-                model.saveDate = [AppData curretnDate];
-                ////save
-                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
-                [dic setObject:model.saveDate forKey:@"saveDate"];
-                [[NSUserDefaults standardUserDefaults] setObject:dic forKey:keyAccessModelSave];
-                [self wechatLoginByRequestForUserInfo];
+                       WXAccessModel *model = [[WXAccessModel shareInstance] initWithDictionary:responseObject];
+                       model.saveDate = [AppData curretnDate];
+                       ////save
+                       NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+                       [dic setObject:model.saveDate forKey:@"saveDate"];
+                       [[NSUserDefaults standardUserDefaults] setObject:dic forKey:keyAccessModelSave];
+                       [self wechatLoginByRequestForUserInfo];
+                       [loadingHUD hide:YES];
             }
                    failure:^(NSURLSessionDataTask *task, NSError *error) {
+                       [loadingHUD hide:YES];
+                      
                 NSLog(@"AF error :%@",error.localizedFailureReason);
             }];
         }
@@ -147,10 +142,17 @@ static NSString * keyAccessModelSave = @"accessModelSaveKey";
         
     } success:^(NSURLSessionDataTask *task, NSDictionary *userInfo) {
         [[WXUserInfo shareInstance] initWithDictionary:userInfo];
+        [[UITools shareInstance] showMessageToView:self.window message:@"登录成功" autoHide:YES];
          NSLog(@"请求微信用户信息成功！");
+        [[NSUserDefaults standardUserDefaults] setObject:userInfo forKey:keyWXUserInfo];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NewUserLoginWihtWechat" object:[NSNumber numberWithInt:1]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"OldUserLoginWihtWechat" object:[NSNumber numberWithInt:1]];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+         [[UITools shareInstance] showMessageToView:self.window message:@"登录失败" autoHide:YES];
          NSLog(@"请求微信用户信息失败！");
          NSLog(@"error :%@",error.localizedFailureReason);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NewUserLoginWihtWechat" object:[NSNumber numberWithInt:0]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"OldUserLoginWihtWechat" object:[NSNumber numberWithInt:0]];
     }];
 }
 
@@ -164,6 +166,7 @@ static NSString * keyAccessModelSave = @"accessModelSaveKey";
         [dic setObject:model.saveDate forKey:@"saveDate"];
         [[NSUserDefaults standardUserDefaults] setObject:dic forKey:keyAccessModelSave];
         NSLog(@"刷新Token成功！");
+        [self wechatLoginByRequestForUserInfo];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"刷新Token失败！");
         NSLog(@"error :%@",error.localizedFailureReason);

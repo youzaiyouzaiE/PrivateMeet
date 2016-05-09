@@ -15,7 +15,7 @@
 
 @property (copy, nonatomic) NSString *wxAppID;
 @property (copy, nonatomic) NSString *wxAppSecret;
-@property (copy, nonatomic) NSString *wxRandomState;
+@property (copy, nonatomic) NSString *wxRandomState;////对比授权的标识符
 @property (copy, nonatomic) NSString *wxAccess_token;
 
 

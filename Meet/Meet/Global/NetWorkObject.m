@@ -28,8 +28,8 @@
                    parameters:(id)parameters
                      progress:(void (^)(NSProgress *))downloadProgress
                       success:(void (^)(NSURLSessionDataTask *, id))success
-                      failure:(void (^)(NSURLSessionDataTask *, NSError *))failure
-{
+                      failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.securityPolicy.allowInvalidCertificates = NO;
     manager.requestSerializer.timeoutInterval = 10.0f;
@@ -49,6 +49,23 @@
                                 failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure];
     [stack resume];
     return stack;
+}
+
++ (NSURLSessionDownloadTask *)downloadTask:(NSString *)URLString
+                                  progress:(void (^)(NSProgress *downloadProgress))downloadProgress
+                               destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
+                         completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler {
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request
+                                                                     progress:(void (^)(NSProgress *downloadProgress))downloadProgress
+                                                                  destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
+                                                            completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler];
+        [downloadTask resume];
+    return downloadTask;
 }
 
 

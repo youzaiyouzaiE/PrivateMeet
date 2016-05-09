@@ -52,11 +52,22 @@
     if (_isNewUser) {
     [self sendAuthRequest];
 //////判断是否真实存在用户
-        
-//        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
-//        MyProfileViewController *myProfileVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
-//        myProfileVC.isFristLogin = YES;
-//        [self.navigationController pushViewController:myProfileVC animated:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginState:) name:@"NewUserLoginWihtWechat" object:nil];
+//        loading View start
+    }
+}
+
+#pragma mark - notification 
+- (void)loginState:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NewUserLoginWihtWechat" object:nil];
+    NSNumber *state = [notification object];
+    if (state.intValue) {
+        //
+        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
+        MyProfileViewController *myProfileVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
+        myProfileVC.isFristLogin = YES;
+        [self.navigationController pushViewController:myProfileVC animated:YES];
     }
 }
 
@@ -74,6 +85,9 @@
     };
 }
 
+- (void)dealloc {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 /*
 #pragma mark - Navigation
 

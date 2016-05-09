@@ -14,6 +14,8 @@
 #import "MoreProfileViewController.h"
 #import "AddInformationViewController.h"
 #import "AddStarViewController.h"
+#import "WXUserInfo.h"
+#import "NetWorkObject.h"
 
 typedef NS_ENUM(NSUInteger, SectonContentType) {
     SectionProfile,
@@ -74,12 +76,28 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     _arrayLoved = @[@"单身",@"恋爱",@"已婚"];
     _arrayConstellation = @[@"水平座",@"双鱼座",@"白羊座",@"金牛座",@"双子座",@"巨蟹座",@"狮子座",@"处女座",@"天秤座",@"天蝎座",@"射手座",@"摩羯座"];
     
-    
     _chooseView.hidden = YES;
     _datePicker.backgroundColor = [UIColor whiteColor];
     _datePicker.maximumDate = [NSDate  date];
-    
     _picker.backgroundColor = [UIColor whiteColor];
+    
+    if (_isFristLogin) {
+        [self loadUserWeChatImage];
+    }
+}
+
+- (void)loadUserWeChatImage {
+    [NetWorkObject downloadTask:[WXUserInfo shareInstance].headimgurl progress:^(NSProgress *downloadProgress) {
+        
+    } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+        return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        NSLog(@"File downloaded to: %@", filePath.path);
+        UIImage *image = [UIImage imageWithContentsOfFile:filePath.path];
+        NSString *savePath = [AppData getCachesDirectoryDocumentPath:[[WXUserInfo shareInstance].unionid stringByAppendingPathComponent:@"/headimg"]];
+        
+    }];
 }
 
 - (void)updateViewConstraints {

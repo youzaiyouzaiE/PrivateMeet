@@ -7,6 +7,8 @@
 //
 
 #import "UserInfo.h"
+#import "UserInfoDao.h"
+#import <objc/runtime.h>
 
 @implementation UserInfo
 
@@ -21,6 +23,7 @@
     return shareInstance;
 }
 
+
 - (void)mappingValuesFormWXUserInfo:(WXUserInfo *)wxUser {
     self.userId = wxUser.unionid;
     self.sex = wxUser.sex;
@@ -29,6 +32,23 @@
     self.country = wxUser.country;
     self.name = wxUser.nickname;
 }
+
+- (NSDictionary *) dictionaryWithPropertiesOfObject:(id)obj {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([obj class], &count);
+    
+    for (int i = 0; i < count; i++) {
+        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
+        [dict setObject:[obj valueForKey:key] forKey:key];
+    }
+    
+    free(properties);
+    
+    return [NSDictionary dictionaryWithDictionary:dict];
+}
+
 
 
 @end

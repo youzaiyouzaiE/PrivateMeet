@@ -16,6 +16,7 @@ static AppData *appData = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         appData = [[AppData alloc] init];
+        appData.userInfo = [UserInfo shareInstance];
         appData.wxAppID = @"wx49c4b6f590f83469";
         appData.wxAppSecret = @"dad2dab904e70125dcc50ea066809a20";
     });
@@ -23,7 +24,7 @@ static AppData *appData = nil;
 }
 
 #pragma mark - dataBase operation
-NSString *const databaseName = @"BusinessInfo.db";
+NSString *const databaseName = @"MeetDB.db";
 - (BOOL)initDataBaseToDocument {
     NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *dbPath = [docPath stringByAppendingPathComponent:databaseName];

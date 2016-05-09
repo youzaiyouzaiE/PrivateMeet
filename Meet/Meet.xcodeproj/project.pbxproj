@@ -74,6 +74,10 @@
 		DAF5C8211CE0D0ED00DA7901 /* WXUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C81D1CE0D0ED00DA7901 /* WXUserInfo.m */; };
 		DAF5C8271CE0D1B500DA7901 /* SuperDao.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8261CE0D1B500DA7901 /* SuperDao.m */; };
 		DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8291CE0D3C000DA7901 /* UserInfoDao.m */; };
+		DAF5C8341CE0D7A300DA7901 /* NSObject+RMArchivable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C82D1CE0D7A300DA7901 /* NSObject+RMArchivable.m */; };
+		DAF5C8351CE0D7A300DA7901 /* NSObject+RMCopyable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C82F1CE0D7A300DA7901 /* NSObject+RMCopyable.m */; };
+		DAF5C8361CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8311CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m */; };
+		DAF5C8371CE0D7A300DA7901 /* RMMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8331CE0D7A300DA7901 /* RMMapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,6 +208,14 @@
 		DAF5C8261CE0D1B500DA7901 /* SuperDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDao.m; sourceTree = "<group>"; };
 		DAF5C8281CE0D3C000DA7901 /* UserInfoDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoDao.h; sourceTree = "<group>"; };
 		DAF5C8291CE0D3C000DA7901 /* UserInfoDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDao.m; sourceTree = "<group>"; };
+		DAF5C82C1CE0D7A300DA7901 /* NSObject+RMArchivable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMArchivable.h"; sourceTree = "<group>"; };
+		DAF5C82D1CE0D7A300DA7901 /* NSObject+RMArchivable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMArchivable.m"; sourceTree = "<group>"; };
+		DAF5C82E1CE0D7A300DA7901 /* NSObject+RMCopyable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMCopyable.h"; sourceTree = "<group>"; };
+		DAF5C82F1CE0D7A300DA7901 /* NSObject+RMCopyable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMCopyable.m"; sourceTree = "<group>"; };
+		DAF5C8301CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+RMSaveCustomObject.h"; sourceTree = "<group>"; };
+		DAF5C8311CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+RMSaveCustomObject.m"; sourceTree = "<group>"; };
+		DAF5C8321CE0D7A300DA7901 /* RMMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMMapper.h; sourceTree = "<group>"; };
+		DAF5C8331CE0D7A300DA7901 /* RMMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMMapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +425,7 @@
 		DA36266F1CD1A98E00A8AE39 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				DAF5C82B1CE0D7A300DA7901 /* RMMapper */,
 				DAF5C7FA1CDF48A800DA7901 /* TakingData */,
 				DA4A89241CDD957100649983 /* SDK1.6.2 */,
 			);
@@ -582,6 +595,21 @@
 			path = ModelBean;
 			sourceTree = "<group>";
 		};
+		DAF5C82B1CE0D7A300DA7901 /* RMMapper */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C82C1CE0D7A300DA7901 /* NSObject+RMArchivable.h */,
+				DAF5C82D1CE0D7A300DA7901 /* NSObject+RMArchivable.m */,
+				DAF5C82E1CE0D7A300DA7901 /* NSObject+RMCopyable.h */,
+				DAF5C82F1CE0D7A300DA7901 /* NSObject+RMCopyable.m */,
+				DAF5C8301CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.h */,
+				DAF5C8311CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m */,
+				DAF5C8321CE0D7A300DA7901 /* RMMapper.h */,
+				DAF5C8331CE0D7A300DA7901 /* RMMapper.m */,
+			);
+			path = RMMapper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -730,6 +758,7 @@
 				DAF5C8271CE0D1B500DA7901 /* SuperDao.m in Sources */,
 				DA018F2E1CD39D570051D2D7 /* ManListCell.m in Sources */,
 				DA018EE01CD1D36E0051D2D7 /* HomeMainViewController.m in Sources */,
+				DAF5C8341CE0D7A300DA7901 /* NSObject+RMArchivable.m in Sources */,
 				DA4A89081CDC9A3200649983 /* GetCodeViewController.m in Sources */,
 				DA6CEEFA1CD9FA7200EEABFF /* LabelAndTextFieldCell.m in Sources */,
 				DA4A88F61CDB1DD900649983 /* AddStarViewController.m in Sources */,
@@ -760,14 +789,17 @@
 				DA6CEEF61CD9EFA800EEABFF /* CellTextField.m in Sources */,
 				DA018F5E1CD79D4A0051D2D7 /* RemindImageCell.m in Sources */,
 				DA36267D1CD1A98E00A8AE39 /* UITools.m in Sources */,
+				DAF5C8351CE0D7A300DA7901 /* NSObject+RMCopyable.m in Sources */,
 				DA018EE31CD1D39B0051D2D7 /* HomeBaseViewController.m in Sources */,
 				DA018EFE1CD1D8150051D2D7 /* TravelViewController.m in Sources */,
 				DA4A890E1CDCA8D000649983 /* WeChatResgisterViewController.m in Sources */,
 				DA018F271CD38AEF0051D2D7 /* MeViewController.m in Sources */,
 				DA018F611CD833650051D2D7 /* HomeMoreViewController.m in Sources */,
 				DA6CEEF21CD9EF9D00EEABFF /* CellButton.m in Sources */,
+				DAF5C8371CE0D7A300DA7901 /* RMMapper.m in Sources */,
 				DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */,
 				DA6CEF0F1CDAF33300EEABFF /* MoreProfileViewController.m in Sources */,
+				DAF5C8361CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				DA4A89051CDC473700649983 /* LoginMainViewController.m in Sources */,
 				DA018F481CD4BAC60051D2D7 /* PhotoTableCell.m in Sources */,
 				DA018F011CD1DA820051D2D7 /* ChoicenessViewController.m in Sources */,

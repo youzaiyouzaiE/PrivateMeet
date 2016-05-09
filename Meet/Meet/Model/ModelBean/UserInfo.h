@@ -9,6 +9,12 @@
 #import "BaseModel.h"
 #import "WXUserInfo.h"
 
+extern NSString *const k_User_userId;
+extern NSString *const k_User_name;
+extern NSString *const k_User_city;
+extern NSString *const k_User_country;
+extern NSString *const k_User_headimgurl;
+extern NSString *const k_User_sex;
 
 
 @interface UserInfo : BaseModel

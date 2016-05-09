@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "FMDB.h"
+#import "UserInfo.h"
+
 @interface AppData : NSObject
 
 @property (strong, nonatomic) FMDatabase *db;
 @property (assign, nonatomic) BOOL isLogin;
 
+@property (nonatomic, strong) UserInfo *userInfo;
 @property (copy, nonatomic) NSString *wxAppID;
 @property (copy, nonatomic) NSString *wxAppSecret;
 @property (copy, nonatomic) NSString *wxRandomState;////对比授权的标识符

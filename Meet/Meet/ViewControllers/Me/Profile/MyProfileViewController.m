@@ -83,18 +83,24 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     _picker.backgroundColor = [UIColor whiteColor];
     
     if (_isFristLogin) {
-        [self loadUserWeChatImage];
-    } else {
-        ///1.load User info  image and informations
-        ///2. load WeChat Info
-        NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
-        NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
-        UIImage *image = [UIImage imageWithContentsOfFile:saveImagePath];
-         _dicValues[_titleContentArray[0]] = image;
+        [self downLoadUserWeChatImage];
     }
+    [self mappingDicValue];
 }
 
-- (void)loadUserWeChatImage {
+- (void)mappingDicValue{
+    NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
+    NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
+    UIImage *image = [UIImage imageWithContentsOfFile:saveImagePath];
+    _dicValues[_titleContentArray[0]] = image;
+    
+    _dicValues[_titleContentArray[1]] = [UserInfo shareInstance].name;
+    _dicValues[_titleContentArray[2]] = [UserInfo shareInstance].sex.intValue == 1 ? @"男":@"女" ;
+    
+}
+
+
+- (void)downLoadUserWeChatImage {
     [NetWorkObject downloadTask:[UserInfo shareInstance].headimgurl progress:^(NSProgress *downloadProgress) {
         
     } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {

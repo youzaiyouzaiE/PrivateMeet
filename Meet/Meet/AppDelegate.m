@@ -19,6 +19,7 @@
 #import "UserInfo.h"
 #import "WXAccessModel.h"
 #import "WXUserInfo.h"
+#import "NSUserDefaults+RMSaveCustomObject.h"
 
 @interface AppDelegate ()<WXApiDelegate,NSURLConnectionDelegate> {
     NSURLConnection *_connection;
@@ -46,11 +47,13 @@ static NSString *keyWXUserInfo = @"WeChatUserInfoKey";
     
     NSDictionary *access_TokenDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyAccessModelSave];
     NSDictionary *weChatUserInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyWXUserInfo];
+    NSDictionary *userInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"k_UserInfoDic"];
+    
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-value"
     [[WXAccessModel shareInstance] initWithDictionary:access_TokenDic];
     [[WXUserInfo shareInstance] initWithDictionary:weChatUserInfoDic];
-    
+    [[UserInfo shareInstance] initWithDictionary:userInfoDic];
     return YES;
 }
 

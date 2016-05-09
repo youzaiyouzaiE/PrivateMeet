@@ -18,8 +18,8 @@
 #import "UserInfo.h"
 #import "UITools.h"
 #import "AppDelegate.h"
-//#import "WXUserInfo.h"
-#import "UserInfo.h"
+
+//#import "UserInfo.h"
 
 #endif
 

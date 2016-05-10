@@ -459,6 +459,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
         {
             UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
             imagePicker.delegate = self;
+            imagePicker.allowsEditing = YES;
             imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
             [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
@@ -474,6 +475,10 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
             NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
             [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
             imagePicker.mediaTypes = mediaTypes;
+            imagePicker.allowsEditing = YES;
+            imagePicker.navigationBar.tintColor = [UIColor whiteColor];
+            imagePicker.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
+           [imagePicker.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
             [self presentViewController:imagePicker animated:YES completion:nil];
             break;
         }
@@ -491,15 +496,16 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 //        ///头像上传后再保存到本地 刷新
 //    });
     
-    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
     NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
     NSString *saveImagePath = [self imageSaveParth];
     if ([imageData writeToFile:saveImagePath atomically:NO]) {
-        NSLog(@"保存 成功");
+//        NSLog(@"保存 成功");
     }
     
     [self.navigationController dismissViewControllerAnimated: YES completion:^{
         [self reloadUerImage:saveImagePath];
+        self.block(YES, NO);
     }];
 }
 

@@ -40,19 +40,17 @@
 //    [self setNeedsStatusBarAppearanceUpdate];
     _imagesArray = [NSMutableArray array];
     
-
-    _headImage = [UIImage imageWithContentsOfFile:[self headImagePath]];
-    
+    [self loadHeadImageView];
     [self checkDocumentGetSmallImages];
 }
 
-- (NSString *)headImagePath {
+- (void )loadHeadImageView {
     NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
     NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
-    return saveImagePath;
+    _headImage = [UIImage imageWithContentsOfFile:saveImagePath];
 }
 
-- (void)checkDocumentGetSmallImages {
+- (void)checkDocumentGetSmallImages {////获取cell 2里的image
     [_imagesArray removeAllObjects];
     NSString *smallFilePath = [AppData getCachesDirectorySmallDocumentPath:FORMAT(@"image%@",[UserInfo shareInstance].userId)];
     NSArray *smallImageParthArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:smallFilePath error:nil];
@@ -204,6 +202,12 @@
      if (indexPath.row == 0) {
         UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
         MyProfileViewController *myProfileVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
+         myProfileVC.block = ^(BOOL updateImage, BOOL updateInfo){
+             if (updateImage) {
+                 [self loadHeadImageView];
+             }
+             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+         };
         [self.navigationController pushViewController:myProfileVC animated:YES];
     } else  if (indexPath.row == 1) {
 //        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];

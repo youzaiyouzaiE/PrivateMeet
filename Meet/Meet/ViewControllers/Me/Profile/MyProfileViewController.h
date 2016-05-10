@@ -6,10 +6,13 @@
 //  Copyright © 2016年 Meet. All rights reserved.
 //
 
+typedef void(^needReloadProfileCellBlock)(BOOL updateImaeg,BOOL updateInfo);
 #import <UIKit/UIKit.h>
 
 @interface MyProfileViewController : UIViewController
 
 @property (assign, nonatomic) BOOL isFristLogin;///////第一次登录进入的
+
+@property (copy, nonatomic) needReloadProfileCellBlock block;
 
 @end

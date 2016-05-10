@@ -71,9 +71,9 @@
         [SHARE_APPDELEGATE weChatRefreshAccess_Token];
         return ;
     }
-    if (![WXAccessModel shareInstance].isLostRefresh_token && ![WXAccessModel shareInstance].isLostAccess_token) {
+//    if ([WXAccessModel shareInstance].isLostRefresh_token && [WXAccessModel shareInstance].isLostAccess_token) {
         [self sendAuthRequest];
-    }
+//    }
 }
 
 #pragma mark - NSNotificationCenter
@@ -84,10 +84,12 @@
         NSString *unionid = [WXUserInfo shareInstance].unionid;
         ////判断是不是真的是老用户，此微信号是否真的注册过！！
         if (unionid) {/////是老用户，退出登陆页面 isLogin YES
-#warning  是老用户 从网获取用户信息 并保存本地
+#warning  是老用户 从网获取用户信息 并保存本地 退出登陆页面
             [self dismissViewControllerAnimated:YES completion:^{
                 
             }];
+        } else {
+            [[UITools shareInstance] showMessageToView:self.view message:@"请求出错" autoHide:YES];
         }
     }
 }

@@ -129,7 +129,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
     if (image) {
         _dicValues[_titleContentArray[0]] = image;
-//        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 

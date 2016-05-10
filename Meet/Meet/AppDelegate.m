@@ -32,8 +32,7 @@
 
 @implementation AppDelegate
 
-static NSString *keyAccessModelSave = @"accessModelSaveKey";
-static NSString *keyWXUserInfo = @"WeChatUserInfoKey";
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -47,7 +46,7 @@ static NSString *keyWXUserInfo = @"WeChatUserInfoKey";
     
     NSDictionary *access_TokenDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyAccessModelSave];
     NSDictionary *weChatUserInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyWXUserInfo];
-    NSDictionary *userInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"k_UserInfoDic"];
+    NSDictionary *userInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyUserInfo];
     
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-value"

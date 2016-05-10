@@ -66,8 +66,8 @@
     NSNumber *state = [notification object];
     if (state.intValue) {
         [[UserInfo shareInstance] mappingValuesFormWXUserInfo:[WXUserInfo shareInstance]];
-        NSDictionary *dic = [self dictionaryWithPropertiesOfObject:[UserInfo shareInstance]];
-        [[NSUserDefaults standardUserDefaults] setObject:dic forKey:@"k_UserInfoDic"];
+        NSDictionary *dic = [[UserInfo shareInstance] dictionaryWithUserInfo];
+        [[NSUserDefaults standardUserDefaults] setObject:dic forKey:keyUserInfo];
         
         UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
         MyProfileViewController *myProfileVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
@@ -76,21 +76,21 @@
     }
 }
 
-- (NSDictionary *) dictionaryWithPropertiesOfObject:(id)obj {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    
-    unsigned count;
-    objc_property_t *properties = class_copyPropertyList([obj class], &count);
-    
-    for (int i = 0; i < count; i++) {
-        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
-        [dict setObject:[obj valueForKey:key] forKey:key];
-    }
-    
-    free(properties);
-    
-    return [NSDictionary dictionaryWithDictionary:dict];
-}
+//- (NSDictionary *) dictionaryWithPropertiesOfObject:(id)obj {
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    
+//    unsigned count;
+//    objc_property_t *properties = class_copyPropertyList([obj class], &count);
+//    
+//    for (int i = 0; i < count; i++) {
+//        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
+//        [dict setObject:[obj valueForKey:key] forKey:key];
+//    }
+//    
+//    free(properties);
+//    
+//    return [NSDictionary dictionaryWithDictionary:dict];
+//}
 
 
 #pragma mark - sender to WeChat

@@ -33,19 +33,17 @@
     self.name = wxUser.nickname;
 }
 
-- (NSDictionary *) dictionaryWithPropertiesOfObject:(id)obj {
+- (NSDictionary *)dictionaryWithUserInfo {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     unsigned count;
-    objc_property_t *properties = class_copyPropertyList([obj class], &count);
+    objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     for (int i = 0; i < count; i++) {
         NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
-        [dict setObject:[obj valueForKey:key] forKey:key];
+        [dict setObject:[self valueForKey:key] forKey:key];
     }
-    
     free(properties);
-    
     return [NSDictionary dictionaryWithDictionary:dict];
 }
 

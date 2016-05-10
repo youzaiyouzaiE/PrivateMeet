@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+
+static NSString *keyAccessModelSave = @"accessModelSaveKey";
+static NSString *keyWXUserInfo = @"WeChatUserInfoKey";
+static NSString *keyUserInfo = @"k_UserInfoDic";
+
+
 @class MainViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

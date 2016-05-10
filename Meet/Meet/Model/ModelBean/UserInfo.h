@@ -30,5 +30,7 @@ extern NSString *const k_User_sex;
 + (instancetype)shareInstance;
 - (void)mappingValuesFormWXUserInfo:(WXUserInfo *)wxUser;
 
+- (NSDictionary *)dictionaryWithUserInfo;
+
 
 @end

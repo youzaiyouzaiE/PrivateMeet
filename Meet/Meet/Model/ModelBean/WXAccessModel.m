@@ -26,6 +26,9 @@
 - (BOOL)isLostAccess_token
 {
 //    NSDate *lostDate = [_saveDate dateByAddingTimeInterval:Access_Token_LostTime];
+    if (!_saveDate) {
+        return YES;
+    }
     NSDate *currentDate = [AppData curretnDate];
     NSTimeInterval timeBetween = [currentDate timeIntervalSinceDate:_saveDate];
     BOOL isLost = (timeBetween > Access_Token_LostTime) ? YES:NO;
@@ -34,6 +37,9 @@
 
 - (BOOL)isLostRefresh_token
 {
+    if (!_saveDate) {
+        return YES;
+    }
     NSDate *currentDate = [AppData curretnDate];
     NSTimeInterval timeBetween = [currentDate timeIntervalSinceDate:_saveDate];
     BOOL isLost = (timeBetween > Refresh_Token_LostTime) ?  YES:NO;

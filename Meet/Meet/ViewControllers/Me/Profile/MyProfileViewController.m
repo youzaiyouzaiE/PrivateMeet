@@ -17,6 +17,7 @@
 
 #import "MWPhotoBrowser.h"
 #import "NetWorkObject.h"
+#import "UISheetView.h"
 
 typedef NS_ENUM(NSUInteger, SectonContentType) {
     SectionProfile,
@@ -27,7 +28,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     sectionMore,//更多
 };
 
-@interface MyProfileViewController () <UITableViewDelegate,UITableViewDataSource,UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate,UITextViewDelegate,MWPhotoBrowserDelegate> {
+@interface MyProfileViewController () <UITableViewDelegate,UITableViewDataSource,UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate,UITextViewDelegate,MWPhotoBrowserDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UISheetViewDelegate> {
     NSArray *_titleContentArray;
     
     __weak IBOutlet UIView *_chooseView;
@@ -49,6 +50,8 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     NSMutableArray *_arrayWorkExper;///工作经历
     NSMutableArray *_arrayOccupationLable;///职业标签
     NSMutableArray *_arrayEducateExper;///教育背景
+    
+    UISheetView *_sheetView;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -81,6 +84,8 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     _datePicker.backgroundColor = [UIColor whiteColor];
     _datePicker.maximumDate = [NSDate  date];
     _picker.backgroundColor = [UIColor whiteColor];
+    
+    
     
     if (_isFristLogin) {
         [self downLoadUserWeChatImage];
@@ -402,7 +407,9 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     _selectIndexParth = indexPath;
     if (section == 0) {
         if (row == 0) {
-            
+            _sheetView = [[UISheetView alloc] initWithContenArray:@[@"拍照",@"相册选择",@"取消"]];
+            _sheetView.delegate = self;
+            [_sheetView show];
 //            if (_dicValues[_titleContentArray[0]] ) {
 //                NSMutableArray *photos = [NSMutableArray array];
 //                [photos addObject:[MWPhoto photoWithImage:_dicValues[_titleContentArray[0]]]];
@@ -440,6 +447,11 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     }
 }
 
+#pragma mark - UISheetViewDelegate 
+- (void)sheetView:(UISheetView *)sheet didSelectRowAtIndex:(NSInteger)index {
+    [_sheetView hidden];
+}
+
 #pragma mark - MWPhotoBrowserDelegate
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
     return _photos.count;
@@ -452,11 +464,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 }
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
-    NSLog(@"110<#Log#>");
-}
-
-- (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser{
-    NSLog(@"<#Log#>");
+    NSLog(@"110Log");
 }
 
 #pragma mark - UITextFieldDelegate

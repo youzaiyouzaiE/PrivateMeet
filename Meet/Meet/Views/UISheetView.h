@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class UISheetView;
-@protocol SheetViewSelectDelegate <NSObject>
+@protocol UISheetViewDelegate <NSObject>
 
 - (void)sheetView:(UISheetView *)sheet didSelectRowAtIndex:(NSInteger)index;
 
@@ -17,8 +17,13 @@
 
 @interface UISheetView : UIView
 
-@property (assign, nonatomic) id<SheetViewSelectDelegate> delegate;
+@property (assign, nonatomic) BOOL isShow;
+@property (assign, nonatomic) id<UISheetViewDelegate> delegate;
 
 - (instancetype)initWithContenArray:(NSArray *)array;
+
+- (void)show;
+
+- (void)hidden;
 
 @end

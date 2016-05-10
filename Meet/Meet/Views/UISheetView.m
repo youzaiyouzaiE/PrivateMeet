@@ -13,6 +13,8 @@
 
 @interface UISheetView ()<UITableViewDelegate,UITableViewDataSource> {
     NSArray *_arrayContents;
+    UIView *_backView;
+    CGRect _frame ;
 }
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -28,6 +30,8 @@
         if (_arrayContents && _arrayContents.count > 2) {
             self.bounds = CGRectMake(0, 0, ScreenWidth, _arrayContents.count * TABLE_CELL_H + TABLE_SECTION_GAP);
             self.frame = CGRectMake(0, ScreenHeight + self.bounds.size.height, CGRectGetWidth(self.bounds),CGRectGetHeight(self.bounds ));
+            _frame = self.frame;
+            self.backgroundColor = [UIColor blackColor];
             [self loadContentView];
         }
     }
@@ -38,7 +42,9 @@
     if (_arrayContents == nil) {
         return;
     }
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height) style:UITableViewStyleGrouped];
+
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height) style:UITableViewStylePlain];
+    self.tableView.scrollEnabled = NO;
     [self addSubview:self.tableView];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -46,7 +52,12 @@
     if(IOS_7LAST){
         self.tableView.separatorInset = UIEdgeInsetsMake(0, 1, 0, 0);
     }
-
+    [SHARE_APPDELEGATE.window addSubview:self];
+    
+//    _backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth)];
+//    _backView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
+//    [_backView addSubview:self];
+//    [SHARE_APPDELEGATE.window addSubview:_backView];
 }
 
 #pragma mark - UITableViewDataSource
@@ -56,9 +67,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return _arrayContents.count -1;
-    }
-    return 1;
+        return _arrayContents.count - 1;
+    } else
+        return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -77,8 +88,9 @@
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     if (indexPath.section == 0) {
         cell.textLabel.text = _arrayContents[indexPath.row];
-    } else
+    } else if (indexPath.section == 1) {
         cell.textLabel.text = _arrayContents.lastObject;
+    }
     return cell;
 }
 
@@ -95,5 +107,25 @@
         [self.delegate sheetView:self didSelectRowAtIndex:indexPath.row];
     }
 }
+
+- (void)show {
+    [self animationForShow:YES];
+}
+
+- (void)hidden {
+    [self animationForShow:NO];
+}
+
+- (void)animationForShow:(BOOL)isShow {
+  [UIView animateWithDuration:0.3 animations:^{
+      isShow ? (self.frame = CGRectMake(0, ScreenHeight - self.bounds.size.height, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))) : (self.frame = _frame );
+  } completion:^(BOOL finished) {
+      if (isShow) {
+          _backView.hidden = NO;
+      } else
+          _backView.hidden = YES;
+  }];
+}
+
 
 @end

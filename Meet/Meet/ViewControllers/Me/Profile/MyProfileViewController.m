@@ -15,7 +15,7 @@
 #import "AddInformationViewController.h"
 #import "AddStarViewController.h"
 
-//#import "WXUserInfo.h"
+#import "MWPhotoBrowser.h"
 #import "NetWorkObject.h"
 
 typedef NS_ENUM(NSUInteger, SectonContentType) {
@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     sectionMore,//更多
 };
 
-@interface MyProfileViewController () <UITableViewDelegate,UITableViewDataSource,UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate,UITextViewDelegate> {
+@interface MyProfileViewController () <UITableViewDelegate,UITableViewDataSource,UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate,UITextViewDelegate,MWPhotoBrowserDelegate> {
     NSArray *_titleContentArray;
     
     __weak IBOutlet UIView *_chooseView;
@@ -53,7 +53,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewConstraint;
-
+@property (strong, nonatomic) NSMutableArray *photos;
 
 @end
 
@@ -292,7 +292,6 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
         return 0;
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
@@ -402,7 +401,29 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     NSInteger section = indexPath.section;
     _selectIndexParth = indexPath;
     if (section == 0) {
-        if (row == 3) {/////date picker
+        if (row == 0) {
+            
+//            if (_dicValues[_titleContentArray[0]] ) {
+//                NSMutableArray *photos = [NSMutableArray array];
+//                [photos addObject:[MWPhoto photoWithImage:_dicValues[_titleContentArray[0]]]];
+//                _photos = photos;
+//                MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+//                browser.displayActionButton = YES;
+//                browser.displayNavArrows = NO;
+//                browser.displaySelectionButtons = NO;
+//                browser.alwaysShowControls = NO;
+//                browser.zoomPhotosToFill = YES;
+//                browser.enableGrid = NO;
+//                browser.startOnGrid = NO;
+//                browser.enableSwipeToDismiss = YES;
+//                browser.autoPlayOnAppear = NO;
+//                [browser setCurrentPhotoIndex:0];
+//                browser.navigationItem.title = @"";
+//                [self.navigationController pushViewController:browser animated:YES];
+//            } else {
+//                
+//            }
+        } else if (row == 3) {/////date picker
             [self.view endEditing:YES];
             [self hiddenDatePicker:NO];
             [self showChooseViewAnimation:YES];
@@ -417,6 +438,25 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     } else if(section == 1 || section == 3 ) {
         [self performSegueWithIdentifier:@"pushToAddInformationVC" sender:self];
     }
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
+}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
+    NSLog(@"110<#Log#>");
+}
+
+- (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser{
+    NSLog(@"<#Log#>");
 }
 
 #pragma mark - UITextFieldDelegate

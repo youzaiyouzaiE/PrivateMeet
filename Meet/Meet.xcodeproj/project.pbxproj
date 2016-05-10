@@ -78,6 +78,7 @@
 		DAF5C8351CE0D7A300DA7901 /* NSObject+RMCopyable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C82F1CE0D7A300DA7901 /* NSObject+RMCopyable.m */; };
 		DAF5C8361CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8311CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m */; };
 		DAF5C8371CE0D7A300DA7901 /* RMMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8331CE0D7A300DA7901 /* RMMapper.m */; };
+		DAF5C83A1CE18A2400DA7901 /* UISheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8391CE18A2400DA7901 /* UISheetView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -216,6 +217,8 @@
 		DAF5C8311CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+RMSaveCustomObject.m"; sourceTree = "<group>"; };
 		DAF5C8321CE0D7A300DA7901 /* RMMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMMapper.h; sourceTree = "<group>"; };
 		DAF5C8331CE0D7A300DA7901 /* RMMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMMapper.m; sourceTree = "<group>"; };
+		DAF5C8381CE18A2400DA7901 /* UISheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISheetView.h; sourceTree = "<group>"; };
+		DAF5C8391CE18A2400DA7901 /* UISheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISheetView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -503,6 +506,8 @@
 				DA4A88FA1CDB5CB700649983 /* UITextView+Placeholder.m */,
 				DA4A88FC1CDB5D7A00649983 /* CellTextView.h */,
 				DA4A88FD1CDB5D7A00649983 /* CellTextView.m */,
+				DAF5C8381CE18A2400DA7901 /* UISheetView.h */,
+				DAF5C8391CE18A2400DA7901 /* UISheetView.m */,
 			);
 			name = Views;
 			path = Meet/Views;
@@ -775,6 +780,7 @@
 				DA018F391CD44B210051D2D7 /* ThreeImageCell.m in Sources */,
 				DA018F3C1CD47FAA0051D2D7 /* MyPhotosViewController.m in Sources */,
 				DA018EF81CD1D7EB0051D2D7 /* MoveViewController.m in Sources */,
+				DAF5C83A1CE18A2400DA7901 /* UISheetView.m in Sources */,
 				DA018F331CD43F2A0051D2D7 /* ActivityViewController.m in Sources */,
 				DAF5C81F1CE0D0ED00DA7901 /* UserInfo.m in Sources */,
 				DA018F361CD443670051D2D7 /* UINavigationBar+BackgroundColor.m in Sources */,

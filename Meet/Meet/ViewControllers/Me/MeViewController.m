@@ -13,12 +13,14 @@
 #import "MyPhotosViewController.h"
 #import "RemindImageCell.h"
 
+
 @interface MeViewController () <UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource> {
     NSMutableArray *_imagesArray;
     UIImage *_headImage;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
 
@@ -38,17 +40,17 @@
 //    [self setNeedsStatusBarAppearanceUpdate];
     _imagesArray = [NSMutableArray array];
     
-    ////应该得到
-    NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
-    NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
-    _headImage = [UIImage imageWithContentsOfFile:saveImagePath];
+
+    _headImage = [UIImage imageWithContentsOfFile:[self headImagePath]];
+    
     [self checkDocumentGetSmallImages];
 }
 
-//- (UIStatusBarStyle)preferredStatusBarStyle
-//{
-////    return UIStatusBarStyleLightContent;
-//}
+- (NSString *)headImagePath {
+    NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
+    NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
+    return saveImagePath;
+}
 
 - (void)checkDocumentGetSmallImages {
     [_imagesArray removeAllObjects];
@@ -187,7 +189,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.row == 1) {
+     if(indexPath.row == 1) {
         ThreeImageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [cell setViewsFrame];
     } else if(indexPath.row == 3){
@@ -199,7 +201,7 @@
 #pragma mark - tableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == 0) {
+     if (indexPath.row == 0) {
         UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
         MyProfileViewController *myProfileVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
         [self.navigationController pushViewController:myProfileVC animated:YES];
@@ -212,7 +214,6 @@
 }
 
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"MePushToMyPhoto"]) {

@@ -11,9 +11,8 @@
 #define TABLE_CELL_H        40
 #define TABLE_SECTION_GAP   5
 
-@interface UISheetView ()<UITableViewDelegate,UITableViewDataSource> {
+@interface UISheetView ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate> {
     NSArray *_arrayContents;
-    UIView *_backView;
     CGRect _frame ;
 }
 
@@ -28,10 +27,8 @@
     if (self) {
         _arrayContents = array;
         if (_arrayContents && _arrayContents.count > 2) {
-            self.bounds = CGRectMake(0, 0, ScreenWidth, _arrayContents.count * TABLE_CELL_H + TABLE_SECTION_GAP);
-            self.frame = CGRectMake(0, ScreenHeight + self.bounds.size.height, CGRectGetWidth(self.bounds),CGRectGetHeight(self.bounds ));
-            _frame = self.frame;
-            self.backgroundColor = [UIColor blackColor];
+            self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+            self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
             [self loadContentView];
         }
     }
@@ -42,8 +39,9 @@
     if (_arrayContents == nil) {
         return;
     }
-
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height) style:UITableViewStylePlain];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, ScreenHeight + self.bounds.size.height, self.bounds.size.width, _arrayContents.count * TABLE_CELL_H + TABLE_SECTION_GAP) style:UITableViewStylePlain];
+    _frame = self.tableView.frame;
     self.tableView.scrollEnabled = NO;
     [self addSubview:self.tableView];
     _tableView.delegate = self;
@@ -54,10 +52,23 @@
     }
     [SHARE_APPDELEGATE.window addSubview:self];
     
-//    _backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth)];
-//    _backView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
-//    [_backView addSubview:self];
-//    [SHARE_APPDELEGATE.window addSubview:_backView];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)];
+    tap.delegate = self;
+    [self addGestureRecognizer:tap];
+}
+
+#pragma mark - tapAction 
+- (void)tapGestureAction:(id)sender {
+    [self hidden];
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    CGPoint pointInTab = [gestureRecognizer locationInView:_tableView];
+    if (pointInTab.y > 0) {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - UITableViewDataSource
@@ -104,7 +115,7 @@
         } else {
             index = _arrayContents.count - 1;
         }
-        [self.delegate sheetView:self didSelectRowAtIndex:indexPath.row];
+        [self.delegate sheetView:self didSelectRowAtIndex:index];
     }
 }
 
@@ -118,12 +129,15 @@
 
 - (void)animationForShow:(BOOL)isShow {
   [UIView animateWithDuration:0.3 animations:^{
-      isShow ? (self.frame = CGRectMake(0, ScreenHeight - self.bounds.size.height, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))) : (self.frame = _frame );
-  } completion:^(BOOL finished) {
       if (isShow) {
-          _backView.hidden = NO;
-      } else
-          _backView.hidden = YES;
+          self.hidden = NO;
+      }
+      isShow ? (_tableView.frame = CGRectMake(0, ScreenHeight - _tableView.bounds.size.height, CGRectGetWidth(_tableView.bounds), CGRectGetHeight(_tableView.bounds))) : (_tableView.frame = _frame );
+  } completion:^(BOOL finished) {
+      _isShow = isShow;
+      if (!isShow) {
+          self.hidden = YES;
+      }
   }];
 }
 

@@ -407,8 +407,10 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     _selectIndexParth = indexPath;
     if (section == 0) {
         if (row == 0) {
-            _sheetView = [[UISheetView alloc] initWithContenArray:@[@"拍照",@"相册选择",@"取消"]];
-            _sheetView.delegate = self;
+            if ( !_sheetView) {
+                _sheetView = [[UISheetView alloc] initWithContenArray:@[@"拍照",@"相册选择",@"取消"]];
+                _sheetView.delegate = self;
+            }
             [_sheetView show];
 //            if (_dicValues[_titleContentArray[0]] ) {
 //                NSMutableArray *photos = [NSMutableArray array];
@@ -449,6 +451,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 
 #pragma mark - UISheetViewDelegate 
 - (void)sheetView:(UISheetView *)sheet didSelectRowAtIndex:(NSInteger)index {
+     NSLog(@"selected %d",index);
     [_sheetView hidden];
 }
 

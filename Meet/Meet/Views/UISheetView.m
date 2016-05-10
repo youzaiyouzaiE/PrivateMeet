@@ -8,7 +8,7 @@
 
 #import "UISheetView.h"
 
-#define TABLE_CELL_H        40
+#define TABLE_CELL_H        44
 #define TABLE_SECTION_GAP   5
 
 @interface UISheetView ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate> {

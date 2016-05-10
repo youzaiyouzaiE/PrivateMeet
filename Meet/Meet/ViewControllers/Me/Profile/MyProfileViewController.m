@@ -94,9 +94,8 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 }
 
 - (void)mappingDicValue{
-    NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
-    NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
-    UIImage *image = [UIImage imageWithContentsOfFile:saveImagePath];
+ 
+    UIImage *image = [UIImage imageWithContentsOfFile:[self imageSaveParth]];
     _dicValues[_titleContentArray[0]] = image;
     
     _dicValues[_titleContentArray[1]] = [UserInfo shareInstance].name;
@@ -104,6 +103,11 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     
 }
 
+- (NSString *)imageSaveParth {
+    NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
+    NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
+    return saveImagePath;
+}
 
 - (void)downLoadUserWeChatImage {
     [NetWorkObject downloadTask:[UserInfo shareInstance].headimgurl progress:^(NSProgress *downloadProgress) {
@@ -115,9 +119,8 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
         NSLog(@"File downloaded to: %@", filePath.path);
         UIImage *image = [UIImage imageWithContentsOfFile:filePath.path];
         NSData *imgData = UIImageJPEGRepresentation(image, 1);
-        NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
-        NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
-        if ([imgData writeToFile:saveImagePath atomically:NO]) {
+        NSString *saveImagePath = [self imageSaveParth];
+        if ([imgData writeToFile:[self imageSaveParth] atomically:NO]) {
              NSLog(@"保存 成功");
             NSError *error;
             if (![[NSFileManager defaultManager] removeItemAtPath:filePath.path error:&error]) {
@@ -451,8 +454,58 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 
 #pragma mark - UISheetViewDelegate 
 - (void)sheetView:(UISheetView *)sheet didSelectRowAtIndex:(NSInteger)index {
-     NSLog(@"selected %d",index);
+    switch (index) {
+        case 0: //照相机
+        {
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+            imagePicker.delegate = self;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+            imagePicker.mediaTypes = mediaTypes;
+            [self presentViewController:imagePicker animated:YES completion:nil];
+            break;
+        }
+        case 1: //相簿
+        {
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+            imagePicker.delegate = self;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+            imagePicker.mediaTypes = mediaTypes;
+            [self presentViewController:imagePicker animated:YES completion:nil];
+            break;
+        }
+            
+        default:
+            break;
+    }
     [_sheetView hidden];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        ///头像上传后再保存到本地 刷新
+//    });
+    
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+    NSString *saveImagePath = [self imageSaveParth];
+    if ([imageData writeToFile:saveImagePath atomically:NO]) {
+        NSLog(@"保存 成功");
+    }
+    
+    [self.navigationController dismissViewControllerAnimated: YES completion:^{
+        [self reloadUerImage:saveImagePath];
+    }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - MWPhotoBrowserDelegate

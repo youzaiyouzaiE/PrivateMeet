@@ -133,10 +133,10 @@
             imageView.image = [UIImage imageNamed:@"RadarKeyboard_HL"];
         
         UILabel *nameLabel = (UILabel *)[cell viewWithTag:2];
-        nameLabel.text = @"xxx";
-        UILabel *detailLabel = (UILabel *)[cell viewWithTag:3];
-        detailLabel.text = @"68%p完成度";
+        nameLabel.text = [UserInfo shareInstance].name;
         
+        UILabel *detailLabel = (UILabel *)[cell viewWithTag:3];
+        detailLabel.text = @"68%完成度";
         return cell;
     } else if(indexPath.row == 1){
         NSString *const imageCellIdentifier = @"threeImageIdentifierCell";

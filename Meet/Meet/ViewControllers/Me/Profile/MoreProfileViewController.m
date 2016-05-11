@@ -22,7 +22,8 @@
     NSMutableDictionary *_dicHeaderContent;
     NSMutableDictionary *_dicPlaceHolder;
     NSCache *_cacheImages;
-    NSMutableArray *_arrayHaveImageIndex;/////那些位置有图片
+    NSMutableArray *_arrayHaveImageIndex;/////那些位置有图片 得到本地图片用
+    NSMutableArray *_arrayCacheImgaeKeys;
     
     BOOL keyboardShow;
     CGRect tableViewFrame;
@@ -56,22 +57,66 @@
     _dicHeaderContent = [NSMutableDictionary dictionaryWithDictionary:@{_arraySection[0]:@"您的工作、生活情况",_arraySection[1]:@"您的兴趣及爱好",_arraySection[2]:@"给您增加的内容起个标题吧",_arraySection[3]:@"您希望认识什么样的朋友",_arraySection[4]:@""}];
     _dicPlaceHolder = [NSMutableDictionary dictionaryWithDictionary:@{_arraySection[0]:@"包括但不限于：你的工作内容、工作状态及工作中的收获；你的生活方式、对生活要求及对未来生活的期待。",_arraySection[1]:@"可以分享下你的兴趣爱好都有哪些，为什么会喜欢，以及有什么期待",_arraySection[2]:@"再分享一些其他的故事",_arraySection[3]:@"可以说说你希望认识什么样的朋友",_arraySection[4]:@""}];
     _cacheImages = [[NSCache alloc] init];
-    _arrayHaveImageIndex = [NSMutableArray array];
     
+    _arrayHaveImageIndex = [NSMutableArray array];
+    _arrayCacheImgaeKeys = [NSMutableArray array];
+    
+    [self getImagesInTableLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShowAction:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHideAction:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)getImagesInTableLocation {
-    NSString *mostContetPath = [[AppData shareInstance] getCacheMostContetnImagePath];
-    NSArray *mostContetImagesDocArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mostContetPath error:nil];
-    [mostContetImagesDocArray enumerateObjectsUsingBlock:^(NSString *section, NSUInteger idx, BOOL *stop) {
-        NSString *sectionPath = [mostContetPath stringByAppendingPathComponent:section];
-        NSArray *rowConttArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:sectionPath error:nil];
-        [rowConttArray enumerateObjectsUsingBlock:^(NSString *row, NSUInteger idx, BOOL *stop) {
-             NSLog(@"indePath Section :%@, row :%@",section, row);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *mostContetPath = [[AppData shareInstance] getCacheMostContetnImagePath];
+        NSArray *mostContetImagesDocArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mostContetPath error:nil];
+        [mostContetImagesDocArray enumerateObjectsUsingBlock:^(NSString *section, NSUInteger idx, BOOL *stop) {
+            NSString *sectionPath = [mostContetPath stringByAppendingPathComponent:section];
+            NSArray *rowConttArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:sectionPath error:nil];
+            [rowConttArray enumerateObjectsUsingBlock:^(NSString *row, NSUInteger idx, BOOL *stop) {
+                NSLog(@"indePath Section :%@, row :%@",section, row);
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row.intValue inSection:section.intValue];
+//                NSLog(@"path indePath Section :%d, row :%d",indexPath.section, indexPath.row);
+                [_arrayHaveImageIndex addObject:indexPath];
+            }];
         }];
+        [self loadAllSmallImagesInCache];
+    });
+}
+
+- (void)loadAllSmallImagesInCache {
+    [_arrayHaveImageIndex enumerateObjectsUsingBlock:^(NSIndexPath *indexPath, NSUInteger idx, BOOL *stop) {
+        [self loadSmallImagesInCachWithIndexPath:indexPath isReload:NO];
     }];
+}
+
+- (void)loadSmallImagesInCachWithIndexPath:(NSIndexPath *)indexPath isReload:(BOOL)isReload{
+//    NSLog(@"SmallImages indePath Section :%d, row :%d",indexPath.section, indexPath.row);
+    if (isReload) {////删除之前 对应indexPath里缓存的内容
+        NSString *head = FORMAT(@"%d-%d-",indexPath.section,indexPath.row);
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF BEGINSWITH[cd] %@",head];
+        NSArray *resultArray = [_arrayCacheImgaeKeys filteredArrayUsingPredicate:predicate];
+        [resultArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * stop) {
+            [_arrayCacheImgaeKeys removeObject:obj];
+            [_cacheImages removeObjectForKey:obj];
+        }];
+    }
+    
+    NSString *path = [[AppData shareInstance] getCachesSmallImageWithImageIndexPath:indexPath];
+    NSArray *imagesName = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
+    [imagesName enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
+        NSString *imagePath = [path stringByAppendingPathComponent:name];
+        UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+        [_cacheImages setObject:image forKey:[self cacheImageKey:indexPath andIndex:idx isReloadTable:NO]];
+    }];
+}
+
+- (NSString *)cacheImageKey:(NSIndexPath *)indexPath andIndex:(NSInteger)idx isReloadTable:(BOOL)isReload{
+    NSString *key = FORMAT(@"%d-%d-%d",indexPath.section,indexPath.row,idx);
+    if (!isReload ){
+        [_arrayCacheImgaeKeys addObject:key];
+    }
+    return key;
 }
 
 - (void)dealloc {
@@ -149,7 +194,8 @@
     if (indexPath.row == 0 && indexPath.section != _arraySection.count -1) {
         return 150;
     } else
-        return [self imageCellHeightForRowAtIndexPath:indexPath];
+        return 90;
+//        return [self imageCellHeightForRowAtIndexPath:indexPath];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -194,6 +240,8 @@
         UILabel *label = (UILabel *)[cell viewWithTag:1];
         UIImageView *imageView1 = (UIImageView *)[cell viewWithTag:2];
         UIImageView *imageView2 = (UIImageView *)[cell viewWithTag:3];
+        imageView1.image = [_cacheImages objectForKey:[self cacheImageKey:indexPath andIndex:0 isReloadTable:YES]];
+        imageView2.image = [_cacheImages objectForKey:[self cacheImageKey:indexPath andIndex:1 isReloadTable:YES]];
         if (imageView1.image != nil || imageView2.image != nil) {
             label.hidden = YES;
             imageView2.hidden = NO;
@@ -259,24 +307,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"puthToMyPhotosVC"]) {
         NSIndexPath *indexPath = [_tableView indexPathForCell:sender];
-         NSLog(@"indexpath :secton = %d, row = %d",indexPath.section,indexPath.row);
         MyPhotosViewController *myPhotosVC = (MyPhotosViewController *)[segue destinationViewController];
         myPhotosVC.selectIndexPath = indexPath;
         myPhotosVC.maxIamges = 2;
-        myPhotosVC.updateBlock = ^(BOOL need, BOOL haveImage){
-            __block BOOL hasIndex = NO;
-            [_arrayHaveImageIndex enumerateObjectsUsingBlock:^(NSIndexPath *obj, NSUInteger idx, BOOL *stop) {
-                if (obj == indexPath) {
-                    hasIndex = YES;
-                    *stop = YES;
-                }
-            }];
-            if (haveImage && !hasIndex) {
-                [_arrayHaveImageIndex addObject:indexPath];
-            }
-            if (!haveImage && hasIndex) {
-                 [_arrayHaveImageIndex removeObject:indexPath];
-            }
+        myPhotosVC.updateBlock = ^(BOOL modify){
+            [self loadSmallImagesInCachWithIndexPath:indexPath isReload:YES];
             [_tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         };
         

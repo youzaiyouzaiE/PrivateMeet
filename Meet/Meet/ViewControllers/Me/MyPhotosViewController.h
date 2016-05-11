@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^needUpdateImagesContentBlock)(BOOL isNeed, BOOL haveImage);
+typedef void(^needUpdateImagesContentBlock)(BOOL isModify);
 
 @interface MyPhotosViewController : UIViewController
 

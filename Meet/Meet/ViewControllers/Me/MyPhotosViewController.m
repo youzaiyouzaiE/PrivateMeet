@@ -48,11 +48,10 @@
     
     [UITools customNavigationLeftBarButtonForController:self action:@selector(backAction:)];
     [UITools navigationRightBarButtonForController:self action:@selector(editAction:) normalTitle:@"编辑" selectedTitle:@"完成"];
-    [self checkDocumentGetSmallImages];
-    
     _smallImageDocumetPath = [[AppData shareInstance] getCachesSmallImageWithImageIndexPath:_selectIndexPath];
     _bigImageDocumetPath = [[AppData shareInstance] getCachesBigImageWithImageIndexPath:_selectIndexPath];
     
+    [self checkDocumentGetSmallImages];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumLineSpacing = 2;
     flowLayout.minimumInteritemSpacing = 2;
@@ -80,7 +79,7 @@
 #pragma mark - Action 
 - (void)backAction:(id)sender {
     if (_isChangedImage) {
-        self.updateBlock(YES,YES);
+        self.updateBlock(YES);
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -249,11 +248,11 @@
 
 - (void)deleteImageWithName:(NSString *)imageName atItemsArrayLocation:(NSInteger)loc {
     _isChangedImage = YES;
-    NSString *saveToImagePath = [_bigImageDocumetPath stringByAppendingPathComponent:imageName];
+    NSString *bigImagePath = [_bigImageDocumetPath stringByAppendingPathComponent:imageName];
     NSError *error = nil;
-    NSString *smallSaveToImagePath = [_smallImageDocumetPath stringByAppendingPathComponent:imageName];
+    NSString *smallImagePath = [_smallImageDocumetPath stringByAppendingPathComponent:imageName];
     NSError *smallError = nil;
-    if ([[NSFileManager defaultManager] removeItemAtPath:smallSaveToImagePath error:&smallError] && [[NSFileManager defaultManager] removeItemAtPath:saveToImagePath error:&error]) {
+    if ([[NSFileManager defaultManager] removeItemAtPath:smallImagePath error:&smallError] && [[NSFileManager defaultManager] removeItemAtPath:bigImagePath error:&error]) {
         [_imageItemsArray removeObjectAtIndex:loc];
         [_imagesNameArray removeObject:imageName];
         [self.collectionView reloadData];

@@ -9,6 +9,7 @@
 #import "AddInformationViewController.h"
 #import "LabelAndTextFieldCell.h"
 #import "CellTextField.h"
+#import "LabelTableViewCell.h"
 
 @interface AddInformationViewController ()<UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate> {
     NSMutableDictionary *_dicValues;
@@ -55,11 +56,8 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (_viewType == ViewTypeAdd) {
-        return 1;
-    } else {
-        return 2;
-    }
+    
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -70,6 +68,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == _arrayTitles.count) {
+        return 120;
+    }
     return 49;
 }
 
@@ -79,7 +80,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == _arrayTitles.count) {
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"deleteCell" forIndexPath:indexPath];
+        LabelTableViewCell *cell = (LabelTableViewCell *)[[NSBundle mainBundle] loadNibNamed:@"LabelTableViewCell" owner:self options:nil][0];
+        [cell labeAddLayerMargin:YES andSetLabelText:@"删除"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else {
         NSString *cellIdentifier = @"profileTextFieldCell";

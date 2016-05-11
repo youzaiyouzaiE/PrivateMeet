@@ -79,6 +79,8 @@
 		DAF5C8361CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8311CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m */; };
 		DAF5C8371CE0D7A300DA7901 /* RMMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8331CE0D7A300DA7901 /* RMMapper.m */; };
 		DAF5C83A1CE18A2400DA7901 /* UISheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8391CE18A2400DA7901 /* UISheetView.m */; };
+		DAF5C8461CE2DA6E00DA7901 /* LabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8441CE2DA6E00DA7901 /* LabelTableViewCell.m */; };
+		DAF5C8471CE2DA6E00DA7901 /* LabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C8451CE2DA6E00DA7901 /* LabelTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -219,6 +221,9 @@
 		DAF5C8331CE0D7A300DA7901 /* RMMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMMapper.m; sourceTree = "<group>"; };
 		DAF5C8381CE18A2400DA7901 /* UISheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISheetView.h; sourceTree = "<group>"; };
 		DAF5C8391CE18A2400DA7901 /* UISheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISheetView.m; sourceTree = "<group>"; };
+		DAF5C8431CE2DA6E00DA7901 /* LabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelTableViewCell.h; sourceTree = "<group>"; };
+		DAF5C8441CE2DA6E00DA7901 /* LabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelTableViewCell.m; sourceTree = "<group>"; };
+		DAF5C8451CE2DA6E00DA7901 /* LabelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +513,9 @@
 				DA4A88FD1CDB5D7A00649983 /* CellTextView.m */,
 				DAF5C8381CE18A2400DA7901 /* UISheetView.h */,
 				DAF5C8391CE18A2400DA7901 /* UISheetView.m */,
+				DAF5C8431CE2DA6E00DA7901 /* LabelTableViewCell.h */,
+				DAF5C8441CE2DA6E00DA7901 /* LabelTableViewCell.m */,
+				DAF5C8451CE2DA6E00DA7901 /* LabelTableViewCell.xib */,
 			);
 			name = Views;
 			path = Meet/Views;
@@ -683,6 +691,7 @@
 				DA018F2F1CD39D570051D2D7 /* ManListCell.xib in Resources */,
 				DA6CEEEA1CD97E9A00EEABFF /* Me.storyboard in Resources */,
 				DA3626671CD1A75C00A8AE39 /* LaunchScreen.storyboard in Resources */,
+				DAF5C8471CE2DA6E00DA7901 /* LabelTableViewCell.xib in Resources */,
 				DA3626641CD1A75C00A8AE39 /* Assets.xcassets in Resources */,
 				DA4A88F81CDB2BFD00649983 /* LabelAndTextFieldCell.xib in Resources */,
 				DA4A892B1CDD957100649983 /* read_me.txt in Resources */,
@@ -782,6 +791,7 @@
 				DA018EF81CD1D7EB0051D2D7 /* MoveViewController.m in Sources */,
 				DAF5C83A1CE18A2400DA7901 /* UISheetView.m in Sources */,
 				DA018F331CD43F2A0051D2D7 /* ActivityViewController.m in Sources */,
+				DAF5C8461CE2DA6E00DA7901 /* LabelTableViewCell.m in Sources */,
 				DAF5C81F1CE0D0ED00DA7901 /* UserInfo.m in Sources */,
 				DA018F361CD443670051D2D7 /* UINavigationBar+BackgroundColor.m in Sources */,
 				DA36265C1CD1A75C00A8AE39 /* AppDelegate.m in Sources */,

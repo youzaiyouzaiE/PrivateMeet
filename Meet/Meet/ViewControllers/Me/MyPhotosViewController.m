@@ -10,6 +10,7 @@
 #import "MWPhotoBrowser.h"
 #import "PhotosGridViewController.h"
 #import "MyPhotoItem.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 #define LINE_Items      3
 #define MAX_IMAGES      8
@@ -177,6 +178,17 @@
         imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self.navigationController presentViewController:imagePickerController animated:YES completion:nil];
     } else {
+        
+//        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+//        imagePickerController.delegate = self;
+//        imagePickerController.allowsEditing = YES;
+//        imagePickerController.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
+//        imagePickerController.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
+//        imagePickerController.navigationBar.titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes;
+//        imagePickerController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+//        imagePickerController.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+//        [self.navigationController presentViewController:imagePickerController animated:YES completion:nil];
+        
         PhotosGridViewController *photoGridVC = [[PhotosGridViewController alloc] init];
         photoGridVC.delegate = self;
         photoGridVC.maxSelected = MAX_IMAGES;

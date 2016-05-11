@@ -100,7 +100,6 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     
     _dicValues[_titleContentArray[1]] = [UserInfo shareInstance].name;
     _dicValues[_titleContentArray[2]] = [UserInfo shareInstance].sex.intValue == 1 ? @"男":@"女" ;
-    
 }
 
 - (NSString *)imageSaveParth {

@@ -93,6 +93,10 @@ static CGSize AssetGridThumbnailSize;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+     NSLog(@"memory warning !!!!");
+    _currentItems = nil;
+    _arraySelectdAssets = nil;
+    _selectAssetsDic = nil;
 }
 
 - (void)loadImageDataFormAlbum
@@ -100,12 +104,14 @@ static CGSize AssetGridThumbnailSize;
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
     options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
     _currentItems = [PHAsset fetchAssetsWithOptions:options];
+    NSLog(@"照片流？所有照片？ content:%d,", _currentItems.count);
     
     PHFetchResult *fetchResults = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     PHFetchResult *topLevelUserCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAny options:nil];
 //    PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];//////同上
     [fetchResults enumerateObjectsUsingBlock:^(PHAssetCollection *obj, NSUInteger idx, BOOL *stop) {
         PHFetchResult *sasets = [PHAsset fetchAssetsInAssetCollection:obj options:options];
+         NSLog(@"%@ content:%d,",obj.localizedTitle, sasets.count);
         if (sasets.count > 0 && obj.assetCollectionSubtype != PHAssetCollectionSubtypeSmartAlbumVideos && obj.assetCollectionSubtype != 1000000201) {
             if (obj.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
                 [_arrayTableContent insertObject:obj atIndex:0];
@@ -118,6 +124,7 @@ static CGSize AssetGridThumbnailSize;
     }];
     [topLevelUserCollections enumerateObjectsUsingBlock:^(PHAssetCollection *obj, NSUInteger idx, BOOL *stop) {
         PHFetchResult *sasets = [PHAsset fetchAssetsInAssetCollection:obj options:options];
+         NSLog(@"%@ content:%d,",obj.localizedTitle, sasets.count);
         if (sasets.count > 0) {
             [_arrayTableContent addObject:obj];
             [_arryTableImageAsset addObject:[sasets objectAtIndex:0]];
@@ -410,7 +417,7 @@ static CGSize AssetGridThumbnailSize;
     
 }
 
-#pragma mark <UICollectionViewDataSource>
+#pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
@@ -443,7 +450,6 @@ static CGSize AssetGridThumbnailSize;
 }
 
 #pragma mark <UICollectionViewDelegate>
- // Uncomment this method to specify if the specified item should be selected
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSMutableArray *photos = [NSMutableArray array];
     [_currentItems enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {

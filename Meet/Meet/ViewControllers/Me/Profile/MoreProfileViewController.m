@@ -22,7 +22,7 @@
     NSMutableDictionary *_dicHeaderContent;
     NSMutableDictionary *_dicPlaceHolder;
     NSCache *_cacheImages;
-    NSMutableArray *_arrayHaveImageIndex;
+    NSMutableArray *_arrayHaveImageIndex;/////那些位置有图片
     
     BOOL keyboardShow;
     CGRect tableViewFrame;
@@ -60,6 +60,18 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShowAction:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHideAction:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)getImagesInTableLocation {
+    NSString *mostContetPath = [[AppData shareInstance] getCacheMostContetnImagePath];
+    NSArray *mostContetImagesDocArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mostContetPath error:nil];
+    [mostContetImagesDocArray enumerateObjectsUsingBlock:^(NSString *section, NSUInteger idx, BOOL *stop) {
+        NSString *sectionPath = [mostContetPath stringByAppendingPathComponent:section];
+        NSArray *rowConttArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:sectionPath error:nil];
+        [rowConttArray enumerateObjectsUsingBlock:^(NSString *row, NSUInteger idx, BOOL *stop) {
+             NSLog(@"indePath Section :%@, row :%@",section, row);
+        }];
+    }];
 }
 
 - (void)dealloc {
@@ -250,6 +262,7 @@
          NSLog(@"indexpath :secton = %d, row = %d",indexPath.section,indexPath.row);
         MyPhotosViewController *myPhotosVC = (MyPhotosViewController *)[segue destinationViewController];
         myPhotosVC.selectIndexPath = indexPath;
+        myPhotosVC.maxIamges = 2;
         myPhotosVC.updateBlock = ^(BOOL need, BOOL haveImage){
             __block BOOL hasIndex = NO;
             [_arrayHaveImageIndex enumerateObjectsUsingBlock:^(NSIndexPath *obj, NSUInteger idx, BOOL *stop) {

@@ -36,12 +36,23 @@
     if (IOS_7LAST) {
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     }
+    
+    if ([[UserInfo shareInstance].userId isEqualToString:@"1234567890"]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView:) name:FRIST_LOGIN_NOTIFICATION_Key object:nil];
+    }
 //    [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context: nil];
 //    [self setNeedsStatusBarAppearanceUpdate];
     _imagesArray = [NSMutableArray array];
     
     [self loadHeadImageView];
     [self checkDocumentGetSmallImages];
+}
+
+- (void)updateTableView:(NSNotification *)notification {
+    [self loadHeadImageView];
+    [self checkDocumentGetSmallImages];
+    [_tableView reloadData];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:FRIST_LOGIN_NOTIFICATION_Key object:nil];
 }
 
 - (void )loadHeadImageView {
@@ -66,11 +77,6 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     CGFloat offset = self.tableView.contentOffset.y;
     CGFloat delta = offset / 164.f;
@@ -85,6 +91,17 @@
     } else {
         self.navigationController.navigationBarHidden = NO;
     }
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -207,6 +224,9 @@
                  [self loadHeadImageView];
              }
              [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+             if (updateInfo) {
+                 [self checkDocumentGetSmallImages];
+             }
          };
         [self.navigationController pushViewController:myProfileVC animated:YES];
     } else  if (indexPath.row == 1) {
@@ -230,10 +250,6 @@
 //            }
 //        };
 //    }
-}
-
-- (void)dealloc {
-    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
 }
 
 @end

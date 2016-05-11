@@ -15,6 +15,7 @@ typedef void(^needUpdateImagesContentBlock)(BOOL isNeed, BOOL haveImage);
 
 @property (nonatomic, assign) BOOL useOtherPath;
 @property (strong, nonatomic) NSIndexPath *selectIndexPath;
+@property (assign, nonatomic) NSInteger maxIamges;
 @property (copy, nonatomic) needUpdateImagesContentBlock updateBlock;
 
 

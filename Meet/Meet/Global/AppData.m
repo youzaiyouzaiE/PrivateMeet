@@ -128,8 +128,7 @@ NSString *const databaseName = @"MeetDB.db";
 }
 
 - (NSString *)getCacheContetnImagePathWithIndexPath:(NSIndexPath *)indexPath {
-    NSString *cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [cacheDirectoryPath stringByAppendingPathComponent:[UserInfo shareInstance].userId];
+    NSString *path = [self getCacheMostContetnImagePath];
     NSString *indexSectionPath = [path stringByAppendingPathComponent:FORMAT(@"%d",indexPath.section)];
     NSString *indexRowPath = [indexSectionPath stringByAppendingPathComponent:FORMAT(@"%d",indexPath.row)];
     
@@ -144,6 +143,24 @@ NSString *const databaseName = @"MeetDB.db";
         }
     } else
         return indexRowPath;
+}
+
+- (NSString *)getCacheMostContetnImagePath {/////更多信息内容路径
+    NSString *cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [cacheDirectoryPath stringByAppendingPathComponent:[UserInfo shareInstance].userId];
+    NSString *mostPath = [path stringByAppendingPathComponent:@"MostContent"];
+    
+    NSFileManager *mager = [NSFileManager defaultManager];
+    if (![mager fileExistsAtPath:mostPath]) {
+        //        NSLog(@"File not found Couldn't find the file at path: %@",path);
+        if ([mager createDirectoryAtPath:mostPath withIntermediateDirectories:YES attributes:nil error:nil]) {
+            return mostPath;
+        } else {
+            NSLog(@"创建 %@ 失败",mostPath);
+            return nil;
+        }
+    } else
+        return mostPath;
 }
 
 + (NSString *)getCachesDirectoryUserInfoDocumetPathDocument:(NSString *)document {//

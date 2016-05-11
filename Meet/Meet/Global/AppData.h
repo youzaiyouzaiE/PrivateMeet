@@ -34,6 +34,7 @@
 - (NSString *)getCacheContetnImagePathWithIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)getCachesBigImageWithImageIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)getCachesSmallImageWithImageIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)getCacheMostContetnImagePath;
 
 + (NSDate *)curretnDate;
 + (NSString *)curretnDateString;

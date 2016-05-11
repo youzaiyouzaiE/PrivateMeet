@@ -13,7 +13,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 
 #define LINE_Items      3
-#define MAX_IMAGES      8
+//#define MAX_IMAGES      8
 
 
 @interface MyPhotosViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,MWPhotoBrowserDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PhotoGridDelegate,photoItemDelegate> {
@@ -133,8 +133,8 @@
 // Uncomment this method to specify if the specified item should be selected
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        if (_imageItemsArray.count == MAX_IMAGES) {
-            [[UITools shareInstance] showMessageToView:self.view message:[NSString stringWithFormat:@"最多选择%d张图片",MAX_IMAGES] autoHide:YES];
+        if (_imageItemsArray.count == _maxIamges) {
+            [[UITools shareInstance] showMessageToView:self.view message:[NSString stringWithFormat:@"最多选择%d张图片",_maxIamges] autoHide:YES];
             return ;
         }
         [self createSheetAction];
@@ -195,7 +195,7 @@
         
         PhotosGridViewController *photoGridVC = [[PhotosGridViewController alloc] init];
         photoGridVC.delegate = self;
-        photoGridVC.maxSelected = MAX_IMAGES;
+        photoGridVC.maxSelected = _maxIamges;
         photoGridVC.alreadyHaveNum = _imageItemsArray.count;
         UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:photoGridVC];
         [self presentViewController:navigationVC animated:YES completion:^{

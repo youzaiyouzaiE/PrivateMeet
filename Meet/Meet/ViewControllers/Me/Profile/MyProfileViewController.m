@@ -166,7 +166,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 - (void)backAction:(id)sender {
     if (_isFristLogin) {
         [self dismissViewControllerAnimated:YES completion:^{
-            
+            [[NSNotificationCenter defaultCenter] postNotificationName:FRIST_LOGIN_NOTIFICATION_Key object:nil];
         }];
         
     } else
@@ -503,7 +503,11 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     
     [self.navigationController dismissViewControllerAnimated: YES completion:^{
         [self reloadUerImage:saveImagePath];
-        self.block(YES, NO);
+        if (_isFristLogin) {
+            
+        } else
+            self.block(YES, NO);
+        
     }];
 }
 

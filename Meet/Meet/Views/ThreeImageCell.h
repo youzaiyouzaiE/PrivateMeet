@@ -17,5 +17,6 @@
 - (void)setViewsFrame;
 
 + (CGFloat)threeImageCellHeight;
+- (void)defaultImageViewImages;
 
 @end

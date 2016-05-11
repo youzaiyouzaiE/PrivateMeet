@@ -47,13 +47,15 @@
     _seconedImageView = [[UIImageView alloc] init];
     _thirdImageView = [[UIImageView alloc] init];
     
-    _fristImageView.image = [UIImage imageNamed:@"NOPhoto"];
-    _seconedImageView.image = [UIImage imageNamed:@"NOPhoto"];
-    _thirdImageView.image = [UIImage imageNamed:@"NOPhoto"];
-    
     [self.contentView addSubview:_fristImageView];
     [self.contentView addSubview:_seconedImageView];
     [self.contentView addSubview:_thirdImageView];
+}
+
+- (void)defaultImageViewImages {
+    _fristImageView.image = [UIImage imageNamed:@"NOPhoto"];
+    _seconedImageView.image = [UIImage imageNamed:@"NOPhoto"];
+    _thirdImageView.image = [UIImage imageNamed:@"NOPhoto"];
 }
 
 - (void)drawRect:(CGRect)rect {

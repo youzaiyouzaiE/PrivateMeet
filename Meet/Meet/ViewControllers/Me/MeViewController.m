@@ -63,19 +63,42 @@
 
 - (void)checkDocumentGetSmallImages {////获取cell 2里的image
     [_imagesArray removeAllObjects];
-    NSString *smallFilePath = [AppData getCachesDirectorySmallDocumentPath:FORMAT(@"image%@",[UserInfo shareInstance].userId)];
-    NSArray *smallImageParthArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:smallFilePath error:nil];
-    if (smallImageParthArray.count > 0) {
-        [smallImageParthArray enumerateObjectsUsingBlock:^(NSString *fileName, NSUInteger idx, BOOL *stop) {
-            UIImage *image = [UIImage imageWithContentsOfFile:[smallFilePath stringByAppendingPathComponent:fileName]];
+    NSMutableArray *array = [NSMutableArray array];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *mostContetPath = [[AppData shareInstance] getCacheMostContetnImagePath];
+        NSArray *mostContetImagesDocArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mostContetPath error:nil];
+        [mostContetImagesDocArray enumerateObjectsUsingBlock:^(NSString *section, NSUInteger idx, BOOL *stop) {
+            NSString *sectionPath = [mostContetPath stringByAppendingPathComponent:section];
+            NSArray *rowConttArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:sectionPath error:nil];
+            [rowConttArray enumerateObjectsUsingBlock:^(NSString *row, NSUInteger idx, BOOL *stop) {
+                
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row.intValue inSection:section.intValue];
+                //                NSLog(@"path indePath Section :%d, row :%d",indexPath.section, indexPath.row);
+                [array addObject:indexPath];
+            }];
+        }];
+        [self loadAllSmallImagesInCacheWithIndexPathArry:array];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        });
+    });
+}
+
+- (void)loadAllSmallImagesInCacheWithIndexPathArry:(NSArray *)array {
+    [array enumerateObjectsUsingBlock:^(NSIndexPath *indexPath, NSUInteger idx, BOOL *stop) {
+        NSString *path = [[AppData shareInstance] getCachesSmallImageWithImageIndexPath:indexPath];
+        NSArray *imagesName = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
+        [imagesName enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
+            NSString *imagePath = [path stringByAppendingPathComponent:name];
+            UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             [_imagesArray addObject:image];
-            if (idx == 2) {
+            if (_imagesArray.count > 2) {
                 *stop = YES;
             }
         }];
-        [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-    }
+    }];
 }
+
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     CGFloat offset = self.tableView.contentOffset.y;
@@ -161,6 +184,7 @@
         if (!cell) {
             cell = [[ThreeImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:imageCellIdentifier];
         }
+        [cell defaultImageViewImages];
         if (_imagesArray.count > 0) {
             cell.fristImageView.image = [_imagesArray firstObject];
         }
@@ -232,6 +256,9 @@
     } else  if (indexPath.row == 1) {
         UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
         MoreProfileViewController *moreVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MoreProfileViewController"];
+        moreVC.modifyBlock = ^(){
+            [self checkDocumentGetSmallImages];
+        };
         moreVC.editType = 1;
         [self.navigationController pushViewController:moreVC animated:YES];
         

@@ -32,7 +32,7 @@
     BOOL isEditSectionTitle;
     NSUInteger *_editingSection;
     
-    
+    BOOL isModifyImages;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -74,7 +74,7 @@
             NSString *sectionPath = [mostContetPath stringByAppendingPathComponent:section];
             NSArray *rowConttArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:sectionPath error:nil];
             [rowConttArray enumerateObjectsUsingBlock:^(NSString *row, NSUInteger idx, BOOL *stop) {
-                NSLog(@"indePath Section :%@, row :%@",section, row);
+//                NSLog(@"indePath Section :%@, row :%@",section, row);
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row.intValue inSection:section.intValue];
 //                NSLog(@"path indePath Section :%d, row :%d",indexPath.section, indexPath.row);
                 [_arrayHaveImageIndex addObject:indexPath];
@@ -148,6 +148,9 @@
 }
 
 - (void)backAction:(id)sender {
+    if (isModifyImages) {
+        self.modifyBlock();
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -311,6 +314,7 @@
         myPhotosVC.selectIndexPath = indexPath;
         myPhotosVC.maxIamges = 2;
         myPhotosVC.updateBlock = ^(BOOL modify){
+            isModifyImages = YES;
             [self loadSmallImagesInCachWithIndexPath:indexPath isReload:YES];
             [_tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         };

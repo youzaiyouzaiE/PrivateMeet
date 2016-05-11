@@ -37,11 +37,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self customNavigationBar];
+    if (_editType == 0) {
+        [self customNavigationBar];
+    } else {
+        [UITools customNavigationLeftBarButtonForController:self action:@selector(backAction:)];
+    }
     self.navigationItem.title = @"更多个人介绍";
     self.view.backgroundColor = [UIColor whiteColor];
+//    self.hidesBottomBarWhenPushed = YES;
     [UITools navigationRightBarButtonForController:self action:@selector(saveAction:) normalTitle:@"保存" selectedTitle:nil];
-    
     
     _arraySection = [NSMutableArray arrayWithArray:@[@"lifeAndJob",@"interset",@"custom0",@"hopeFriends",@"last"]];
     
@@ -80,6 +84,10 @@
     }];
 }
 
+- (void)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)saveAction:(id)sender {
     
 }
@@ -91,7 +99,10 @@
     }
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     tableViewFrame = _tableView.frame;
-    _tableView.frame = CGRectMake(tableViewFrame.origin.x, tableViewFrame.origin.y, tableViewFrame.size.width, tableViewFrame.size.height - keyboardSize.height);
+//    if (_editType) {
+//        _tableView.frame = CGRectMake(tableViewFrame.origin.x, tableViewFrame.origin.y, tableViewFrame.size.width, tableViewFrame.size.height - keyboardSize.height);
+//    } else
+        _tableView.frame = CGRectMake(tableViewFrame.origin.x, tableViewFrame.origin.y, tableViewFrame.size.width, tableViewFrame.size.height - keyboardSize.height);
     if (isEditSectionTitle) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:_editingSection] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     } else
@@ -123,7 +134,7 @@
     if (indexPath.row == 0 && indexPath.section != _arraySection.count -1) {
         return 150;
     } else
-        return 49;
+        return 50;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -212,6 +223,7 @@
     if ([textView isKindOfClass:[CellTextView class]]) {
         CellTextView *cellText = (CellTextView *)textView;
         _editingIndexPath = cellText.indexPath;
+//         NSLog(@"_editingIndexPat:%d,%d",_editingIndexPath.section,_editingIndexPath.row);
         
     }
     return YES;

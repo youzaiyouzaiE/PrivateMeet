@@ -86,7 +86,6 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     _picker.backgroundColor = [UIColor whiteColor];
     
     
-    
     if (_isFristLogin) {
         [self downLoadUserWeChatImage];
     }

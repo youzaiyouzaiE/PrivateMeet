@@ -12,7 +12,7 @@
 #import "MyProfileViewController.h"
 #import "MyPhotosViewController.h"
 #import "RemindImageCell.h"
-
+#import "MoreProfileViewController.H"
 
 @interface MeViewController () <UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource> {
     NSMutableArray *_imagesArray;
@@ -210,24 +210,26 @@
          };
         [self.navigationController pushViewController:myProfileVC animated:YES];
     } else  if (indexPath.row == 1) {
-//        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
-//        MyPhotosViewController *myPhotsVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MyPhotosViewController"];
-//        [self.navigationController pushViewController:myPhotsVC animated:YES];
-        [self performSegueWithIdentifier:@"MePushToMyPhoto" sender:self];
+        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
+        MoreProfileViewController *moreVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MoreProfileViewController"];
+        moreVC.editType = 1;
+        [self.navigationController pushViewController:moreVC animated:YES];
+        
+//        [self performSegueWithIdentifier:@"MePushToMyPhoto" sender:self];
     }
 }
 
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"MePushToMyPhoto"]) {
-        MyPhotosViewController *myPhotoVC = (MyPhotosViewController *)[segue destinationViewController];
-        myPhotoVC.updateBlock = ^(BOOL isNeed){
-            if (isNeed) {
-                [self checkDocumentGetSmallImages];
-            }
-        };
-    }
+//    if ([segue.identifier isEqualToString:@"MePushToMyPhoto"]) {
+//        MyPhotosViewController *myPhotoVC = (MyPhotosViewController *)[segue destinationViewController];
+//        myPhotoVC.updateBlock = ^(BOOL isNeed){
+//            if (isNeed) {
+//                [self checkDocumentGetSmallImages];
+//            }
+//        };
+//    }
 }
 
 - (void)dealloc {

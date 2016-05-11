@@ -227,7 +227,7 @@
         <!--More Profile View Controller-->
         <scene sceneID="Tv5-HI-3f1">
             <objects>
-                <viewController id="8K6-WN-yTr" customClass="MoreProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoreProfileViewController" hidesBottomBarWhenPushed="YES" id="8K6-WN-yTr" customClass="MoreProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HmH-Od-EYi"/>
                         <viewControllerLayoutGuide type="bottom" id="m1Z-5H-hTN"/>

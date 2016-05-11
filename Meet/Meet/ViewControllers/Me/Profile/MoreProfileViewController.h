@@ -10,4 +10,7 @@
 
 @interface MoreProfileViewController : UIViewController
 
+
+@property (assign, nonatomic) NSInteger editType;////是编辑页面（1，为编辑（从图片处进入的），0 为个人信息进入的）
+
 @end

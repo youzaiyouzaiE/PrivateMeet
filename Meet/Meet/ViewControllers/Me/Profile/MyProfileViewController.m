@@ -119,7 +119,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
         NSData *imgData = UIImageJPEGRepresentation(image, 1);
         NSString *saveImagePath = [self imageSaveParth];
         if ([imgData writeToFile:[self imageSaveParth] atomically:NO]) {
-             NSLog(@"保存 成功");
+//             NSLog(@"保存 成功");
             NSError *error;
             if (![[NSFileManager defaultManager] removeItemAtPath:filePath.path error:&error]) {
                  NSLog(@"error :%@",error.localizedDescription);

@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^needUpdateImagesContentBlock)(BOOL isNeed);
+typedef void(^needUpdateImagesContentBlock)(BOOL isNeed, BOOL haveImage);
 
 @interface MyPhotosViewController : UIViewController
 
+
+@property (nonatomic, assign) BOOL useOtherPath;
+@property (strong, nonatomic) NSIndexPath *selectIndexPath;
 @property (copy, nonatomic) needUpdateImagesContentBlock updateBlock;
 
 

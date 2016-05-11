@@ -93,7 +93,60 @@ NSString *const databaseName = @"MeetDB.db";
 }
 
 
-+ (NSString *)getCachesDirectoryUserInfoDocumetPathDocument:(NSString *)document {/////得到当前微信用户微信文件
+- (NSString *)getCachesSmallImageWithImageIndexPath:(NSIndexPath *)indexPath {///
+    NSString *indexPathDomPath = [self getCacheContetnImagePathWithIndexPath:indexPath];
+    NSString *smallPaht = [indexPathDomPath stringByAppendingPathComponent:@"small"];
+    
+    NSFileManager *mager = [NSFileManager defaultManager];
+    if (![mager fileExistsAtPath:smallPaht]) {
+        //        NSLog(@"File not found Couldn't find the file at path: %@",path);
+        if ([mager createDirectoryAtPath:smallPaht withIntermediateDirectories:YES attributes:nil error:nil]) {
+            return smallPaht;
+        } else {
+            NSLog(@"创建 %@ 失败",smallPaht);
+            return nil;
+        }
+    } else
+        return smallPaht;
+}
+
+- (NSString *)getCachesBigImageWithImageIndexPath:(NSIndexPath *)indexPath {///
+    NSString *indexPathDomPath = [self getCacheContetnImagePathWithIndexPath:indexPath];
+    NSString *bigPaht = [indexPathDomPath stringByAppendingPathComponent:@"big"];
+    
+    NSFileManager *mager = [NSFileManager defaultManager];
+    if (![mager fileExistsAtPath:bigPaht]) {
+        //        NSLog(@"File not found Couldn't find the file at path: %@",path);
+        if ([mager createDirectoryAtPath:bigPaht withIntermediateDirectories:YES attributes:nil error:nil]) {
+            return bigPaht;
+        } else {
+            NSLog(@"创建 %@ 失败",bigPaht);
+            return nil;
+        }
+    } else
+        return bigPaht;
+}
+
+- (NSString *)getCacheContetnImagePathWithIndexPath:(NSIndexPath *)indexPath {
+    NSString *cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [cacheDirectoryPath stringByAppendingPathComponent:[UserInfo shareInstance].userId];
+    NSString *indexSectionPath = [path stringByAppendingPathComponent:FORMAT(@"%d",indexPath.section)];
+    NSString *indexRowPath = [indexSectionPath stringByAppendingPathComponent:FORMAT(@"%d",indexPath.row)];
+    
+    NSFileManager *mager = [NSFileManager defaultManager];
+    if (![mager fileExistsAtPath:indexRowPath]) {
+        //        NSLog(@"File not found Couldn't find the file at path: %@",path);
+        if ([mager createDirectoryAtPath:indexRowPath withIntermediateDirectories:YES attributes:nil error:nil]) {
+            return indexRowPath;
+        } else {
+            NSLog(@"创建 %@ 失败",indexRowPath);
+            return nil;
+        }
+    } else
+        return indexRowPath;
+}
+
++ (NSString *)getCachesDirectoryUserInfoDocumetPathDocument:(NSString *)document {//
     NSString *cacheDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [cacheDirectoryPath stringByAppendingPathComponent:[[UserInfo shareInstance].userId stringByAppendingPathComponent:document]];
     NSFileManager *mager = [NSFileManager defaultManager];

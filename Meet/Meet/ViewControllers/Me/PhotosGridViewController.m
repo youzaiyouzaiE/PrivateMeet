@@ -104,14 +104,14 @@ static CGSize AssetGridThumbnailSize;
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
     options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
     _currentItems = [PHAsset fetchAssetsWithOptions:options];
-    NSLog(@"照片流？所有照片？ content:%d,", _currentItems.count);
+//    NSLog(@"照片流？所有照片？ content:%d,", _currentItems.count);
     
     PHFetchResult *fetchResults = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     PHFetchResult *topLevelUserCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAny options:nil];
 //    PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];//////同上
     [fetchResults enumerateObjectsUsingBlock:^(PHAssetCollection *obj, NSUInteger idx, BOOL *stop) {
         PHFetchResult *sasets = [PHAsset fetchAssetsInAssetCollection:obj options:options];
-         NSLog(@"%@ content:%d,",obj.localizedTitle, sasets.count);
+//         NSLog(@"%@ content:%d,",obj.localizedTitle, sasets.count);
         if (sasets.count > 0 && obj.assetCollectionSubtype != PHAssetCollectionSubtypeSmartAlbumVideos && obj.assetCollectionSubtype != 1000000201) {
             if (obj.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
                 [_arrayTableContent insertObject:obj atIndex:0];
@@ -124,7 +124,7 @@ static CGSize AssetGridThumbnailSize;
     }];
     [topLevelUserCollections enumerateObjectsUsingBlock:^(PHAssetCollection *obj, NSUInteger idx, BOOL *stop) {
         PHFetchResult *sasets = [PHAsset fetchAssetsInAssetCollection:obj options:options];
-         NSLog(@"%@ content:%d,",obj.localizedTitle, sasets.count);
+//         NSLog(@"%@ content:%d,",obj.localizedTitle, sasets.count);
         if (sasets.count > 0) {
             [_arrayTableContent addObject:obj];
             [_arryTableImageAsset addObject:[sasets objectAtIndex:0]];

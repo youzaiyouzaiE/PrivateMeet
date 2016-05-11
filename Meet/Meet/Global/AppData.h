@@ -31,6 +31,9 @@
 + (NSString *)getCachesDirectorySmallDocumentPath:(NSString *)documentName;
 + (NSString *)getCachesDirectoryUserInfoDocumetPathDocument:(NSString *)document;
 
+- (NSString *)getCacheContetnImagePathWithIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)getCachesBigImageWithImageIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)getCachesSmallImageWithImageIndexPath:(NSIndexPath *)indexPath;
 
 + (NSDate *)curretnDate;
 + (NSString *)curretnDateString;

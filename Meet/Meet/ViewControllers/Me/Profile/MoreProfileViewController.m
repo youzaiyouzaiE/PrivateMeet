@@ -12,6 +12,7 @@
 #import "TextViewCell.h"
 #import "UITextView+Placeholder.h"
 #import "CellTextView.h"
+#import "MyPhotosViewController.h"
 
 #define TABLE_HEADER_VIEW_H         49
 
@@ -20,6 +21,8 @@
     NSMutableArray *_arraySection;
     NSMutableDictionary *_dicHeaderContent;
     NSMutableDictionary *_dicPlaceHolder;
+    NSCache *_cacheImages;
+    NSMutableArray *_arrayHaveImageIndex;
     
     BOOL keyboardShow;
     CGRect tableViewFrame;
@@ -27,6 +30,8 @@
     NSIndexPath *_editingIndexPath;
     BOOL isEditSectionTitle;
     NSUInteger *_editingSection;
+    
+    
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -48,9 +53,10 @@
     [UITools navigationRightBarButtonForController:self action:@selector(saveAction:) normalTitle:@"保存" selectedTitle:nil];
     
     _arraySection = [NSMutableArray arrayWithArray:@[@"lifeAndJob",@"interset",@"custom0",@"hopeFriends",@"last"]];
-    
     _dicHeaderContent = [NSMutableDictionary dictionaryWithDictionary:@{_arraySection[0]:@"您的工作、生活情况",_arraySection[1]:@"您的兴趣及爱好",_arraySection[2]:@"给您增加的内容起个标题吧",_arraySection[3]:@"您希望认识什么样的朋友",_arraySection[4]:@""}];
     _dicPlaceHolder = [NSMutableDictionary dictionaryWithDictionary:@{_arraySection[0]:@"包括但不限于：你的工作内容、工作状态及工作中的收获；你的生活方式、对生活要求及对未来生活的期待。",_arraySection[1]:@"可以分享下你的兴趣爱好都有哪些，为什么会喜欢，以及有什么期待",_arraySection[2]:@"再分享一些其他的故事",_arraySection[3]:@"可以说说你希望认识什么样的朋友",_arraySection[4]:@""}];
+    _cacheImages = [[NSCache alloc] init];
+    _arrayHaveImageIndex = [NSMutableArray array];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShowAction:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHideAction:) name:UIKeyboardWillHideNotification object:nil];
@@ -99,9 +105,6 @@
     }
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     tableViewFrame = _tableView.frame;
-//    if (_editType) {
-//        _tableView.frame = CGRectMake(tableViewFrame.origin.x, tableViewFrame.origin.y, tableViewFrame.size.width, tableViewFrame.size.height - keyboardSize.height);
-//    } else
         _tableView.frame = CGRectMake(tableViewFrame.origin.x, tableViewFrame.origin.y, tableViewFrame.size.width, tableViewFrame.size.height - keyboardSize.height);
     if (isEditSectionTitle) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:_editingSection] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
@@ -134,7 +137,7 @@
     if (indexPath.row == 0 && indexPath.section != _arraySection.count -1) {
         return 150;
     } else
-        return 50;
+        return [self imageCellHeightForRowAtIndexPath:indexPath];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -146,10 +149,6 @@
     textField.text = _dicHeaderContent[_arraySection[section]];
     [view addSubview: textField];
     return view;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -196,6 +195,13 @@
     return cell;
 }
 
+- (CGFloat)imageCellHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([_arrayHaveImageIndex containsObject:indexPath]) {
+        return 90;
+    } else
+        return 50;
+}
+
 #pragma mark - tableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -236,14 +242,33 @@
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     return YES;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+#pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"puthToMyPhotosVC"]) {
+        NSIndexPath *indexPath = [_tableView indexPathForCell:sender];
+         NSLog(@"indexpath :secton = %d, row = %d",indexPath.section,indexPath.row);
+        MyPhotosViewController *myPhotosVC = (MyPhotosViewController *)[segue destinationViewController];
+        myPhotosVC.selectIndexPath = indexPath;
+        myPhotosVC.updateBlock = ^(BOOL need, BOOL haveImage){
+            __block BOOL hasIndex = NO;
+            [_arrayHaveImageIndex enumerateObjectsUsingBlock:^(NSIndexPath *obj, NSUInteger idx, BOOL *stop) {
+                if (obj == indexPath) {
+                    hasIndex = YES;
+                    *stop = YES;
+                }
+            }];
+            if (haveImage && !hasIndex) {
+                [_arrayHaveImageIndex addObject:indexPath];
+            }
+            if (!haveImage && hasIndex) {
+                 [_arrayHaveImageIndex removeObject:indexPath];
+            }
+            [_tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        };
+        
+    }
 }
-*/
+
 
 @end

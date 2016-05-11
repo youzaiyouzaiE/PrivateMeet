@@ -24,7 +24,8 @@
     
     UIActionSheet *_sheetAction;
     
-    NSString *imageDocument;/////存放图片文件的文件名称 image+userId
+    NSString *_smallImageDocumetPath;
+    NSString *_bigImageDocumetPath;
     BOOL _isChangedImage;
 }
 
@@ -43,11 +44,14 @@
     self.navigationItem.title = @"我的图片";
     _imageItemsArray = [NSMutableArray array];
     _imagesNameArray = [NSMutableArray array];
-    imageDocument = FORMAT(@"image%@",[UserInfo shareInstance].userId);
+//    imageDocument = FORMAT(@"image%@",[UserInfo shareInstance].userId);
     
     [UITools customNavigationLeftBarButtonForController:self action:@selector(backAction:)];
     [UITools navigationRightBarButtonForController:self action:@selector(editAction:) normalTitle:@"编辑" selectedTitle:@"完成"];
     [self checkDocumentGetSmallImages];
+    
+    _smallImageDocumetPath = [[AppData shareInstance] getCachesSmallImageWithImageIndexPath:_selectIndexPath];
+    _bigImageDocumetPath = [[AppData shareInstance] getCachesBigImageWithImageIndexPath:_selectIndexPath];
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumLineSpacing = 2;
@@ -64,10 +68,10 @@
 
 - (void)checkDocumentGetSmallImages {
     [_imageItemsArray removeAllObjects];
-    NSString *smallFilePath = [AppData getCachesDirectorySmallDocumentPath:imageDocument];
-    NSArray *smallImageParthArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:smallFilePath error:nil];
+    
+    NSArray *smallImageParthArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_smallImageDocumetPath error:nil];
     [smallImageParthArray enumerateObjectsUsingBlock:^(NSString *fileName, NSUInteger idx, BOOL * stop) {
-        UIImage *image = [UIImage imageWithContentsOfFile:[smallFilePath stringByAppendingPathComponent:fileName]];
+        UIImage *image = [UIImage imageWithContentsOfFile:[_smallImageDocumetPath stringByAppendingPathComponent:fileName]];
         [_imageItemsArray addObject:image];
         [_imagesNameArray addObject:fileName];
     }];
@@ -76,7 +80,7 @@
 #pragma mark - Action 
 - (void)backAction:(id)sender {
     if (_isChangedImage) {
-        self.updateBlock(YES);
+        self.updateBlock(YES,YES);
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -136,10 +140,10 @@
         [self createSheetAction];
     } else {
         NSMutableArray *photos = [NSMutableArray array];
-        NSString *imageDocumetPath = [AppData getCachesDirectoryBigDocumentPath:imageDocument];
-        NSArray *sourceArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:imageDocumetPath error:nil];
+//        NSString *imageDocumetPath = [AppData getCachesDirectoryBigDocumentPath:imageDocument];
+        NSArray *sourceArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_bigImageDocumetPath error:nil];
         for (NSString *sourceStr in sourceArray) {
-            NSString *bigImagePath = [imageDocumetPath stringByAppendingPathComponent:sourceStr];
+            NSString *bigImagePath = [_bigImageDocumetPath stringByAppendingPathComponent:sourceStr];
             UIImage *image = [UIImage imageWithContentsOfFile:bigImagePath];
             [photos addObject:[MWPhoto photoWithImage:image]];
         }
@@ -224,22 +228,18 @@
     UIImage *imageSmall = [UITools imageWithImageSimple:image scaledToSize:[self smallSize]];
     [_imageItemsArray addObject:imageSmall];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *filePath = [AppData getCachesDirectoryBigDocumentPath:imageDocument];
-        NSString *saveToImagePath = [filePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",name]];
-        
-        NSString *smallfilePath = [AppData getCachesDirectorySmallDocumentPath:imageDocument];
-        NSString *smallSaveToImagePath = [smallfilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",name]];
+        NSString *bigImageSavePath = [_bigImageDocumetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",name]];
+        NSString *smallImageSavePath = [_smallImageDocumetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",name]];
         
         NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-        if ([imageData writeToFile:saveToImagePath atomically:NO]) {
+        if ([imageData writeToFile:bigImageSavePath atomically:NO]) {
             [_imagesNameArray addObject:[NSString stringWithFormat:@"%@.JPG",name]];
             //             NSLog(@"存入文件 成功！");
         } else {
             NSLog(@"图片未能存入");
         }
-
         NSData *smallImageData = UIImageJPEGRepresentation(imageSmall, 1);
-        if ([smallImageData writeToFile:smallSaveToImagePath atomically:NO]) {
+        if ([smallImageData writeToFile:smallImageSavePath atomically:NO]) {
             //             NSLog(@"存入文件 成功！");
         } else {
             NSLog(@"图片未能存入");
@@ -249,11 +249,9 @@
 
 - (void)deleteImageWithName:(NSString *)imageName atItemsArrayLocation:(NSInteger)loc {
     _isChangedImage = YES;
-    NSString *bigFilePath = [AppData getCachesDirectoryBigDocumentPath:imageDocument];
-    NSString *smallFilePath = [AppData getCachesDirectorySmallDocumentPath:imageDocument];
-    NSString *saveToImagePath = [bigFilePath stringByAppendingPathComponent:imageName];
+    NSString *saveToImagePath = [_bigImageDocumetPath stringByAppendingPathComponent:imageName];
     NSError *error = nil;
-    NSString *smallSaveToImagePath = [smallFilePath stringByAppendingPathComponent:imageName];
+    NSString *smallSaveToImagePath = [_smallImageDocumetPath stringByAppendingPathComponent:imageName];
     NSError *smallError = nil;
     if ([[NSFileManager defaultManager] removeItemAtPath:smallSaveToImagePath error:&smallError] && [[NSFileManager defaultManager] removeItemAtPath:saveToImagePath error:&error]) {
         [_imageItemsArray removeObjectAtIndex:loc];

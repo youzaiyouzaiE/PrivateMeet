@@ -137,7 +137,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
             endingLineNumber = "148"
-            landmarkName = "-loadUnderlyingImageAndNotify"
+            landmarkName = "-loadUnderlyingImageAndNotifyWihtIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

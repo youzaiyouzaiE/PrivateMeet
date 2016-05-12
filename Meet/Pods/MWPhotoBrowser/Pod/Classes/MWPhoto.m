@@ -19,7 +19,7 @@
     id <SDWebImageOperation> _webImageOperation;
     PHImageRequestID _assetRequestID;
     PHImageRequestID _assetVideoRequestID;
-    NSInteger _index;
+        
 }
 
 @property (nonatomic, strong) UIImage *image;
@@ -145,7 +145,7 @@
     return _underlyingImage;
 }
 
-- (void)loadUnderlyingImageAndNotifyWihtIndex:(NSInteger)index {
+- (void)loadUnderlyingImageAndNotify {
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     if (_loadingInProgress) return;
     _loadingInProgress = YES;

@@ -17,7 +17,7 @@
 @property (nonatomic) NSUInteger index;
 @property (nonatomic) BOOL isSelected;
 @property (nonatomic, copy) NSString *representedAssetIdentifier;
-
+@property (nonatomic) BOOL isICloudAsset;
 
 - (void)loadSubViewsFrame ;
 

@@ -16,6 +16,7 @@
 #import "MWCommon.h"
 #import "MWPhotoBrowser.h"
 #import "MBProgressHUD.h"
+#import "MWPhoto.h"
 
 static NSString * const reuseIdentifier = @"PhotoGridCell";
 
@@ -37,9 +38,10 @@ static NSString * const reuseIdentifier = @"PhotoGridCell";
     NSMutableArray *_arraySelectdAssets;////从相册里选中的图片
     NSMutableDictionary *_selectAssetsDic;/////选中的Asset在_currentItems里的位置（用于浏览时更改_currentItems 里的_arrayItemSelectType）
     NSMutableArray *_arrayBrowserSelectAssetsType;////NSNumber  选中图片里对应的item type 可以修改
-    MWPhotoBrowser *_browser;
+    MWPhotoBrowser *_browser;//////预览下的查看图片
     NSArray *_copySelectdArray;
     BOOL _isBrowser;////浏览状态下查看
+    PHImageRequestOptions *_options;
 }
 
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -79,6 +81,22 @@ static CGSize AssetGridThumbnailSize;
     
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self setNeedsStatusBarAppearanceUpdate];
+    
+    _options = [PHImageRequestOptions new];
+    _options.networkAccessAllowed = YES;
+    _options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    _options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    _options.synchronous = false;
+    _options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+//        NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+//                              [NSNumber numberWithDouble: progress], @"progress",
+//                              self, @"photo", nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_PROGRESS_NOTIFICATION object:dict];
+    };
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(iClouldImageLoadComplete:)
+                                                 name:MWPHOTO_LOADING_DID_END_NOTIFICATION
+                                               object:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -97,6 +115,10 @@ static CGSize AssetGridThumbnailSize;
     _currentItems = nil;
     _arraySelectdAssets = nil;
     _selectAssetsDic = nil;
+}
+
+- (void)iClouldImageLoadComplete:(NSNotification *)notification {
+    MWPhoto *photo = [notification object];
 }
 
 - (void)loadImageDataFormAlbum
@@ -358,9 +380,14 @@ static CGSize AssetGridThumbnailSize;
 #pragma mark - data
 - (void)setPhotoSelected:(BOOL)selected atIndex:(NSUInteger)index////set Value
 {
+    PhotoGridCell *cell = (PhotoGridCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     if (_arraySelectdAssets.count + _alreadyHaveNum == _maxSelected && selected) {
         [[UITools shareInstance] showMessageToView:self.view message:[NSString stringWithFormat:@"最多选择%ld张图片",(long)_maxSelected] autoHide:YES];
-        PhotoGridCell *cell = (PhotoGridCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        cell.selectButton.selected = NO;
+        return ;
+    }
+    if (cell.isICloudAsset && selected) {
+        [[UITools shareInstance] showMessageToView:self.view message:@"此图片在iColud上,点击图片获取" autoHide:YES];
         cell.selectButton.selected = NO;
         return ;
     }
@@ -433,14 +460,40 @@ static CGSize AssetGridThumbnailSize;
     cell.index = indexPath.row;
     cell.representedAssetIdentifier = asset.localIdentifier;
 //     NSLog(@"%@",asset.localIdentifier);
+    [[PHImageManager defaultManager] requestImageDataForAsset:asset
+                                                      options:nil
+                                                resultHandler:^(NSData *imageData, NSString *dataUTI,UIImageOrientation orientation, NSDictionary *info) {
+                                                    if (imageData == nil) {
+//                                                         NSLog(@"data is nil");
+                                                    }
+                                                        if([[info objectForKey:PHImageResultIsInCloudKey] boolValue]) {
+                                                        cell.isICloudAsset = YES;
+//                                                             NSLog(@" is iColud");
+                                                    } else
+                                                        cell.isICloudAsset = NO;
+                                                }];
+    
+//    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:AssetGridThumbnailSize contentMode:PHImageContentModeAspectFit options:_options resultHandler:^(UIImage * result, NSDictionary *info) {
+//        if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {
+//            cell.imageView.image = result;
+//        }
+//        if([[info objectForKey:PHImageResultIsInCloudKey] boolValue]) {
+//            cell.isICloudAsset = YES;
+//        } else
+//            cell .isICloudAsset = NO;
+//    }];
+    
     [self.imageManager requestImageForAsset:asset
                                  targetSize:AssetGridThumbnailSize
                                 contentMode:PHImageContentModeAspectFill
-                                    options:nil
+                                    options:_options
                               resultHandler:^(UIImage *result, NSDictionary *info) {
                                   // Set the cell's thumbnail image if it's still showing the same asset.
                                   if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {
                                       cell.imageView.image = result;
+                                  }
+                                  if([[info objectForKey:PHImageResultIsInCloudKey] boolValue]) {
+                                      cell.isICloudAsset = YES;
                                   }
                               }];
     if (_arrayItemSelectType.count > 0) {
@@ -500,16 +553,14 @@ static CGSize AssetGridThumbnailSize;
     if (photoBrowser == _browser) {
         [self setBrowserSelectedItemType:selected atIndex:index];
         #warning FUNCTION
-
-
     } else {
         if (_arraySelectdAssets.count + _alreadyHaveNum == _maxSelected && selected) {
             [[UITools shareInstance] showMessageToView:photoBrowser.view message:[NSString stringWithFormat:@"最多选择%ld张图片",(long)_maxSelected] autoHide:YES];
             [photoBrowser setCurrentPhotoSelectedButtonType:NO];
             return ;
         }
-        [self setPhotoSelected:selected atIndex:index];
         PhotoGridCell *cell = (PhotoGridCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        [self setPhotoSelected:selected atIndex:index];
         cell.selectButton.selected = selected;
     }
 }

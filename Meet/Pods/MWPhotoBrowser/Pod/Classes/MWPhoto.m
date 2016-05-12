@@ -19,7 +19,7 @@
     id <SDWebImageOperation> _webImageOperation;
     PHImageRequestID _assetRequestID;
     PHImageRequestID _assetVideoRequestID;
-        
+    NSInteger _index;
 }
 
 @property (nonatomic, strong) UIImage *image;
@@ -145,7 +145,7 @@
     return _underlyingImage;
 }
 
-- (void)loadUnderlyingImageAndNotify {
+- (void)loadUnderlyingImageAndNotifyWihtIndex:(NSInteger)index {
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     if (_loadingInProgress) return;
     _loadingInProgress = YES;
@@ -302,10 +302,16 @@
     };
     
     _assetRequestID = [imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage *result, NSDictionary *info) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.underlyingImage = result;
-            [self imageLoadingComplete];
-        });
+//        if([[info objectForKey:PHImageResultIsInCloudKey] boolValue]) {
+//            ////iCloud 上的不加载？？
+//            [self cancelImageRequest];
+//        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.underlyingImage = result;
+                [self imageLoadingComplete];
+            });
+//        }
+        
     }];
 
 }

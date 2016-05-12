@@ -145,8 +145,9 @@
     return _underlyingImage;
 }
 
-- (void)loadUnderlyingImageAndNotify {
+- (void)loadUnderlyingImageAndNotifyWihtIndex:(NSInteger)index {
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
+    self.index = index;
     if (_loadingInProgress) return;
     _loadingInProgress = YES;
     @try {

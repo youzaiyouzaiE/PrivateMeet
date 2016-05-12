@@ -21,6 +21,7 @@
 @property (nonatomic) BOOL emptyImage;
 @property (nonatomic) BOOL isVideo;
 
+
 + (MWPhoto *)photoWithImage:(UIImage *)image;
 + (MWPhoto *)photoWithURL:(NSURL *)url;
 + (MWPhoto *)photoWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize;
@@ -31,6 +32,10 @@
 - (id)initWithURL:(NSURL *)url;
 - (id)initWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize;
 - (id)initWithVideoURL:(NSURL *)url;
+
+
+///////modify for jiahui (为了从icoloud 下载完照片后更改Grid里item可选状态
+@property (assign, nonatomic)  NSInteger index;
 
 @end
 

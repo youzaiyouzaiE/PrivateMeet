@@ -721,10 +721,11 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 - (UIImage *)imageForPhoto:(id<MWPhoto>)photo {
 	if (photo) {
 		// Get image or obtain in background
+        photo.index = _currentPageIndex;
 		if ([photo underlyingImage]) {
 			return [photo underlyingImage];
 		} else {
-            [photo loadUnderlyingImageAndNotify];
+            [photo loadUnderlyingImageAndNotifyWihtIndex:_currentPageIndex];
 		}
 	}
 	return nil;
@@ -739,16 +740,18 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
             if (pageIndex > 0) {
                 // Preload index - 1
                 id <MWPhoto> photo = [self photoAtIndex:pageIndex-1];
+                photo.index = pageIndex-1;
                 if (![photo underlyingImage]) {
-                    [photo loadUnderlyingImageAndNotify];
+                    [photo loadUnderlyingImageAndNotifyWihtIndex:pageIndex -1];
                     MWLog(@"Pre-loading image at index %lu", (unsigned long)pageIndex-1);
                 }
             }
             if (pageIndex < [self numberOfPhotos] - 1) {
                 // Preload index + 1
                 id <MWPhoto> photo = [self photoAtIndex:pageIndex+1];
+                  photo.index = pageIndex + 1;
                 if (![photo underlyingImage]) {
-                    [photo loadUnderlyingImageAndNotify];
+                    [photo loadUnderlyingImageAndNotifyWihtIndex:pageIndex+1];
                     MWLog(@"Pre-loading image at index %lu", (unsigned long)pageIndex+1);
                 }
             }

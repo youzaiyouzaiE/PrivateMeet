@@ -119,6 +119,9 @@ static CGSize AssetGridThumbnailSize;
 
 - (void)iClouldImageLoadComplete:(NSNotification *)notification {
     MWPhoto *photo = [notification object];
+     NSLog(@"%d",photo.index);
+    PhotoGridCell *cell = (PhotoGridCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:photo.index inSection:0]];
+    cell.isICloudAsset = NO;
 }
 
 - (void)loadImageDataFormAlbum
@@ -560,6 +563,10 @@ static CGSize AssetGridThumbnailSize;
             return ;
         }
         PhotoGridCell *cell = (PhotoGridCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        if (cell.isICloudAsset && selected) {
+            [photoBrowser setCurrentPhotoSelectedButtonType:NO];
+            return ;
+        }
         [self setPhotoSelected:selected atIndex:index];
         cell.selectButton.selected = selected;
     }

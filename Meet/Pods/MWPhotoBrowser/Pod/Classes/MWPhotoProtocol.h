@@ -34,7 +34,7 @@
 
 // Called when the browser has determined the underlying images is not
 // already loaded into memory but needs it.
-- (void)loadUnderlyingImageAndNotify;
+- (void)loadUnderlyingImageAndNotifyWihtIndex:(NSInteger)index;
 
 // Fetch the image data from a source and notify when complete.
 // You must load the image asyncronously (and decompress it for better performance).
@@ -51,6 +51,8 @@
 // You should release any underlying (possibly large and decompressed) image data
 // as long as the image can be re-loaded (from cache, file, or URL)
 - (void)unloadUnderlyingImage;
+
+@property (assign, nonatomic)  NSInteger index;
 
 @optional
 

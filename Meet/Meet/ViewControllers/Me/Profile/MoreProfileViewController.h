@@ -15,6 +15,6 @@ typedef void(^modifyImagesBlock)(void);
 
 @property (assign, nonatomic) NSInteger editType;////是编辑页面（1，为编辑（从MeVC图片cell push进入的），0 为个人信息弹入的）
 
-@property (copy, nonatomic) modifyImagesBlock modifyBlock;
+@property (assign, nonatomic) modifyImagesBlock modifyBlock;
 
 @end

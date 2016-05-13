@@ -609,10 +609,12 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
             addInfom.viewType = ViewTypeEdit;
         }
     } else if ([segue.identifier isEqualToString:@"ModalToStarVC"]) {
-        AddStarViewController *starVC = (AddStarViewController *)[segue destinationViewController];
+//        AddStarViewController *starVC = (AddStarViewController *)[segue destinationViewController];
     } else if ([segue.identifier isEqualToString:@"ModalToMoreProfile"]) {
-        MoreProfileViewController *moreVC = (MoreProfileViewController *)[segue destinationViewController];
-        moreVC.modifyBlock = ^()    { };
+//        MoreProfileViewController *moreVC = (MoreProfileViewController *)[segue destinationViewController];
+//        moreVC.modifyBlock = ^(){
+////            [self checkDocumentGetSmallImages];
+//        };
     }
 }
 

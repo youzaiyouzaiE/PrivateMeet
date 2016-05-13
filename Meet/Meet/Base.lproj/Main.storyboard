@@ -341,7 +341,7 @@
         <!--My Display View Controller-->
         <scene sceneID="S8p-y4-KaP">
             <objects>
-                <viewController id="f2B-VZ-7Q9" customClass="MyDisplayViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="f2B-VZ-7Q9" customClass="MyDisplayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dqm-MM-0bW"/>
                         <viewControllerLayoutGuide type="bottom" id="WqO-4N-UWe"/>
@@ -349,9 +349,40 @@
                     <view key="view" contentMode="scaleToFill" id="C0C-c9-WFQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRR-rX-1Al">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pr-q5-pyk" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="700" id="ZW1-gQ-Yii"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="2Pr-q5-pyk" secondAttribute="bottom" id="05O-RX-Ofm"/>
+                                    <constraint firstItem="2Pr-q5-pyk" firstAttribute="centerX" secondItem="pRR-rX-1Al" secondAttribute="centerX" id="Fze-n7-XaL"/>
+                                    <constraint firstItem="2Pr-q5-pyk" firstAttribute="top" secondItem="pRR-rX-1Al" secondAttribute="top" id="JHD-Zl-DrJ"/>
+                                    <constraint firstItem="2Pr-q5-pyk" firstAttribute="leading" secondItem="pRR-rX-1Al" secondAttribute="leading" id="bVr-wY-Thy"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Pr-q5-pyk" secondAttribute="trailing" id="olH-WR-8jI"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="pRR-rX-1Al" secondAttribute="bottom" id="eRI-dV-571"/>
+                            <constraint firstItem="pRR-rX-1Al" firstAttribute="top" secondItem="C0C-c9-WFQ" secondAttribute="top" id="klW-Dy-RGh"/>
+                            <constraint firstItem="pRR-rX-1Al" firstAttribute="leading" secondItem="C0C-c9-WFQ" secondAttribute="leading" id="raS-H5-Mbu"/>
+                            <constraint firstAttribute="trailing" secondItem="pRR-rX-1Al" secondAttribute="trailing" id="zGe-dz-nDg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sbD-9S-AKR"/>
+                    <connections>
+                        <outlet property="scrollView" destination="pRR-rX-1Al" id="tSP-8g-f9Q"/>
+                        <outlet property="scrollViewConstraintH" destination="ZW1-gQ-Yii" id="yhS-ic-xZP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rOP-ra-5Fl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

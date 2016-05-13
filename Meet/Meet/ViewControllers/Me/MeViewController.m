@@ -10,9 +10,9 @@
 #import "UINavigationBar+BackgroundColor.h"
 #import "ThreeImageCell.h"
 #import "MyProfileViewController.h"
-#import "MyPhotosViewController.h"
 #import "RemindImageCell.h"
-#import "MoreProfileViewController.H"
+#import "MoreProfileViewController.h"
+#import "MyDisplayViewController.h"
 
 @interface MeViewController () <UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource> {
     NSMutableArray *_imagesArray;
@@ -253,29 +253,26 @@
          };
         [self.navigationController pushViewController:myProfileVC animated:YES];
     } else  if (indexPath.row == 1) {
-        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
-        MoreProfileViewController *moreVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MoreProfileViewController"];
-        moreVC.modifyBlock = ^(){
-            [self checkDocumentGetSmallImages];
-        };
-        moreVC.editType = 1;
-        [self.navigationController pushViewController:moreVC animated:YES];
+        //////展示更多个人信息
+        [self performSegueWithIdentifier:@"pushToMyDisplayVC" sender:self];
         
-//        [self performSegueWithIdentifier:@"MePushToMyPhoto" sender:self];
+        /////填写更多个人信息
+//        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
+//        MoreProfileViewController *moreVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MoreProfileViewController"];
+//        moreVC.modifyBlock = ^(){
+//            [self checkDocumentGetSmallImages];
+//        };
+//        moreVC.editType = 1;
+//        [self.navigationController pushViewController:moreVC animated:YES];
     }
 }
 
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"MePushToMyPhoto"]) {
-//        MyPhotosViewController *myPhotoVC = (MyPhotosViewController *)[segue destinationViewController];
-//        myPhotoVC.updateBlock = ^(BOOL isNeed){
-//            if (isNeed) {
-//                [self checkDocumentGetSmallImages];
-//            }
-//        };
-//    }
+    if ([segue.identifier isEqualToString:@"pushToMyDisplayVC"]) {
+        
+    }
 }
 
 @end

@@ -81,6 +81,16 @@
 		DAF5C8471CE2DA6E00DA7901 /* LabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C8451CE2DA6E00DA7901 /* LabelTableViewCell.xib */; };
 		DAF5C84E1CE4794200DA7901 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8491CE4794200DA7901 /* libWeChatSDK.a */; };
 		DAF5C84F1CE4794200DA7901 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C84A1CE4794200DA7901 /* README.txt */; };
+		DAF5C8511CE4857500DA7901 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8501CE4857500DA7901 /* CoreText.framework */; };
+		DAF5C8541CE5A5C100DA7901 /* UIView+frameAdjust.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8531CE5A5C000DA7901 /* UIView+frameAdjust.m */; };
+		DAF5C8821CE5B95000DA7901 /* CoreTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8751CE5B95000DA7901 /* CoreTextData.m */; };
+		DAF5C8831CE5B95000DA7901 /* CoreTextImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8771CE5B95000DA7901 /* CoreTextImageData.m */; };
+		DAF5C8841CE5B95000DA7901 /* CoreTextLinkData.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8791CE5B95000DA7901 /* CoreTextLinkData.m */; };
+		DAF5C8851CE5B95000DA7901 /* CoreTextUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C87B1CE5B95000DA7901 /* CoreTextUtils.m */; };
+		DAF5C8861CE5B95000DA7901 /* CTFrameParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C87D1CE5B95000DA7901 /* CTFrameParser.m */; };
+		DAF5C8871CE5B95000DA7901 /* CTFrameParserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C87F1CE5B95000DA7901 /* CTFrameParserConfig.m */; };
+		DAF5C88E1CE5B9B700DA7901 /* CTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C88D1CE5B9B700DA7901 /* CTTextView.m */; };
+		DAF5C8911CE5C0EE00DA7901 /* MyDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8901CE5C0EE00DA7901 /* MyDisplayViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,6 +234,25 @@
 		DAF5C84B1CE4794200DA7901 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		DAF5C84C1CE4794200DA7901 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		DAF5C84D1CE4794200DA7901 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		DAF5C8501CE4857500DA7901 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		DAF5C8521CE5A5C000DA7901 /* UIView+frameAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+frameAdjust.h"; sourceTree = "<group>"; };
+		DAF5C8531CE5A5C000DA7901 /* UIView+frameAdjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+frameAdjust.m"; sourceTree = "<group>"; };
+		DAF5C8741CE5B95000DA7901 /* CoreTextData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextData.h; sourceTree = "<group>"; };
+		DAF5C8751CE5B95000DA7901 /* CoreTextData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextData.m; sourceTree = "<group>"; };
+		DAF5C8761CE5B95000DA7901 /* CoreTextImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextImageData.h; sourceTree = "<group>"; };
+		DAF5C8771CE5B95000DA7901 /* CoreTextImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextImageData.m; sourceTree = "<group>"; };
+		DAF5C8781CE5B95000DA7901 /* CoreTextLinkData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextLinkData.h; sourceTree = "<group>"; };
+		DAF5C8791CE5B95000DA7901 /* CoreTextLinkData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextLinkData.m; sourceTree = "<group>"; };
+		DAF5C87A1CE5B95000DA7901 /* CoreTextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextUtils.h; sourceTree = "<group>"; };
+		DAF5C87B1CE5B95000DA7901 /* CoreTextUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextUtils.m; sourceTree = "<group>"; };
+		DAF5C87C1CE5B95000DA7901 /* CTFrameParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameParser.h; sourceTree = "<group>"; };
+		DAF5C87D1CE5B95000DA7901 /* CTFrameParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameParser.m; sourceTree = "<group>"; };
+		DAF5C87E1CE5B95000DA7901 /* CTFrameParserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameParserConfig.h; sourceTree = "<group>"; };
+		DAF5C87F1CE5B95000DA7901 /* CTFrameParserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameParserConfig.m; sourceTree = "<group>"; };
+		DAF5C88C1CE5B9B700DA7901 /* CTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTTextView.h; sourceTree = "<group>"; };
+		DAF5C88D1CE5B9B700DA7901 /* CTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTTextView.m; sourceTree = "<group>"; };
+		DAF5C88F1CE5C0EE00DA7901 /* MyDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDisplayViewController.h; sourceTree = "<group>"; };
+		DAF5C8901CE5C0EE00DA7901 /* MyDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDisplayViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAF5C8511CE4857500DA7901 /* CoreText.framework in Frameworks */,
 				DAF5C8041CDF492600DA7901 /* Security.framework in Frameworks */,
 				DAF5C8021CDF491700DA7901 /* CoreMotion.framework in Frameworks */,
 				DAF5C8001CDF490000DA7901 /* AdSupport.framework in Frameworks */,
@@ -251,6 +281,7 @@
 		8E40E9729E6AB1EC00EF25FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DAF5C8501CE4857500DA7901 /* CoreText.framework */,
 				DAF5C8031CDF492600DA7901 /* Security.framework */,
 				DAF5C8011CDF491700DA7901 /* CoreMotion.framework */,
 				DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */,
@@ -451,6 +482,8 @@
 				DA018F351CD443670051D2D7 /* UINavigationBar+BackgroundColor.m */,
 				DAF5C7F71CDF479C00DA7901 /* NetWorkObject.h */,
 				DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */,
+				DAF5C8521CE5A5C000DA7901 /* UIView+frameAdjust.h */,
+				DAF5C8531CE5A5C000DA7901 /* UIView+frameAdjust.m */,
 			);
 			name = Global;
 			path = Meet/Global;
@@ -516,6 +549,7 @@
 				DAF5C8431CE2DA6E00DA7901 /* LabelTableViewCell.h */,
 				DAF5C8441CE2DA6E00DA7901 /* LabelTableViewCell.m */,
 				DAF5C8451CE2DA6E00DA7901 /* LabelTableViewCell.xib */,
+				DAF5C8721CE5B95000DA7901 /* CoreTextView */,
 			);
 			name = Views;
 			path = Meet/Views;
@@ -542,6 +576,8 @@
 			children = (
 				DA6CEF0D1CDAF33300EEABFF /* MyProfileViewController.h */,
 				DA6CEF0E1CDAF33300EEABFF /* MyProfileViewController.m */,
+				DAF5C88F1CE5C0EE00DA7901 /* MyDisplayViewController.h */,
+				DAF5C8901CE5C0EE00DA7901 /* MyDisplayViewController.m */,
 				DA6CEF111CDAF42300EEABFF /* AddInformationViewController.h */,
 				DA6CEF121CDAF42300EEABFF /* AddInformationViewController.m */,
 				DA4A88F41CDB1DD900649983 /* AddStarViewController.h */,
@@ -622,6 +658,35 @@
 			);
 			name = OpenSDK1.7;
 			path = TakingData/OpenSDK1.7;
+			sourceTree = "<group>";
+		};
+		DAF5C8721CE5B95000DA7901 /* CoreTextView */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C88C1CE5B9B700DA7901 /* CTTextView.h */,
+				DAF5C88D1CE5B9B700DA7901 /* CTTextView.m */,
+				DAF5C8731CE5B95000DA7901 /* CoreTextEngine */,
+			);
+			path = CoreTextView;
+			sourceTree = "<group>";
+		};
+		DAF5C8731CE5B95000DA7901 /* CoreTextEngine */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C8741CE5B95000DA7901 /* CoreTextData.h */,
+				DAF5C8751CE5B95000DA7901 /* CoreTextData.m */,
+				DAF5C8761CE5B95000DA7901 /* CoreTextImageData.h */,
+				DAF5C8771CE5B95000DA7901 /* CoreTextImageData.m */,
+				DAF5C8781CE5B95000DA7901 /* CoreTextLinkData.h */,
+				DAF5C8791CE5B95000DA7901 /* CoreTextLinkData.m */,
+				DAF5C87A1CE5B95000DA7901 /* CoreTextUtils.h */,
+				DAF5C87B1CE5B95000DA7901 /* CoreTextUtils.m */,
+				DAF5C87C1CE5B95000DA7901 /* CTFrameParser.h */,
+				DAF5C87D1CE5B95000DA7901 /* CTFrameParser.m */,
+				DAF5C87E1CE5B95000DA7901 /* CTFrameParserConfig.h */,
+				DAF5C87F1CE5B95000DA7901 /* CTFrameParserConfig.m */,
+			);
+			path = CoreTextEngine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -787,9 +852,12 @@
 				DA6CEF101CDAF33300EEABFF /* MyProfileViewController.m in Sources */,
 				DA018F4E1CD4C03B0051D2D7 /* MyPhotoItem.m in Sources */,
 				DAF5C8201CE0D0ED00DA7901 /* WXAccessModel.m in Sources */,
+				DAF5C8541CE5A5C100DA7901 /* UIView+frameAdjust.m in Sources */,
+				DAF5C8841CE5B95000DA7901 /* CoreTextLinkData.m in Sources */,
 				DA018F391CD44B210051D2D7 /* ThreeImageCell.m in Sources */,
 				DA018F3C1CD47FAA0051D2D7 /* MyPhotosViewController.m in Sources */,
 				DA018EF81CD1D7EB0051D2D7 /* MoveViewController.m in Sources */,
+				DAF5C88E1CE5B9B700DA7901 /* CTTextView.m in Sources */,
 				DAF5C83A1CE18A2400DA7901 /* UISheetView.m in Sources */,
 				DA018F331CD43F2A0051D2D7 /* ActivityViewController.m in Sources */,
 				DAF5C8461CE2DA6E00DA7901 /* LabelTableViewCell.m in Sources */,
@@ -802,11 +870,14 @@
 				DAF5C81E1CE0D0ED00DA7901 /* BaseModel.m in Sources */,
 				DA4A890B1CDCA0C000649983 /* WeChatLonginViewController.m in Sources */,
 				DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */,
+				DAF5C8861CE5B95000DA7901 /* CTFrameParser.m in Sources */,
 				DA018EDB1CD1BCD90051D2D7 /* MainViewController.m in Sources */,
 				DA6CEEF61CD9EFA800EEABFF /* CellTextField.m in Sources */,
 				DA018F5E1CD79D4A0051D2D7 /* RemindImageCell.m in Sources */,
 				DA36267D1CD1A98E00A8AE39 /* UITools.m in Sources */,
 				DAF5C8351CE0D7A300DA7901 /* NSObject+RMCopyable.m in Sources */,
+				DAF5C8851CE5B95000DA7901 /* CoreTextUtils.m in Sources */,
+				DAF5C8821CE5B95000DA7901 /* CoreTextData.m in Sources */,
 				DA018EE31CD1D39B0051D2D7 /* HomeBaseViewController.m in Sources */,
 				DA018EFE1CD1D8150051D2D7 /* TravelViewController.m in Sources */,
 				DA4A890E1CDCA8D000649983 /* WeChatResgisterViewController.m in Sources */,
@@ -815,6 +886,9 @@
 				DA6CEEF21CD9EF9D00EEABFF /* CellButton.m in Sources */,
 				DAF5C8371CE0D7A300DA7901 /* RMMapper.m in Sources */,
 				DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */,
+				DAF5C8831CE5B95000DA7901 /* CoreTextImageData.m in Sources */,
+				DAF5C8871CE5B95000DA7901 /* CTFrameParserConfig.m in Sources */,
+				DAF5C8911CE5C0EE00DA7901 /* MyDisplayViewController.m in Sources */,
 				DA6CEF0F1CDAF33300EEABFF /* MoreProfileViewController.m in Sources */,
 				DAF5C8361CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				DA4A89051CDC473700649983 /* LoginMainViewController.m in Sources */,

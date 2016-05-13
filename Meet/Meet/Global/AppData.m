@@ -129,8 +129,8 @@ NSString *const databaseName = @"MeetDB.db";
 
 - (NSString *)getCacheContetnImagePathWithIndexPath:(NSIndexPath *)indexPath {
     NSString *path = [self getCacheMostContetnImagePath];
-    NSString *indexSectionPath = [path stringByAppendingPathComponent:FORMAT(@"%d",indexPath.section)];
-    NSString *indexRowPath = [indexSectionPath stringByAppendingPathComponent:FORMAT(@"%d",indexPath.row)];
+    NSString *indexSectionPath = [path stringByAppendingPathComponent:FORMAT(@"%ld",(long)indexPath.section)];
+    NSString *indexRowPath = [indexSectionPath stringByAppendingPathComponent:FORMAT(@"%ld",(long)indexPath.row)];
     
     NSFileManager *mager = [NSFileManager defaultManager];
     if (![mager fileExistsAtPath:indexRowPath]) {
@@ -207,7 +207,7 @@ NSString *const databaseName = @"MeetDB.db";
     NSInteger year=[conponent year];
     NSInteger month=[conponent month];
     NSInteger day=[conponent day];
-    NSString *  nsDateString= [NSString  stringWithFormat:@"%4d-%d-%d ",year,month,day];
+    NSString *  nsDateString= [NSString  stringWithFormat:@"%4ld-%ld-%ld ",(long)year,(long)month,(long)day];
     nsDateString = [nsDateString stringByAppendingString:locationString];
     return nsDateString;
 }

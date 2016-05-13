@@ -93,7 +93,7 @@
 - (void)loadSmallImagesInCachWithIndexPath:(NSIndexPath *)indexPath isReload:(BOOL)isReload{
 //    NSLog(@"SmallImages indePath Section :%d, row :%d",indexPath.section, indexPath.row);
     if (isReload) {////删除之前 对应indexPath里缓存的内容
-        NSString *head = FORMAT(@"%d-%d-",indexPath.section,indexPath.row);
+        NSString *head = FORMAT(@"%ld-%ld-",(long)indexPath.section,(long)indexPath.row);
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF BEGINSWITH[cd] %@",head];
         NSArray *resultArray = [_arrayCacheImgaeKeys filteredArrayUsingPredicate:predicate];
         [resultArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * stop) {
@@ -112,7 +112,7 @@
 }
 
 - (NSString *)cacheImageKey:(NSIndexPath *)indexPath andIndex:(NSInteger)idx isReloadTable:(BOOL)isReload{
-    NSString *key = FORMAT(@"%d-%d-%d",indexPath.section,indexPath.row,idx);
+    NSString *key = FORMAT(@"%ld-%ld-%ld",(long)indexPath.section,(long)indexPath.row,(long)idx);
     if (!isReload ){
         [_arrayCacheImgaeKeys addObject:key];
     }
@@ -155,7 +155,7 @@
 }
 
 - (void)saveAction:(id)sender {
-    
+     NSLog(@" ");
 }
 
 #pragma mark - NSNotificationCenter
@@ -234,6 +234,7 @@
                 cell.textView.delegate = self;
             }
             cell.textView.placeholder = _dicPlaceHolder[_arraySection[indexPath.section]];
+//             cell.textView.text = @"暗渡陈仓右脚喂奶呇油烟机滥勋进为因肖没录偿为暴僘/n\n彛溃烂油烟机1是呀舅派\n/n烤日光灯炒股烛烟消云散中华\n人民共和国国炽虽";
             cell.textView.indexPath = indexPath;
             return cell;
         }
@@ -298,9 +299,25 @@
     return YES;
 }
 
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-//    return YES;
-//}
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([textView isKindOfClass:[CellTextView class]]) {
+        CellTextView *cellText = (CellTextView *)textView;
+        _editingIndexPath = cellText.indexPath;
+         NSLog(@"textView text:%@",textView.text);
+//        NSString *string = textView.text;
+//        NSArray *arry = [string componentsSeparatedByString:@"\n"];
+//        NSLog(@"array %@",arry);
+    }
+}
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([textView isKindOfClass:[CellTextView class]]) {
+//        CellTextView *cellText = (CellTextView *)textView;
+    
+    }
+    return YES;
+}
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     return YES;

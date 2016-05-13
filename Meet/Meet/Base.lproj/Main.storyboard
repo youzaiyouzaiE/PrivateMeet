@@ -331,11 +331,31 @@
                     <connections>
                         <outlet property="tableView" destination="dXe-pA-4FZ" id="V3m-47-9EE"/>
                         <segue destination="jmG-Gu-1Nq" kind="push" identifier="MePushToMyPhoto" id="S4j-dX-7EO"/>
+                        <segue destination="f2B-VZ-7Q9" kind="push" identifier="pushToMyDisplayVC" id="t3g-KH-PBE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmq-RK-mfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3302" y="2398"/>
+        </scene>
+        <!--My Display View Controller-->
+        <scene sceneID="S8p-y4-KaP">
+            <objects>
+                <viewController id="f2B-VZ-7Q9" customClass="MyDisplayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dqm-MM-0bW"/>
+                        <viewControllerLayoutGuide type="bottom" id="WqO-4N-UWe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C0C-c9-WFQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sbD-9S-AKR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rOP-ra-5Fl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3756" y="3124"/>
         </scene>
         <!--My Photos View Controller-->
         <scene sceneID="pZ2-zH-BXd">

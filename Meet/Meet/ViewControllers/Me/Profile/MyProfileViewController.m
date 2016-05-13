@@ -611,7 +611,8 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     } else if ([segue.identifier isEqualToString:@"ModalToStarVC"]) {
         AddStarViewController *starVC = (AddStarViewController *)[segue destinationViewController];
     } else if ([segue.identifier isEqualToString:@"ModalToMoreProfile"]) {
-        MoreProfileViewController *starVC = (MoreProfileViewController *)[segue destinationViewController];
+        MoreProfileViewController *moreVC = (MoreProfileViewController *)[segue destinationViewController];
+        moreVC.modifyBlock = ^()    { };
     }
 }
 

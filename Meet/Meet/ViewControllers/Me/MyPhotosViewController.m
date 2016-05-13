@@ -133,7 +133,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         if (_imageItemsArray.count == _maxIamges) {
-            [[UITools shareInstance] showMessageToView:self.view message:[NSString stringWithFormat:@"最多选择%d张图片",_maxIamges] autoHide:YES];
+            [[UITools shareInstance] showMessageToView:self.view message:[NSString stringWithFormat:@"最多选择%ld张图片",(long)_maxIamges] autoHide:YES];
             return ;
         }
         [self createSheetAction];

@@ -91,6 +91,10 @@
 		DAF5C8871CE5B95000DA7901 /* CTFrameParserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C87F1CE5B95000DA7901 /* CTFrameParserConfig.m */; };
 		DAF5C88E1CE5B9B700DA7901 /* CTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C88D1CE5B9B700DA7901 /* CTTextView.m */; };
 		DAF5C8911CE5C0EE00DA7901 /* MyDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8901CE5C0EE00DA7901 /* MyDisplayViewController.m */; };
+		DAF5C89D1CE6191000DA7901 /* MHFacebookImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8971CE6191000DA7901 /* MHFacebookImageViewer.m */; };
+		DAF5C89E1CE6191000DA7901 /* Done.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C8991CE6191000DA7901 /* Done.png */; };
+		DAF5C89F1CE6191000DA7901 /* Done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C89A1CE6191000DA7901 /* Done@2x.png */; };
+		DAF5C8A01CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C89C1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -253,6 +257,12 @@
 		DAF5C88D1CE5B9B700DA7901 /* CTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTTextView.m; sourceTree = "<group>"; };
 		DAF5C88F1CE5C0EE00DA7901 /* MyDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDisplayViewController.h; sourceTree = "<group>"; };
 		DAF5C8901CE5C0EE00DA7901 /* MyDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDisplayViewController.m; sourceTree = "<group>"; };
+		DAF5C8961CE6191000DA7901 /* MHFacebookImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHFacebookImageViewer.h; sourceTree = "<group>"; };
+		DAF5C8971CE6191000DA7901 /* MHFacebookImageViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHFacebookImageViewer.m; sourceTree = "<group>"; };
+		DAF5C8991CE6191000DA7901 /* Done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Done.png; sourceTree = "<group>"; };
+		DAF5C89A1CE6191000DA7901 /* Done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Done@2x.png"; sourceTree = "<group>"; };
+		DAF5C89B1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MHFacebookImageViewer.h"; sourceTree = "<group>"; };
+		DAF5C89C1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MHFacebookImageViewer.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -601,6 +611,7 @@
 		DAF5C8061CE0301500DA7901 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				DAF5C8951CE6191000DA7901 /* MHFBImageViewController */,
 			);
 			name = 3rd;
 			path = Meet/3rd;
@@ -689,6 +700,27 @@
 			path = CoreTextEngine;
 			sourceTree = "<group>";
 		};
+		DAF5C8951CE6191000DA7901 /* MHFBImageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C8961CE6191000DA7901 /* MHFacebookImageViewer.h */,
+				DAF5C8971CE6191000DA7901 /* MHFacebookImageViewer.m */,
+				DAF5C8981CE6191000DA7901 /* Resources */,
+				DAF5C89B1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.h */,
+				DAF5C89C1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m */,
+			);
+			path = MHFBImageViewController;
+			sourceTree = "<group>";
+		};
+		DAF5C8981CE6191000DA7901 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C8991CE6191000DA7901 /* Done.png */,
+				DAF5C89A1CE6191000DA7901 /* Done@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -752,11 +784,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAF5C89E1CE6191000DA7901 /* Done.png in Resources */,
 				DA4A89021CDC388B00649983 /* Login.storyboard in Resources */,
 				DA018F521CD4DAFB0051D2D7 /* Localizable.strings in Resources */,
 				DA018F2F1CD39D570051D2D7 /* ManListCell.xib in Resources */,
 				DA6CEEEA1CD97E9A00EEABFF /* Me.storyboard in Resources */,
 				DAF5C84F1CE4794200DA7901 /* README.txt in Resources */,
+				DAF5C89F1CE6191000DA7901 /* Done@2x.png in Resources */,
 				DA3626671CD1A75C00A8AE39 /* LaunchScreen.storyboard in Resources */,
 				DAF5C8471CE2DA6E00DA7901 /* LabelTableViewCell.xib in Resources */,
 				DA3626641CD1A75C00A8AE39 /* Assets.xcassets in Resources */,
@@ -850,6 +884,7 @@
 				DA018EFB1CD1D8060051D2D7 /* ShowViewController.m in Sources */,
 				DA018EF51CD1D7DF0051D2D7 /* EatViewController.m in Sources */,
 				DA6CEF101CDAF33300EEABFF /* MyProfileViewController.m in Sources */,
+				DAF5C8A01CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m in Sources */,
 				DA018F4E1CD4C03B0051D2D7 /* MyPhotoItem.m in Sources */,
 				DAF5C8201CE0D0ED00DA7901 /* WXAccessModel.m in Sources */,
 				DAF5C8541CE5A5C100DA7901 /* UIView+frameAdjust.m in Sources */,
@@ -865,6 +900,7 @@
 				DA018F361CD443670051D2D7 /* UINavigationBar+BackgroundColor.m in Sources */,
 				DA36265C1CD1A75C00A8AE39 /* AppDelegate.m in Sources */,
 				DA6CEF021CDA402C00EEABFF /* TextViewCell.m in Sources */,
+				DAF5C89D1CE6191000DA7901 /* MHFacebookImageViewer.m in Sources */,
 				DA3626591CD1A75C00A8AE39 /* main.m in Sources */,
 				DAF5C8211CE0D0ED00DA7901 /* WXUserInfo.m in Sources */,
 				DAF5C81E1CE0D0ED00DA7901 /* BaseModel.m in Sources */,

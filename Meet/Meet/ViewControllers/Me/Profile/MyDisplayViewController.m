@@ -14,6 +14,8 @@
 #import "CTFrameParserConfig.h"
 #import "CoreTextData.h"
 #import "CTFrameParser.h"
+#import "UIImageView+MHFacebookImageViewer.h"
+
 @interface MyDisplayViewController () {
     
     __weak IBOutlet UIScrollView *scrollView;
@@ -31,9 +33,10 @@
 @end
 @implementation MyDisplayViewController
 
-#define VIEW_MARGIN     8
+#define SECTION_MARGIN  12
+#define VIEW_MARGIN     5
 #define IMAGEVIEW_X     5
-#define IMAGAVIEW_W     self.view.width - 2*IMAGEVIEW_X
+#define IMAGAVIEW_W     (self.view.width - 2*IMAGEVIEW_X)
 //#define IMAGEVIEW_H     IMAGAVIEW_W
 
 - (void)viewDidLoad {
@@ -66,16 +69,17 @@
 }
 
 - (void)loadCoreTextViewAndImageViews {
-    
     for (NSInteger i = 0; i < 4; i++) {
-        _scrollViewContentHeight += VIEW_MARGIN;
+        _scrollViewContentHeight += SECTION_MARGIN;
         CTTextView *coreTextView = [[CTTextView alloc] init];//
         CTFrameParserConfig *config = [[CTFrameParserConfig alloc] init];
         config.width = IMAGAVIEW_W;
-        NSString *content = @"岳阳楼记\n至若春和景明，波澜不惊，上下天光，一碧万顷；沙鸥翔集，锦鳞游泳，岸芷(zhǐ）汀（tīng）兰，郁郁青青。而或长烟一空，皓月千里，浮光跃金，静影沉璧；渔歌互答，此乐何极！登斯楼也，则有心旷神怡，宠辱偕忘，把酒临风，其喜洋洋者矣。\n 嗟(jiē)夫（fú）！予(yú)尝求古仁人之心，或异二者之为，何哉（zāi)？　不以物喜，不以己悲；\n居庙堂之高则忧其民；处（chǔ）江湖之远则忧其君。是进亦忧，退亦忧。然则何时而乐耶？\n其必曰：“先天下之忧而忧，后天下之乐而乐”乎。噫（yī）！微斯人，吾谁与归？";
+        NSString *content = @"岳阳楼记\n\n至若春和景明，波澜不惊，上下天光，一碧万顷；沙鸥翔集，锦鳞游泳，岸芷(zhǐ）汀（tīng）兰，郁郁青青。而或长烟一空，皓月千里，浮光跃金，静影沉璧；渔歌互答，此乐何极！登斯楼也，则有心旷神怡，宠辱偕忘，把酒临风，其喜洋洋者矣。\n 嗟(jiē)夫（fú）！予(yú)尝求古仁人之心，或异二者之为，何哉（zāi)？　不以物喜，不以己悲；\n居庙堂之高则忧其民；处（chǔ）江湖之远则忧其君。是进亦忧，退亦忧。然则何时而乐耶？\n其必曰：“先天下之忧而忧，后天下之乐而乐”乎。噫（yī）！微斯人，吾谁与归？";
         NSDictionary *attr  = [CTFrameParser attributesWithConfig:config];
         NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:content attributes:attr];
         [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:NSMakeRange(0, 4)];
+        [attStr addAttribute:NSBackgroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(4, content.length - 4)];
+        
         CoreTextData *data = [CTFrameParser parseAttributedContent:attStr config:config];
         coreTextView.data = data;
         coreTextView.backgroundColor = [UIColor whiteColor];
@@ -89,9 +93,12 @@
 - (void)loadImageViewsWithSection:(NSInteger)section {
     NSArray *imageArray = _dicContentImages[[NSNumber numberWithInt:section]];
     [imageArray enumerateObjectsUsingBlock:^(UIImage *image, NSUInteger idx, BOOL * stop) {
-//        CGSize size = image.size;
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(IMAGEVIEW_X, _scrollViewContentHeight + VIEW_MARGIN, IMAGAVIEW_W, IMAGAVIEW_W)];
+        CGSize size = image.size;
+        CGFloat scale = size.width/IMAGAVIEW_W;
+        CGFloat h = size.height/scale;
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(IMAGEVIEW_X, _scrollViewContentHeight + VIEW_MARGIN, IMAGAVIEW_W, h)];
         imageView.image = image;
+        [imageView setupImageViewer];
         [scrollView addSubview:imageView];
         _scrollViewContentHeight += (imageView.height + VIEW_MARGIN);
     }];

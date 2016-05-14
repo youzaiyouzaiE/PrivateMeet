@@ -95,8 +95,9 @@
 		DAF5C8C01CE6D6AD00DA7901 /* libTalkingData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8B11CE6D6AD00DA7901 /* libTalkingData.a */; };
 		DAF5C8C11CE6D6AD00DA7901 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8B31CE6D6AD00DA7901 /* libWeChatSDK.a */; };
 		DAF5C8C21CE6D6AD00DA7901 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C8B41CE6D6AD00DA7901 /* README.txt */; };
-		DAF5C8C61CE6F3B300DA7901 /* PhotosGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8C51CE6F3B300DA7901 /* PhotosGridViewController.m */; };
 		DAF5C8C91CE6F3EB00DA7901 /* MyPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8C81CE6F3EB00DA7901 /* MyPhotosViewController.m */; };
+		DAF5C8CD1CE6F79900DA7901 /* PhotosGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8CC1CE6F79900DA7901 /* PhotosGridViewController.m */; };
+		DAF5C8D11CE6F87A00DA7901 /* SendInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8D01CE6F87A00DA7901 /* SendInviteViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -266,10 +267,12 @@
 		DAF5C8B71CE6D6AD00DA7901 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		DAF5C8B81CE6D6AD00DA7901 /* TalkingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingData.h; sourceTree = "<group>"; };
 		DAF5C8B91CE6D6AD00DA7901 /* TalkingDataSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingDataSMS.h; sourceTree = "<group>"; };
-		DAF5C8C41CE6F3B300DA7901 /* PhotosGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGridViewController.h; sourceTree = "<group>"; };
-		DAF5C8C51CE6F3B300DA7901 /* PhotosGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosGridViewController.m; sourceTree = "<group>"; };
 		DAF5C8C71CE6F3EB00DA7901 /* MyPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPhotosViewController.h; sourceTree = "<group>"; };
 		DAF5C8C81CE6F3EB00DA7901 /* MyPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPhotosViewController.m; sourceTree = "<group>"; };
+		DAF5C8CB1CE6F79900DA7901 /* PhotosGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGridViewController.h; sourceTree = "<group>"; };
+		DAF5C8CC1CE6F79900DA7901 /* PhotosGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosGridViewController.m; sourceTree = "<group>"; };
+		DAF5C8CF1CE6F87A00DA7901 /* SendInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendInviteViewController.h; sourceTree = "<group>"; };
+		DAF5C8D01CE6F87A00DA7901 /* SendInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendInviteViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,7 +351,8 @@
 				DA018F251CD38AEF0051D2D7 /* MeViewController.h */,
 				DA018F261CD38AEF0051D2D7 /* MeViewController.m */,
 				DA6CEF0A1CDAF33300EEABFF /* Profile */,
-				DAF5C8C31CE6F3B300DA7901 /* AlbumCenter */,
+				DAF5C8CE1CE6F81C00DA7901 /* My Invite */,
+				DAF5C8CA1CE6F79900DA7901 /* Album Center */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -723,13 +727,22 @@
 			path = OpenSDK1.7;
 			sourceTree = "<group>";
 		};
-		DAF5C8C31CE6F3B300DA7901 /* AlbumCenter */ = {
+		DAF5C8CA1CE6F79900DA7901 /* Album Center */ = {
 			isa = PBXGroup;
 			children = (
-				DAF5C8C41CE6F3B300DA7901 /* PhotosGridViewController.h */,
-				DAF5C8C51CE6F3B300DA7901 /* PhotosGridViewController.m */,
+				DAF5C8CB1CE6F79900DA7901 /* PhotosGridViewController.h */,
+				DAF5C8CC1CE6F79900DA7901 /* PhotosGridViewController.m */,
 			);
-			path = AlbumCenter;
+			path = "Album Center";
+			sourceTree = "<group>";
+		};
+		DAF5C8CE1CE6F81C00DA7901 /* My Invite */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C8CF1CE6F87A00DA7901 /* SendInviteViewController.h */,
+				DAF5C8D01CE6F87A00DA7901 /* SendInviteViewController.m */,
+			);
+			path = "My Invite";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -934,12 +947,13 @@
 				DA6CEEF21CD9EF9D00EEABFF /* CellButton.m in Sources */,
 				DAF5C8C91CE6F3EB00DA7901 /* MyPhotosViewController.m in Sources */,
 				DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */,
-				DAF5C8C61CE6F3B300DA7901 /* PhotosGridViewController.m in Sources */,
+				DAF5C8CD1CE6F79900DA7901 /* PhotosGridViewController.m in Sources */,
 				DAF5C8831CE5B95000DA7901 /* CoreTextImageData.m in Sources */,
 				DAF5C8871CE5B95000DA7901 /* CTFrameParserConfig.m in Sources */,
 				DAF5C8911CE5C0EE00DA7901 /* MyDisplayViewController.m in Sources */,
 				DA6CEF0F1CDAF33300EEABFF /* MoreProfileViewController.m in Sources */,
 				DA4A89051CDC473700649983 /* LoginMainViewController.m in Sources */,
+				DAF5C8D11CE6F87A00DA7901 /* SendInviteViewController.m in Sources */,
 				DA018F481CD4BAC60051D2D7 /* PhotoTableCell.m in Sources */,
 				DAF5C8BD1CE6D6AD00DA7901 /* NSObject+RMCopyable.m in Sources */,
 				DA018F011CD1DA820051D2D7 /* ChoicenessViewController.m in Sources */,

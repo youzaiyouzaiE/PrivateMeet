@@ -71,7 +71,7 @@ static const CGFloat kMinImageScale = 1.0f;
 @synthesize blackMask = _blackMask;
 @synthesize closingBlock = _closingBlock;
 @synthesize openingBlock = _openingBlock;
-@synthesize doneButton = _doneButton;
+//@synthesize doneButton = _doneButton;
 @synthesize senderView = _senderView;
 @synthesize imageIndex = _imageIndex;
 @synthesize superView = _superView;
@@ -86,9 +86,7 @@ static const CGFloat kMinImageScale = 1.0f;
     __scrollView.delegate = self;
     __scrollView.backgroundColor = [UIColor clearColor];
     [self addSubview:__scrollView];
-    [_doneButton addTarget:self
-                    action:@selector(close:)
-          forControlEvents:UIControlEventTouchUpInside];
+//    [_doneButton addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void) setImageURL:(NSURL *)imageURL defaultImage:(UIImage*)defaultImage imageIndex:(NSInteger)imageIndex {
@@ -226,7 +224,6 @@ static const CGFloat kMinImageScale = 1.0f;
     }];
 }
 
-
 #pragma mark - Dismiss
 - (void)dismissViewController
 {
@@ -347,26 +344,35 @@ static const CGFloat kMinImageScale = 1.0f;
 
 #pragma mark - Showing of Done Button if ever Zoom Scale is equal to 1
 - (void)didSingleTap:(UITapGestureRecognizer*)recognizer {
-    if(_doneButton.superview){
-        [self hideDoneButton];
+    
+//    if(_doneButton.superview){
+//        [self hideDoneButton];
+//    }else {
+//        if(__scrollView.zoomScale == __scrollView.minimumZoomScale){
+//            if(!_isDoneAnimating){
+//                _isDoneAnimating = YES;
+//                [self.viewController.view addSubview:_doneButton];
+//                _doneButton.alpha = 0.0f;
+//                [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+//                    _doneButton.alpha = 1.0f;
+//                } completion:^(BOOL finished) {
+//                    [self.viewController.view bringSubviewToFront:_doneButton];
+//                    _isDoneAnimating = NO;
+//                }];
+//            }
+//        }else if(__scrollView.zoomScale == __scrollView.maximumZoomScale) {
+//            CGPoint pointInView = [recognizer locationInView:__imageView];
+//            [self zoomInZoomOut:pointInView];
+//        }
+//    }
+    if(__scrollView.zoomScale == __scrollView.minimumZoomScale){
+        
     }else {
-        if(__scrollView.zoomScale == __scrollView.minimumZoomScale){
-            if(!_isDoneAnimating){
-                _isDoneAnimating = YES;
-                [self.viewController.view addSubview:_doneButton];
-                _doneButton.alpha = 0.0f;
-                [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                    _doneButton.alpha = 1.0f;
-                } completion:^(BOOL finished) {
-                    [self.viewController.view bringSubviewToFront:_doneButton];
-                    _isDoneAnimating = NO;
-                }];
-            }
-        }else if(__scrollView.zoomScale == __scrollView.maximumZoomScale) {
-            CGPoint pointInView = [recognizer locationInView:__imageView];
-            [self zoomInZoomOut:pointInView];
-        }
+        CGPoint pointInView = [recognizer locationInView:__imageView];
+        [self zoomInZoomOut:pointInView];
     }
+    
+    [self dismissViewController];
 }
 
 #pragma mark - Zoom in or Zoom out
@@ -390,18 +396,18 @@ static const CGFloat kMinImageScale = 1.0f;
 
 #pragma mark - Hide the Done Button
 - (void) hideDoneButton {
-    if(!_isDoneAnimating){
-        if(_doneButton.superview) {
-            _isDoneAnimating = YES;
-            _doneButton.alpha = 1.0f;
-            [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                _doneButton.alpha = 0.0f;
-            } completion:^(BOOL finished) {
-                _isDoneAnimating = NO;
-                [_doneButton removeFromSuperview];
-            }];
-        }
-    }
+//    if(!_isDoneAnimating){
+//        if(_doneButton.superview) {
+//            _isDoneAnimating = YES;
+//            _doneButton.alpha = 1.0f;
+//            [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+//                _doneButton.alpha = 0.0f;
+//            } completion:^(BOOL finished) {
+//                _isDoneAnimating = NO;
+//                [_doneButton removeFromSuperview];
+//            }];
+//        }
+//    }
 }
 
 - (void)close:(UIButton *)sender {
@@ -422,7 +428,7 @@ static const CGFloat kMinImageScale = 1.0f;
     UITableView * _tableView;
     UIView *_blackMask;
     UIImageView * _imageView;
-    UIButton * _doneButton;
+//    UIButton * _doneButton;
     UIView * _superView;
 
     CGPoint _panOrigin;
@@ -471,7 +477,7 @@ static const CGFloat kMinImageScale = 1.0f;
         imageViewerCell.openingBlock = _openingBlock;
         imageViewerCell.superView = _senderView.superview;
         imageViewerCell.senderView = _senderView;
-        imageViewerCell.doneButton = _doneButton;
+//        imageViewerCell.doneButton = _doneButton;
         imageViewerCell.initialIndex = _initialIndex;
         imageViewerCell.statusBarStyle = _statusBarStyle;
         [imageViewerCell loadAllRequiredViews];
@@ -512,7 +518,7 @@ static const CGFloat kMinImageScale = 1.0f;
     _originalFrameRelativeToScreen = newFrame;
 
     self.view = [[UIView alloc] initWithFrame:windowBounds];
-    //    NSLog(@"WINDOW :%@",NSStringFromCGRect(windowBounds));
+//        NSLog(@"WINDOW :%@",NSStringFromCGRect(windowBounds));
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
     // Add a Tableview
@@ -534,13 +540,12 @@ static const CGFloat kMinImageScale = 1.0f;
     _blackMask.backgroundColor = [UIColor blackColor];
     _blackMask.alpha = 0.0f;
     _blackMask.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [
-     self.view insertSubview:_blackMask atIndex:0];
+    [self.view insertSubview:_blackMask atIndex:0];
 
-    _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_doneButton setImageEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];  // make click area bigger
-    [_doneButton setImage:[UIImage imageNamed:@"Done"] forState:UIControlStateNormal];
-    _doneButton.frame = CGRectMake(windowBounds.size.width - (51.0f + 9.0f),15.0f, 51.0f, 26.0f);
+//    _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [_doneButton setImageEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];  // make click area bigger
+//    [_doneButton setImage:[UIImage imageNamed:@"Done"] forState:UIControlStateNormal];
+//    _doneButton.frame = CGRectMake(windowBounds.size.width - (51.0f + 9.0f),15.0f, 51.0f, 26.0f);
 }
 
 #pragma mark - Show

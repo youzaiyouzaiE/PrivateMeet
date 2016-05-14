@@ -62,7 +62,6 @@
 		DA6CEF101CDAF33300EEABFF /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEF0E1CDAF33300EEABFF /* MyProfileViewController.m */; };
 		DA6CEF131CDAF42300EEABFF /* AddInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEF121CDAF42300EEABFF /* AddInformationViewController.m */; };
 		DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */; };
-		DAF5C7FE1CDF48A800DA7901 /* libTalkingData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C7FB1CDF48A800DA7901 /* libTalkingData.a */; };
 		DAF5C8001CDF490000DA7901 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */; };
 		DAF5C8021CDF491700DA7901 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8011CDF491700DA7901 /* CoreMotion.framework */; };
 		DAF5C8041CDF492600DA7901 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8031CDF492600DA7901 /* Security.framework */; };
@@ -72,15 +71,9 @@
 		DAF5C8211CE0D0ED00DA7901 /* WXUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C81D1CE0D0ED00DA7901 /* WXUserInfo.m */; };
 		DAF5C8271CE0D1B500DA7901 /* SuperDao.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8261CE0D1B500DA7901 /* SuperDao.m */; };
 		DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8291CE0D3C000DA7901 /* UserInfoDao.m */; };
-		DAF5C8341CE0D7A300DA7901 /* NSObject+RMArchivable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C82D1CE0D7A300DA7901 /* NSObject+RMArchivable.m */; };
-		DAF5C8351CE0D7A300DA7901 /* NSObject+RMCopyable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C82F1CE0D7A300DA7901 /* NSObject+RMCopyable.m */; };
-		DAF5C8361CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8311CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m */; };
-		DAF5C8371CE0D7A300DA7901 /* RMMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8331CE0D7A300DA7901 /* RMMapper.m */; };
 		DAF5C83A1CE18A2400DA7901 /* UISheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8391CE18A2400DA7901 /* UISheetView.m */; };
 		DAF5C8461CE2DA6E00DA7901 /* LabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8441CE2DA6E00DA7901 /* LabelTableViewCell.m */; };
 		DAF5C8471CE2DA6E00DA7901 /* LabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C8451CE2DA6E00DA7901 /* LabelTableViewCell.xib */; };
-		DAF5C84E1CE4794200DA7901 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8491CE4794200DA7901 /* libWeChatSDK.a */; };
-		DAF5C84F1CE4794200DA7901 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C84A1CE4794200DA7901 /* README.txt */; };
 		DAF5C8511CE4857500DA7901 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8501CE4857500DA7901 /* CoreText.framework */; };
 		DAF5C8541CE5A5C100DA7901 /* UIView+frameAdjust.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8531CE5A5C000DA7901 /* UIView+frameAdjust.m */; };
 		DAF5C8821CE5B95000DA7901 /* CoreTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8751CE5B95000DA7901 /* CoreTextData.m */; };
@@ -95,6 +88,15 @@
 		DAF5C89E1CE6191000DA7901 /* Done.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C8991CE6191000DA7901 /* Done.png */; };
 		DAF5C89F1CE6191000DA7901 /* Done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C89A1CE6191000DA7901 /* Done@2x.png */; };
 		DAF5C8A01CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C89C1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m */; };
+		DAF5C8BA1CE6D6AD00DA7901 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8A21CE6D6AD00DA7901 /* libWeChatSDK.a */; };
+		DAF5C8BB1CE6D6AD00DA7901 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C8A31CE6D6AD00DA7901 /* README.txt */; };
+		DAF5C8BC1CE6D6AD00DA7901 /* NSObject+RMArchivable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8A91CE6D6AD00DA7901 /* NSObject+RMArchivable.m */; };
+		DAF5C8BD1CE6D6AD00DA7901 /* NSObject+RMCopyable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8AB1CE6D6AD00DA7901 /* NSObject+RMCopyable.m */; };
+		DAF5C8BE1CE6D6AD00DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8AD1CE6D6AD00DA7901 /* NSUserDefaults+RMSaveCustomObject.m */; };
+		DAF5C8BF1CE6D6AD00DA7901 /* RMMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8AF1CE6D6AD00DA7901 /* RMMapper.m */; };
+		DAF5C8C01CE6D6AD00DA7901 /* libTalkingData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8B11CE6D6AD00DA7901 /* libTalkingData.a */; };
+		DAF5C8C11CE6D6AD00DA7901 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8B31CE6D6AD00DA7901 /* libWeChatSDK.a */; };
+		DAF5C8C21CE6D6AD00DA7901 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C8B41CE6D6AD00DA7901 /* README.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -202,9 +204,6 @@
 		DA6CEF121CDAF42300EEABFF /* AddInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddInformationViewController.m; sourceTree = "<group>"; };
 		DAF5C7F71CDF479C00DA7901 /* NetWorkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkObject.h; sourceTree = "<group>"; };
 		DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkObject.m; sourceTree = "<group>"; };
-		DAF5C7FB1CDF48A800DA7901 /* libTalkingData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTalkingData.a; sourceTree = "<group>"; };
-		DAF5C7FC1CDF48A800DA7901 /* TalkingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingData.h; sourceTree = "<group>"; };
-		DAF5C7FD1CDF48A800DA7901 /* TalkingDataSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingDataSMS.h; sourceTree = "<group>"; };
 		DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		DAF5C8011CDF491700DA7901 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		DAF5C8031CDF492600DA7901 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -220,24 +219,11 @@
 		DAF5C8261CE0D1B500DA7901 /* SuperDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDao.m; sourceTree = "<group>"; };
 		DAF5C8281CE0D3C000DA7901 /* UserInfoDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoDao.h; sourceTree = "<group>"; };
 		DAF5C8291CE0D3C000DA7901 /* UserInfoDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDao.m; sourceTree = "<group>"; };
-		DAF5C82C1CE0D7A300DA7901 /* NSObject+RMArchivable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMArchivable.h"; sourceTree = "<group>"; };
-		DAF5C82D1CE0D7A300DA7901 /* NSObject+RMArchivable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMArchivable.m"; sourceTree = "<group>"; };
-		DAF5C82E1CE0D7A300DA7901 /* NSObject+RMCopyable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMCopyable.h"; sourceTree = "<group>"; };
-		DAF5C82F1CE0D7A300DA7901 /* NSObject+RMCopyable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMCopyable.m"; sourceTree = "<group>"; };
-		DAF5C8301CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+RMSaveCustomObject.h"; sourceTree = "<group>"; };
-		DAF5C8311CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+RMSaveCustomObject.m"; sourceTree = "<group>"; };
-		DAF5C8321CE0D7A300DA7901 /* RMMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMMapper.h; sourceTree = "<group>"; };
-		DAF5C8331CE0D7A300DA7901 /* RMMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMMapper.m; sourceTree = "<group>"; };
 		DAF5C8381CE18A2400DA7901 /* UISheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISheetView.h; sourceTree = "<group>"; };
 		DAF5C8391CE18A2400DA7901 /* UISheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISheetView.m; sourceTree = "<group>"; };
 		DAF5C8431CE2DA6E00DA7901 /* LabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelTableViewCell.h; sourceTree = "<group>"; };
 		DAF5C8441CE2DA6E00DA7901 /* LabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelTableViewCell.m; sourceTree = "<group>"; };
 		DAF5C8451CE2DA6E00DA7901 /* LabelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelTableViewCell.xib; sourceTree = "<group>"; };
-		DAF5C8491CE4794200DA7901 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		DAF5C84A1CE4794200DA7901 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		DAF5C84B1CE4794200DA7901 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
-		DAF5C84C1CE4794200DA7901 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		DAF5C84D1CE4794200DA7901 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		DAF5C8501CE4857500DA7901 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		DAF5C8521CE5A5C000DA7901 /* UIView+frameAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+frameAdjust.h"; sourceTree = "<group>"; };
 		DAF5C8531CE5A5C000DA7901 /* UIView+frameAdjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+frameAdjust.m"; sourceTree = "<group>"; };
@@ -263,6 +249,27 @@
 		DAF5C89A1CE6191000DA7901 /* Done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Done@2x.png"; sourceTree = "<group>"; };
 		DAF5C89B1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MHFacebookImageViewer.h"; sourceTree = "<group>"; };
 		DAF5C89C1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MHFacebookImageViewer.m"; sourceTree = "<group>"; };
+		DAF5C8A21CE6D6AD00DA7901 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		DAF5C8A31CE6D6AD00DA7901 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		DAF5C8A41CE6D6AD00DA7901 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		DAF5C8A51CE6D6AD00DA7901 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		DAF5C8A61CE6D6AD00DA7901 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		DAF5C8A81CE6D6AD00DA7901 /* NSObject+RMArchivable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMArchivable.h"; sourceTree = "<group>"; };
+		DAF5C8A91CE6D6AD00DA7901 /* NSObject+RMArchivable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMArchivable.m"; sourceTree = "<group>"; };
+		DAF5C8AA1CE6D6AD00DA7901 /* NSObject+RMCopyable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMCopyable.h"; sourceTree = "<group>"; };
+		DAF5C8AB1CE6D6AD00DA7901 /* NSObject+RMCopyable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMCopyable.m"; sourceTree = "<group>"; };
+		DAF5C8AC1CE6D6AD00DA7901 /* NSUserDefaults+RMSaveCustomObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+RMSaveCustomObject.h"; sourceTree = "<group>"; };
+		DAF5C8AD1CE6D6AD00DA7901 /* NSUserDefaults+RMSaveCustomObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+RMSaveCustomObject.m"; sourceTree = "<group>"; };
+		DAF5C8AE1CE6D6AD00DA7901 /* RMMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMMapper.h; sourceTree = "<group>"; };
+		DAF5C8AF1CE6D6AD00DA7901 /* RMMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMMapper.m; sourceTree = "<group>"; };
+		DAF5C8B11CE6D6AD00DA7901 /* libTalkingData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTalkingData.a; sourceTree = "<group>"; };
+		DAF5C8B31CE6D6AD00DA7901 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		DAF5C8B41CE6D6AD00DA7901 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		DAF5C8B51CE6D6AD00DA7901 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		DAF5C8B61CE6D6AD00DA7901 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		DAF5C8B71CE6D6AD00DA7901 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		DAF5C8B81CE6D6AD00DA7901 /* TalkingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingData.h; sourceTree = "<group>"; };
+		DAF5C8B91CE6D6AD00DA7901 /* TalkingDataSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingDataSMS.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,13 +281,14 @@
 				DAF5C8041CDF492600DA7901 /* Security.framework in Frameworks */,
 				DAF5C8021CDF491700DA7901 /* CoreMotion.framework in Frameworks */,
 				DAF5C8001CDF490000DA7901 /* AdSupport.framework in Frameworks */,
+				DAF5C8C11CE6D6AD00DA7901 /* libWeChatSDK.a in Frameworks */,
 				DA4A892D1CDD95C100649983 /* CoreTelephony.framework in Frameworks */,
+				DAF5C8BA1CE6D6AD00DA7901 /* libWeChatSDK.a in Frameworks */,
 				DA4A891E1CDD920F00649983 /* libc++.tbd in Frameworks */,
-				DAF5C84E1CE4794200DA7901 /* libWeChatSDK.a in Frameworks */,
-				DAF5C7FE1CDF48A800DA7901 /* libTalkingData.a in Frameworks */,
 				DA4A891C1CDD91FB00649983 /* libsqlite3.0.tbd in Frameworks */,
 				DA4A891A1CDD91EB00649983 /* libz.tbd in Frameworks */,
 				DA4A89181CDD91B300649983 /* SystemConfiguration.framework in Frameworks */,
+				DAF5C8C01CE6D6AD00DA7901 /* libTalkingData.a in Frameworks */,
 				C96B69724244D7EDB8E4D323 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,7 +428,6 @@
 				DA3626751CD1A98E00A8AE39 /* Model */,
 				DA3626701CD1A98E00A8AE39 /* Global */,
 				DA3626561CD1A75C00A8AE39 /* Meet */,
-				DA36266E1CD1A98E00A8AE39 /* FrameWorks */,
 				DA3626551CD1A75C00A8AE39 /* Products */,
 				A9BD1C90034C0D5FF415BC46 /* Pods */,
 				8E40E9729E6AB1EC00EF25FD /* Frameworks */,
@@ -460,25 +467,6 @@
 				DA3626581CD1A75C00A8AE39 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DA36266E1CD1A98E00A8AE39 /* FrameWorks */ = {
-			isa = PBXGroup;
-			children = (
-				DA36266F1CD1A98E00A8AE39 /* 3rd */,
-			);
-			name = FrameWorks;
-			path = Meet/FrameWorks;
-			sourceTree = "<group>";
-		};
-		DA36266F1CD1A98E00A8AE39 /* 3rd */ = {
-			isa = PBXGroup;
-			children = (
-				DAF5C82B1CE0D7A300DA7901 /* RMMapper */,
-				DAF5C8481CE4794200DA7901 /* OpenSDK1.7 */,
-				DAF5C7FA1CDF48A800DA7901 /* TakingData */,
-			);
-			path = 3rd;
 			sourceTree = "<group>";
 		};
 		DA3626701CD1A98E00A8AE39 /* Global */ = {
@@ -598,19 +586,12 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		DAF5C7FA1CDF48A800DA7901 /* TakingData */ = {
-			isa = PBXGroup;
-			children = (
-				DAF5C7FB1CDF48A800DA7901 /* libTalkingData.a */,
-				DAF5C7FC1CDF48A800DA7901 /* TalkingData.h */,
-				DAF5C7FD1CDF48A800DA7901 /* TalkingDataSMS.h */,
-			);
-			path = TakingData;
-			sourceTree = "<group>";
-		};
 		DAF5C8061CE0301500DA7901 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				DAF5C8A11CE6D6AD00DA7901 /* OpenSDK1.7 */,
+				DAF5C8A71CE6D6AD00DA7901 /* RMMapper */,
+				DAF5C8B01CE6D6AD00DA7901 /* TakingData */,
 				DAF5C8951CE6191000DA7901 /* MHFBImageViewController */,
 			);
 			name = 3rd;
@@ -641,34 +622,6 @@
 				DAF5C81D1CE0D0ED00DA7901 /* WXUserInfo.m */,
 			);
 			path = ModelBean;
-			sourceTree = "<group>";
-		};
-		DAF5C82B1CE0D7A300DA7901 /* RMMapper */ = {
-			isa = PBXGroup;
-			children = (
-				DAF5C82C1CE0D7A300DA7901 /* NSObject+RMArchivable.h */,
-				DAF5C82D1CE0D7A300DA7901 /* NSObject+RMArchivable.m */,
-				DAF5C82E1CE0D7A300DA7901 /* NSObject+RMCopyable.h */,
-				DAF5C82F1CE0D7A300DA7901 /* NSObject+RMCopyable.m */,
-				DAF5C8301CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.h */,
-				DAF5C8311CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m */,
-				DAF5C8321CE0D7A300DA7901 /* RMMapper.h */,
-				DAF5C8331CE0D7A300DA7901 /* RMMapper.m */,
-			);
-			path = RMMapper;
-			sourceTree = "<group>";
-		};
-		DAF5C8481CE4794200DA7901 /* OpenSDK1.7 */ = {
-			isa = PBXGroup;
-			children = (
-				DAF5C8491CE4794200DA7901 /* libWeChatSDK.a */,
-				DAF5C84A1CE4794200DA7901 /* README.txt */,
-				DAF5C84B1CE4794200DA7901 /* WechatAuthSDK.h */,
-				DAF5C84C1CE4794200DA7901 /* WXApi.h */,
-				DAF5C84D1CE4794200DA7901 /* WXApiObject.h */,
-			);
-			name = OpenSDK1.7;
-			path = TakingData/OpenSDK1.7;
 			sourceTree = "<group>";
 		};
 		DAF5C8721CE5B95000DA7901 /* CoreTextView */ = {
@@ -719,6 +672,56 @@
 				DAF5C89A1CE6191000DA7901 /* Done@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		DAF5C8A11CE6D6AD00DA7901 /* OpenSDK1.7 */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C8A21CE6D6AD00DA7901 /* libWeChatSDK.a */,
+				DAF5C8A31CE6D6AD00DA7901 /* README.txt */,
+				DAF5C8A41CE6D6AD00DA7901 /* WechatAuthSDK.h */,
+				DAF5C8A51CE6D6AD00DA7901 /* WXApi.h */,
+				DAF5C8A61CE6D6AD00DA7901 /* WXApiObject.h */,
+			);
+			path = OpenSDK1.7;
+			sourceTree = "<group>";
+		};
+		DAF5C8A71CE6D6AD00DA7901 /* RMMapper */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C8A81CE6D6AD00DA7901 /* NSObject+RMArchivable.h */,
+				DAF5C8A91CE6D6AD00DA7901 /* NSObject+RMArchivable.m */,
+				DAF5C8AA1CE6D6AD00DA7901 /* NSObject+RMCopyable.h */,
+				DAF5C8AB1CE6D6AD00DA7901 /* NSObject+RMCopyable.m */,
+				DAF5C8AC1CE6D6AD00DA7901 /* NSUserDefaults+RMSaveCustomObject.h */,
+				DAF5C8AD1CE6D6AD00DA7901 /* NSUserDefaults+RMSaveCustomObject.m */,
+				DAF5C8AE1CE6D6AD00DA7901 /* RMMapper.h */,
+				DAF5C8AF1CE6D6AD00DA7901 /* RMMapper.m */,
+			);
+			path = RMMapper;
+			sourceTree = "<group>";
+		};
+		DAF5C8B01CE6D6AD00DA7901 /* TakingData */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C8B11CE6D6AD00DA7901 /* libTalkingData.a */,
+				DAF5C8B21CE6D6AD00DA7901 /* OpenSDK1.7 */,
+				DAF5C8B81CE6D6AD00DA7901 /* TalkingData.h */,
+				DAF5C8B91CE6D6AD00DA7901 /* TalkingDataSMS.h */,
+			);
+			path = TakingData;
+			sourceTree = "<group>";
+		};
+		DAF5C8B21CE6D6AD00DA7901 /* OpenSDK1.7 */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C8B31CE6D6AD00DA7901 /* libWeChatSDK.a */,
+				DAF5C8B41CE6D6AD00DA7901 /* README.txt */,
+				DAF5C8B51CE6D6AD00DA7901 /* WechatAuthSDK.h */,
+				DAF5C8B61CE6D6AD00DA7901 /* WXApi.h */,
+				DAF5C8B71CE6D6AD00DA7901 /* WXApiObject.h */,
+			);
+			path = OpenSDK1.7;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -787,14 +790,15 @@
 				DAF5C89E1CE6191000DA7901 /* Done.png in Resources */,
 				DA4A89021CDC388B00649983 /* Login.storyboard in Resources */,
 				DA018F521CD4DAFB0051D2D7 /* Localizable.strings in Resources */,
+				DAF5C8C21CE6D6AD00DA7901 /* README.txt in Resources */,
 				DA018F2F1CD39D570051D2D7 /* ManListCell.xib in Resources */,
 				DA6CEEEA1CD97E9A00EEABFF /* Me.storyboard in Resources */,
-				DAF5C84F1CE4794200DA7901 /* README.txt in Resources */,
 				DAF5C89F1CE6191000DA7901 /* Done@2x.png in Resources */,
 				DA3626671CD1A75C00A8AE39 /* LaunchScreen.storyboard in Resources */,
 				DAF5C8471CE2DA6E00DA7901 /* LabelTableViewCell.xib in Resources */,
 				DA3626641CD1A75C00A8AE39 /* Assets.xcassets in Resources */,
 				DA4A88F81CDB2BFD00649983 /* LabelAndTextFieldCell.xib in Resources */,
+				DAF5C8BB1CE6D6AD00DA7901 /* README.txt in Resources */,
 				DA3626621CD1A75C00A8AE39 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -872,7 +876,6 @@
 				DAF5C8271CE0D1B500DA7901 /* SuperDao.m in Sources */,
 				DA018F2E1CD39D570051D2D7 /* ManListCell.m in Sources */,
 				DA018EE01CD1D36E0051D2D7 /* HomeMainViewController.m in Sources */,
-				DAF5C8341CE0D7A300DA7901 /* NSObject+RMArchivable.m in Sources */,
 				DA4A89081CDC9A3200649983 /* GetCodeViewController.m in Sources */,
 				DA6CEEFA1CD9FA7200EEABFF /* LabelAndTextFieldCell.m in Sources */,
 				DA4A88F61CDB1DD900649983 /* AddStarViewController.m in Sources */,
@@ -887,6 +890,7 @@
 				DAF5C8A01CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m in Sources */,
 				DA018F4E1CD4C03B0051D2D7 /* MyPhotoItem.m in Sources */,
 				DAF5C8201CE0D0ED00DA7901 /* WXAccessModel.m in Sources */,
+				DAF5C8BC1CE6D6AD00DA7901 /* NSObject+RMArchivable.m in Sources */,
 				DAF5C8541CE5A5C100DA7901 /* UIView+frameAdjust.m in Sources */,
 				DAF5C8841CE5B95000DA7901 /* CoreTextLinkData.m in Sources */,
 				DA018F391CD44B210051D2D7 /* ThreeImageCell.m in Sources */,
@@ -903,15 +907,16 @@
 				DAF5C89D1CE6191000DA7901 /* MHFacebookImageViewer.m in Sources */,
 				DA3626591CD1A75C00A8AE39 /* main.m in Sources */,
 				DAF5C8211CE0D0ED00DA7901 /* WXUserInfo.m in Sources */,
+				DAF5C8BE1CE6D6AD00DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				DAF5C81E1CE0D0ED00DA7901 /* BaseModel.m in Sources */,
 				DA4A890B1CDCA0C000649983 /* WeChatLonginViewController.m in Sources */,
 				DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */,
 				DAF5C8861CE5B95000DA7901 /* CTFrameParser.m in Sources */,
+				DAF5C8BF1CE6D6AD00DA7901 /* RMMapper.m in Sources */,
 				DA018EDB1CD1BCD90051D2D7 /* MainViewController.m in Sources */,
 				DA6CEEF61CD9EFA800EEABFF /* CellTextField.m in Sources */,
 				DA018F5E1CD79D4A0051D2D7 /* RemindImageCell.m in Sources */,
 				DA36267D1CD1A98E00A8AE39 /* UITools.m in Sources */,
-				DAF5C8351CE0D7A300DA7901 /* NSObject+RMCopyable.m in Sources */,
 				DAF5C8851CE5B95000DA7901 /* CoreTextUtils.m in Sources */,
 				DAF5C8821CE5B95000DA7901 /* CoreTextData.m in Sources */,
 				DA018EE31CD1D39B0051D2D7 /* HomeBaseViewController.m in Sources */,
@@ -920,15 +925,14 @@
 				DA018F271CD38AEF0051D2D7 /* MeViewController.m in Sources */,
 				DA018F611CD833650051D2D7 /* HomeMoreViewController.m in Sources */,
 				DA6CEEF21CD9EF9D00EEABFF /* CellButton.m in Sources */,
-				DAF5C8371CE0D7A300DA7901 /* RMMapper.m in Sources */,
 				DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */,
 				DAF5C8831CE5B95000DA7901 /* CoreTextImageData.m in Sources */,
 				DAF5C8871CE5B95000DA7901 /* CTFrameParserConfig.m in Sources */,
 				DAF5C8911CE5C0EE00DA7901 /* MyDisplayViewController.m in Sources */,
 				DA6CEF0F1CDAF33300EEABFF /* MoreProfileViewController.m in Sources */,
-				DAF5C8361CE0D7A300DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				DA4A89051CDC473700649983 /* LoginMainViewController.m in Sources */,
 				DA018F481CD4BAC60051D2D7 /* PhotoTableCell.m in Sources */,
+				DAF5C8BD1CE6D6AD00DA7901 /* NSObject+RMCopyable.m in Sources */,
 				DA018F011CD1DA820051D2D7 /* ChoicenessViewController.m in Sources */,
 				DA018F421CD4B9190051D2D7 /* PhotosGridViewController.m in Sources */,
 			);
@@ -1066,6 +1070,9 @@
 					"$(PROJECT_DIR)/Meet/FrameWorks/3rd/SDK1.6.2",
 					"$(PROJECT_DIR)/Meet/FrameWorks/3rd/TakingData",
 					"$(PROJECT_DIR)/Meet/FrameWorks/3rd/TakingData/OpenSDK1.7",
+					"$(PROJECT_DIR)/Meet/3rd/OpenSDK1.7",
+					"$(PROJECT_DIR)/Meet/3rd/TakingData",
+					"$(PROJECT_DIR)/Meet/3rd/TakingData/OpenSDK1.7",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Home.Meet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1090,6 +1097,9 @@
 					"$(PROJECT_DIR)/Meet/FrameWorks/3rd/SDK1.6.2",
 					"$(PROJECT_DIR)/Meet/FrameWorks/3rd/TakingData",
 					"$(PROJECT_DIR)/Meet/FrameWorks/3rd/TakingData/OpenSDK1.7",
+					"$(PROJECT_DIR)/Meet/3rd/OpenSDK1.7",
+					"$(PROJECT_DIR)/Meet/3rd/TakingData",
+					"$(PROJECT_DIR)/Meet/3rd/TakingData/OpenSDK1.7",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Home.Meet;
 				PRODUCT_NAME = "$(TARGET_NAME)";

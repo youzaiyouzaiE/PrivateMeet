@@ -130,6 +130,11 @@ static UITools *tools = nil;
     return size.width + text.length *2;
 }
 
++ (CGFloat)widthOfString:(NSString *)string withFont:(UIFont *)font {
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
+    return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].width;
+}
+
 + (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize {
      // Create a graphics image context
      UIGraphicsBeginImageContext(newSize);

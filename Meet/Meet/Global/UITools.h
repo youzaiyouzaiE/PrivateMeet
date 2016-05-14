@@ -31,7 +31,8 @@
 - (MBProgressHUD *)showLoadingViewAddToView:(UIView *)view message:(NSString *)message autoHide:(BOOL)autoHide;
 
 + (float)getTextViewHeight:(UITextView *)txtView andUIFont:(UIFont *)font andText:(NSString *)txt;
-+ (CGFloat)getTextWidth:(UIFont *)font textContent :(NSString *)text ;
++ (CGFloat)getTextWidth:(UIFont *)font textContent :(NSString *)text;
++ (CGFloat)widthOfString:(NSString *)string withFont:(UIFont *)font;
 + (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize;
 
 @end

@@ -13,6 +13,7 @@
 #import "RemindImageCell.h"
 #import "MoreProfileViewController.h"
 #import "MyDisplayViewController.h"
+#import "SendInviteViewController.h"
 
 @interface MeViewController () <UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource> {
     NSMutableArray *_imagesArray;
@@ -252,7 +253,7 @@
              }
          };
         [self.navigationController pushViewController:myProfileVC animated:YES];
-    } else  if (indexPath.row == 1) {
+    } else if (indexPath.row == 1) {
         //////展示更多个人信息
         [self performSegueWithIdentifier:@"pushToMyDisplayVC" sender:self];
         
@@ -264,6 +265,10 @@
 //        };
 //        moreVC.editType = 1;
 //        [self.navigationController pushViewController:moreVC animated:YES];
+    } else  if (indexPath.row == 4) {
+        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
+        SendInviteViewController *sendInviteVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"SendInviteViewController"];
+        [self.navigationController pushViewController:sendInviteVC animated:YES];
     }
 }
 

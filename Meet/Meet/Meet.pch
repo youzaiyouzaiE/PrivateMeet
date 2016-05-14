@@ -18,8 +18,7 @@
 #import "UserInfo.h"
 #import "UITools.h"
 #import "AppDelegate.h"
-
-//#import "UserInfo.h"
+#import "UIView+frameAdjust.h"
 
 #endif
 

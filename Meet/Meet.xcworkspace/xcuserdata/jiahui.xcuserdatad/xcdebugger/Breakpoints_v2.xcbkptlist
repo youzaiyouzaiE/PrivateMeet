@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meet/ViewControllers/Me/MeViewController.m"
-            timestampString = "484671512.070962"
+            timestampString = "484906830.040187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "-checkDocumentGetSmallImages"
             landmarkType = "5">
          </BreakpointContent>
@@ -84,22 +84,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meet/3rd/MHFBImageViewController/MHFacebookImageViewer.m"
-            timestampString = "484886978.668979"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "-gestureRecognizerShouldBegin:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Meet/3rd/MHFBImageViewController/MHFacebookImageViewer.m"
             timestampString = "484889080.806813"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -138,38 +122,6 @@
             startingLineNumber = "340"
             endingLineNumber = "340"
             landmarkName = "-didTwoFingerTap:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Meet/3rd/MHFBImageViewController/MHFacebookImageViewer.m"
-            timestampString = "484890055.795133"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "-addPanGestureToView:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Meet/3rd/MHFBImageViewController/MHFacebookImageViewer.m"
-            timestampString = "484890830.140698"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
-            landmarkName = "-gestureRecognizerDidPan:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

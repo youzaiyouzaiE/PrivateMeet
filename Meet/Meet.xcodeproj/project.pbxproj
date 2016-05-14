@@ -83,8 +83,6 @@
 		DAF5C88E1CE5B9B700DA7901 /* CTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C88D1CE5B9B700DA7901 /* CTTextView.m */; };
 		DAF5C8911CE5C0EE00DA7901 /* MyDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8901CE5C0EE00DA7901 /* MyDisplayViewController.m */; };
 		DAF5C89D1CE6191000DA7901 /* MHFacebookImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8971CE6191000DA7901 /* MHFacebookImageViewer.m */; };
-		DAF5C89E1CE6191000DA7901 /* Done.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C8991CE6191000DA7901 /* Done.png */; };
-		DAF5C89F1CE6191000DA7901 /* Done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C89A1CE6191000DA7901 /* Done@2x.png */; };
 		DAF5C8A01CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C89C1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m */; };
 		DAF5C8BA1CE6D6AD00DA7901 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8A21CE6D6AD00DA7901 /* libWeChatSDK.a */; };
 		DAF5C8BB1CE6D6AD00DA7901 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C8A31CE6D6AD00DA7901 /* README.txt */; };
@@ -242,8 +240,6 @@
 		DAF5C8901CE5C0EE00DA7901 /* MyDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDisplayViewController.m; sourceTree = "<group>"; };
 		DAF5C8961CE6191000DA7901 /* MHFacebookImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHFacebookImageViewer.h; sourceTree = "<group>"; };
 		DAF5C8971CE6191000DA7901 /* MHFacebookImageViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHFacebookImageViewer.m; sourceTree = "<group>"; };
-		DAF5C8991CE6191000DA7901 /* Done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Done.png; sourceTree = "<group>"; };
-		DAF5C89A1CE6191000DA7901 /* Done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Done@2x.png"; sourceTree = "<group>"; };
 		DAF5C89B1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MHFacebookImageViewer.h"; sourceTree = "<group>"; };
 		DAF5C89C1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MHFacebookImageViewer.m"; sourceTree = "<group>"; };
 		DAF5C8A21CE6D6AD00DA7901 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
@@ -307,10 +303,10 @@
 				DAF5C8011CDF491700DA7901 /* CoreMotion.framework */,
 				DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */,
 				DA4A892C1CDD95C100649983 /* CoreTelephony.framework */,
+				DA4A89171CDD91B300649983 /* SystemConfiguration.framework */,
 				DA4A891D1CDD920F00649983 /* libc++.tbd */,
 				DA4A891B1CDD91FB00649983 /* libsqlite3.0.tbd */,
 				DA4A89191CDD91EB00649983 /* libz.tbd */,
-				DA4A89171CDD91B300649983 /* SystemConfiguration.framework */,
 				3E573AEF258C48EC6DAC3AFD /* libPods.a */,
 				DAF5C8061CE0301500DA7901 /* 3rd */,
 			);
@@ -661,20 +657,10 @@
 			children = (
 				DAF5C8961CE6191000DA7901 /* MHFacebookImageViewer.h */,
 				DAF5C8971CE6191000DA7901 /* MHFacebookImageViewer.m */,
-				DAF5C8981CE6191000DA7901 /* Resources */,
 				DAF5C89B1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.h */,
 				DAF5C89C1CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m */,
 			);
 			path = MHFBImageViewController;
-			sourceTree = "<group>";
-		};
-		DAF5C8981CE6191000DA7901 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				DAF5C8991CE6191000DA7901 /* Done.png */,
-				DAF5C89A1CE6191000DA7901 /* Done@2x.png */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		DAF5C8A11CE6D6AD00DA7901 /* OpenSDK1.7 */ = {
@@ -808,13 +794,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAF5C89E1CE6191000DA7901 /* Done.png in Resources */,
 				DA4A89021CDC388B00649983 /* Login.storyboard in Resources */,
 				DA018F521CD4DAFB0051D2D7 /* Localizable.strings in Resources */,
 				DAF5C8C21CE6D6AD00DA7901 /* README.txt in Resources */,
 				DA018F2F1CD39D570051D2D7 /* ManListCell.xib in Resources */,
 				DA6CEEEA1CD97E9A00EEABFF /* Me.storyboard in Resources */,
-				DAF5C89F1CE6191000DA7901 /* Done@2x.png in Resources */,
 				DA3626671CD1A75C00A8AE39 /* LaunchScreen.storyboard in Resources */,
 				DAF5C8471CE2DA6E00DA7901 /* LabelTableViewCell.xib in Resources */,
 				DA3626641CD1A75C00A8AE39 /* Assets.xcassets in Resources */,

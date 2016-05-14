@@ -23,8 +23,6 @@
 		DA018F331CD43F2A0051D2D7 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F321CD43F2A0051D2D7 /* ActivityViewController.m */; };
 		DA018F361CD443670051D2D7 /* UINavigationBar+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F351CD443670051D2D7 /* UINavigationBar+BackgroundColor.m */; };
 		DA018F391CD44B210051D2D7 /* ThreeImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F381CD44B210051D2D7 /* ThreeImageCell.m */; };
-		DA018F3C1CD47FAA0051D2D7 /* MyPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F3B1CD47FAA0051D2D7 /* MyPhotosViewController.m */; };
-		DA018F421CD4B9190051D2D7 /* PhotosGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F411CD4B9190051D2D7 /* PhotosGridViewController.m */; };
 		DA018F451CD4B9AA0051D2D7 /* PhotoGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F441CD4B9AA0051D2D7 /* PhotoGridCell.m */; };
 		DA018F481CD4BAC60051D2D7 /* PhotoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F471CD4BAC60051D2D7 /* PhotoTableCell.m */; };
 		DA018F4E1CD4C03B0051D2D7 /* MyPhotoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F4D1CD4C03B0051D2D7 /* MyPhotoItem.m */; };
@@ -97,6 +95,8 @@
 		DAF5C8C01CE6D6AD00DA7901 /* libTalkingData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8B11CE6D6AD00DA7901 /* libTalkingData.a */; };
 		DAF5C8C11CE6D6AD00DA7901 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8B31CE6D6AD00DA7901 /* libWeChatSDK.a */; };
 		DAF5C8C21CE6D6AD00DA7901 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = DAF5C8B41CE6D6AD00DA7901 /* README.txt */; };
+		DAF5C8C61CE6F3B300DA7901 /* PhotosGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8C51CE6F3B300DA7901 /* PhotosGridViewController.m */; };
+		DAF5C8C91CE6F3EB00DA7901 /* MyPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C8C81CE6F3EB00DA7901 /* MyPhotosViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,10 +132,6 @@
 		DA018F351CD443670051D2D7 /* UINavigationBar+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BackgroundColor.m"; sourceTree = "<group>"; };
 		DA018F371CD44B210051D2D7 /* ThreeImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeImageCell.h; sourceTree = "<group>"; };
 		DA018F381CD44B210051D2D7 /* ThreeImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeImageCell.m; sourceTree = "<group>"; };
-		DA018F3A1CD47FAA0051D2D7 /* MyPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPhotosViewController.h; sourceTree = "<group>"; };
-		DA018F3B1CD47FAA0051D2D7 /* MyPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPhotosViewController.m; sourceTree = "<group>"; };
-		DA018F401CD4B9190051D2D7 /* PhotosGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGridViewController.h; sourceTree = "<group>"; };
-		DA018F411CD4B9190051D2D7 /* PhotosGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosGridViewController.m; sourceTree = "<group>"; };
 		DA018F431CD4B9AA0051D2D7 /* PhotoGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoGridCell.h; sourceTree = "<group>"; };
 		DA018F441CD4B9AA0051D2D7 /* PhotoGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoGridCell.m; sourceTree = "<group>"; };
 		DA018F461CD4BAC60051D2D7 /* PhotoTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTableCell.h; sourceTree = "<group>"; };
@@ -270,6 +266,10 @@
 		DAF5C8B71CE6D6AD00DA7901 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		DAF5C8B81CE6D6AD00DA7901 /* TalkingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingData.h; sourceTree = "<group>"; };
 		DAF5C8B91CE6D6AD00DA7901 /* TalkingDataSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingDataSMS.h; sourceTree = "<group>"; };
+		DAF5C8C41CE6F3B300DA7901 /* PhotosGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGridViewController.h; sourceTree = "<group>"; };
+		DAF5C8C51CE6F3B300DA7901 /* PhotosGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosGridViewController.m; sourceTree = "<group>"; };
+		DAF5C8C71CE6F3EB00DA7901 /* MyPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPhotosViewController.h; sourceTree = "<group>"; };
+		DAF5C8C81CE6F3EB00DA7901 /* MyPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPhotosViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,10 +348,7 @@
 				DA018F251CD38AEF0051D2D7 /* MeViewController.h */,
 				DA018F261CD38AEF0051D2D7 /* MeViewController.m */,
 				DA6CEF0A1CDAF33300EEABFF /* Profile */,
-				DA018F3A1CD47FAA0051D2D7 /* MyPhotosViewController.h */,
-				DA018F3B1CD47FAA0051D2D7 /* MyPhotosViewController.m */,
-				DA018F401CD4B9190051D2D7 /* PhotosGridViewController.h */,
-				DA018F411CD4B9190051D2D7 /* PhotosGridViewController.m */,
+				DAF5C8C31CE6F3B300DA7901 /* AlbumCenter */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -582,6 +579,8 @@
 				DA4A88F51CDB1DD900649983 /* AddStarViewController.m */,
 				DA6CEF0B1CDAF33300EEABFF /* MoreProfileViewController.h */,
 				DA6CEF0C1CDAF33300EEABFF /* MoreProfileViewController.m */,
+				DAF5C8C71CE6F3EB00DA7901 /* MyPhotosViewController.h */,
+				DAF5C8C81CE6F3EB00DA7901 /* MyPhotosViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -722,6 +721,15 @@
 				DAF5C8B71CE6D6AD00DA7901 /* WXApiObject.h */,
 			);
 			path = OpenSDK1.7;
+			sourceTree = "<group>";
+		};
+		DAF5C8C31CE6F3B300DA7901 /* AlbumCenter */ = {
+			isa = PBXGroup;
+			children = (
+				DAF5C8C41CE6F3B300DA7901 /* PhotosGridViewController.h */,
+				DAF5C8C51CE6F3B300DA7901 /* PhotosGridViewController.m */,
+			);
+			path = AlbumCenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -894,7 +902,6 @@
 				DAF5C8541CE5A5C100DA7901 /* UIView+frameAdjust.m in Sources */,
 				DAF5C8841CE5B95000DA7901 /* CoreTextLinkData.m in Sources */,
 				DA018F391CD44B210051D2D7 /* ThreeImageCell.m in Sources */,
-				DA018F3C1CD47FAA0051D2D7 /* MyPhotosViewController.m in Sources */,
 				DA018EF81CD1D7EB0051D2D7 /* MoveViewController.m in Sources */,
 				DAF5C88E1CE5B9B700DA7901 /* CTTextView.m in Sources */,
 				DAF5C83A1CE18A2400DA7901 /* UISheetView.m in Sources */,
@@ -925,7 +932,9 @@
 				DA018F271CD38AEF0051D2D7 /* MeViewController.m in Sources */,
 				DA018F611CD833650051D2D7 /* HomeMoreViewController.m in Sources */,
 				DA6CEEF21CD9EF9D00EEABFF /* CellButton.m in Sources */,
+				DAF5C8C91CE6F3EB00DA7901 /* MyPhotosViewController.m in Sources */,
 				DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */,
+				DAF5C8C61CE6F3B300DA7901 /* PhotosGridViewController.m in Sources */,
 				DAF5C8831CE5B95000DA7901 /* CoreTextImageData.m in Sources */,
 				DAF5C8871CE5B95000DA7901 /* CTFrameParserConfig.m in Sources */,
 				DAF5C8911CE5C0EE00DA7901 /* MyDisplayViewController.m in Sources */,
@@ -934,7 +943,6 @@
 				DA018F481CD4BAC60051D2D7 /* PhotoTableCell.m in Sources */,
 				DAF5C8BD1CE6D6AD00DA7901 /* NSObject+RMCopyable.m in Sources */,
 				DA018F011CD1DA820051D2D7 /* ChoicenessViewController.m in Sources */,
-				DA018F421CD4B9190051D2D7 /* PhotosGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

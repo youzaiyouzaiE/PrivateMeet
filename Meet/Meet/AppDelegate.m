@@ -48,11 +48,15 @@
     NSDictionary *weChatUserInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyWXUserInfo];
     NSDictionary *userInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyUserInfo];
     
+    if (![[userInfoDic objectForKey:@"userId"] isEqualToString:@"1234567890"]) {
+        [AppData shareInstance].isLogin = YES;
+    }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-value"
     [[WXAccessModel shareInstance] initWithDictionary:access_TokenDic];
     [[WXUserInfo shareInstance] initWithDictionary:weChatUserInfoDic];
     [[UserInfo shareInstance] initWithDictionary:userInfoDic];
+    
     return YES;
 }
 

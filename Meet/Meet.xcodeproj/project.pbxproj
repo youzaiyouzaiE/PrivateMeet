@@ -20,7 +20,6 @@
 		DA018F271CD38AEF0051D2D7 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F261CD38AEF0051D2D7 /* MeViewController.m */; };
 		DA018F2E1CD39D570051D2D7 /* ManListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F2C1CD39D570051D2D7 /* ManListCell.m */; };
 		DA018F2F1CD39D570051D2D7 /* ManListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA018F2D1CD39D570051D2D7 /* ManListCell.xib */; };
-		DA018F331CD43F2A0051D2D7 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F321CD43F2A0051D2D7 /* ActivityViewController.m */; };
 		DA018F361CD443670051D2D7 /* UINavigationBar+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F351CD443670051D2D7 /* UINavigationBar+BackgroundColor.m */; };
 		DA018F391CD44B210051D2D7 /* ThreeImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F381CD44B210051D2D7 /* ThreeImageCell.m */; };
 		DA018F451CD4B9AA0051D2D7 /* PhotoGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F441CD4B9AA0051D2D7 /* PhotoGridCell.m */; };
@@ -59,6 +58,8 @@
 		DA6CEF0F1CDAF33300EEABFF /* MoreProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEF0C1CDAF33300EEABFF /* MoreProfileViewController.m */; };
 		DA6CEF101CDAF33300EEABFF /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEF0E1CDAF33300EEABFF /* MyProfileViewController.m */; };
 		DA6CEF131CDAF42300EEABFF /* AddInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEF121CDAF42300EEABFF /* AddInformationViewController.m */; };
+		DABF8ADD1CE74FCF00CA2A1D /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8ADC1CE74FCF00CA2A1D /* ActivityViewController.m */; };
+		DABF8AE01CE7509400CA2A1D /* MyMeetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8ADF1CE7509400CA2A1D /* MyMeetsViewController.m */; };
 		DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */; };
 		DAF5C8001CDF490000DA7901 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */; };
 		DAF5C8021CDF491700DA7901 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8011CDF491700DA7901 /* CoreMotion.framework */; };
@@ -125,8 +126,6 @@
 		DA018F2B1CD39D570051D2D7 /* ManListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManListCell.h; sourceTree = "<group>"; };
 		DA018F2C1CD39D570051D2D7 /* ManListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManListCell.m; sourceTree = "<group>"; };
 		DA018F2D1CD39D570051D2D7 /* ManListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManListCell.xib; sourceTree = "<group>"; };
-		DA018F311CD43F2A0051D2D7 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
-		DA018F321CD43F2A0051D2D7 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
 		DA018F341CD443670051D2D7 /* UINavigationBar+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+BackgroundColor.h"; sourceTree = "<group>"; };
 		DA018F351CD443670051D2D7 /* UINavigationBar+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BackgroundColor.m"; sourceTree = "<group>"; };
 		DA018F371CD44B210051D2D7 /* ThreeImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeImageCell.h; sourceTree = "<group>"; };
@@ -197,6 +196,10 @@
 		DA6CEF0E1CDAF33300EEABFF /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
 		DA6CEF111CDAF42300EEABFF /* AddInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddInformationViewController.h; sourceTree = "<group>"; };
 		DA6CEF121CDAF42300EEABFF /* AddInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddInformationViewController.m; sourceTree = "<group>"; };
+		DABF8ADB1CE74FCF00CA2A1D /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
+		DABF8ADC1CE74FCF00CA2A1D /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
+		DABF8ADE1CE7509400CA2A1D /* MyMeetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMeetsViewController.h; sourceTree = "<group>"; };
+		DABF8ADF1CE7509400CA2A1D /* MyMeetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMeetsViewController.m; sourceTree = "<group>"; };
 		DAF5C7F71CDF479C00DA7901 /* NetWorkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkObject.h; sourceTree = "<group>"; };
 		DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkObject.m; sourceTree = "<group>"; };
 		DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -407,16 +410,6 @@
 			path = Travel;
 			sourceTree = "<group>";
 		};
-		DA018F301CD43EBE0051D2D7 /* Activity */ = {
-			isa = PBXGroup;
-			children = (
-				DA018F311CD43F2A0051D2D7 /* ActivityViewController.h */,
-				DA018F321CD43F2A0051D2D7 /* ActivityViewController.m */,
-			);
-			name = Activity;
-			path = Meet/ViewControllers/Activity;
-			sourceTree = SOURCE_ROOT;
-		};
 		DA36264B1CD1A75C00A8AE39 = {
 			isa = PBXGroup;
 			children = (
@@ -500,7 +493,7 @@
 				DA018ED91CD1BCD90051D2D7 /* MainViewController.h */,
 				DA018EDA1CD1BCD90051D2D7 /* MainViewController.m */,
 				DA018EDC1CD1D2CD0051D2D7 /* Home */,
-				DA018F301CD43EBE0051D2D7 /* Activity */,
+				DABF8ADA1CE74FCF00CA2A1D /* Meet Centent */,
 				DA018EDD1CD1D2CD0051D2D7 /* Me */,
 				DA4A88FF1CDC2BD000649983 /* Login */,
 			);
@@ -583,6 +576,17 @@
 				DAF5C8C81CE6F3EB00DA7901 /* MyPhotosViewController.m */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		DABF8ADA1CE74FCF00CA2A1D /* Meet Centent */ = {
+			isa = PBXGroup;
+			children = (
+				DABF8ADB1CE74FCF00CA2A1D /* ActivityViewController.h */,
+				DABF8ADC1CE74FCF00CA2A1D /* ActivityViewController.m */,
+				DABF8ADE1CE7509400CA2A1D /* MyMeetsViewController.h */,
+				DABF8ADF1CE7509400CA2A1D /* MyMeetsViewController.m */,
+			);
+			path = "Meet Centent";
 			sourceTree = "<group>";
 		};
 		DAF5C8061CE0301500DA7901 /* 3rd */ = {
@@ -885,6 +889,7 @@
 				DA6CEEFA1CD9FA7200EEABFF /* LabelAndTextFieldCell.m in Sources */,
 				DA4A88F61CDB1DD900649983 /* AddStarViewController.m in Sources */,
 				DA018F451CD4B9AA0051D2D7 /* PhotoGridCell.m in Sources */,
+				DABF8ADD1CE74FCF00CA2A1D /* ActivityViewController.m in Sources */,
 				DA018F591CD78E9C0051D2D7 /* ImageAndTitleView.m in Sources */,
 				DA36267C1CD1A98E00A8AE39 /* AppData.m in Sources */,
 				DA4A88FE1CDB5D7A00649983 /* CellTextView.m in Sources */,
@@ -902,7 +907,6 @@
 				DA018EF81CD1D7EB0051D2D7 /* MoveViewController.m in Sources */,
 				DAF5C88E1CE5B9B700DA7901 /* CTTextView.m in Sources */,
 				DAF5C83A1CE18A2400DA7901 /* UISheetView.m in Sources */,
-				DA018F331CD43F2A0051D2D7 /* ActivityViewController.m in Sources */,
 				DAF5C8461CE2DA6E00DA7901 /* LabelTableViewCell.m in Sources */,
 				DAF5C81F1CE0D0ED00DA7901 /* UserInfo.m in Sources */,
 				DA018F361CD443670051D2D7 /* UINavigationBar+BackgroundColor.m in Sources */,
@@ -917,6 +921,7 @@
 				DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */,
 				DAF5C8861CE5B95000DA7901 /* CTFrameParser.m in Sources */,
 				DAF5C8BF1CE6D6AD00DA7901 /* RMMapper.m in Sources */,
+				DABF8AE01CE7509400CA2A1D /* MyMeetsViewController.m in Sources */,
 				DA018EDB1CD1BCD90051D2D7 /* MainViewController.m in Sources */,
 				DA6CEEF61CD9EFA800EEABFF /* CellTextField.m in Sources */,
 				DA018F5E1CD79D4A0051D2D7 /* RemindImageCell.m in Sources */,

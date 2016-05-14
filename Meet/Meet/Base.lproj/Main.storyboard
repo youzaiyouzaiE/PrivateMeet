@@ -146,30 +146,31 @@
             </objects>
             <point key="canvasLocation" x="2822" y="922"/>
         </scene>
-        <!--Activity View Controller-->
+        <!--My Meets View Controller-->
         <scene sceneID="eT8-Ye-8tR">
             <objects>
-                <viewController id="gcH-XU-TXV" customClass="ActivityViewController" sceneMemberID="viewController">
+                <viewController id="gcH-XU-TXV" customClass="MyMeetsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tIs-xB-fLQ"/>
                         <viewControllerLayoutGuide type="bottom" id="eNB-Vb-viU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SCe-vs-asU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="3hj-9Q-7QH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAa-YV-e5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3314" y="1600"/>
         </scene>
-        <!--活动-->
+        <!--订单-->
         <scene sceneID="tpS-VQ-IbF">
             <objects>
                 <navigationController id="73x-lI-rwb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="活动" image="tabbar_discover" id="RHV-ID-Yvc">
+                    <tabBarItem key="tabBarItem" title="订单" image="tabbar_discover" id="RHV-ID-Yvc">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="tabbar_ discover_HL"/>

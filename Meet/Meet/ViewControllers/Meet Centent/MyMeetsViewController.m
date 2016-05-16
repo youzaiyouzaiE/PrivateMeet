@@ -7,9 +7,10 @@
 //
 
 #import "MyMeetsViewController.h"
-#import "WillMeetViewColler.h"
+#import "BaseMeetViewController.h"
 #import "AllMeetViewController.h"
 #import "WillAllowViewColler.h"
+#import "WillMeetViewColler.h"
 
 @interface MyMeetsViewController ()<UIScrollViewDelegate> {
     
@@ -27,6 +28,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBgLabelConstraintX;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewConstraintW;
 
+@property (strong, nonatomic) NSMutableArray *arraySubViewControllers;
+
+
 @end
 
 @implementation MyMeetsViewController
@@ -38,29 +42,31 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.barTintColor = NAVIGATION_BAR_COLOR;
-    
-    //    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    //    [self setNeedsStatusBarAppearanceUpdate];
+
+    _arraySubViewControllers = [NSMutableArray array];
     _topBgLabel.layer.cornerRadius = (_topBgLabel.height/2);
     _topBgLabel.layer.masksToBounds = YES;
     [self getSelectButtonWithIndex:1];
-}
-
-- (void)getSelectButtonWithIndex:(NSInteger)index {
-    [_arrayButtons enumerateObjectsUsingBlock:^(UIButton *_button, NSUInteger idx, BOOL *stop) {
-        if (_button.tag == index +1) {
-            _selectedButton = _button;
-            NSLog(@"%@",_selectedButton.currentTitle);
-            *stop = YES;
-        }
-    }];
+    _currentType = 1;
+    
+    [self getSubControllerWithControllerClassName:@"WillAllowViewColler" atLocation:1];
 }
 
 - (void)updateViewConstraints {
     [super updateViewConstraints];
     _scrollViewConstraintW.constant = _arrayButtons.count * self.view.width;
     _contentScrollView.contentOffset = CGPointMake(self.view.width, _contentScrollView.contentOffset.y);
-//    _contentScrollViewOffsetX = self.view.width;
+    //    _contentScrollViewOffsetX = self.view.width;
+}
+
+#pragma -  VIEWs
+- (void)getSelectButtonWithIndex:(NSInteger)index {
+    [_arrayButtons enumerateObjectsUsingBlock:^(UIButton *_button, NSUInteger idx, BOOL *stop) {
+        if (_button.tag == index +1) {
+            _selectedButton = _button;
+            *stop = YES;
+        }
+    }];
 }
 
 - (void)updateTopViewLabel{
@@ -68,7 +74,6 @@
         _topBgLabel.frame = CGRectMake(_selectedButton.x, _topBgLabel.y, _topBgLabel.width, _topBgLabel.height);
     }];
 }
-
 
 - (void)updateButtonTitle:(UIButton *)button {
     [_arrayButtons enumerateObjectsUsingBlock:^(UIButton *_button, NSUInteger idx, BOOL *stop) {
@@ -78,6 +83,58 @@
             [_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }
     }];
+}
+
+- (void)loadContentViewSubViewWithSelectType:(NSInteger)selectType {
+    switch (selectType) {
+        case 0:
+        {
+            BOOL hasTheVC = NO;
+            for (BaseMeetViewController *meetVC in _arraySubViewControllers) {
+                if ([meetVC isKindOfClass:[AllMeetViewController class]]) {
+                    hasTheVC = YES;
+                    return ;
+                }
+            }
+            NSString *subClassName = @"AllMeetViewController";
+            if (!hasTheVC) {
+                [self getSubControllerWithControllerClassName:subClassName atLocation:selectType];
+            }
+        }
+            break;
+        case 1:
+        {
+         ////already has WillAllowViewColler
+        }
+            break;
+        case 2:
+        {
+            BOOL hasTheVC = NO;
+            for (BaseMeetViewController *meetVC in _arraySubViewControllers) {
+                if ([meetVC isKindOfClass:[WillMeetViewColler class]]) {
+                    hasTheVC = YES;
+                    return ;
+                }
+            }
+            NSString *subClassName = @"WillMeetViewColler";
+            if (!hasTheVC) {
+                [self getSubControllerWithControllerClassName:subClassName atLocation:selectType];
+            }
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+- (BaseMeetViewController *)getSubControllerWithControllerClassName:(NSString *)className atLocation:(NSInteger)location{
+    Class class = NSClassFromString(className);
+    BaseMeetViewController *subVC = [[class alloc] init];
+    [subVC.view setFrame:CGRectMake(location *self.view.width, 0, self.view.width, _contentScrollView.height)];
+    [_contentScrollView addSubview:subVC.view];
+    [self addChildViewController:subVC];
+    [_arraySubViewControllers addObject:subVC];
+    return subVC;
 }
 
 #pragma mark - buttonAction 
@@ -92,6 +149,7 @@
             [self updateButtonTitle:_button];
             [self updateTopViewLabel];
             [self updateContentScrollView];
+            [self loadContentViewSubViewWithSelectType:_currentType];
             *stop = YES;
         }
     }];
@@ -125,6 +183,7 @@
     [self updateButtonTitle:_selectedButton];
     [self updateTopViewLabel];
 //     _contentScrollViewOffsetX = scrollView.contentOffset.x;
+    [self loadContentViewSubViewWithSelectType:_currentType];
 }
 
 #pragma mark - Navigation

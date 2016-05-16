@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeMoreViewController : UIViewController
+@interface HomeMoreViewController : UIViewController/////更多
 
 @end

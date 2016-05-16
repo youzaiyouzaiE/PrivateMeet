@@ -65,7 +65,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = FORMAT(@"coffee Cell %ld",(long)indexPath.row);
+    cell.textLabel.text = FORMAT(@"will Allow Cell %ld",(long)indexPath.row);
     return cell;
 }
 

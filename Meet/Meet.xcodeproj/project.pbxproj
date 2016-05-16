@@ -594,10 +594,10 @@
 				DABF8ADF1CE7509400CA2A1D /* MyMeetsViewController.m */,
 				DABF8AF01CE9D41100CA2A1D /* BaseMeetViewController.h */,
 				DABF8AF11CE9D41100CA2A1D /* BaseMeetViewController.m */,
-				DABF8AEA1CE9B7BD00CA2A1D /* WillAllowViewColler.h */,
-				DABF8AEB1CE9B7BD00CA2A1D /* WillAllowViewColler.m */,
 				DABF8AED1CE9B83300CA2A1D /* AllMeetViewController.h */,
 				DABF8AEE1CE9B83300CA2A1D /* AllMeetViewController.m */,
+				DABF8AEA1CE9B7BD00CA2A1D /* WillAllowViewColler.h */,
+				DABF8AEB1CE9B7BD00CA2A1D /* WillAllowViewColler.m */,
 				DABF8AE71CE9B76000CA2A1D /* WillMeetViewColler.h */,
 				DABF8AE81CE9B76000CA2A1D /* WillMeetViewColler.m */,
 			);

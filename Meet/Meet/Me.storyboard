@@ -303,13 +303,13 @@
                                         <rect key="frame" x="0.0" y="55" width="320" height="45"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fs-AR-Wir" userLabel="Content View">
-                                                <rect key="frame" x="0.0" y="0.0" width="400" height="45"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="312" height="45"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="400" id="the-FX-Wt1"/>
+                                                    <constraint firstAttribute="width" constant="312" id="the-FX-Wt1"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="吃饭、喝咖啡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gae-du-yC6">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="吃饭、喝咖啡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gae-du-yC6">
                                                 <rect key="frame" x="8" y="0.0" width="392" height="45"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -321,7 +321,7 @@
                                             <constraint firstItem="6fs-AR-Wir" firstAttribute="top" secondItem="DDQ-EP-9Wv" secondAttribute="top" id="Oa9-Av-rH9"/>
                                             <constraint firstAttribute="height" constant="45" id="Pgz-Gk-sMP"/>
                                             <constraint firstAttribute="trailing" secondItem="Gae-du-yC6" secondAttribute="trailing" id="VXf-XO-elh"/>
-                                            <constraint firstAttribute="trailing" secondItem="6fs-AR-Wir" secondAttribute="trailing" id="Vpj-CB-0g9"/>
+                                            <constraint firstAttribute="trailing" secondItem="6fs-AR-Wir" secondAttribute="trailing" constant="8" id="Vpj-CB-0g9"/>
                                             <constraint firstAttribute="bottom" secondItem="Gae-du-yC6" secondAttribute="bottom" id="WBA-Ps-k3A"/>
                                             <constraint firstItem="Gae-du-yC6" firstAttribute="leading" secondItem="DDQ-EP-9Wv" secondAttribute="leading" constant="8" id="ZNk-iQ-9oU"/>
                                             <constraint firstItem="6fs-AR-Wir" firstAttribute="centerY" secondItem="DDQ-EP-9Wv" secondAttribute="centerY" id="hp4-6J-GW8"/>

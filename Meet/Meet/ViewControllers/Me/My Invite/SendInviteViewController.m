@@ -137,7 +137,7 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 //    [self updateTopScrollViewOffset];
-     NSLog(@"scrollView Offset %@",NSStringFromCGPoint(scrollView.contentOffset));
+//     NSLog(@"scrollView Offset %@",NSStringFromCGPoint(scrollView.contentOffset));
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {

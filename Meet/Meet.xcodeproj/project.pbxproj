@@ -58,8 +58,11 @@
 		DA6CEF0F1CDAF33300EEABFF /* MoreProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEF0C1CDAF33300EEABFF /* MoreProfileViewController.m */; };
 		DA6CEF101CDAF33300EEABFF /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEF0E1CDAF33300EEABFF /* MyProfileViewController.m */; };
 		DA6CEF131CDAF42300EEABFF /* AddInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEF121CDAF42300EEABFF /* AddInformationViewController.m */; };
-		DABF8ADD1CE74FCF00CA2A1D /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8ADC1CE74FCF00CA2A1D /* ActivityViewController.m */; };
 		DABF8AE01CE7509400CA2A1D /* MyMeetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8ADF1CE7509400CA2A1D /* MyMeetsViewController.m */; };
+		DABF8AE91CE9B76000CA2A1D /* WillMeetViewColler.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AE81CE9B76000CA2A1D /* WillMeetViewColler.m */; };
+		DABF8AEC1CE9B7BD00CA2A1D /* WillAllowViewColler.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AEB1CE9B7BD00CA2A1D /* WillAllowViewColler.m */; };
+		DABF8AEF1CE9B83300CA2A1D /* AllMeetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AEE1CE9B83300CA2A1D /* AllMeetViewController.m */; };
+		DABF8AF21CE9D41100CA2A1D /* BaseMeetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AF11CE9D41100CA2A1D /* BaseMeetViewController.m */; };
 		DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */; };
 		DAF5C8001CDF490000DA7901 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */; };
 		DAF5C8021CDF491700DA7901 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8011CDF491700DA7901 /* CoreMotion.framework */; };
@@ -196,10 +199,16 @@
 		DA6CEF0E1CDAF33300EEABFF /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
 		DA6CEF111CDAF42300EEABFF /* AddInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddInformationViewController.h; sourceTree = "<group>"; };
 		DA6CEF121CDAF42300EEABFF /* AddInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddInformationViewController.m; sourceTree = "<group>"; };
-		DABF8ADB1CE74FCF00CA2A1D /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
-		DABF8ADC1CE74FCF00CA2A1D /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
 		DABF8ADE1CE7509400CA2A1D /* MyMeetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMeetsViewController.h; sourceTree = "<group>"; };
 		DABF8ADF1CE7509400CA2A1D /* MyMeetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMeetsViewController.m; sourceTree = "<group>"; };
+		DABF8AE71CE9B76000CA2A1D /* WillMeetViewColler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WillMeetViewColler.h; sourceTree = "<group>"; };
+		DABF8AE81CE9B76000CA2A1D /* WillMeetViewColler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WillMeetViewColler.m; sourceTree = "<group>"; };
+		DABF8AEA1CE9B7BD00CA2A1D /* WillAllowViewColler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WillAllowViewColler.h; sourceTree = "<group>"; };
+		DABF8AEB1CE9B7BD00CA2A1D /* WillAllowViewColler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WillAllowViewColler.m; sourceTree = "<group>"; };
+		DABF8AED1CE9B83300CA2A1D /* AllMeetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllMeetViewController.h; sourceTree = "<group>"; };
+		DABF8AEE1CE9B83300CA2A1D /* AllMeetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllMeetViewController.m; sourceTree = "<group>"; };
+		DABF8AF01CE9D41100CA2A1D /* BaseMeetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMeetViewController.h; sourceTree = "<group>"; };
+		DABF8AF11CE9D41100CA2A1D /* BaseMeetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMeetViewController.m; sourceTree = "<group>"; };
 		DAF5C7F71CDF479C00DA7901 /* NetWorkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkObject.h; sourceTree = "<group>"; };
 		DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkObject.m; sourceTree = "<group>"; };
 		DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -581,10 +590,16 @@
 		DABF8ADA1CE74FCF00CA2A1D /* Meet Centent */ = {
 			isa = PBXGroup;
 			children = (
-				DABF8ADB1CE74FCF00CA2A1D /* ActivityViewController.h */,
-				DABF8ADC1CE74FCF00CA2A1D /* ActivityViewController.m */,
 				DABF8ADE1CE7509400CA2A1D /* MyMeetsViewController.h */,
 				DABF8ADF1CE7509400CA2A1D /* MyMeetsViewController.m */,
+				DABF8AF01CE9D41100CA2A1D /* BaseMeetViewController.h */,
+				DABF8AF11CE9D41100CA2A1D /* BaseMeetViewController.m */,
+				DABF8AEA1CE9B7BD00CA2A1D /* WillAllowViewColler.h */,
+				DABF8AEB1CE9B7BD00CA2A1D /* WillAllowViewColler.m */,
+				DABF8AED1CE9B83300CA2A1D /* AllMeetViewController.h */,
+				DABF8AEE1CE9B83300CA2A1D /* AllMeetViewController.m */,
+				DABF8AE71CE9B76000CA2A1D /* WillMeetViewColler.h */,
+				DABF8AE81CE9B76000CA2A1D /* WillMeetViewColler.m */,
 			);
 			path = "Meet Centent";
 			sourceTree = "<group>";
@@ -886,10 +901,10 @@
 				DA018F2E1CD39D570051D2D7 /* ManListCell.m in Sources */,
 				DA018EE01CD1D36E0051D2D7 /* HomeMainViewController.m in Sources */,
 				DA4A89081CDC9A3200649983 /* GetCodeViewController.m in Sources */,
+				DABF8AE91CE9B76000CA2A1D /* WillMeetViewColler.m in Sources */,
 				DA6CEEFA1CD9FA7200EEABFF /* LabelAndTextFieldCell.m in Sources */,
 				DA4A88F61CDB1DD900649983 /* AddStarViewController.m in Sources */,
 				DA018F451CD4B9AA0051D2D7 /* PhotoGridCell.m in Sources */,
-				DABF8ADD1CE74FCF00CA2A1D /* ActivityViewController.m in Sources */,
 				DA018F591CD78E9C0051D2D7 /* ImageAndTitleView.m in Sources */,
 				DA36267C1CD1A98E00A8AE39 /* AppData.m in Sources */,
 				DA4A88FE1CDB5D7A00649983 /* CellTextView.m in Sources */,
@@ -915,11 +930,14 @@
 				DAF5C89D1CE6191000DA7901 /* MHFacebookImageViewer.m in Sources */,
 				DA3626591CD1A75C00A8AE39 /* main.m in Sources */,
 				DAF5C8211CE0D0ED00DA7901 /* WXUserInfo.m in Sources */,
+				DABF8AF21CE9D41100CA2A1D /* BaseMeetViewController.m in Sources */,
 				DAF5C8BE1CE6D6AD00DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				DAF5C81E1CE0D0ED00DA7901 /* BaseModel.m in Sources */,
 				DA4A890B1CDCA0C000649983 /* WeChatLonginViewController.m in Sources */,
 				DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */,
+				DABF8AEC1CE9B7BD00CA2A1D /* WillAllowViewColler.m in Sources */,
 				DAF5C8861CE5B95000DA7901 /* CTFrameParser.m in Sources */,
+				DABF8AEF1CE9B83300CA2A1D /* AllMeetViewController.m in Sources */,
 				DAF5C8BF1CE6D6AD00DA7901 /* RMMapper.m in Sources */,
 				DABF8AE01CE7509400CA2A1D /* MyMeetsViewController.m in Sources */,
 				DA018EDB1CD1BCD90051D2D7 /* MainViewController.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "WillMeetViewColler.h"
+#import "ManListCell.h"
 
 @interface WillMeetViewColler ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -26,15 +27,17 @@
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 100;
     
-    //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //        // 进入刷新状态后会自动调用这个block
-    //    }];
-    //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-    //    [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 进入刷新状态后会自动调用这个block
+    }];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)loadNewData {
     NSLog(@"ChoicenessViewController refreshing");
+    sleep(1);
+    [self.tableView.mj_header endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,7 +53,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return 10;
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -59,12 +62,13 @@
 //}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *const cellIdentifier = @"choicenessCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NSString *const cellIdentifier = @"ManListCell";
+    ManListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = (ManListCell *)[[NSBundle mainBundle] loadNibNamed:@"ManListCell" owner:self options:nil][0];
+        cell.likeButton.hidden = YES;
+        cell.likeNumberLabel.hidden = YES;
     }
-    cell.textLabel.text = FORMAT(@"Will meet Cell %ld",(long)indexPath.row);
     return cell;
 }
 

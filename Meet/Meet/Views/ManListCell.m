@@ -10,16 +10,12 @@
 
 @implementation ManListCell
 {
-    __weak IBOutlet UIImageView *_iconImage;
+
     
     __weak IBOutlet UILabel *_nameLabel;
-    __weak IBOutlet UILabel *_likeNumberLabel;
+
+
     
-    __weak IBOutlet UILabel *_sexLabel;
-    __weak IBOutlet UILabel *_ageLabel;
-    __weak IBOutlet UILabel *_locationLabel;
-    
-    __weak IBOutlet UILabel *_informLabel;
     
 }
 

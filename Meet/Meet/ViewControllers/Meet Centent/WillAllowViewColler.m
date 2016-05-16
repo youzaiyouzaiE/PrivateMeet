@@ -7,12 +7,14 @@
 //
 
 #import "WillAllowViewColler.h"
+#import "ManListCell.h"
 
 @interface WillAllowViewColler ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
 @implementation WillAllowViewColler
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -25,17 +27,18 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 100;
     
-    //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //        // 进入刷新状态后会自动调用这个block
-    //    }];
-    //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-    //    [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 进入刷新状态后会自动调用这个block
+    }];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)loadNewData {
     NSLog(@"ChoicenessViewController refreshing");
+    sleep(1);
+    [self.tableView.mj_header endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,38 +47,45 @@
 }
 
 #pragma mark - UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 10;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 20;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 70;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        return 100;
+    } else
+        return 49;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *const cellIdentifier = @"choicenessCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    if (indexPath.row == 0) {
+        NSString *const cellIdentifier = @"ManListCell";
+        ManListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell) {
+            cell = (ManListCell *)[[NSBundle mainBundle] loadNibNamed:@"ManListCell" owner:self options:nil][0];
+            cell.likeButton.hidden = YES;
+            cell.likeNumberLabel.hidden = YES;
+        }
+        return cell;
+    } else {
+        NSString *const cellIdentifier = @"result";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        if (indexPath.section % 2) {
+            cell.textLabel.text = @"接受/拒绝约见";
+        } else
+            cell.textLabel.text = @"待对方确认";
+        return cell;
     }
-    cell.textLabel.text = FORMAT(@"will Allow Cell %ld",(long)indexPath.row);
-    return cell;
 }
-
-#pragma mark - tableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-
 
 /*
  #pragma mark - Navigation

@@ -9,7 +9,7 @@
 #import "SendInviteViewController.h"
 #import "UITextView+Placeholder.h"
 
-@interface SendInviteViewController (){
+@interface SendInviteViewController () <UIScrollViewDelegate>{
     
     __weak IBOutlet UIScrollView *_contentScrollView;
     __weak IBOutlet UIScrollView *_topScrollView;
@@ -20,6 +20,8 @@
     
     NSMutableArray *_arraySelectItem;
     
+    BOOL _isLargeWidth;
+    NSInteger _largeLength;
 }
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentScrollViewConstraintH;
@@ -114,18 +116,48 @@
     if (contentStr.length > 2) {
         [contentStr deleteCharactersInRange:NSMakeRange(contentStr.length - 1, 1)];
     }
-    NSLog(@"%@",contentStr);
     CGFloat stringWidth  = [UITools getTextWidth:[UIFont systemFontOfSize:17] textContent:contentStr] + 4;
     _topLabel.text = contentStr;
     _topLabel.font = [UIFont systemFontOfSize:17];
-    _topScrollViewConstraintW.constant = stringWidth ;
+    
+    if (stringWidth > _topScrollView.width) {
+        _topScrollViewConstraintW.constant = stringWidth - 10 ;
+//        _isLargeWidth = YES;
+        _largeLength = stringWidth - _topScrollView.width;
+         NSLog(@"Font.width :%f,%f",stringWidth,stringWidth - _topScrollView.width);
+        [_topScrollView setContentOffset:CGPointMake(_largeLength , _topScrollView.contentOffset.y) animated:YES];
+    } else {
+//        _isLargeWidth = NO;
+        _largeLength = 0;
+        _topScrollViewConstraintW.constant = _topScrollView.width;
+        [_topScrollView setContentOffset:CGPointMake(0, _topScrollView.contentOffset.y) animated:YES];
+    }
 }
 
-#pragma mark - 
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    [self updateTopScrollViewOffset];
+     NSLog(@"scrollView Offset %@",NSStringFromCGPoint(scrollView.contentOffset));
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.x < _largeLength) {
+//        if (_isLargeWidth) {
+            [_topScrollView setContentOffset:CGPointMake(_largeLength , _topScrollView.contentOffset.y) animated:NO];
+//        } else
+//            [_topScrollView setContentOffset:CGPointMake(0, _topScrollView.contentOffset.y) animated:YES];
+    }
+    NSLog(@"scrollView Offset %@",NSStringFromCGPoint(scrollView.contentOffset));
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
+}
+
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    [self.view endEditing:YES];
-    return NO;
+        [self.view endEditing:YES];
+        return NO;
 }
 
 #pragma mark - UITextViewDelegate

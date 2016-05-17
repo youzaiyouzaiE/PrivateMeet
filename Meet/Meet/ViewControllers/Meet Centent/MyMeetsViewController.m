@@ -56,6 +56,7 @@
     [super updateViewConstraints];
     _scrollViewConstraintW.constant = _arrayButtons.count * self.view.width;
     _contentScrollView.contentOffset = CGPointMake(self.view.width, _contentScrollView.contentOffset.y);
+//    _topBgLabelConstraintX.constant = _selectedButton.x;
     //    _contentScrollViewOffsetX = self.view.width;
 }
 

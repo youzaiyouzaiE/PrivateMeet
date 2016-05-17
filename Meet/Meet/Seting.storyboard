@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Seting View Controller-->
+        <scene sceneID="YZO-2f-d6M">
+            <objects>
+                <viewController storyboardIdentifier="SetingViewController" hidesBottomBarWhenPushed="YES" id="Vaa-uk-D5J" customClass="SetingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HeA-CJ-pYe"/>
+                        <viewControllerLayoutGuide type="bottom" id="jan-hU-HbU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gfG-TR-LY2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MZO-bD-o6g">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Vaa-uk-D5J" id="TTv-sj-Y2L"/>
+                                    <outlet property="delegate" destination="Vaa-uk-D5J" id="akU-n6-MYi"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MZO-bD-o6g" firstAttribute="top" secondItem="gfG-TR-LY2" secondAttribute="top" id="6ie-da-j2I"/>
+                            <constraint firstAttribute="trailing" secondItem="MZO-bD-o6g" secondAttribute="trailing" id="ZoV-u5-0Kq"/>
+                            <constraint firstItem="MZO-bD-o6g" firstAttribute="leading" secondItem="gfG-TR-LY2" secondAttribute="leading" id="ptl-2K-o0Y"/>
+                            <constraint firstItem="jan-hU-HbU" firstAttribute="top" secondItem="MZO-bD-o6g" secondAttribute="bottom" id="vqF-sE-KM4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="MZO-bD-o6g" id="3F0-NK-hfS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MP5-FQ-Sb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244" y="199"/>
+        </scene>
+    </scenes>
+</document>

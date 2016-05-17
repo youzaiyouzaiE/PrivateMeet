@@ -63,6 +63,8 @@
 		DABF8AEC1CE9B7BD00CA2A1D /* WillAllowViewColler.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AEB1CE9B7BD00CA2A1D /* WillAllowViewColler.m */; };
 		DABF8AEF1CE9B83300CA2A1D /* AllMeetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AEE1CE9B83300CA2A1D /* AllMeetViewController.m */; };
 		DABF8AF21CE9D41100CA2A1D /* BaseMeetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AF11CE9D41100CA2A1D /* BaseMeetViewController.m */; };
+		DABF8AF41CEAC0DC00CA2A1D /* Seting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DABF8AF31CEAC0DC00CA2A1D /* Seting.storyboard */; };
+		DABF8AF81CEAC29A00CA2A1D /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AF71CEAC29A00CA2A1D /* SetingViewController.m */; };
 		DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */; };
 		DAF5C8001CDF490000DA7901 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */; };
 		DAF5C8021CDF491700DA7901 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8011CDF491700DA7901 /* CoreMotion.framework */; };
@@ -209,6 +211,9 @@
 		DABF8AEE1CE9B83300CA2A1D /* AllMeetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllMeetViewController.m; sourceTree = "<group>"; };
 		DABF8AF01CE9D41100CA2A1D /* BaseMeetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMeetViewController.h; sourceTree = "<group>"; };
 		DABF8AF11CE9D41100CA2A1D /* BaseMeetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMeetViewController.m; sourceTree = "<group>"; };
+		DABF8AF31CEAC0DC00CA2A1D /* Seting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Seting.storyboard; sourceTree = "<group>"; };
+		DABF8AF61CEAC29A00CA2A1D /* SetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingViewController.h; sourceTree = "<group>"; };
+		DABF8AF71CEAC29A00CA2A1D /* SetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingViewController.m; sourceTree = "<group>"; };
 		DAF5C7F71CDF479C00DA7901 /* NetWorkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkObject.h; sourceTree = "<group>"; };
 		DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkObject.m; sourceTree = "<group>"; };
 		DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -361,6 +366,7 @@
 				DA6CEF0A1CDAF33300EEABFF /* Profile */,
 				DAF5C8CE1CE6F81C00DA7901 /* My Invite */,
 				DAF5C8CA1CE6F79900DA7901 /* Album Center */,
+				DABF8AF51CEAC27500CA2A1D /* Seting */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 				DA36265B1CD1A75C00A8AE39 /* AppDelegate.m */,
 				DA3626601CD1A75C00A8AE39 /* Main.storyboard */,
 				DA6CEEE91CD97E9A00EEABFF /* Me.storyboard */,
+				DABF8AF31CEAC0DC00CA2A1D /* Seting.storyboard */,
 				DA4A89011CDC388B00649983 /* Login.storyboard */,
 				DA3626631CD1A75C00A8AE39 /* Assets.xcassets */,
 				DA3626651CD1A75C00A8AE39 /* LaunchScreen.storyboard */,
@@ -602,6 +609,15 @@
 				DABF8AE81CE9B76000CA2A1D /* WillMeetViewColler.m */,
 			);
 			path = "Meet Centent";
+			sourceTree = "<group>";
+		};
+		DABF8AF51CEAC27500CA2A1D /* Seting */ = {
+			isa = PBXGroup;
+			children = (
+				DABF8AF61CEAC29A00CA2A1D /* SetingViewController.h */,
+				DABF8AF71CEAC29A00CA2A1D /* SetingViewController.m */,
+			);
+			path = Seting;
 			sourceTree = "<group>";
 		};
 		DAF5C8061CE0301500DA7901 /* 3rd */ = {
@@ -819,6 +835,7 @@
 				DA018F2F1CD39D570051D2D7 /* ManListCell.xib in Resources */,
 				DA6CEEEA1CD97E9A00EEABFF /* Me.storyboard in Resources */,
 				DA3626671CD1A75C00A8AE39 /* LaunchScreen.storyboard in Resources */,
+				DABF8AF41CEAC0DC00CA2A1D /* Seting.storyboard in Resources */,
 				DAF5C8471CE2DA6E00DA7901 /* LabelTableViewCell.xib in Resources */,
 				DA3626641CD1A75C00A8AE39 /* Assets.xcassets in Resources */,
 				DA4A88F81CDB2BFD00649983 /* LabelAndTextFieldCell.xib in Resources */,
@@ -955,6 +972,7 @@
 				DAF5C8C91CE6F3EB00DA7901 /* MyPhotosViewController.m in Sources */,
 				DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */,
 				DAF5C8CD1CE6F79900DA7901 /* PhotosGridViewController.m in Sources */,
+				DABF8AF81CEAC29A00CA2A1D /* SetingViewController.m in Sources */,
 				DAF5C8831CE5B95000DA7901 /* CoreTextImageData.m in Sources */,
 				DAF5C8871CE5B95000DA7901 /* CTFrameParserConfig.m in Sources */,
 				DAF5C8911CE5C0EE00DA7901 /* MyDisplayViewController.m in Sources */,

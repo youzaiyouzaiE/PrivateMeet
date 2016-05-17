@@ -26,7 +26,7 @@
     self = [super init];
     if (self) {
         _arrayContents = array;
-        if (_arrayContents && _arrayContents.count > 2) {
+        if (_arrayContents && _arrayContents.count >= 2) {
             self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
             self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
             [self loadContentView];

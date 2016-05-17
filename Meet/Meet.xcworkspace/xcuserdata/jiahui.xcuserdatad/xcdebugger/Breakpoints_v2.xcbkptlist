@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meet/ViewControllers/Me/MeViewController.m"
-            timestampString = "484906830.040187"
+            timestampString = "485149787.642091"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "-checkDocumentGetSmallImages"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,22 +170,6 @@
             startingLineNumber = "144"
             endingLineNumber = "144"
             landmarkName = "-scrollViewDidEndScrollingAnimation:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Meet/ViewControllers/Meet Centent/MyMeetsViewController.m"
-            timestampString = "485145864.811012"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-loadContentViewSubViewWithSelectType:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

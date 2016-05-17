@@ -14,6 +14,7 @@
 #import "MoreProfileViewController.h"
 #import "MyDisplayViewController.h"
 #import "SendInviteViewController.h"
+#import "SetingViewController.h"
 
 @interface MeViewController () <UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource> {
     NSMutableArray *_imagesArray;
@@ -142,7 +143,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+    return 7;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -223,7 +224,14 @@
             tableCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         tableCell.imageView.image = [UIImage imageNamed:@"unLike"];
-        tableCell.textLabel.text = @"xxxxxxxxxx";
+        if (indexPath.row == 4) {
+            tableCell.textLabel.text = @"我的邀约";
+        } else if (indexPath.row == 5) {
+            tableCell.textLabel.text = @"邀请朋友";
+        } else if (indexPath.row == 6) {
+            tableCell.textLabel.text = @"设置";
+        } else
+            tableCell.textLabel.text = @"xxxxx";
     }
     return tableCell;
 }
@@ -237,6 +245,7 @@
         [cell setSubViewsFrame];
     }
 }
+
 #pragma mark - tableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -256,19 +265,14 @@
     } else if (indexPath.row == 1) {
         //////展示更多个人信息
         [self performSegueWithIdentifier:@"pushToMyDisplayVC" sender:self];
-        
-        /////填写更多个人信息
-//        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
-//        MoreProfileViewController *moreVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MoreProfileViewController"];
-//        moreVC.modifyBlock = ^(){
-//            [self checkDocumentGetSmallImages];
-//        };
-//        moreVC.editType = 1;
-//        [self.navigationController pushViewController:moreVC animated:YES];
     } else  if (indexPath.row == 4) {
         UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
         SendInviteViewController *sendInviteVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"SendInviteViewController"];
         [self.navigationController pushViewController:sendInviteVC animated:YES];
+    } else if (indexPath.row == 6) {///////设置
+        UIStoryboard *setingStoryBoard = [UIStoryboard storyboardWithName:@"Seting" bundle:[NSBundle mainBundle]];
+        SetingViewController *setingVC = [setingStoryBoard instantiateViewControllerWithIdentifier:@"SetingViewController"];
+        [self.navigationController pushViewController:setingVC animated:YES];
     }
 }
 

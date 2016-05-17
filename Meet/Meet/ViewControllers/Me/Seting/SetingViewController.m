@@ -9,6 +9,7 @@
 #import "SetingViewController.h"
 #import "UISheetView.h"
 #import <MessageUI/MessageUI.h>
+#import "AboutViewController.h"
 
 @interface SetingViewController ()<UITableViewDelegate,UITableViewDataSource,UISheetViewDelegate,MFMailComposeViewControllerDelegate> {
 //    NSArray *_contentArray;
@@ -85,16 +86,16 @@
             _sheetView.delegate = self;
         }
         [_sheetView show];
-    } else if ([str isEqualToString:@"给Meet好评"]) {
+    } else if ([str isEqualToString:@"关于Meet"]) {
+        [self performSegueWithIdentifier:@"PushToAboutViewController" sender:self];
+    } else if ([str isEqualToString:@"意见反馈"]) {
         if (![MFMailComposeViewController canSendMail]) {
             NSLog(@"Mail services are not available.");
             [[UITools shareInstance] showMessageToView:self.view message:@"请先设置邮箱帐号" autoHide:YES];
             return;
         }
-        
         MFMailComposeViewController* composeVC = [[MFMailComposeViewController alloc] init];
         composeVC.mailComposeDelegate = self;
-    
         // Configure the fields of the interface.、/////@"feedback@momeet.com"
         [composeVC setToRecipients:@[@"feedback@momeet.com"]];
         [composeVC setSubject:@"意见反馈"];
@@ -127,7 +128,7 @@
             break;
     }
     [[UITools shareInstance] showMessageToView:controller.view message:msg autoHide:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self dismissViewControllerAnimated:YES completion:^{
         }];
     });
@@ -139,7 +140,7 @@
     [_sheetView hidden];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -147,6 +148,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

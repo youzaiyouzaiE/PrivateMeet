@@ -67,6 +67,9 @@
 		DABF8AF81CEAC29A00CA2A1D /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AF71CEAC29A00CA2A1D /* SetingViewController.m */; };
 		DABF8AFB1CEAE71100CA2A1D /* SendEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AFA1CEAE71100CA2A1D /* SendEmailViewController.m */; };
 		DABF8AFE1CEB089400CA2A1D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DABF8AFD1CEB089400CA2A1D /* MessageUI.framework */; };
+		DABF8B011CEB158300CA2A1D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8B001CEB158300CA2A1D /* AboutViewController.m */; };
+		DABF8B071CEB18E700CA2A1D /* MeetBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8B061CEB18E700CA2A1D /* MeetBaseViewController.m */; };
+		DABF8B0A1CEB22A100CA2A1D /* UserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8B091CEB22A100CA2A1D /* UserProtocolViewController.m */; };
 		DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */; };
 		DAF5C8001CDF490000DA7901 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */; };
 		DAF5C8021CDF491700DA7901 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8011CDF491700DA7901 /* CoreMotion.framework */; };
@@ -219,6 +222,12 @@
 		DABF8AF91CEAE71100CA2A1D /* SendEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmailViewController.h; sourceTree = "<group>"; };
 		DABF8AFA1CEAE71100CA2A1D /* SendEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendEmailViewController.m; sourceTree = "<group>"; };
 		DABF8AFD1CEB089400CA2A1D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		DABF8AFF1CEB158300CA2A1D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		DABF8B001CEB158300CA2A1D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		DABF8B051CEB18E700CA2A1D /* MeetBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetBaseViewController.h; sourceTree = "<group>"; };
+		DABF8B061CEB18E700CA2A1D /* MeetBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetBaseViewController.m; sourceTree = "<group>"; };
+		DABF8B081CEB22A100CA2A1D /* UserProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProtocolViewController.h; sourceTree = "<group>"; };
+		DABF8B091CEB22A100CA2A1D /* UserProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProtocolViewController.m; sourceTree = "<group>"; };
 		DAF5C7F71CDF479C00DA7901 /* NetWorkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkObject.h; sourceTree = "<group>"; };
 		DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkObject.m; sourceTree = "<group>"; };
 		DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -515,6 +524,8 @@
 			children = (
 				DA018ED91CD1BCD90051D2D7 /* MainViewController.h */,
 				DA018EDA1CD1BCD90051D2D7 /* MainViewController.m */,
+				DABF8B051CEB18E700CA2A1D /* MeetBaseViewController.h */,
+				DABF8B061CEB18E700CA2A1D /* MeetBaseViewController.m */,
 				DA018EDC1CD1D2CD0051D2D7 /* Home */,
 				DABF8ADA1CE74FCF00CA2A1D /* Meet Centent */,
 				DA018EDD1CD1D2CD0051D2D7 /* Me */,
@@ -623,6 +634,10 @@
 			children = (
 				DABF8AF61CEAC29A00CA2A1D /* SetingViewController.h */,
 				DABF8AF71CEAC29A00CA2A1D /* SetingViewController.m */,
+				DABF8AFF1CEB158300CA2A1D /* AboutViewController.h */,
+				DABF8B001CEB158300CA2A1D /* AboutViewController.m */,
+				DABF8B081CEB22A100CA2A1D /* UserProtocolViewController.h */,
+				DABF8B091CEB22A100CA2A1D /* UserProtocolViewController.m */,
 				DABF8AF91CEAE71100CA2A1D /* SendEmailViewController.h */,
 				DABF8AFA1CEAE71100CA2A1D /* SendEmailViewController.m */,
 			);
@@ -939,6 +954,7 @@
 				DA018EFB1CD1D8060051D2D7 /* ShowViewController.m in Sources */,
 				DA018EF51CD1D7DF0051D2D7 /* EatViewController.m in Sources */,
 				DA6CEF101CDAF33300EEABFF /* MyProfileViewController.m in Sources */,
+				DABF8B011CEB158300CA2A1D /* AboutViewController.m in Sources */,
 				DAF5C8A01CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m in Sources */,
 				DA018F4E1CD4C03B0051D2D7 /* MyPhotoItem.m in Sources */,
 				DAF5C8201CE0D0ED00DA7901 /* WXAccessModel.m in Sources */,
@@ -963,6 +979,7 @@
 				DA4A890B1CDCA0C000649983 /* WeChatLonginViewController.m in Sources */,
 				DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */,
 				DABF8AEC1CE9B7BD00CA2A1D /* WillAllowViewColler.m in Sources */,
+				DABF8B0A1CEB22A100CA2A1D /* UserProtocolViewController.m in Sources */,
 				DAF5C8861CE5B95000DA7901 /* CTFrameParser.m in Sources */,
 				DABF8AEF1CE9B83300CA2A1D /* AllMeetViewController.m in Sources */,
 				DAF5C8BF1CE6D6AD00DA7901 /* RMMapper.m in Sources */,
@@ -981,6 +998,7 @@
 				DA6CEEF21CD9EF9D00EEABFF /* CellButton.m in Sources */,
 				DAF5C8C91CE6F3EB00DA7901 /* MyPhotosViewController.m in Sources */,
 				DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */,
+				DABF8B071CEB18E700CA2A1D /* MeetBaseViewController.m in Sources */,
 				DAF5C8CD1CE6F79900DA7901 /* PhotosGridViewController.m in Sources */,
 				DABF8AF81CEAC29A00CA2A1D /* SetingViewController.m in Sources */,
 				DAF5C8831CE5B95000DA7901 /* CoreTextImageData.m in Sources */,

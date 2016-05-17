@@ -8,8 +8,9 @@
 
 #import "SetingViewController.h"
 #import "UISheetView.h"
+#import <MessageUI/MessageUI.h>
 
-@interface SetingViewController ()<UITableViewDelegate,UITableViewDataSource,UISheetViewDelegate> {
+@interface SetingViewController ()<UITableViewDelegate,UITableViewDataSource,UISheetViewDelegate,MFMailComposeViewControllerDelegate> {
 //    NSArray *_contentArray;
     NSDictionary *_contentDic;
     UISheetView *_sheetView;
@@ -27,7 +28,7 @@
     self.navigationItem.title = @"设置";
     
 //    _contentArray = @[@"新消息通知",@"清除缓存",@"关于Meet",@"意见反馈",@"给Meet好评",@"退出登录"];
-    _contentDic = @{@0:@[@"新消息通知",@"清除缓存"],@1:@[@"关于Meet",@"意见反馈",@"给Meet好评"],@2:@[@"退出登录"]};
+    _contentDic = @{@0:@[@"清除缓存"],@1:@[@"关于Meet",@"意见反馈",@"给Meet好评"],@2:@[@"退出登录"]};
     
     _tableView.rowHeight = 49;
 }
@@ -57,28 +58,80 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:defaultIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:defaultIdentifier];
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     NSNumber *keyNumber = [NSNumber numberWithInt:indexPath.section];
     NSArray *arr = _contentDic[keyNumber];
     cell.textLabel.text = arr[indexPath.row];
     if (indexPath.section == _contentDic.allKeys.count - 1) {
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    } else
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else {
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     return cell;
 }
 
 #pragma mark - tableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == _contentDic.allKeys.count - 1) {
+    NSNumber *keyNumber = [NSNumber numberWithInt:indexPath.section];
+    NSArray *arr = _contentDic[keyNumber];
+    NSString *str = arr[indexPath.row];
+    
+    if (indexPath.section == _contentDic.allKeys.count - 1) {//////
         if ( !_sheetView) {
             _sheetView = [[UISheetView alloc] initWithContenArray:@[@"退出登录",@"取消"]];
             _sheetView.delegate = self;
         }
         [_sheetView show];
+    } else if ([str isEqualToString:@"给Meet好评"]) {
+        if (![MFMailComposeViewController canSendMail]) {
+            NSLog(@"Mail services are not available.");
+            [[UITools shareInstance] showMessageToView:self.view message:@"请先设置邮箱帐号" autoHide:YES];
+            return;
+        }
+        
+        MFMailComposeViewController* composeVC = [[MFMailComposeViewController alloc] init];
+        composeVC.mailComposeDelegate = self;
+    
+        // Configure the fields of the interface.、/////@"feedback@momeet.com"
+        [composeVC setToRecipients:@[@"feedback@momeet.com"]];
+        [composeVC setSubject:@"意见反馈"];
+        [composeVC setMessageBody:@"test message " isHTML:NO];
+        
+        // Present the view controller modally.
+        [self presentViewController:composeVC animated:YES completion:nil];
     }
+}
+
+#pragma mark - 
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(nullable NSError *)error {
+    NSString *msg;
+    
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            msg = @"邮件发送取消";
+            break;
+        case MFMailComposeResultSaved:
+            msg = @"邮件保存成功";
+            break;
+        case MFMailComposeResultSent:
+            msg = @"邮件发送成功";
+            break;
+        case MFMailComposeResultFailed:
+            msg = @"邮件发送失败";
+            break;
+        default:
+            break;
+    }
+    [[UITools shareInstance] showMessageToView:controller.view message:msg autoHide:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    });
+  
 }
 
 #pragma mark - UISheetViewDelegate

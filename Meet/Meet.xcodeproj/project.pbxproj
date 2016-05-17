@@ -65,6 +65,8 @@
 		DABF8AF21CE9D41100CA2A1D /* BaseMeetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AF11CE9D41100CA2A1D /* BaseMeetViewController.m */; };
 		DABF8AF41CEAC0DC00CA2A1D /* Seting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DABF8AF31CEAC0DC00CA2A1D /* Seting.storyboard */; };
 		DABF8AF81CEAC29A00CA2A1D /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AF71CEAC29A00CA2A1D /* SetingViewController.m */; };
+		DABF8AFB1CEAE71100CA2A1D /* SendEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF8AFA1CEAE71100CA2A1D /* SendEmailViewController.m */; };
+		DABF8AFE1CEB089400CA2A1D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DABF8AFD1CEB089400CA2A1D /* MessageUI.framework */; };
 		DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */; };
 		DAF5C8001CDF490000DA7901 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */; };
 		DAF5C8021CDF491700DA7901 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5C8011CDF491700DA7901 /* CoreMotion.framework */; };
@@ -214,6 +216,9 @@
 		DABF8AF31CEAC0DC00CA2A1D /* Seting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Seting.storyboard; sourceTree = "<group>"; };
 		DABF8AF61CEAC29A00CA2A1D /* SetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingViewController.h; sourceTree = "<group>"; };
 		DABF8AF71CEAC29A00CA2A1D /* SetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingViewController.m; sourceTree = "<group>"; };
+		DABF8AF91CEAE71100CA2A1D /* SendEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmailViewController.h; sourceTree = "<group>"; };
+		DABF8AFA1CEAE71100CA2A1D /* SendEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendEmailViewController.m; sourceTree = "<group>"; };
+		DABF8AFD1CEB089400CA2A1D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DAF5C7F71CDF479C00DA7901 /* NetWorkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkObject.h; sourceTree = "<group>"; };
 		DAF5C7F81CDF479C00DA7901 /* NetWorkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkObject.m; sourceTree = "<group>"; };
 		DAF5C7FF1CDF490000DA7901 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -293,6 +298,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DABF8AFE1CEB089400CA2A1D /* MessageUI.framework in Frameworks */,
 				DAF5C8511CE4857500DA7901 /* CoreText.framework in Frameworks */,
 				DAF5C8041CDF492600DA7901 /* Security.framework in Frameworks */,
 				DAF5C8021CDF491700DA7901 /* CoreMotion.framework in Frameworks */,
@@ -315,6 +321,7 @@
 		8E40E9729E6AB1EC00EF25FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DABF8AFD1CEB089400CA2A1D /* MessageUI.framework */,
 				DAF5C8501CE4857500DA7901 /* CoreText.framework */,
 				DAF5C8031CDF492600DA7901 /* Security.framework */,
 				DAF5C8011CDF491700DA7901 /* CoreMotion.framework */,
@@ -616,6 +623,8 @@
 			children = (
 				DABF8AF61CEAC29A00CA2A1D /* SetingViewController.h */,
 				DABF8AF71CEAC29A00CA2A1D /* SetingViewController.m */,
+				DABF8AF91CEAE71100CA2A1D /* SendEmailViewController.h */,
+				DABF8AFA1CEAE71100CA2A1D /* SendEmailViewController.m */,
 			);
 			path = Seting;
 			sourceTree = "<group>";
@@ -925,6 +934,7 @@
 				DA018F591CD78E9C0051D2D7 /* ImageAndTitleView.m in Sources */,
 				DA36267C1CD1A98E00A8AE39 /* AppData.m in Sources */,
 				DA4A88FE1CDB5D7A00649983 /* CellTextView.m in Sources */,
+				DABF8AFB1CEAE71100CA2A1D /* SendEmailViewController.m in Sources */,
 				DA018EF21CD1D7D00051D2D7 /* CoffeeViewController.m in Sources */,
 				DA018EFB1CD1D8060051D2D7 /* ShowViewController.m in Sources */,
 				DA018EF51CD1D7DF0051D2D7 /* EatViewController.m in Sources */,

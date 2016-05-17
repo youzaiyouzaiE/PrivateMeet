@@ -25,7 +25,7 @@ extern NSString *const k_User_sex;
 @property (copy, nonatomic) NSString *country;
 @property (copy, nonatomic) NSString *headimgurl;
 @property (strong, nonatomic) NSNumber *sex;
-
+@property (copy, nonatomic) NSString *eMail;
 
 + (instancetype)shareInstance;
 - (void)mappingValuesFormWXUserInfo:(WXUserInfo *)wxUser;

@@ -16,10 +16,10 @@
 @implementation WillAllowViewColler
 
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.tableView.mj_header beginRefreshing];
-}
+//- (void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//    [self.tableView.mj_header beginRefreshing];
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

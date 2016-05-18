@@ -17,6 +17,7 @@
 #import "NetWorkObject.h"
 
 #import "UserInfo.h"
+#import "UserInfoDao.h"
 #import "WXAccessModel.h"
 #import "WXUserInfo.h"
 #import "NSUserDefaults+RMSaveCustomObject.h"
@@ -44,18 +45,28 @@
     [WXApi registerApp:@"wx49c4b6f590f83469"];
     [TalkingData sessionStarted:@"7244A450FDAFB46FFEF7C1B68FBA93D3" withChannelId:@"app store"];
     
+    if ([[AppData shareInstance] initDataBaseToDocument]) {
+        NSLog(@"数据库 规划成功");
+        [[UserInfoDao shareInstance] selectUserWithUserLoginType];
+        if (![[UserInfo shareInstance].userId isEqualToString:@"1234567890"] ) {
+            [AppData shareInstance].isLogin = YES;
+        }
+    } else {
+        NSLog(@"数据库 创建失败");
+    }
+    
     NSDictionary *access_TokenDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyAccessModelSave];
     NSDictionary *weChatUserInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyWXUserInfo];
-    NSDictionary *userInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyUserInfo];
+//    NSDictionary *userInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyUserInfo];
     
-    if (![[userInfoDic objectForKey:@"userId"] isEqualToString:@"1234567890"]) {
-        [AppData shareInstance].isLogin = YES;
-    }
+//    if (![[userInfoDic objectForKey:@"userId"] isEqualToString:@"1234567890"]) {
+//        [AppData shareInstance].isLogin = YES;
+//    }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-value"
     [[WXAccessModel shareInstance] initWithDictionary:access_TokenDic];
     [[WXUserInfo shareInstance] initWithDictionary:weChatUserInfoDic];
-    [[UserInfo shareInstance] initWithDictionary:userInfoDic];
+//    [[UserInfo shareInstance] initWithDictionary:userInfoDic];
     
     return YES;
 }

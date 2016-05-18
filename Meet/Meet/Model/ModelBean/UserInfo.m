@@ -26,8 +26,8 @@
     static dispatch_once_t  onceToken;
     dispatch_once(&onceToken, ^{
         shareInstance = [[UserInfo alloc] init];
-        shareInstance.userId = @"1234567890";
-        shareInstance.name = @"public";
+//        shareInstance.userId = @"1234567890";
+//        shareInstance.name = @"public";
     });
     return shareInstance;
 }
@@ -73,6 +73,9 @@
 }
 
 - (NSArray *)valueArray {
+    if (!_eMail) {
+        _eMail = (NSString *)[NSNull null];
+    }
     return @[_userId,_userType,_name,_city,_country,_headimgurl,_sex,_eMail];
 }
 

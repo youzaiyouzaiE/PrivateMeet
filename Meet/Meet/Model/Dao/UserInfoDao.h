@@ -13,6 +13,6 @@
 + (instancetype)shareInstance;
 
 - (UserInfo *)selectUserWithUserLoginType;
-
+- (NSArray *)selectUserInfoWithUserId:(NSString *)userId;
 
 @end

@@ -86,7 +86,7 @@
         if (unionid) {/////是老用户，退出登陆页面 isLogin YES
 #warning  是老用户 从网获取用户信息 并保存本地 退出登陆页面
             [self dismissViewControllerAnimated:YES completion:^{
-                
+                [AppData shareInstance].isLogin = YES;
             }];
         } else {
             [[UITools shareInstance] showMessageToView:self.view message:@"请求出错" autoHide:YES];

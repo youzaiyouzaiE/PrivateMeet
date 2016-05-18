@@ -13,7 +13,7 @@
 #import "WXApiObject.h"
 //#import "NSUserDefaults+RMSaveCustomObject.h"
 #import "UserInfoDao.h"
-#import <objc/runtime.h>
+#import "UserInfo.h"
 
 @interface WeChatLonginViewController ()
 
@@ -66,9 +66,14 @@
     NSNumber *state = [notification object];
     if (state.intValue) {
         [[UserInfo shareInstance] mappingValuesFormWXUserInfo:[WXUserInfo shareInstance]];
-        NSDictionary *dic = [[UserInfo shareInstance] dictionaryWithUserInfo];
         [AppData shareInstance].isLogin = YES;
-        [[NSUserDefaults standardUserDefaults] setObject:dic forKey:keyUserInfo];
+        NSArray *users = [[UserInfoDao shareInstance] selectUserInfoWithUserId:[WXUserInfo shareInstance].unionid];
+        if (users.count > 0) {
+            UserInfo *user = users[0];
+            [[UserInfo shareInstance] mappingValuesFormUserInfo:user];
+            [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
+        } else
+            [[UserInfoDao shareInstance] insertBean:[UserInfo shareInstance]];
         
         UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
         MyProfileViewController *myProfileVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
@@ -76,22 +81,6 @@
         [self.navigationController pushViewController:myProfileVC animated:YES];
     }
 }
-
-//- (NSDictionary *) dictionaryWithPropertiesOfObject:(id)obj {
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//    
-//    unsigned count;
-//    objc_property_t *properties = class_copyPropertyList([obj class], &count);
-//    
-//    for (int i = 0; i < count; i++) {
-//        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
-//        [dict setObject:[obj valueForKey:key] forKey:key];
-//    }
-//    
-//    free(properties);
-//    
-//    return [NSDictionary dictionaryWithDictionary:dict];
-//}
 
 #pragma mark - sender to WeChat
 -(void)sendAuthRequest {

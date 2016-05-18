@@ -49,6 +49,7 @@ static NSString *const tableName = @"UserInfoTable";
 
 - (UserInfo *)mappingRs2Bean:(FMResultSet *)rs {
     [UserInfo shareInstance].idKey = [rs stringForColumn:kBeanIdKey];
+    [UserInfo shareInstance].userId = [rs stringForColumn:k_User_userId];
     [UserInfo shareInstance].userType = [NSNumber numberWithInteger:[rs boolForColumn:k_User_userType]];
     [UserInfo shareInstance].name = [rs stringForColumn:k_User_name];
     [UserInfo shareInstance].city = [rs stringForColumn:k_User_city];
@@ -68,6 +69,11 @@ static NSString *const tableName = @"UserInfoTable";
     }
     [[UserInfo shareInstance] mappingValuesFormUserInfo:info];
     return [UserInfo shareInstance];
+}
+
+- (NSArray *)selectUserInfoWithUserId:(NSString *)userId {
+    NSString *whereSql = [NSString stringWithFormat:@"%@ = %@", k_User_userId,userId];
+    return [self selectWithWhere:whereSql];
 }
 
 

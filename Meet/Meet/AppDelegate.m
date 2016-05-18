@@ -48,7 +48,7 @@
     if ([[AppData shareInstance] initDataBaseToDocument]) {
         NSLog(@"数据库 规划成功");
         [[UserInfoDao shareInstance] selectUserWithUserLoginType];
-        if (![[UserInfo shareInstance].userId isEqualToString:@"1234567890"] ) {
+        if ([UserInfo shareInstance].userId && [UserInfo shareInstance].userId.length > 1 && ![[UserInfo shareInstance].userId isEqualToString:@""]) {
             [AppData shareInstance].isLogin = YES;
         }
     } else {
@@ -157,12 +157,13 @@
 - (void)wechatLoginByRequestForUserInfo {
     [NetWorkObject GET:GETUser_info_FromWX_URLStr parameters:nil progress:^(NSProgress *downloadProgress) {
         
-    } success:^(NSURLSessionDataTask *task, NSDictionary *userInfo) {
-        [[WXUserInfo shareInstance] initWithDictionary:userInfo];
+    } success:^(NSURLSessionDataTask *task, NSDictionary *WXuserInfo) {
+        [[WXUserInfo shareInstance] initWithDictionary:WXuserInfo];
         
         [[UITools shareInstance] showMessageToView:self.window message:@"登录成功" autoHide:YES];
          NSLog(@"请求微信用户信息成功！");
-        [[NSUserDefaults standardUserDefaults] setObject:userInfo forKey:keyWXUserInfo];
+        [[NSUserDefaults standardUserDefaults] setObject:WXuserInfo forKey:keyWXUserInfo];
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NewUserLoginWihtWechat" object:[NSNumber numberWithInt:1]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"OldUserLoginWihtWechat" object:[NSNumber numberWithInt:1]];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

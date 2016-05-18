@@ -9,14 +9,6 @@
 /* Begin PBXBuildFile section */
 		C96B69724244D7EDB8E4D323 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E573AEF258C48EC6DAC3AFD /* libPods.a */; };
 		DA018EDB1CD1BCD90051D2D7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018EDA1CD1BCD90051D2D7 /* MainViewController.m */; };
-		DA018EE01CD1D36E0051D2D7 /* HomeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018EDF1CD1D36E0051D2D7 /* HomeMainViewController.m */; };
-		DA018EE31CD1D39B0051D2D7 /* HomeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018EE21CD1D39B0051D2D7 /* HomeBaseViewController.m */; };
-		DA018EF21CD1D7D00051D2D7 /* CoffeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018EF11CD1D7D00051D2D7 /* CoffeeViewController.m */; };
-		DA018EF51CD1D7DF0051D2D7 /* EatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018EF41CD1D7DF0051D2D7 /* EatViewController.m */; };
-		DA018EF81CD1D7EB0051D2D7 /* MoveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018EF71CD1D7EB0051D2D7 /* MoveViewController.m */; };
-		DA018EFB1CD1D8060051D2D7 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018EFA1CD1D8060051D2D7 /* ShowViewController.m */; };
-		DA018EFE1CD1D8150051D2D7 /* TravelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018EFD1CD1D8150051D2D7 /* TravelViewController.m */; };
-		DA018F011CD1DA820051D2D7 /* ChoicenessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F001CD1DA820051D2D7 /* ChoicenessViewController.m */; };
 		DA018F271CD38AEF0051D2D7 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F261CD38AEF0051D2D7 /* MeViewController.m */; };
 		DA018F2E1CD39D570051D2D7 /* ManListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F2C1CD39D570051D2D7 /* ManListCell.m */; };
 		DA018F2F1CD39D570051D2D7 /* ManListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA018F2D1CD39D570051D2D7 /* ManListCell.xib */; };
@@ -28,7 +20,6 @@
 		DA018F521CD4DAFB0051D2D7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA018F541CD4DAFB0051D2D7 /* Localizable.strings */; };
 		DA018F591CD78E9C0051D2D7 /* ImageAndTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F581CD78E9C0051D2D7 /* ImageAndTitleView.m */; };
 		DA018F5E1CD79D4A0051D2D7 /* RemindImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F5D1CD79D4A0051D2D7 /* RemindImageCell.m */; };
-		DA018F611CD833650051D2D7 /* HomeMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F601CD833650051D2D7 /* HomeMoreViewController.m */; };
 		DA3626591CD1A75C00A8AE39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3626581CD1A75C00A8AE39 /* main.m */; };
 		DA36265C1CD1A75C00A8AE39 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA36265B1CD1A75C00A8AE39 /* AppDelegate.m */; };
 		DA3626621CD1A75C00A8AE39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA3626601CD1A75C00A8AE39 /* Main.storyboard */; };
@@ -50,6 +41,16 @@
 		DA4A891C1CDD91FB00649983 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA4A891B1CDD91FB00649983 /* libsqlite3.0.tbd */; };
 		DA4A891E1CDD920F00649983 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA4A891D1CDD920F00649983 /* libc++.tbd */; };
 		DA4A892D1CDD95C100649983 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA4A892C1CDD95C100649983 /* CoreTelephony.framework */; };
+		DA6B1C521CEC4DAC0020021D /* FristHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B1C381CEC4DAC0020021D /* FristHomeViewController.m */; };
+		DA6B1C531CEC4DAC0020021D /* ChoicenessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B1C3C1CEC4DAC0020021D /* ChoicenessViewController.m */; };
+		DA6B1C541CEC4DAC0020021D /* CoffeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B1C3F1CEC4DAC0020021D /* CoffeeViewController.m */; };
+		DA6B1C551CEC4DAC0020021D /* EatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B1C421CEC4DAC0020021D /* EatViewController.m */; };
+		DA6B1C561CEC4DAC0020021D /* HomeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B1C441CEC4DAC0020021D /* HomeBaseViewController.m */; };
+		DA6B1C571CEC4DAC0020021D /* HomeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B1C461CEC4DAC0020021D /* HomeMainViewController.m */; };
+		DA6B1C581CEC4DAC0020021D /* HomeMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B1C481CEC4DAC0020021D /* HomeMoreViewController.m */; };
+		DA6B1C591CEC4DAC0020021D /* MoveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B1C4B1CEC4DAC0020021D /* MoveViewController.m */; };
+		DA6B1C5A1CEC4DAC0020021D /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B1C4E1CEC4DAC0020021D /* ShowViewController.m */; };
+		DA6B1C5B1CEC4DAC0020021D /* TravelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B1C511CEC4DAC0020021D /* TravelViewController.m */; };
 		DA6CEEEA1CD97E9A00EEABFF /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA6CEEE91CD97E9A00EEABFF /* Me.storyboard */; };
 		DA6CEEF21CD9EF9D00EEABFF /* CellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEEF11CD9EF9D00EEABFF /* CellButton.m */; };
 		DA6CEEF61CD9EFA800EEABFF /* CellTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CEEF51CD9EFA800EEABFF /* CellTextField.m */; };
@@ -115,22 +116,6 @@
 		A77C177DBA85B7B5A4E9AD4B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DA018ED91CD1BCD90051D2D7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		DA018EDA1CD1BCD90051D2D7 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		DA018EDE1CD1D36E0051D2D7 /* HomeMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMainViewController.h; sourceTree = "<group>"; };
-		DA018EDF1CD1D36E0051D2D7 /* HomeMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainViewController.m; sourceTree = "<group>"; };
-		DA018EE11CD1D39B0051D2D7 /* HomeBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBaseViewController.h; sourceTree = "<group>"; };
-		DA018EE21CD1D39B0051D2D7 /* HomeBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBaseViewController.m; sourceTree = "<group>"; };
-		DA018EF01CD1D7D00051D2D7 /* CoffeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeViewController.h; sourceTree = "<group>"; };
-		DA018EF11CD1D7D00051D2D7 /* CoffeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeViewController.m; sourceTree = "<group>"; };
-		DA018EF31CD1D7DF0051D2D7 /* EatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EatViewController.h; sourceTree = "<group>"; };
-		DA018EF41CD1D7DF0051D2D7 /* EatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EatViewController.m; sourceTree = "<group>"; };
-		DA018EF61CD1D7EB0051D2D7 /* MoveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveViewController.h; sourceTree = "<group>"; };
-		DA018EF71CD1D7EB0051D2D7 /* MoveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveViewController.m; sourceTree = "<group>"; };
-		DA018EF91CD1D8060051D2D7 /* ShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
-		DA018EFA1CD1D8060051D2D7 /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
-		DA018EFC1CD1D8150051D2D7 /* TravelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelViewController.h; sourceTree = "<group>"; };
-		DA018EFD1CD1D8150051D2D7 /* TravelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelViewController.m; sourceTree = "<group>"; };
-		DA018EFF1CD1DA820051D2D7 /* ChoicenessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicenessViewController.h; sourceTree = "<group>"; };
-		DA018F001CD1DA820051D2D7 /* ChoicenessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicenessViewController.m; sourceTree = "<group>"; };
 		DA018F251CD38AEF0051D2D7 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		DA018F261CD38AEF0051D2D7 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		DA018F2B1CD39D570051D2D7 /* ManListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManListCell.h; sourceTree = "<group>"; };
@@ -154,8 +139,6 @@
 		DA018F581CD78E9C0051D2D7 /* ImageAndTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndTitleView.m; sourceTree = "<group>"; };
 		DA018F5C1CD79D4A0051D2D7 /* RemindImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindImageCell.h; sourceTree = "<group>"; };
 		DA018F5D1CD79D4A0051D2D7 /* RemindImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindImageCell.m; sourceTree = "<group>"; };
-		DA018F5F1CD833650051D2D7 /* HomeMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMoreViewController.h; sourceTree = "<group>"; };
-		DA018F601CD833650051D2D7 /* HomeMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMoreViewController.m; sourceTree = "<group>"; };
 		DA3626541CD1A75C00A8AE39 /* Meet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA3626581CD1A75C00A8AE39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA36265A1CD1A75C00A8AE39 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -191,6 +174,26 @@
 		DA4A891B1CDD91FB00649983 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		DA4A891D1CDD920F00649983 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		DA4A892C1CDD95C100649983 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		DA6B1C371CEC4DAC0020021D /* FristHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FristHomeViewController.h; sourceTree = "<group>"; };
+		DA6B1C381CEC4DAC0020021D /* FristHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FristHomeViewController.m; sourceTree = "<group>"; };
+		DA6B1C3B1CEC4DAC0020021D /* ChoicenessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicenessViewController.h; sourceTree = "<group>"; };
+		DA6B1C3C1CEC4DAC0020021D /* ChoicenessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicenessViewController.m; sourceTree = "<group>"; };
+		DA6B1C3E1CEC4DAC0020021D /* CoffeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeViewController.h; sourceTree = "<group>"; };
+		DA6B1C3F1CEC4DAC0020021D /* CoffeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeViewController.m; sourceTree = "<group>"; };
+		DA6B1C411CEC4DAC0020021D /* EatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EatViewController.h; sourceTree = "<group>"; };
+		DA6B1C421CEC4DAC0020021D /* EatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EatViewController.m; sourceTree = "<group>"; };
+		DA6B1C431CEC4DAC0020021D /* HomeBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBaseViewController.h; sourceTree = "<group>"; };
+		DA6B1C441CEC4DAC0020021D /* HomeBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBaseViewController.m; sourceTree = "<group>"; };
+		DA6B1C451CEC4DAC0020021D /* HomeMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMainViewController.h; sourceTree = "<group>"; };
+		DA6B1C461CEC4DAC0020021D /* HomeMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainViewController.m; sourceTree = "<group>"; };
+		DA6B1C471CEC4DAC0020021D /* HomeMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMoreViewController.h; sourceTree = "<group>"; };
+		DA6B1C481CEC4DAC0020021D /* HomeMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMoreViewController.m; sourceTree = "<group>"; };
+		DA6B1C4A1CEC4DAC0020021D /* MoveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveViewController.h; sourceTree = "<group>"; };
+		DA6B1C4B1CEC4DAC0020021D /* MoveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveViewController.m; sourceTree = "<group>"; };
+		DA6B1C4D1CEC4DAC0020021D /* ShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
+		DA6B1C4E1CEC4DAC0020021D /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
+		DA6B1C501CEC4DAC0020021D /* TravelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelViewController.h; sourceTree = "<group>"; };
+		DA6B1C511CEC4DAC0020021D /* TravelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelViewController.m; sourceTree = "<group>"; };
 		DA6CEEE91CD97E9A00EEABFF /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		DA6CEEF11CD9EF9D00EEABFF /* CellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellButton.m; sourceTree = "<group>"; };
 		DA6CEEF31CD9EFA800EEABFF /* CellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellButton.h; sourceTree = "<group>"; };
@@ -358,18 +361,8 @@
 		DA018EDC1CD1D2CD0051D2D7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				DA018EDE1CD1D36E0051D2D7 /* HomeMainViewController.h */,
-				DA018EDF1CD1D36E0051D2D7 /* HomeMainViewController.m */,
-				DA018EE11CD1D39B0051D2D7 /* HomeBaseViewController.h */,
-				DA018EE21CD1D39B0051D2D7 /* HomeBaseViewController.m */,
-				DA018F5F1CD833650051D2D7 /* HomeMoreViewController.h */,
-				DA018F601CD833650051D2D7 /* HomeMoreViewController.m */,
-				DA018EE71CD1D78E0051D2D7 /* Choiceness */,
-				DA018EEA1CD1D78E0051D2D7 /* Coffee */,
-				DA018EEB1CD1D78E0051D2D7 /* Eat */,
-				DA018EEC1CD1D78E0051D2D7 /* Move */,
-				DA018EED1CD1D78E0051D2D7 /* Show */,
-				DA018EEE1CD1D78E0051D2D7 /* Travel */,
+				DA6B1C361CEC4DAC0020021D /* Frist Versions */,
+				DA6B1C391CEC4DAC0020021D /* Second version */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -385,60 +378,6 @@
 				DABF8AF51CEAC27500CA2A1D /* Seting */,
 			);
 			path = Me;
-			sourceTree = "<group>";
-		};
-		DA018EE71CD1D78E0051D2D7 /* Choiceness */ = {
-			isa = PBXGroup;
-			children = (
-				DA018EFF1CD1DA820051D2D7 /* ChoicenessViewController.h */,
-				DA018F001CD1DA820051D2D7 /* ChoicenessViewController.m */,
-			);
-			path = Choiceness;
-			sourceTree = "<group>";
-		};
-		DA018EEA1CD1D78E0051D2D7 /* Coffee */ = {
-			isa = PBXGroup;
-			children = (
-				DA018EF01CD1D7D00051D2D7 /* CoffeeViewController.h */,
-				DA018EF11CD1D7D00051D2D7 /* CoffeeViewController.m */,
-			);
-			path = Coffee;
-			sourceTree = "<group>";
-		};
-		DA018EEB1CD1D78E0051D2D7 /* Eat */ = {
-			isa = PBXGroup;
-			children = (
-				DA018EF31CD1D7DF0051D2D7 /* EatViewController.h */,
-				DA018EF41CD1D7DF0051D2D7 /* EatViewController.m */,
-			);
-			path = Eat;
-			sourceTree = "<group>";
-		};
-		DA018EEC1CD1D78E0051D2D7 /* Move */ = {
-			isa = PBXGroup;
-			children = (
-				DA018EF61CD1D7EB0051D2D7 /* MoveViewController.h */,
-				DA018EF71CD1D7EB0051D2D7 /* MoveViewController.m */,
-			);
-			path = Move;
-			sourceTree = "<group>";
-		};
-		DA018EED1CD1D78E0051D2D7 /* Show */ = {
-			isa = PBXGroup;
-			children = (
-				DA018EF91CD1D8060051D2D7 /* ShowViewController.h */,
-				DA018EFA1CD1D8060051D2D7 /* ShowViewController.m */,
-			);
-			path = Show;
-			sourceTree = "<group>";
-		};
-		DA018EEE1CD1D78E0051D2D7 /* Travel */ = {
-			isa = PBXGroup;
-			children = (
-				DA018EFC1CD1D8150051D2D7 /* TravelViewController.h */,
-				DA018EFD1CD1D8150051D2D7 /* TravelViewController.m */,
-			);
-			path = Travel;
 			sourceTree = "<group>";
 		};
 		DA36264B1CD1A75C00A8AE39 = {
@@ -591,6 +530,88 @@
 			);
 			name = Login;
 			path = Me/Login;
+			sourceTree = "<group>";
+		};
+		DA6B1C361CEC4DAC0020021D /* Frist Versions */ = {
+			isa = PBXGroup;
+			children = (
+				DA6B1C371CEC4DAC0020021D /* FristHomeViewController.h */,
+				DA6B1C381CEC4DAC0020021D /* FristHomeViewController.m */,
+			);
+			path = "Frist Versions";
+			sourceTree = "<group>";
+		};
+		DA6B1C391CEC4DAC0020021D /* Second version */ = {
+			isa = PBXGroup;
+			children = (
+				DA6B1C431CEC4DAC0020021D /* HomeBaseViewController.h */,
+				DA6B1C441CEC4DAC0020021D /* HomeBaseViewController.m */,
+				DA6B1C451CEC4DAC0020021D /* HomeMainViewController.h */,
+				DA6B1C461CEC4DAC0020021D /* HomeMainViewController.m */,
+				DA6B1C471CEC4DAC0020021D /* HomeMoreViewController.h */,
+				DA6B1C481CEC4DAC0020021D /* HomeMoreViewController.m */,
+				DA6B1C3A1CEC4DAC0020021D /* Choiceness */,
+				DA6B1C3D1CEC4DAC0020021D /* Coffee */,
+				DA6B1C401CEC4DAC0020021D /* Eat */,
+				DA6B1C491CEC4DAC0020021D /* Move */,
+				DA6B1C4C1CEC4DAC0020021D /* Show */,
+				DA6B1C4F1CEC4DAC0020021D /* Travel */,
+			);
+			path = "Second version";
+			sourceTree = "<group>";
+		};
+		DA6B1C3A1CEC4DAC0020021D /* Choiceness */ = {
+			isa = PBXGroup;
+			children = (
+				DA6B1C3B1CEC4DAC0020021D /* ChoicenessViewController.h */,
+				DA6B1C3C1CEC4DAC0020021D /* ChoicenessViewController.m */,
+			);
+			path = Choiceness;
+			sourceTree = "<group>";
+		};
+		DA6B1C3D1CEC4DAC0020021D /* Coffee */ = {
+			isa = PBXGroup;
+			children = (
+				DA6B1C3E1CEC4DAC0020021D /* CoffeeViewController.h */,
+				DA6B1C3F1CEC4DAC0020021D /* CoffeeViewController.m */,
+			);
+			path = Coffee;
+			sourceTree = "<group>";
+		};
+		DA6B1C401CEC4DAC0020021D /* Eat */ = {
+			isa = PBXGroup;
+			children = (
+				DA6B1C411CEC4DAC0020021D /* EatViewController.h */,
+				DA6B1C421CEC4DAC0020021D /* EatViewController.m */,
+			);
+			path = Eat;
+			sourceTree = "<group>";
+		};
+		DA6B1C491CEC4DAC0020021D /* Move */ = {
+			isa = PBXGroup;
+			children = (
+				DA6B1C4A1CEC4DAC0020021D /* MoveViewController.h */,
+				DA6B1C4B1CEC4DAC0020021D /* MoveViewController.m */,
+			);
+			path = Move;
+			sourceTree = "<group>";
+		};
+		DA6B1C4C1CEC4DAC0020021D /* Show */ = {
+			isa = PBXGroup;
+			children = (
+				DA6B1C4D1CEC4DAC0020021D /* ShowViewController.h */,
+				DA6B1C4E1CEC4DAC0020021D /* ShowViewController.m */,
+			);
+			path = Show;
+			sourceTree = "<group>";
+		};
+		DA6B1C4F1CEC4DAC0020021D /* Travel */ = {
+			isa = PBXGroup;
+			children = (
+				DA6B1C501CEC4DAC0020021D /* TravelViewController.h */,
+				DA6B1C511CEC4DAC0020021D /* TravelViewController.m */,
+			);
+			path = Travel;
 			sourceTree = "<group>";
 		};
 		DA6CEF0A1CDAF33300EEABFF /* Profile */ = {
@@ -936,11 +957,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA6B1C551CEC4DAC0020021D /* EatViewController.m in Sources */,
 				DA6CEF131CDAF42300EEABFF /* AddInformationViewController.m in Sources */,
 				DA4A88FB1CDB5CB700649983 /* UITextView+Placeholder.m in Sources */,
 				DAF5C8271CE0D1B500DA7901 /* SuperDao.m in Sources */,
 				DA018F2E1CD39D570051D2D7 /* ManListCell.m in Sources */,
-				DA018EE01CD1D36E0051D2D7 /* HomeMainViewController.m in Sources */,
 				DA4A89081CDC9A3200649983 /* GetCodeViewController.m in Sources */,
 				DABF8AE91CE9B76000CA2A1D /* WillMeetViewColler.m in Sources */,
 				DA6CEEFA1CD9FA7200EEABFF /* LabelAndTextFieldCell.m in Sources */,
@@ -950,9 +971,7 @@
 				DA36267C1CD1A98E00A8AE39 /* AppData.m in Sources */,
 				DA4A88FE1CDB5D7A00649983 /* CellTextView.m in Sources */,
 				DABF8AFB1CEAE71100CA2A1D /* SendEmailViewController.m in Sources */,
-				DA018EF21CD1D7D00051D2D7 /* CoffeeViewController.m in Sources */,
-				DA018EFB1CD1D8060051D2D7 /* ShowViewController.m in Sources */,
-				DA018EF51CD1D7DF0051D2D7 /* EatViewController.m in Sources */,
+				DA6B1C5B1CEC4DAC0020021D /* TravelViewController.m in Sources */,
 				DA6CEF101CDAF33300EEABFF /* MyProfileViewController.m in Sources */,
 				DABF8B011CEB158300CA2A1D /* AboutViewController.m in Sources */,
 				DAF5C8A01CE6191000DA7901 /* UIImageView+MHFacebookImageViewer.m in Sources */,
@@ -962,13 +981,13 @@
 				DAF5C8541CE5A5C100DA7901 /* UIView+frameAdjust.m in Sources */,
 				DAF5C8841CE5B95000DA7901 /* CoreTextLinkData.m in Sources */,
 				DA018F391CD44B210051D2D7 /* ThreeImageCell.m in Sources */,
-				DA018EF81CD1D7EB0051D2D7 /* MoveViewController.m in Sources */,
 				DAF5C88E1CE5B9B700DA7901 /* CTTextView.m in Sources */,
 				DAF5C83A1CE18A2400DA7901 /* UISheetView.m in Sources */,
 				DAF5C8461CE2DA6E00DA7901 /* LabelTableViewCell.m in Sources */,
 				DAF5C81F1CE0D0ED00DA7901 /* UserInfo.m in Sources */,
 				DA018F361CD443670051D2D7 /* UINavigationBar+BackgroundColor.m in Sources */,
 				DA36265C1CD1A75C00A8AE39 /* AppDelegate.m in Sources */,
+				DA6B1C541CEC4DAC0020021D /* CoffeeViewController.m in Sources */,
 				DA6CEF021CDA402C00EEABFF /* TextViewCell.m in Sources */,
 				DAF5C89D1CE6191000DA7901 /* MHFacebookImageViewer.m in Sources */,
 				DA3626591CD1A75C00A8AE39 /* main.m in Sources */,
@@ -977,28 +996,32 @@
 				DAF5C8BE1CE6D6AD00DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				DAF5C81E1CE0D0ED00DA7901 /* BaseModel.m in Sources */,
 				DA4A890B1CDCA0C000649983 /* WeChatLonginViewController.m in Sources */,
+				DA6B1C581CEC4DAC0020021D /* HomeMoreViewController.m in Sources */,
 				DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */,
 				DABF8AEC1CE9B7BD00CA2A1D /* WillAllowViewColler.m in Sources */,
 				DABF8B0A1CEB22A100CA2A1D /* UserProtocolViewController.m in Sources */,
 				DAF5C8861CE5B95000DA7901 /* CTFrameParser.m in Sources */,
 				DABF8AEF1CE9B83300CA2A1D /* AllMeetViewController.m in Sources */,
+				DA6B1C591CEC4DAC0020021D /* MoveViewController.m in Sources */,
 				DAF5C8BF1CE6D6AD00DA7901 /* RMMapper.m in Sources */,
 				DABF8AE01CE7509400CA2A1D /* MyMeetsViewController.m in Sources */,
 				DA018EDB1CD1BCD90051D2D7 /* MainViewController.m in Sources */,
 				DA6CEEF61CD9EFA800EEABFF /* CellTextField.m in Sources */,
 				DA018F5E1CD79D4A0051D2D7 /* RemindImageCell.m in Sources */,
 				DA36267D1CD1A98E00A8AE39 /* UITools.m in Sources */,
+				DA6B1C531CEC4DAC0020021D /* ChoicenessViewController.m in Sources */,
 				DAF5C8851CE5B95000DA7901 /* CoreTextUtils.m in Sources */,
 				DAF5C8821CE5B95000DA7901 /* CoreTextData.m in Sources */,
-				DA018EE31CD1D39B0051D2D7 /* HomeBaseViewController.m in Sources */,
-				DA018EFE1CD1D8150051D2D7 /* TravelViewController.m in Sources */,
 				DA4A890E1CDCA8D000649983 /* WeChatResgisterViewController.m in Sources */,
+				DA6B1C571CEC4DAC0020021D /* HomeMainViewController.m in Sources */,
 				DA018F271CD38AEF0051D2D7 /* MeViewController.m in Sources */,
-				DA018F611CD833650051D2D7 /* HomeMoreViewController.m in Sources */,
+				DA6B1C561CEC4DAC0020021D /* HomeBaseViewController.m in Sources */,
 				DA6CEEF21CD9EF9D00EEABFF /* CellButton.m in Sources */,
+				DA6B1C521CEC4DAC0020021D /* FristHomeViewController.m in Sources */,
 				DAF5C8C91CE6F3EB00DA7901 /* MyPhotosViewController.m in Sources */,
 				DAF5C82A1CE0D3C000DA7901 /* UserInfoDao.m in Sources */,
 				DABF8B071CEB18E700CA2A1D /* MeetBaseViewController.m in Sources */,
+				DA6B1C5A1CEC4DAC0020021D /* ShowViewController.m in Sources */,
 				DAF5C8CD1CE6F79900DA7901 /* PhotosGridViewController.m in Sources */,
 				DABF8AF81CEAC29A00CA2A1D /* SetingViewController.m in Sources */,
 				DAF5C8831CE5B95000DA7901 /* CoreTextImageData.m in Sources */,
@@ -1009,7 +1032,6 @@
 				DAF5C8D11CE6F87A00DA7901 /* SendInviteViewController.m in Sources */,
 				DA018F481CD4BAC60051D2D7 /* PhotoTableCell.m in Sources */,
 				DAF5C8BD1CE6D6AD00DA7901 /* NSObject+RMCopyable.m in Sources */,
-				DA018F011CD1DA820051D2D7 /* ChoicenessViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

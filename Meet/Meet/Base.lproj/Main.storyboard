@@ -15,10 +15,10 @@
                         <viewControllerLayoutGuide type="bottom" id="3bA-p7-q5u"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0ji-jD-B9M">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Psy-oG-7Dw">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Psy-oG-7Dw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDO-wu-VVD">
@@ -72,21 +72,21 @@
                                     <constraint firstItem="WLx-07-42b" firstAttribute="top" secondItem="Psy-oG-7Dw" secondAttribute="top" constant="5" id="wuQ-WV-Wki"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScU-lj-bRj">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScU-lj-bRj">
                                 <rect key="frame" x="0.0" y="40" width="320" height="415"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HeF-E7-90y" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="415"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HeF-E7-90y" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="415"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="1000" id="LWd-CL-9f4"/>
+                                            <constraint firstAttribute="width" constant="361" id="LWd-CL-9f4"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="HeF-E7-90y" firstAttribute="top" secondItem="ScU-lj-bRj" secondAttribute="top" id="OZI-dZ-ESQ"/>
                                     <constraint firstItem="HeF-E7-90y" firstAttribute="centerY" secondItem="ScU-lj-bRj" secondAttribute="centerY" id="UB0-TD-pDb"/>
-                                    <constraint firstAttribute="trailing" secondItem="HeF-E7-90y" secondAttribute="trailing" id="UVJ-8P-9Gf"/>
+                                    <constraint firstAttribute="trailing" secondItem="HeF-E7-90y" secondAttribute="trailing" constant="-41" id="UVJ-8P-9Gf"/>
                                     <constraint firstItem="HeF-E7-90y" firstAttribute="leading" secondItem="ScU-lj-bRj" secondAttribute="leading" id="ZXC-ht-X8C"/>
                                     <constraint firstAttribute="bottom" secondItem="HeF-E7-90y" secondAttribute="bottom" id="wcJ-21-vXT"/>
                                 </constraints>
@@ -119,7 +119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gcl-PD-Yow" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3314" y="922"/>
+            <point key="canvasLocation" x="3244" y="231"/>
         </scene>
         <!--首页-->
         <scene sceneID="zWZ-KB-NWK">
@@ -135,12 +135,49 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="HW9-i5-w3Z" kind="relationship" relationship="rootViewController" id="kgh-kb-NNa"/>
+                        <segue destination="V0u-Ua-dmJ" kind="relationship" relationship="rootViewController" id="kpy-Jr-8wG"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDa-Pr-vDk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2822" y="922"/>
+        </scene>
+        <!--Frist Home View Controller-->
+        <scene sceneID="smA-kx-vd5">
+            <objects>
+                <viewController id="V0u-Ua-dmJ" customClass="FristHomeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7uh-Sv-YJM"/>
+                        <viewControllerLayoutGuide type="bottom" id="23B-Sw-HnP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sh6-Pm-of4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RVi-9b-7eS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="V0u-Ua-dmJ" id="nUY-bz-a4H"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="23B-Sw-HnP" firstAttribute="top" secondItem="RVi-9b-7eS" secondAttribute="bottom" id="eKd-SY-lWu"/>
+                            <constraint firstAttribute="trailing" secondItem="RVi-9b-7eS" secondAttribute="trailing" id="ewM-oY-tXn"/>
+                            <constraint firstItem="RVi-9b-7eS" firstAttribute="top" secondItem="Sh6-Pm-of4" secondAttribute="top" id="hTq-gK-IWO"/>
+                            <constraint firstItem="RVi-9b-7eS" firstAttribute="leading" secondItem="Sh6-Pm-of4" secondAttribute="leading" id="q41-iN-Cm3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="L9c-eR-gZx"/>
+                    <connections>
+                        <outlet property="tableView" destination="RVi-9b-7eS" id="Bo4-sl-7qh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dnb-ul-drN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3268" y="922"/>
         </scene>
         <!--My Meets View Controller-->
         <scene sceneID="eT8-Ye-8tR">
@@ -308,7 +345,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l7B-Vk-ACb" id="45b-TE-jp4">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="83.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sr6-ba-Ohc">
@@ -363,7 +400,7 @@
                                         <rect key="frame" x="0.0" y="176" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xty-Ls-wzp" id="w8H-bR-N8J">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFd-sI-CBP">

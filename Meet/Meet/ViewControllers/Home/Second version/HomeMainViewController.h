@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, HomeContentViewType) {
     HomeContentViewTypeTravel,
 };
 
-@interface HomeMainViewController : UIViewController
+@interface HomeMainViewController : UIViewController//////第二版时可以用！！！=============
 
 @property (assign, nonatomic) HomeContentViewType currentContentType;
 

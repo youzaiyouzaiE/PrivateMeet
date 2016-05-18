@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MeetBaseViewController : UIViewController<UINavigationControllerDelegate>
+/////用于push  出的子 controller
+@interface MeetBaseViewController : UIViewController<UINavigationControllerDelegate> /////子controller 左返回方法已经实现，侧滑返回事件实现
 
 
 - (void)backButtonAction:(UIButton *)sender;

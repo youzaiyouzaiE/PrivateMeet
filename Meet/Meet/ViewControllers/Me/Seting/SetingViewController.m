@@ -82,7 +82,7 @@
     
     if (indexPath.section == _contentDic.allKeys.count - 1) {//////
         if ( !_sheetView) {
-            _sheetView = [[UISheetView alloc] initWithContenArray:@[@"退出登录",@"取消"]];
+            _sheetView = [[UISheetView alloc] initWithContenArray:@[@"退出登录",@"取消"] titleMessage:@"退出后依然会保留当前用户信息"];
             _sheetView.delegate = self;
         }
         [_sheetView show];
@@ -110,8 +110,7 @@
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(nullable NSError *)error {
     NSString *msg;
     
-    switch (result)
-    {
+    switch (result) {
         case MFMailComposeResultCancelled:
             msg = @"邮件发送取消";
             break;
@@ -128,7 +127,7 @@
             break;
     }
     [[UITools shareInstance] showMessageToView:controller.view message:msg autoHide:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self dismissViewControllerAnimated:YES completion:^{
         }];
     });
@@ -137,12 +136,13 @@
 
 #pragma mark - UISheetViewDelegate
 - (void)sheetView:(UISheetView *)sheet didSelectRowAtIndex:(NSInteger)index {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLogoutNotification" object:nil];
+    
     [_sheetView hidden];
 }
 
 
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

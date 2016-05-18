@@ -15,7 +15,7 @@
 #import "TravelViewController.h"
 #import "HomeMoreViewController.h"
 
-
+//////第二版时可以用！！！===============
 @interface HomeMainViewController () <UIScrollViewDelegate,UIGestureRecognizerDelegate>{
     
     __weak IBOutlet UIView *titleView;

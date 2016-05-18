@@ -67,6 +67,7 @@
     if (state.intValue) {
         [[UserInfo shareInstance] mappingValuesFormWXUserInfo:[WXUserInfo shareInstance]];
         NSDictionary *dic = [[UserInfo shareInstance] dictionaryWithUserInfo];
+        [AppData shareInstance].isLogin = YES;
         [[NSUserDefaults standardUserDefaults] setObject:dic forKey:keyUserInfo];
         
         UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
@@ -91,7 +92,6 @@
 //    
 //    return [NSDictionary dictionaryWithDictionary:dict];
 //}
-
 
 #pragma mark - sender to WeChat
 -(void)sendAuthRequest {

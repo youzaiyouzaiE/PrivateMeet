@@ -13,7 +13,9 @@
 
 @interface UISheetView ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate> {
     NSArray *_arrayContents;
-    CGRect _frame ;
+    CGRect _frame;
+    NSString *_titleMessage;
+     NSInteger _activeItem;
 }
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -21,6 +23,28 @@
 @end
 
 @implementation UISheetView
+
+- (instancetype)initWithContenArray:(NSArray *)array titleMessage:(NSString *)message andActiveItem:(NSInteger)item {
+    self = [super init];
+    if (self) {
+        _activeItem = item;
+        self = [self initWithContenArray:array titleMessage:message];
+    }
+    return self;
+}
+
+- (instancetype)initWithContenArray:(NSArray *)array titleMessage:(NSString *)message {
+    self = [super init];
+    if (self) {
+        if (message != nil && message.length > 0 && ![message isEqualToString:@""]) {
+            _titleMessage = message;
+        } else
+            _titleMessage = nil;
+       self = [self initWithContenArray:array];
+    }
+    return self;
+}
+
 
 - (instancetype)initWithContenArray:(NSArray *)array {
     self = [super init];
@@ -41,6 +65,9 @@
     }
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, ScreenHeight + self.bounds.size.height, self.bounds.size.width, _arrayContents.count * TABLE_CELL_H + TABLE_SECTION_GAP) style:UITableViewStylePlain];
+    if (_titleMessage) {
+        _tableView.frame = CGRectMake(0, ScreenHeight + self.bounds.size.height, self.bounds.size.width, (_arrayContents.count + 1) * TABLE_CELL_H + TABLE_SECTION_GAP);
+    }
     _frame = self.tableView.frame;
     self.tableView.scrollEnabled = NO;
     [self addSubview:self.tableView];
@@ -78,7 +105,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return _arrayContents.count - 1;
+        if (_titleMessage) {
+            return _arrayContents.count;
+        } else {
+            return _arrayContents.count - 1;
+        }
+    }else if (section == 1) {
+        return 1;
     } else
         return 1;
 }
@@ -97,11 +130,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    
     if (indexPath.section == 0) {
-        cell.textLabel.text = _arrayContents[indexPath.row];
+        if (_titleMessage) {
+            if (indexPath.row == 0) {
+                cell.textLabel.text = _titleMessage;
+                cell.textLabel.font = [UIFont systemFontOfSize:14];
+                cell.textLabel.textColor = [UIColor lightGrayColor];
+            } else
+                cell.textLabel.text = _arrayContents[indexPath.row -1];
+        } else
+            cell.textLabel.text = _arrayContents[indexPath.row];
     } else if (indexPath.section == 1) {
         cell.textLabel.text = _arrayContents.lastObject;
     }
+    
     return cell;
 }
 
@@ -110,10 +153,21 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([self.delegate respondsToSelector:@selector(sheetView:didSelectRowAtIndex:)]) {
         NSInteger index;
-        if (indexPath.section == 0) {
-            index = indexPath.row;
+        if (!_titleMessage) {
+            if (indexPath.section == 0) {
+                index = indexPath.row;
+            } else {
+                index = _arrayContents.count - 1;
+            }
         } else {
-            index = _arrayContents.count - 1;
+            if (indexPath.section == 0) {
+                if (indexPath.row == 0) {
+                    return;
+                }
+                index = indexPath.row -1;
+            } else {
+                index = _arrayContents.count - 1;
+            }
         }
         [self.delegate sheetView:self didSelectRowAtIndex:index];
     }

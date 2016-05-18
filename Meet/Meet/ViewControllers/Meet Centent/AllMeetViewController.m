@@ -27,17 +27,21 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            // 进入刷新状态后会自动调用这个block
-        }];
-        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-        [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 进入刷新状态后会自动调用这个block
+    }];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    
+    [self.tableView.mj_header beginRefreshing];
+    
 }
 
 - (void)loadNewData {
     NSLog(@"ChoicenessViewController refreshing");
-    sleep(1);
-    [self.tableView.mj_header endRefreshing];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         [self.tableView.mj_header endRefreshing];
+    });
 }
 
 - (void)didReceiveMemoryWarning {

@@ -36,8 +36,9 @@
 
 - (void)loadNewData {
     NSLog(@"ChoicenessViewController refreshing");
-    sleep(1);
-    [self.tableView.mj_header endRefreshing];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView.mj_header endRefreshing];
+    });
 }
 
 - (void)didReceiveMemoryWarning {

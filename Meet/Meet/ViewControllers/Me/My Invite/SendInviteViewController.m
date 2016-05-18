@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"个人介绍";
+    self.navigationItem.title = @"我的邀约";
     [UITools customNavigationLeftBarButtonForController:self action:@selector(backAction:)];
     [UITools navigationRightBarButtonForController:self action:@selector(doneAction:) normalTitle:@"完成" selectedTitle:nil];
     self.hidesBottomBarWhenPushed = YES;
@@ -169,11 +169,10 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    
-    if (textView.text.length >= 200 && text.length > range.length) {
-        return NO;
-    }
-    
+//    if (textView.text.length >= 200 && text.length > range.length) {
+//        return NO;
+//    }
+//    
     return YES;
 }
 

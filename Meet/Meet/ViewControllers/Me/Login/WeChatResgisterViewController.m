@@ -71,9 +71,7 @@
         [SHARE_APPDELEGATE weChatRefreshAccess_Token];
         return ;
     }
-//    if ([WXAccessModel shareInstance].isLostRefresh_token && [WXAccessModel shareInstance].isLostAccess_token) {
         [self sendAuthRequest];
-//    }
 }
 
 #pragma mark - NSNotificationCenter

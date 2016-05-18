@@ -44,7 +44,7 @@
 }
 
 - (void)mappingValuesFormWXUserInfo:(WXUserInfo *)wxUser {
-    self.userId = wxUser.unionid;
+    self.userId = FORMAT(@"%@110",wxUser.unionid);
     self.sex = wxUser.sex;
     self.headimgurl = wxUser.headimgurl;
     self.city = wxUser.city;

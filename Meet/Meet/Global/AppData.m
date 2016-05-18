@@ -24,10 +24,10 @@ static AppData *appData = nil;
 }
 
 #pragma mark - dataBase operation
-NSString *const databaseName = @"MeetDB.db";
-- (BOOL)initDataBaseToDocument {
+NSString *const UserInfoDatabaseName = @"MeetUserDB.db";
+- (BOOL)initUserDataBaseToDocument {
     NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *dbPath = [docPath stringByAppendingPathComponent:databaseName];
+    NSString *dbPath = [docPath stringByAppendingPathComponent:UserInfoDatabaseName];
     if (!_db) {
         self.db = [FMDatabase databaseWithPath:dbPath];
     }
@@ -39,6 +39,7 @@ NSString *const databaseName = @"MeetDB.db";
     }
     return YES;
 }
+
 
 #pragma mark - FilePath
 + (NSString *)getCachesDirectoryDocumentPath:(NSString *)documentName {

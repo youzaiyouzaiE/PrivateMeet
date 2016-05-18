@@ -45,15 +45,16 @@
     [WXApi registerApp:@"wx49c4b6f590f83469"];
     [TalkingData sessionStarted:@"7244A450FDAFB46FFEF7C1B68FBA93D3" withChannelId:@"app store"];
     
-    if ([[AppData shareInstance] initDataBaseToDocument]) {
-        NSLog(@"数据库 规划成功");
+    if ([[AppData shareInstance] initUserDataBaseToDocument]) {
+//        NSLog(@" 数据库 规划成功");
         [[UserInfoDao shareInstance] selectUserWithUserLoginType];
         if ([UserInfo shareInstance].userId && [UserInfo shareInstance].userId.length > 1 && ![[UserInfo shareInstance].userId isEqualToString:@""]) {
             [AppData shareInstance].isLogin = YES;
         }
     } else {
-        NSLog(@"数据库 创建失败");
+        NSLog(@"用户信息 数据库 创建失败");
     }
+    
     
     NSDictionary *access_TokenDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyAccessModelSave];
     NSDictionary *weChatUserInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:keyWXUserInfo];

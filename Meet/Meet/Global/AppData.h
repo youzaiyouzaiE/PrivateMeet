@@ -23,7 +23,8 @@
 
 
 + (instancetype) shareInstance;
-- (BOOL)initDataBaseToDocument;
+
+- (BOOL)initUserDataBaseToDocument;
 
 + (NSString *)random_uuid;
 + (NSString *)getCachesDirectoryDocumentPath:(NSString *)documentName;

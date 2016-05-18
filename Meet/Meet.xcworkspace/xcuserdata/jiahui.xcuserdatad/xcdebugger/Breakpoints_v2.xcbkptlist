@@ -195,13 +195,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Meet/AppDelegate.m"
-            timestampString = "485265344.889666"
+            filePath = "Meet/ViewControllers/Me/Profile/MoreProfileViewController.m"
+            timestampString = "485276346.344002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "-application:didFinishLaunchingWithOptions:"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-moreDescriptionModelsFromDB"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -211,13 +211,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Meet/Model/ModelBean/UserInfo.m"
-            timestampString = "485266986.520222"
+            filePath = "Meet/ViewControllers/Me/Profile/MoreProfileViewController.m"
+            timestampString = "485276346.344002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "-valueArray"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "-saveAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -227,29 +227,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Meet/Model/ModelBean/UserInfo.m"
-            timestampString = "485266987.552271"
+            filePath = "Meet/ViewControllers/Me/Profile/MoreProfileViewController.m"
+            timestampString = "485276346.344002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-columnArray"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Meet/Model/Dao/SuperDao.m"
-            timestampString = "485267198.903981"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "-insertBean:"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-moreDescriptionModelsFromDB"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

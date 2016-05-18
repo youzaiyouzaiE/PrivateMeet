@@ -13,24 +13,29 @@
 #import "UITextView+Placeholder.h"
 #import "CellTextView.h"
 #import "MyPhotosViewController.h"
+#import "MoreDescriptionDao.h"
+#import "MoreDescriptionModel.h"
 
 #define TABLE_HEADER_VIEW_H         49
 
 @interface MoreProfileViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UIGestureRecognizerDelegate,UITextViewDelegate> {
-    
+    NSMutableArray *_arrayModel;
     NSMutableArray *_arraySection;
     NSMutableDictionary *_dicHeaderContent;
     NSMutableDictionary *_dicPlaceHolder;
+    NSMutableDictionary *_dicContentModels;
     NSCache *_cacheImages;
     NSMutableArray *_arrayHaveImageIndex;/////那些位置有图片 得到本地图片用
     NSMutableArray *_arrayCacheImgaeKeys;
+    
+    
     
     BOOL keyboardShow;
     CGRect tableViewFrame;
     
     NSIndexPath *_editingIndexPath;
     BOOL isEditSectionTitle;
-    NSUInteger *_editingSection;
+    NSUInteger _editingSection;
     
     BOOL isModifyImages;
 }
@@ -52,18 +57,43 @@
     self.view.backgroundColor = [UIColor whiteColor];
 //    self.hidesBottomBarWhenPushed = YES;
     [UITools navigationRightBarButtonForController:self action:@selector(saveAction:) normalTitle:@"保存" selectedTitle:nil];
-    
+    _arrayModel = [NSMutableArray array];
     _arraySection = [NSMutableArray arrayWithArray:@[@"lifeAndJob",@"interset",@"custom0",@"hopeFriends",@"last"]];
     _dicHeaderContent = [NSMutableDictionary dictionaryWithDictionary:@{_arraySection[0]:@"您的工作、生活情况",_arraySection[1]:@"您的兴趣及爱好",_arraySection[2]:@"给您增加的内容起个标题吧",_arraySection[3]:@"您希望认识什么样的朋友",_arraySection[4]:@""}];
     _dicPlaceHolder = [NSMutableDictionary dictionaryWithDictionary:@{_arraySection[0]:@"包括但不限于：你的工作内容、工作状态及工作中的收获；你的生活方式、对生活要求及对未来生活的期待。",_arraySection[1]:@"可以分享下你的兴趣爱好都有哪些，为什么会喜欢，以及有什么期待",_arraySection[2]:@"再分享一些其他的故事",_arraySection[3]:@"可以说说你希望认识什么样的朋友",_arraySection[4]:@""}];
     _cacheImages = [[NSCache alloc] init];
-    
+    _arrayModel = [NSMutableArray array];
     _arrayHaveImageIndex = [NSMutableArray array];
     _arrayCacheImgaeKeys = [NSMutableArray array];
+    _dicContentModels = [NSMutableDictionary dictionary];
+    [self moreDescriptionModelsFromDB];
+    if (_arrayModel.count == 0) {
+        [self createModelDicContent];
+    }
     
     [self getImagesInTableLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShowAction:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHideAction:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)createModelDicContent {
+    for (int i = 0; i < _arraySection.count -1; i++) {
+        MoreDescriptionModel *model = [[MoreDescriptionModel alloc] init];
+        model.userId = [UserInfo shareInstance].idKey;
+        model.index = i;
+        model.title = _dicHeaderContent[_arraySection[i]];
+        NSString *key = FORMAT(@"%d",i);
+        [_dicContentModels setObject:model forKey:key];
+    }
+}
+
+- (void)moreDescriptionModelsFromDB {
+    NSString *userId = [UserInfo shareInstance].idKey;
+    NSArray *allModel = [[MoreDescriptionDao shareInstance] selectMoreDescriptionByUserID:userId];
+    NSArray *array = [[MoreDescriptionDao shareInstance] selectMoreDescriptionByUserIDOrderByIndexASC:[UserInfo shareInstance].idKey];
+    if (array.count > 0) {
+        [_arrayModel addObjectsFromArray:array];
+    }
 }
 
 - (void)getImagesInTableLocation {
@@ -155,7 +185,9 @@
 }
 
 - (void)saveAction:(id)sender {
-     NSLog(@" ");
+    for (MoreDescriptionModel *model in _dicContentModels.allValues) {
+        [[MoreDescriptionDao shareInstance] insertBean:model];
+    }
 }
 
 #pragma mark - NSNotificationCenter
@@ -236,6 +268,8 @@
             cell.textView.placeholder = _dicPlaceHolder[_arraySection[indexPath.section]];
 //             cell.textView.text = @"暗渡陈仓右脚喂奶呇油烟机滥勋进为因肖没录偿为暴僘/n\n彛溃烂油烟机1是呀舅派\n/n烤日光灯炒股烛烟消云散中华\n人民共和国国炽虽";
             cell.textView.indexPath = indexPath;
+            MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%d",indexPath.section)];
+            cell.textView.text = model.content;
             return cell;
         }
     } else if (indexPath.row == 1){
@@ -287,6 +321,15 @@
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if ([textField isKindOfClass:[CellTextField class]]) {
+        CellTextField *cellTextField = (CellTextField *)textField;
+        _editingSection = cellTextField.section;
+        MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%d",_editingSection)];
+        model.title = textField.text;
+    }
+}
+
 #pragma mark -  UITextViewDelegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
     isEditSectionTitle = NO;
@@ -303,13 +346,10 @@
     if ([textView isKindOfClass:[CellTextView class]]) {
         CellTextView *cellText = (CellTextView *)textView;
         _editingIndexPath = cellText.indexPath;
-         NSLog(@"textView text:%@",textView.text);
-//        NSString *string = textView.text;
-//        NSArray *arry = [string componentsSeparatedByString:@"\n"];
-//        NSLog(@"array %@",arry);
+        MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%d",_editingIndexPath.section)];
+        model.content = textView.text;
     }
 }
-
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([textView isKindOfClass:[CellTextView class]]) {

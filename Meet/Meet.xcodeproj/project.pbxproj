@@ -27,6 +27,8 @@
 		DA3626671CD1A75C00A8AE39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA3626651CD1A75C00A8AE39 /* LaunchScreen.storyboard */; };
 		DA36267C1CD1A98E00A8AE39 /* AppData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3626721CD1A98E00A8AE39 /* AppData.m */; };
 		DA36267D1CD1A98E00A8AE39 /* UITools.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3626741CD1A98E00A8AE39 /* UITools.m */; };
+		DA41592B1CECA057006970DF /* MoreDescriptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA41592A1CECA057006970DF /* MoreDescriptionModel.m */; };
+		DA41592E1CECA074006970DF /* MoreDescriptionDao.m in Sources */ = {isa = PBXBuildFile; fileRef = DA41592D1CECA074006970DF /* MoreDescriptionDao.m */; };
 		DA4A88F61CDB1DD900649983 /* AddStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4A88F51CDB1DD900649983 /* AddStarViewController.m */; };
 		DA4A88F81CDB2BFD00649983 /* LabelAndTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA4A88F71CDB2BFC00649983 /* LabelAndTextFieldCell.xib */; };
 		DA4A88FB1CDB5CB700649983 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4A88FA1CDB5CB700649983 /* UITextView+Placeholder.m */; };
@@ -153,6 +155,10 @@
 		DA3626741CD1A98E00A8AE39 /* UITools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITools.m; sourceTree = "<group>"; };
 		DA3626801CD1A9D300A8AE39 /* Meet.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Meet.pch; sourceTree = "<group>"; };
 		DA3626811CD1AADD00A8AE39 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
+		DA4159291CECA057006970DF /* MoreDescriptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreDescriptionModel.h; sourceTree = "<group>"; };
+		DA41592A1CECA057006970DF /* MoreDescriptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreDescriptionModel.m; sourceTree = "<group>"; };
+		DA41592C1CECA074006970DF /* MoreDescriptionDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreDescriptionDao.h; sourceTree = "<group>"; };
+		DA41592D1CECA074006970DF /* MoreDescriptionDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreDescriptionDao.m; sourceTree = "<group>"; };
 		DA4A88F41CDB1DD900649983 /* AddStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStarViewController.h; sourceTree = "<group>"; };
 		DA4A88F51CDB1DD900649983 /* AddStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStarViewController.m; sourceTree = "<group>"; };
 		DA4A88F71CDB2BFC00649983 /* LabelAndTextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelAndTextFieldCell.xib; sourceTree = "<group>"; };
@@ -684,6 +690,8 @@
 				DAF5C8261CE0D1B500DA7901 /* SuperDao.m */,
 				DAF5C8281CE0D3C000DA7901 /* UserInfoDao.h */,
 				DAF5C8291CE0D3C000DA7901 /* UserInfoDao.m */,
+				DA41592C1CECA074006970DF /* MoreDescriptionDao.h */,
+				DA41592D1CECA074006970DF /* MoreDescriptionDao.m */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -695,6 +703,8 @@
 				DAF5C8171CE0D0ED00DA7901 /* BaseModel.m */,
 				DAF5C8181CE0D0ED00DA7901 /* UserInfo.h */,
 				DAF5C8191CE0D0ED00DA7901 /* UserInfo.m */,
+				DA4159291CECA057006970DF /* MoreDescriptionModel.h */,
+				DA41592A1CECA057006970DF /* MoreDescriptionModel.m */,
 				DAF5C81A1CE0D0ED00DA7901 /* WXAccessModel.h */,
 				DAF5C81B1CE0D0ED00DA7901 /* WXAccessModel.m */,
 				DAF5C81C1CE0D0ED00DA7901 /* WXUserInfo.h */,
@@ -998,9 +1008,11 @@
 				DA4A890B1CDCA0C000649983 /* WeChatLonginViewController.m in Sources */,
 				DA6B1C581CEC4DAC0020021D /* HomeMoreViewController.m in Sources */,
 				DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */,
+				DA41592B1CECA057006970DF /* MoreDescriptionModel.m in Sources */,
 				DABF8AEC1CE9B7BD00CA2A1D /* WillAllowViewColler.m in Sources */,
 				DABF8B0A1CEB22A100CA2A1D /* UserProtocolViewController.m in Sources */,
 				DAF5C8861CE5B95000DA7901 /* CTFrameParser.m in Sources */,
+				DA41592E1CECA074006970DF /* MoreDescriptionDao.m in Sources */,
 				DABF8AEF1CE9B83300CA2A1D /* AllMeetViewController.m in Sources */,
 				DA6B1C591CEC4DAC0020021D /* MoveViewController.m in Sources */,
 				DAF5C8BF1CE6D6AD00DA7901 /* RMMapper.m in Sources */,

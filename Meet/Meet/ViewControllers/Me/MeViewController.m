@@ -39,21 +39,20 @@
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     }
     
-    if ([[UserInfo shareInstance].userId isEqualToString:@"1234567890"]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView:) name:FRIST_LOGIN_NOTIFICATION_Key object:nil];
+    if (![AppData shareInstance].isLogin) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHeadTableViewCell:) name:FRIST_LOGIN_NOTIFICATION_Key object:nil];
     }
 //    [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context: nil];
 //    [self setNeedsStatusBarAppearanceUpdate];
     _imagesArray = [NSMutableArray array];
     
     [self loadHeadImageView];
-    [self checkDocumentGetSmallImages];
+    [self checkDocumentGetSmallImagesAndUpdate];
 }
 
-- (void)updateTableView:(NSNotification *)notification {
+- (void)updateHeadTableViewCell:(NSNotification *)notification {
     [self loadHeadImageView];
-    [self checkDocumentGetSmallImages];
-    [_tableView reloadData];
+    [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:FRIST_LOGIN_NOTIFICATION_Key object:nil];
 }
 
@@ -63,7 +62,7 @@
     _headImage = [UIImage imageWithContentsOfFile:saveImagePath];
 }
 
-- (void)checkDocumentGetSmallImages {////获取cell 2里的image
+- (void)checkDocumentGetSmallImagesAndUpdate {////获取cell 2里的image
     [_imagesArray removeAllObjects];
     NSMutableArray *array = [NSMutableArray array];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -258,7 +257,7 @@
              }
              [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
              if (updateInfo) {
-                 [self checkDocumentGetSmallImages];
+                 [self checkDocumentGetSmallImagesAndUpdate];
              }
          };
         [self.navigationController pushViewController:myProfileVC animated:YES];
@@ -280,7 +279,10 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"pushToMyDisplayVC"]) {
-        
+        MyDisplayViewController *disPlayVC = (MyDisplayViewController *)segue.destinationViewController;
+        disPlayVC.block = ^{
+            [self checkDocumentGetSmallImagesAndUpdate];
+        };
     }
 }
 

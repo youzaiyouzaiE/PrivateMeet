@@ -21,7 +21,7 @@
     __weak IBOutlet UIScrollView *scrollView;
     NSInteger _scrollViewContentHeight;
     NSMutableDictionary *_dicContentImages;
-    
+    BOOL _isModifyPhotos;
 }
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewConstraintH;
@@ -116,7 +116,7 @@
 }
 
 #pragma  mark - files Data
-- (void)loadDocumentGetAllBigImages {////获取cell 2里的image
+- (void)loadDocumentGetAllBigImages {////获取MeVC里 cell 2里的image
     [_dicContentImages removeAllObjects];
     NSMutableArray *array = [NSMutableArray array];
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -152,6 +152,9 @@
 
 #pragma mark - action
 - (void)backAction:(id)sender {
+    if (_isModifyPhotos) {
+        self.block();
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -160,7 +163,7 @@
     UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
     MoreProfileViewController *moreVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MoreProfileViewController"];
     moreVC.modifyBlock = ^(){
-        
+        _isModifyPhotos = YES;
     };
     moreVC.editType = 1;
     [self.navigationController pushViewController:moreVC animated:YES];

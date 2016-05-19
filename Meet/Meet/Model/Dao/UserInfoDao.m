@@ -72,7 +72,7 @@ static NSString *const tableName = @"UserInfoTable";
 }
 
 - (NSArray *)selectUserInfoWithUserId:(NSString *)userId {
-    NSString *whereSql = [NSString stringWithFormat:@"%@ = %@", k_User_userId,userId];
+    NSString *whereSql = [NSString stringWithFormat:@"%@ = '%@' ", k_User_userId,userId];
     return [self selectWithWhere:whereSql];
 }
 

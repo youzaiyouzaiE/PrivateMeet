@@ -66,31 +66,42 @@
     _arrayHaveImageIndex = [NSMutableArray array];
     _arrayCacheImgaeKeys = [NSMutableArray array];
     _dicContentModels = [NSMutableDictionary dictionary];
+    
     [self moreDescriptionModelsFromDB];
-    if (_arrayModel.count == 0) {
-        [self createModelDicContent];
-    }
+    [self cacheMoreDescriptionModelInDicContent];
     
     [self getImagesInTableLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShowAction:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHideAction:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)createModelDicContent {
+- (void)cacheMoreDescriptionModelInDicContent {
     for (int i = 0; i < _arraySection.count -1; i++) {
-        MoreDescriptionModel *model = [[MoreDescriptionModel alloc] init];
-        model.userId = [UserInfo shareInstance].idKey;
-        model.index = i;
-        model.title = _dicHeaderContent[_arraySection[i]];
         NSString *key = FORMAT(@"%d",i);
+        MoreDescriptionModel *model;
+        if (_arrayModel.count == 0) {
+            model = [self createDescriptionModelForIndex:i];
+        } else {
+            model = [[MoreDescriptionDao shareInstance] selectMoreDescriptionByUserID:[UserInfo shareInstance].userId andIndex:i];
+            if (!model) {
+                model = [self createDescriptionModelForIndex:i];
+            }
+        }
         [_dicContentModels setObject:model forKey:key];
     }
 }
 
+- (MoreDescriptionModel *)createDescriptionModelForIndex:(NSInteger) index {
+    MoreDescriptionModel *model = [[MoreDescriptionModel alloc] init];
+    model.userId = [UserInfo shareInstance].userId;
+    model.index = index;
+    model.title = _dicHeaderContent[_arraySection[index]];
+    return model;
+}
+
 - (void)moreDescriptionModelsFromDB {
-    NSString *userId = [UserInfo shareInstance].idKey;
-    NSArray *allModel = [[MoreDescriptionDao shareInstance] selectMoreDescriptionByUserID:userId];
-    NSArray *array = [[MoreDescriptionDao shareInstance] selectMoreDescriptionByUserIDOrderByIndexASC:[UserInfo shareInstance].idKey];
+    NSString *userId = [UserInfo shareInstance].userId;
+    NSArray *array = [[MoreDescriptionDao shareInstance] selectMoreDescriptionByUserIDOrderByIndexASC:userId];
     if (array.count > 0) {
         [_arrayModel addObjectsFromArray:array];
     }
@@ -121,7 +132,6 @@
 }
 
 - (void)loadSmallImagesInCachWithIndexPath:(NSIndexPath *)indexPath isReload:(BOOL)isReload{
-//    NSLog(@"SmallImages indePath Section :%d, row :%d",indexPath.section, indexPath.row);
     if (isReload) {////删除之前 对应indexPath里缓存的内容
         NSString *head = FORMAT(@"%ld-%ld-",(long)indexPath.section,(long)indexPath.row);
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF BEGINSWITH[cd] %@",head];
@@ -186,7 +196,10 @@
 
 - (void)saveAction:(id)sender {
     for (MoreDescriptionModel *model in _dicContentModels.allValues) {
-        [[MoreDescriptionDao shareInstance] insertBean:model];
+        if (model.idKey.length > 0) {
+            [[MoreDescriptionDao shareInstance] updateBean:model];
+        } else
+            [[MoreDescriptionDao shareInstance] insertBean:model];
     }
 }
 
@@ -266,7 +279,6 @@
                 cell.textView.delegate = self;
             }
             cell.textView.placeholder = _dicPlaceHolder[_arraySection[indexPath.section]];
-//             cell.textView.text = @"暗渡陈仓右脚喂奶呇油烟机滥勋进为因肖没录偿为暴僘/n\n彛溃烂油烟机1是呀舅派\n/n烤日光灯炒股烛烟消云散中华\n人民共和国国炽虽";
             cell.textView.indexPath = indexPath;
             MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%d",indexPath.section)];
             cell.textView.text = model.content;

@@ -8,6 +8,8 @@
 
 #import "SuperDao.h"
 
+@class MoreDescriptionModel;
+
 @interface MoreDescriptionDao : SuperDao
 
 
@@ -15,5 +17,6 @@
 
 - (NSArray *)selectMoreDescriptionByUserIDOrderByIndexASC:(NSString *)rserId;
 - (NSArray *)selectMoreDescriptionByUserID:(NSString *)rserId ;
+- (MoreDescriptionModel *)selectMoreDescriptionByUserID:(NSString *)rserId andIndex:(NSInteger)index;
 
 @end

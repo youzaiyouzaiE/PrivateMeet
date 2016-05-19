@@ -38,6 +38,7 @@
     NSUInteger _editingSection;
     
     BOOL isModifyImages;
+    BOOL isModifyText;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -101,7 +102,7 @@
 
 - (void)moreDescriptionModelsFromDB {
     NSString *userId = [UserInfo shareInstance].userId;
-    NSArray *array = [[MoreDescriptionDao shareInstance] selectMoreDescriptionByUserIDOrderByIndexASC:userId];
+    NSArray *array = [[MoreDescriptionDao shareInstance] selectMoreDescriptionByUserID:userId];
     if (array.count > 0) {
         [_arrayModel addObjectsFromArray:array];
     }
@@ -117,7 +118,6 @@
             [rowConttArray enumerateObjectsUsingBlock:^(NSString *row, NSUInteger idx, BOOL *stop) {
 //                NSLog(@"indePath Section :%@, row :%@",section, row);
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row.intValue inSection:section.intValue];
-//                NSLog(@"path indePath Section :%d, row :%d",indexPath.section, indexPath.row);
                 [_arrayHaveImageIndex addObject:indexPath];
             }];
         }];
@@ -191,6 +191,9 @@
     if (isModifyImages) {
         self.modifyBlock();
     }
+    if (isModifyText) {
+        self.modifyTextBlock();
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -200,6 +203,12 @@
             [[MoreDescriptionDao shareInstance] updateBean:model];
         } else
             [[MoreDescriptionDao shareInstance] insertBean:model];
+    }
+    if (isModifyImages) {
+        self.modifyBlock();
+    }
+    if (isModifyText) {
+        self.modifyTextBlock();
     }
 }
 
@@ -280,7 +289,7 @@
             }
             cell.textView.placeholder = _dicPlaceHolder[_arraySection[indexPath.section]];
             cell.textView.indexPath = indexPath;
-            MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%d",indexPath.section)];
+            MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%ld",(long)indexPath.section)];
             cell.textView.text = model.content;
             return cell;
         }
@@ -338,7 +347,10 @@
         CellTextField *cellTextField = (CellTextField *)textField;
         _editingSection = cellTextField.section;
         MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%d",_editingSection)];
-        model.title = textField.text;
+        if (![model.title isEqualToString:textField.text]) {
+            isModifyText = YES;
+            model.title = textField.text;
+        }
     }
 }
 
@@ -359,7 +371,10 @@
         CellTextView *cellText = (CellTextView *)textView;
         _editingIndexPath = cellText.indexPath;
         MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%d",_editingIndexPath.section)];
-        model.content = textView.text;
+        if (![model.content isEqualToString:textView.text]) {
+            isModifyText = YES;
+            model.content = textView.text;
+        }
     }
 }
 

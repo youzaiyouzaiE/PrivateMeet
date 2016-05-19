@@ -18,6 +18,7 @@
  NSString *const k_User_headimgurl = @"User_headimgurl";
  NSString *const k_User_sex = @"User_sex";
  NSString *const k_User_eMail = @"User_eMail";
+ NSString *const k_User_modifySex = @"User_modifySex";
 
 @implementation UserInfo
 
@@ -34,17 +35,16 @@
 
 - (void)mappingValuesFormUserInfo:(UserInfo *)user {
     self.idKey = user.idKey;
-    self.userId = user.userId;
-    self.sex = user.sex;
-    self.headimgurl = user.headimgurl;
-    self.city = user.city;
-    self.country = user.country;
-    self.name = user.name;
-    self.userType = user.userType;
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([self class], &count);
+    for (int i = 0; i < count; i++) {
+        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
+        [self setValue:[user valueForKey:key] forKey:key];
+    }
 }
 
 - (void)mappingValuesFormWXUserInfo:(WXUserInfo *)wxUser {
-    self.userId = FORMAT(@"%@110",wxUser.unionid);
+    self.userId = wxUser.unionid;
     self.sex = wxUser.sex;
     self.headimgurl = wxUser.headimgurl;
     self.city = wxUser.city;
@@ -69,14 +69,17 @@
 
 #pragma mark - DB use
 - (NSArray *)columnArray {
-    return @[k_User_userId,k_User_userType,k_User_name, k_User_city, k_User_country, k_User_headimgurl, k_User_sex, k_User_eMail];
+    return @[k_User_userId,k_User_userType,k_User_name, k_User_city, k_User_country, k_User_headimgurl, k_User_sex, k_User_eMail,k_User_modifySex];
 }
 
 - (NSArray *)valueArray {
     if (!_eMail) {
         _eMail = (NSString *)[NSNull null];
     }
-    return @[_userId,_userType,_name,_city,_country,_headimgurl,_sex,_eMail];
+    if (!_modifySex) {
+        _modifySex = 0;
+    }
+    return @[_userId,_userType,_name,_city,_country,_headimgurl,_sex,_eMail,[NSNumber numberWithInt:_modifySex]];
 }
 
 - (BOOL)deleteBean {

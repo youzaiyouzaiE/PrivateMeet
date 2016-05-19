@@ -38,7 +38,7 @@ static NSString *const tableName = @"UserInfoTable";
         //        NSLog(@"表已经存！");
     } else {
         //// create table
-        NSString *sql = [NSString stringWithFormat:@"create table IF NOT EXISTS %@ ('%@' text,'%@' text,'%@' INTEGER,'%@' text,'%@' text,'%@' text,'%@' text,'%@' INTEGER,'%@' text)",tableName,kBeanIdKey,k_User_userId,k_User_userType,k_User_name,k_User_city,k_User_country,k_User_headimgurl,k_User_sex,k_User_eMail];
+        NSString *sql = [NSString stringWithFormat:@"create table IF NOT EXISTS %@ ('%@' text,'%@' text,'%@' INTEGER,'%@' text,'%@' text,'%@' text,'%@' text,'%@' INTEGER,'%@' text, '%@' INTEGER)",tableName,kBeanIdKey,k_User_userId,k_User_userType,k_User_name,k_User_city,k_User_country,k_User_headimgurl,k_User_sex,k_User_eMail,k_User_modifySex];
         if ([self.db executeUpdate:sql]) {
             NSLog(@"表创建成功！");
         } else {
@@ -48,16 +48,18 @@ static NSString *const tableName = @"UserInfoTable";
 }
 
 - (UserInfo *)mappingRs2Bean:(FMResultSet *)rs {
-    [UserInfo shareInstance].idKey = [rs stringForColumn:kBeanIdKey];
-    [UserInfo shareInstance].userId = [rs stringForColumn:k_User_userId];
-    [UserInfo shareInstance].userType = [NSNumber numberWithInteger:[rs boolForColumn:k_User_userType]];
-    [UserInfo shareInstance].name = [rs stringForColumn:k_User_name];
-    [UserInfo shareInstance].city = [rs stringForColumn:k_User_city];
-    [UserInfo shareInstance].country = [rs stringForColumn:k_User_country];
-    [UserInfo shareInstance].headimgurl = [rs stringForColumn:k_User_headimgurl];
-    [UserInfo shareInstance].sex = [NSNumber numberWithInteger:[rs boolForColumn:k_User_sex]];
-    [UserInfo shareInstance].eMail = [rs stringForColumn:k_User_eMail];
-    return [UserInfo shareInstance];
+    UserInfo *model = [[UserInfo alloc] init];
+    model.idKey = [rs stringForColumn:kBeanIdKey];
+    model.userId = [rs stringForColumn:k_User_userId];
+    model.userType = [NSNumber numberWithInteger:[rs intForColumn:k_User_userType]];
+    model.name = [rs stringForColumn:k_User_name];
+    model.city = [rs stringForColumn:k_User_city];
+    model.country = [rs stringForColumn:k_User_country];
+    model.headimgurl = [rs stringForColumn:k_User_headimgurl];
+    model.sex = [NSNumber numberWithInteger:[rs intForColumn:k_User_sex]];
+    model.eMail = [rs stringForColumn:k_User_eMail];
+    model.modifySex = [rs intForColumn:k_User_modifySex];
+    return model;
 }
 
 - (UserInfo *)selectUserWithUserLoginType {

@@ -11,10 +11,14 @@
 
 "Cannot Download photo" = "无法下载图片";
 "OK" = "好";
+"Ok" =  "确定";
+"Ture" = "确定";
 "There was an error downloading this photo from your iCloud photo Library.Please try again later." = "暂时无法从'iCloud'上下载图片";
 "of" = "/";
 "Done" = "完成";
 "Home" = "首页";
 "Choiceness" = "精选";
 "Choose" = "筛选";
-"loading" = "加载中";Ø
+"loading" = "加载中";
+"reminder" = "提示";
+"Once confirm the gender，you can't change any more！" = "性别一旦确定，后续无法更改哦！";

@@ -19,7 +19,6 @@ extern NSString *const k_More_hasImage;
 @property (copy, nonatomic) NSString *userId;
 @property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) NSString *content;
-
 /////等于model所在的section
 @property (assign, nonatomic) NSInteger index;
 @property (assign, nonatomic) NSInteger hasImage;

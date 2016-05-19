@@ -17,7 +17,7 @@ extern NSString *const k_User_country;
 extern NSString *const k_User_headimgurl;
 extern NSString *const k_User_sex;
 extern NSString *const k_User_eMail;
-
+extern NSString *const k_User_modifySex;
 
 @interface UserInfo : BaseModel
 
@@ -30,6 +30,8 @@ extern NSString *const k_User_eMail;
 @property (strong, nonatomic) NSNumber *sex;
 @property (copy, nonatomic) NSString *eMail;
 
+////已经更改过性别 ？
+@property (assign, nonatomic) NSInteger modifySex;
 
 
 

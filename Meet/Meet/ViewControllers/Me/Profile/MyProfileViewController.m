@@ -18,6 +18,7 @@
 #import "MWPhotoBrowser.h"
 #import "NetWorkObject.h"
 #import "UISheetView.h"
+#import "UserInfoDao.h"
 
 typedef NS_ENUM(NSUInteger, SectonContentType) {
     SectionProfile,
@@ -28,7 +29,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     sectionMore,//更多
 };
 
-@interface MyProfileViewController () <UITableViewDelegate,UITableViewDataSource,UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate,UITextViewDelegate,MWPhotoBrowserDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UISheetViewDelegate> {
+@interface MyProfileViewController () <UITableViewDelegate,UITableViewDataSource,UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate,UITextViewDelegate,MWPhotoBrowserDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UISheetViewDelegate,UIAlertViewDelegate> {
     NSArray *_titleContentArray;
     
     __weak IBOutlet UIView *_chooseView;
@@ -52,6 +53,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     NSMutableArray *_arrayEducateExper;///教育背景
     
     UISheetView *_sheetView;
+    UIAlertView *_sexAlertView;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -119,7 +121,6 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
         NSData *imgData = UIImageJPEGRepresentation(image, 1);
         NSString *saveImagePath = [self imageSaveParth];
         if ([imgData writeToFile:[self imageSaveParth] atomically:NO]) {
-//             NSLog(@"保存 成功");
             NSError *error;
             if (![[NSFileManager defaultManager] removeItemAtPath:filePath.path error:&error]) {
                  NSLog(@"error :%@",error.localizedDescription);
@@ -174,10 +175,17 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 }
 
 - (void)saveAction:(id)sender {
-    
+    if (_selectIndexParth.section == 0 && _selectIndexParth.row == 2) {////Sex Item
+        [self sexItemModify];
+        return ;
+    }
 }
 
 - (IBAction)tapGestureRecognizer:(UITapGestureRecognizer *)sender {
+    if (_selectIndexParth.section == 0 && _selectIndexParth.row == 2) {////Sex Item
+        [self sexItemModify];
+        return ;
+    }
     [self mappingPickContentInDic];
     [self showChooseViewAnimation:NO];
 }
@@ -236,6 +244,28 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
                                  [self.tableView reloadRowsAtIndexPaths:@[_selectIndexParth] withRowAnimation:UITableViewRowAnimationNone];
                              }
                          }];
+}
+
+- (void)sexItemModify {
+    if (![UserInfo shareInstance].modifySex) {
+        if (!_sexAlertView) {
+            _sexAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"reminder", @"") message:NSLocalizedString(@"Once confirm the gender，you can't change any more！", @"")  delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"")  otherButtonTitles:NSLocalizedString(@"Ok", @"") , nil];
+        }
+        [_sexAlertView show];
+    }
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView == _sexAlertView) {
+        if (buttonIndex == 1) {
+            [UserInfo shareInstance].modifySex = 1;
+            [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
+            [self mappingPickContentInDic];
+            [self showChooseViewAnimation:NO];
+        } else {
+            
+        }
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -403,6 +433,9 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 #pragma mark - tableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0 && indexPath.row == 2 && [UserInfo shareInstance].modifySex) {////Sex Item
+        return ;
+    }
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
     _selectIndexParth = indexPath;
@@ -413,26 +446,6 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
                 _sheetView.delegate = self;
             }
             [_sheetView show];
-//            if (_dicValues[_titleContentArray[0]] ) {
-//                NSMutableArray *photos = [NSMutableArray array];
-//                [photos addObject:[MWPhoto photoWithImage:_dicValues[_titleContentArray[0]]]];
-//                _photos = photos;
-//                MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-//                browser.displayActionButton = YES;
-//                browser.displayNavArrows = NO;
-//                browser.displaySelectionButtons = NO;
-//                browser.alwaysShowControls = NO;
-//                browser.zoomPhotosToFill = YES;
-//                browser.enableGrid = NO;
-//                browser.startOnGrid = NO;
-//                browser.enableSwipeToDismiss = YES;
-//                browser.autoPlayOnAppear = NO;
-//                [browser setCurrentPhotoIndex:0];
-//                browser.navigationItem.title = @"";
-//                [self.navigationController pushViewController:browser animated:YES];
-//            } else {
-//                
-//            }
         } else if (row == 3) {/////date picker
             [self.view endEditing:YES];
             [self hiddenDatePicker:NO];

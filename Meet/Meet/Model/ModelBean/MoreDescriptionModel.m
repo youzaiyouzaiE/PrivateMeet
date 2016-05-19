@@ -31,7 +31,7 @@
     if (!_hasImage) {
         _hasImage = 0;
     }
-    return @[_userId,_title,_content,[NSNumber numberWithInteger:_index]];
+    return @[_userId,_title,_content,[NSNumber numberWithInteger:_index],[NSNumber numberWithInteger:_hasImage]];
 }
 
 - (BOOL)deleteBean {

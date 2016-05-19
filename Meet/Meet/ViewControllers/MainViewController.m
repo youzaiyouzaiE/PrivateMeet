@@ -11,7 +11,7 @@
 @interface MainViewController ()
 
 @end
-
+//NSLocalizedString
 @implementation MainViewController
 
 - (void)viewDidLoad {

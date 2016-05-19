@@ -37,7 +37,7 @@ static NSString *const tableName = @"MoreDescriptionTable";
     if ([set intForColumnIndex:0]) {
         //        NSLog(@"表已经存！");
     } else {
-        NSString *sql = [NSString stringWithFormat:@"create table IF NOT EXISTS %@ ('%@' text,'%@' text,'%@' text,'%@' text,'%@' integer)",tableName,kBeanIdKey,k_More_userId,k_More_title,k_More_content,k_More_index];
+        NSString *sql = [NSString stringWithFormat:@"create table IF NOT EXISTS %@ ('%@' text,'%@' text,'%@' text,'%@' text,'%@' integer,'%@' integer)",tableName,kBeanIdKey,k_More_userId,k_More_title,k_More_content,k_More_index,k_More_hasImage];
         if ([self.db executeUpdate:sql]) {
             NSLog(@"表创建成功！");
         } else {
@@ -53,6 +53,7 @@ static NSString *const tableName = @"MoreDescriptionTable";
     model.title = [rs stringForColumn:k_More_title];
     model.content = [rs stringForColumn:k_More_content];
     model.index = [rs intForColumn:k_More_index];
+    model.hasImage = [rs intForColumn:k_More_hasImage];
     return model;
 }
 

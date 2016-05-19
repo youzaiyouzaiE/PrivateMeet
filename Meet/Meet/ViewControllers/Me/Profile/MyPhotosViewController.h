@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^needUpdateImagesContentBlock)(BOOL isModify);
+typedef void(^NeedUpdateImagesContentBlock)(BOOL isModify);
 
 @interface MyPhotosViewController : UIViewController
 
@@ -16,7 +16,7 @@ typedef void(^needUpdateImagesContentBlock)(BOOL isModify);
 @property (nonatomic, assign) BOOL useOtherPath;
 @property (strong, nonatomic) NSIndexPath *selectIndexPath;
 @property (assign, nonatomic) NSInteger maxIamges;
-@property (copy, nonatomic) needUpdateImagesContentBlock updateBlock;
+@property (copy, nonatomic) NeedUpdateImagesContentBlock updateBlock;
 
 
 @end

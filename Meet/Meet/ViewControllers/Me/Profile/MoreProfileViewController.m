@@ -108,6 +108,7 @@
     }
 }
 
+#pragma mark - read Images
 - (void)getImagesInTableLocation {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSString *mostContetPath = [[AppData shareInstance] getCacheMostContetnImagePath];
@@ -210,6 +211,51 @@
     if (isModifyText) {
         self.modifyTextBlock();
     }
+}
+
+#pragma mark - Image File Writ
+- (void)saveImageToDocument:(UIImage *)image location:(NSIndexPath *)indexPath {
+    NSString *_smallImageDocumetPath = [[AppData shareInstance] getCachesSmallImageWithImageIndexPath:indexPath];
+    NSString *_bigImageDocumetPath = [[AppData shareInstance] getCachesBigImageWithImageIndexPath:indexPath];
+    UIImage *imageSmall = [UITools imageWithImageSimple:image scaledToSize:[self smallSize]];
+    NSString *imageName = [AppData random_uuid];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *bigImageSavePath = [_bigImageDocumetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",imageName]];
+        NSString *smallImageSavePath = [_smallImageDocumetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",imageName]];
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        if ([imageData writeToFile:bigImageSavePath atomically:NO]) {
+            //             NSLog(@"存入文件 成功！");
+        } else {
+            NSLog(@"图片未能存入");
+        }
+        NSData *smallImageData = UIImageJPEGRepresentation(imageSmall, 1);
+        if ([smallImageData writeToFile:smallImageSavePath atomically:NO]) {
+            //             NSLog(@"存入文件 成功！");
+        } else {
+            NSLog(@"图片未能存入");
+        }
+    });
+}
+
+- (void)deleteImageWithName:(NSString *)imageName location:(NSIndexPath *)indexPath {
+    NSString *_smallImageDocumetPath = [[AppData shareInstance] getCachesSmallImageWithImageIndexPath:indexPath];
+    NSString *_bigImageDocumetPath = [[AppData shareInstance] getCachesBigImageWithImageIndexPath:indexPath];
+    NSString *bigImagePath = [_bigImageDocumetPath stringByAppendingPathComponent:imageName];
+    NSError *error = nil;
+    NSString *smallImagePath = [_smallImageDocumetPath stringByAppendingPathComponent:imageName];
+    NSError *smallError = nil;
+    if ([[NSFileManager defaultManager] removeItemAtPath:smallImagePath error:&smallError] && [[NSFileManager defaultManager] removeItemAtPath:bigImagePath error:&error]) {
+
+    } else {
+        NSLog(@"remove small %@.JPG Error :%@",imageName,smallError.localizedDescription);
+        NSLog(@"remove %@.JPG error :%@",imageName,error.localizedDescription);
+    }
+}
+
+- (CGSize)smallSize {
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGSize size = CGSizeMake((self.view.bounds.size.width) * scale/3, (self.view.bounds.size.width) * scale/3);
+    return size;
 }
 
 #pragma mark - NSNotificationCenter

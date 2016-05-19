@@ -13,11 +13,12 @@
  NSString *const k_More_title = @"More_title";
  NSString *const k_More_content = @"More_content";
  NSString *const k_More_index = @"More_index";
+ NSString *const k_More_hasImage = @"More_hasImage";
 
 @implementation MoreDescriptionModel
 
 -(NSArray *)columnArray {
-    return @[k_More_userId,k_More_title,k_More_content,k_More_index];
+    return @[k_More_userId,k_More_title,k_More_content,k_More_index,k_More_hasImage];
 }
 
 - (NSArray *)valueArray {
@@ -26,6 +27,9 @@
     }
     if (!_content) {
         _content = (NSString *)[NSNull null];
+    }
+    if (!_hasImage) {
+        _hasImage = 0;
     }
     return @[_userId,_title,_content,[NSNumber numberWithInteger:_index]];
 }

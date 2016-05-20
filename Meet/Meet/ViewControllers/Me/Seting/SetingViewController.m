@@ -11,6 +11,7 @@
 #import <MessageUI/MessageUI.h>
 #import "AboutViewController.h"
 #import "UserInfo.h"
+#import "UserInfoDao.h"
 
 @interface SetingViewController ()<UITableViewDelegate,UITableViewDataSource,UISheetViewDelegate,MFMailComposeViewControllerDelegate> {
 //    NSArray *_contentArray;
@@ -141,7 +142,13 @@
 
 #pragma mark - UISheetViewDelegate
 - (void)sheetView:(UISheetView *)sheet didSelectRowAtIndex:(NSInteger)index {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLogoutNotification" object:nil];
+    if (index == 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLogoutNotification" object:nil];
+        [AppData shareInstance].isLogin = NO;
+        [UserInfo shareInstance].loginType = [NSNumber numberWithInteger:0];
+        [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
+        
+    }
     
     [_sheetView hidden];
 }

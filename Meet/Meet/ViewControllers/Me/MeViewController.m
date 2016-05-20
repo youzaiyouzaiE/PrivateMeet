@@ -15,6 +15,7 @@
 #import "MyDisplayViewController.h"
 #import "SendInviteViewController.h"
 #import "SetingViewController.h"
+#import "WeChatResgisterViewController.h"
 
 @interface MeViewController () <UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource> {
     NSMutableArray *_imagesArray;
@@ -42,8 +43,6 @@
     if (![AppData shareInstance].isLogin) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHeadTableViewCell:) name:FRIST_LOGIN_NOTIFICATION_Key object:nil];
     }
-//    [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context: nil];
-//    [self setNeedsStatusBarAppearanceUpdate];
     _imagesArray = [NSMutableArray array];
     
     [self loadHeadImageView];
@@ -57,6 +56,9 @@
 }
 
 - (void )loadHeadImageView {
+    if (![AppData shareInstance].isLogin) {
+        return ;
+    }
     NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
     NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
     _headImage = [UIImage imageWithContentsOfFile:saveImagePath];
@@ -248,6 +250,14 @@
 #pragma mark - tableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (![AppData shareInstance].isLogin) {
+        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:[NSBundle mainBundle]];
+        WeChatResgisterViewController *resgisterVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"WeChatResgisterNavigation"];
+        [self presentViewController:resgisterVC animated:YES completion:^{
+            
+        }];
+        return ;
+    }
      if (indexPath.row == 0) {
         UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
         MyProfileViewController *myProfileVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];

@@ -155,6 +155,9 @@ typedef NS_ENUM(NSUInteger, RowType) {
 }
 
 - (void)mappingCacheData {
+    if (![AppData shareInstance].isLogin) {
+        return ;
+    }
     NSString *height = [UserInfo shareInstance].height;
     NSInteger heightRow = [_arrayHeightPick indexOfObject:height];
     [_dicPickSelectValues setObject:[NSNumber numberWithInteger:heightRow] forKey:_titleContentArray[RowHeight]];
@@ -218,20 +221,35 @@ typedef NS_ENUM(NSUInteger, RowType) {
 }
 
 //得到星座的算法
--(NSString *)getAstroWithDateString:(NSString *)YYYYMMDD{
+-(NSInteger )getAstroWithDateString:(NSString *)YYYYMMDD{
     NSString *mStr = [YYYYMMDD substringWithRange:NSMakeRange(5, 2)];
     NSString *dStr = [YYYYMMDD substringWithRange:NSMakeRange(8, 2)];
     
     NSInteger m = mStr.intValue;
     NSInteger d = dStr.intValue;
-    NSString *astroString = @"魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯";
+//    @["摩羯座",@"水平座",@"双鱼座",@"白羊座",@"金牛座",@"双子座",@"巨蟹座",@"狮子座",@"处女座",@"天秤座",@"天蝎座",@"射手座",@"摩羯座"];
+    NSString *astroString = @"bb00112233445566778899aabb";
     NSString *astroFormat = @"102123444543";
     NSString *result;
     result=[NSString stringWithFormat:@"%@",[astroString substringWithRange:NSMakeRange(m*2-(d < [[astroFormat substringWithRange:NSMakeRange((m-1), 1)] intValue] - (-19))*2,2)]];
-    return [result stringByAppendingString:@"座"];
+    return [self stringForInteger:result];
+}
+
+- (NSInteger)stringForInteger:(NSString *)str{
+    if ([str isEqualToString:@"aa"]) {
+        return 10;
+    } else if([str isEqualToString:@"bb"]) {
+        return 11;
+    } else {
+        NSString *subStr = [str substringWithRange:NSMakeRange(0, 1)];
+        return subStr.intValue;
+    }
 }
 
 - (void)mappingContentDicValue{
+    if (![AppData shareInstance].isLogin) {
+        return ;
+    }
     UIImage *image = [UIImage imageWithContentsOfFile:[self imageSaveParth]];
     _dicValues[_titleContentArray[RowHeadImage]] = image;
     _dicValues[_titleContentArray[RowName]] = [UserInfo shareInstance].name;
@@ -389,9 +407,8 @@ typedef NS_ENUM(NSUInteger, RowType) {
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
         NSString *strDate = [dateFormat stringFromDate:date];
         _dicValues[key] = strDate;
-        NSString *constellatinString = [self getAstroWithDateString:strDate];
-        NSInteger constellationRow = [_arrayConstellationPick indexOfObject:constellatinString];
-        [_dicPickSelectValues setObject:[NSNumber numberWithInteger:constellationRow] forKey:_titleContentArray[RowConstellation]];
+        NSString *constellatinString = _arrayConstellationPick[[self getAstroWithDateString:strDate]];
+        [_dicPickSelectValues setObject:[NSNumber numberWithInteger:[self getAstroWithDateString:strDate]] forKey:_titleContentArray[RowConstellation]];
         _dicValues[_titleContentArray[RowConstellation]] = constellatinString;
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:RowConstellation inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }
@@ -663,7 +680,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
             [_sheetView show];
         } else if (row == RowBirthday) {/////date picker
             [self.view endEditing:YES];
-            NSString *brithDay = [UserInfo shareInstance].brithday;
+            NSString *brithDay =  _dicValues[_titleContentArray[RowBirthday]];
             if (brithDay.length > 8) {
                 NSDate *date = [self getDateFromString:brithDay];
                 [_datePicker setDate:date animated:NO];

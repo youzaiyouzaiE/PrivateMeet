@@ -38,7 +38,7 @@ static NSString *const tableName = @"UserInfoTable";
         //        NSLog(@"表已经存！");
     } else {
         //// create table
-        NSString *sql = [NSString stringWithFormat:@"create table IF NOT EXISTS %@ ('%@' text,'%@' text,'%@' INTEGER,'%@' text,'%@' text,'%@' text,'%@' text,'%@' INTEGER,'%@' text, '%@' INTEGER,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text)",tableName,kBeanIdKey,k_User_userId,k_User_userType,k_User_name,k_User_city,k_User_country,k_User_headimgurl,k_User_sex,k_User_eMail,k_User_modifySex,k_User_brithday,k_User_height,k_User_phoneNo,k_User_WX_No,k_User_workCity,k_User_income,k_User_state,k_User_home,k_User_constellation];
+        NSString *sql = [NSString stringWithFormat:@"create table IF NOT EXISTS %@ ('%@' text,'%@' text,'%@' INTEGER,'%@' text,'%@' text,'%@' text,'%@' text,'%@' INTEGER,'%@' text, '%@' INTEGER,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text)",tableName,kBeanIdKey,k_User_userId,k_User_loginType,k_User_name,k_User_city,k_User_country,k_User_headimgurl,k_User_sex,k_User_eMail,k_User_modifySex,k_User_brithday,k_User_height,k_User_phoneNo,k_User_WX_No,k_User_workCity,k_User_income,k_User_state,k_User_home,k_User_constellation];
         if ([self.db executeUpdate:sql]) {
             NSLog(@"表创建成功！");
         } else {
@@ -51,7 +51,7 @@ static NSString *const tableName = @"UserInfoTable";
     UserInfo *model = [[UserInfo alloc] init];
     model.idKey = [rs stringForColumn:kBeanIdKey];
     model.userId = [rs stringForColumn:k_User_userId];
-    model.userType = [NSNumber numberWithInteger:[rs intForColumn:k_User_userType]];
+    model.loginType = [NSNumber numberWithInteger:[rs intForColumn:k_User_loginType]];
     model.name = [rs stringForColumn:k_User_name];
     model.city = [rs stringForColumn:k_User_city];
     model.country = [rs stringForColumn:k_User_country];
@@ -73,7 +73,7 @@ static NSString *const tableName = @"UserInfoTable";
 }
 
 - (UserInfo *)selectUserWithUserLoginType {
-    NSString *whereSql = [NSString stringWithFormat:@"%@ = %d ", k_User_userType,1];
+    NSString *whereSql = [NSString stringWithFormat:@"%@ = %d ", k_User_loginType,1];
     NSArray *loginUsers = [self selectWithWhere:whereSql];
     UserInfo *info = loginUsers.firstObject;
     if (!info) {

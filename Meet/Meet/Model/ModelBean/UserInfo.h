@@ -10,7 +10,7 @@
 #import "WXUserInfo.h"
 
 extern NSString *const k_User_userId;
-extern NSString *const k_User_userType;
+extern NSString *const k_User_loginType;
 extern NSString *const k_User_name;
 extern NSString *const k_User_city;
 extern NSString *const k_User_country;
@@ -32,7 +32,7 @@ extern NSString *const k_User_constellation;
 @interface UserInfo : BaseModel
 
 @property (copy, nonatomic) NSString *userId;
-@property (nonatomic, strong) NSNumber *userType;////0，1 （0为退出登录的用户，1为当前正在使用的用户）
+@property (nonatomic, strong) NSNumber *loginType;////0，1 （0为退出登录的用户，1为当前正在使用的用户）
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *city;
 @property (copy, nonatomic) NSString *country;

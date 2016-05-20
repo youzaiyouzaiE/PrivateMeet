@@ -10,6 +10,7 @@
 #import "UISheetView.h"
 #import <MessageUI/MessageUI.h>
 #import "AboutViewController.h"
+#import "UserInfo.h"
 
 @interface SetingViewController ()<UITableViewDelegate,UITableViewDataSource,UISheetViewDelegate,MFMailComposeViewControllerDelegate> {
 //    NSArray *_contentArray;
@@ -97,7 +98,11 @@
         MFMailComposeViewController* composeVC = [[MFMailComposeViewController alloc] init];
         composeVC.mailComposeDelegate = self;
         // Configure the fields of the interface.、/////@"feedback@momeet.com"
-        [composeVC setToRecipients:@[@"feedback@momeet.com"]];
+        NSString *email = [UserInfo shareInstance].eMail;
+        if (email != nil && email.length > 1) {
+            [composeVC setToRecipients:@[email]];
+        } else
+            [composeVC setToRecipients:@[@"feedback@momeet.com"]];
         [composeVC setSubject:@"意见反馈"];
         [composeVC setMessageBody:@"test message " isHTML:NO];
         

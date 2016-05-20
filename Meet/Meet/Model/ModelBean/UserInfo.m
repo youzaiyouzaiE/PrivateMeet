@@ -20,6 +20,16 @@
  NSString *const k_User_eMail = @"User_eMail";
  NSString *const k_User_modifySex = @"User_modifySex";
 
+ NSString *const k_User_brithday = @"User_brithday";
+ NSString *const k_User_height = @"User_height";
+ NSString *const k_User_phoneNo = @"User_phoneNo";
+ NSString *const k_User_WX_No = @"User_WX_No";
+ NSString *const k_User_workCity = @"User_workCity";
+ NSString *const k_User_income = @"User_income";
+ NSString *const k_User_state = @"User_state";
+ NSString *const k_User_home = @"User_home";
+ NSString *const k_User_constellation = @"User_constellation";
+
 @implementation UserInfo
 
 + (instancetype)shareInstance {
@@ -69,17 +79,48 @@
 
 #pragma mark - DB use
 - (NSArray *)columnArray {
-    return @[k_User_userId,k_User_userType,k_User_name, k_User_city, k_User_country, k_User_headimgurl, k_User_sex, k_User_eMail,k_User_modifySex];
+    return @[k_User_userId,k_User_userType,k_User_name, k_User_city, k_User_country, k_User_headimgurl, k_User_sex, k_User_eMail,k_User_modifySex,k_User_brithday,k_User_height,k_User_phoneNo,k_User_WX_No,k_User_workCity,k_User_income,k_User_state,k_User_home,k_User_constellation];
 }
 
 - (NSArray *)valueArray {
+    if (!_userType) {
+        _userType = (NSNumber *)[NSNumber numberWithInteger:1];
+    }
     if (!_eMail) {
         _eMail = (NSString *)[NSNull null];
     }
     if (!_modifySex) {
         _modifySex = 0;
     }
-    return @[_userId,_userType,_name,_city,_country,_headimgurl,_sex,_eMail,[NSNumber numberWithInt:_modifySex]];
+    if (!_brithday) {
+        _brithday = (NSString *)[NSNull null];
+    }
+    if (!_height) {
+        _height = (NSString *)[NSNull null];
+    }
+    if (!_phoneNo) {
+        _phoneNo = (NSString *)[NSNull null];
+    }
+    if (!_WX_No) {
+        _WX_No = (NSString *)[NSNull null];
+    }
+    if (!_workCity) {
+        _workCity = (NSString *)[NSNull null];
+    }
+    if (!_income) {
+        _income = (NSString *)[NSNull null];
+    }
+    if (!_state) {
+        _state = (NSString *)[NSNull null];
+    }
+    if (!_home) {
+        _home = (NSString *)[NSNull null];
+    }
+    if (!_constellation) {
+        _constellation = (NSString *)[NSNull null];
+    }
+    
+    return @[_userId,_userType,_name,_city,_country,_headimgurl,_sex,_eMail,[NSNumber numberWithInt:_modifySex],_brithday,_height,_phoneNo,_WX_No,_workCity,_income,_state,_home,_constellation];
 }
 
 - (BOOL)deleteBean {

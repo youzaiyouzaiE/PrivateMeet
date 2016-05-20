@@ -38,7 +38,7 @@ static NSString *const tableName = @"UserInfoTable";
         //        NSLog(@"表已经存！");
     } else {
         //// create table
-        NSString *sql = [NSString stringWithFormat:@"create table IF NOT EXISTS %@ ('%@' text,'%@' text,'%@' INTEGER,'%@' text,'%@' text,'%@' text,'%@' text,'%@' INTEGER,'%@' text, '%@' INTEGER)",tableName,kBeanIdKey,k_User_userId,k_User_userType,k_User_name,k_User_city,k_User_country,k_User_headimgurl,k_User_sex,k_User_eMail,k_User_modifySex];
+        NSString *sql = [NSString stringWithFormat:@"create table IF NOT EXISTS %@ ('%@' text,'%@' text,'%@' INTEGER,'%@' text,'%@' text,'%@' text,'%@' text,'%@' INTEGER,'%@' text, '%@' INTEGER,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text,'%@' text)",tableName,kBeanIdKey,k_User_userId,k_User_userType,k_User_name,k_User_city,k_User_country,k_User_headimgurl,k_User_sex,k_User_eMail,k_User_modifySex,k_User_brithday,k_User_height,k_User_phoneNo,k_User_WX_No,k_User_workCity,k_User_income,k_User_state,k_User_home,k_User_constellation];
         if ([self.db executeUpdate:sql]) {
             NSLog(@"表创建成功！");
         } else {
@@ -59,6 +59,16 @@ static NSString *const tableName = @"UserInfoTable";
     model.sex = [NSNumber numberWithInteger:[rs intForColumn:k_User_sex]];
     model.eMail = [rs stringForColumn:k_User_eMail];
     model.modifySex = [rs intForColumn:k_User_modifySex];
+    
+    model.brithday = [rs stringForColumn:k_User_brithday];
+    model.height = [rs stringForColumn:k_User_height];
+    model.phoneNo = [rs stringForColumn:k_User_phoneNo];
+    model.WX_No = [rs stringForColumn:k_User_WX_No];
+    model.workCity = [rs stringForColumn:k_User_workCity];
+    model.income = [rs stringForColumn:k_User_income];
+    model.state = [rs stringForColumn:k_User_state];
+    model.home = [rs stringForColumn:k_User_home];
+    model.constellation = [rs stringForColumn:k_User_constellation];
     return model;
 }
 

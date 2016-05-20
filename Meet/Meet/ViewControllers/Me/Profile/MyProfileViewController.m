@@ -14,8 +14,6 @@
 #import "MoreProfileViewController.h"
 #import "AddInformationViewController.h"
 #import "AddStarViewController.h"
-
-#import "MWPhotoBrowser.h"
 #import "NetWorkObject.h"
 #import "UISheetView.h"
 #import "UserInfoDao.h"
@@ -25,11 +23,26 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     SectionWoerkExperience,
     SectionOccupation,///职业
     SectionEducateExp,//教育
-    sectionPrivate,///个人亮点
-    sectionMore,//更多
+    SectionPrivate,///个人亮点
+    SectionMore,//更多
 };
 
-@interface MyProfileViewController () <UITableViewDelegate,UITableViewDataSource,UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate,UITextViewDelegate,MWPhotoBrowserDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UISheetViewDelegate,UIAlertViewDelegate> {
+typedef NS_ENUM(NSUInteger, RowType) {
+    RowHeadImage,
+    RowName,
+    RowSex,
+    RowBirthday,
+    RowHeight,
+    RowPhoneNumber,
+    RowWX_Id,
+    RowWorkLocation,
+    RowYearIncome,
+    RowState,
+    RowHome,
+    RowConstellation,
+};
+
+@interface MyProfileViewController () <UITableViewDelegate,UITableViewDataSource,UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UISheetViewDelegate,UIAlertViewDelegate> {
     NSArray *_titleContentArray;
     
     __weak IBOutlet UIView *_chooseView;
@@ -38,14 +51,20 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     __weak IBOutlet UIPickerView *_picker;
 
     
-    NSArray *_arraySex;
-    NSArray *_arrayLoved;
-    NSArray *_arrayConstellation;
+    NSArray *_arraySexPick;////2
+    NSMutableArray *_arrayHeightPick;/////4
+    NSMutableArray *_arrayWorkLocationPick;////7
+    NSArray *_arrayIncomePick;/////8
+    NSArray *_arrayLovedPick;/////9
+    NSArray *_arrayConstellationPick;////10
+    
+    
+    
     NSIndexPath *_selectIndexParth;////当前选择的位置
     NSInteger _pickerSelectRow;
     
-    NSMutableDictionary *_dicValues;////////for mapping values
-    NSMutableDictionary *_dicPickSelectValues;
+    NSMutableDictionary *_dicValues;////////tableView内容数据缓存 Key为对应的Title Value为用户填入的结果
+    NSMutableDictionary *_dicPickSelectValues;////保存pickView对应的位置 ，value为pickView所选的位置，key为对应的title字符串
     
     
     NSMutableArray *_arrayWorkExper;///工作经历
@@ -54,6 +73,8 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     
     UISheetView *_sheetView;
     UIAlertView *_sexAlertView;
+    
+    BOOL _isNotSelectHeight;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -70,7 +91,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     self.navigationItem.title = @"个人信息";
     [UITools customNavigationLeftBarButtonForController:self action:@selector(backAction:)];
     [UITools navigationRightBarButtonForController:self action:@selector(saveAction:) normalTitle:@"保存" selectedTitle:nil];
-    _titleContentArray = @[@"头像",@"真实姓名",@"性别",@"出生日期",@"身高",@"手机号",@"微信号",@"工作地点",@"年收入",@"情感状态",@"家乡",@"星座"];
+    _titleContentArray = @[@"头像",@"真实姓名",@"性别",@"出生日期",@"身高",@"手机号",@"微信号",@"工作生活城市",@"年收入",@"情感状态",@"家乡",@"星座"];
     _dicValues = [NSMutableDictionary dictionary];
     _dicPickSelectValues = [NSMutableDictionary dictionary];
 //    _arrayWorkExper = [NSMutableArray array];
@@ -78,9 +99,16 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     _arrayOccupationLable = [NSMutableArray arrayWithArray:@[@"产品总监, 产品经理 "]];
     _arrayEducateExper = [NSMutableArray arrayWithArray:@[@"哈尔滨工业大学 - 电子商务 - 本科 ",@"光山县第三高级中学 - 高中"]];
     
-    _arraySex = @[@"男",@"女"];
-    _arrayLoved = @[@"单身",@"恋爱",@"已婚"];
-    _arrayConstellation = @[@"水平座",@"双鱼座",@"白羊座",@"金牛座",@"双子座",@"巨蟹座",@"狮子座",@"处女座",@"天秤座",@"天蝎座",@"射手座",@"摩羯座"];
+    _arraySexPick = @[@"男",@"女"];
+    _arrayHeightPick = [NSMutableArray arrayWithObject:@"150CM以下"];
+    for (int i = 150; i <= 190; i++) {
+      NSString *str = FORMAT(@"%dcm",i);
+        [_arrayHeightPick addObject:str];
+    }
+    [_arrayHeightPick addObject:@"190以上"];
+    _arrayIncomePick = @[@"10W以下",@"10W-20w",@"20W-30w",@"30W-50w",@"50W-100w",@"100W以上"];
+    _arrayLovedPick = @[@"单身并享受单身的状态",@"单身但渴望找到另一半",@"已有男女朋友，但未婚",@"已婚",@"离异，寻觅中",@"丧偶，寻觅中"];
+    _arrayConstellationPick = @[@"水平座",@"双鱼座",@"白羊座",@"金牛座",@"双子座",@"巨蟹座",@"狮子座",@"处女座",@"天秤座",@"天蝎座",@"射手座",@"摩羯座"];
     
     _chooseView.hidden = YES;
     _datePicker.backgroundColor = [UIColor whiteColor];
@@ -98,7 +126,6 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
  
     UIImage *image = [UIImage imageWithContentsOfFile:[self imageSaveParth]];
     _dicValues[_titleContentArray[0]] = image;
-    
     _dicValues[_titleContentArray[1]] = [UserInfo shareInstance].name;
     _dicValues[_titleContentArray[2]] = [UserInfo shareInstance].sex.intValue == 1 ? @"男":@"女" ;
 }
@@ -153,12 +180,18 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 #pragma mark - data
 - (NSArray *)setPickerViewContentArray:(NSIndexPath *)indexPath {
     NSInteger row = indexPath.row;
-    if (row == 2) {
-        return _arraySex;
-    } else if (row == 9) {
-        return _arrayLoved;
-    } else if (row == 11) {
-        return _arrayConstellation;
+    if (row == RowSex) {
+        return _arraySexPick;
+    } else if (row == RowHeight) {
+        return _arrayHeightPick;
+    } else if (row == RowWorkLocation || row == RowHome) {
+        return _arrayWorkLocationPick;
+    } else if (row == RowYearIncome) {
+        return _arrayIncomePick;
+    } else if (row == RowState) {
+        return _arrayLovedPick;
+    } else if (row == RowConstellation) {
+        return _arrayConstellationPick;
     }
     return nil;
 }
@@ -204,7 +237,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
     if (_datePicker.hidden) {
         NSString *result = [self setPickerViewContentArray:_selectIndexParth][_pickerSelectRow];
         _dicValues[key] = result;
-        [_dicPickSelectValues setObject:[NSNumber numberWithInt:_pickerSelectRow] forKey:_selectIndexParth];
+        [_dicPickSelectValues setObject:[NSNumber numberWithInt:_pickerSelectRow] forKey:key];
     } else {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         NSDate *date = _datePicker.date;
@@ -353,7 +386,7 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
         _dicValues[_titleContentArray[0]] ? (imageView.image = _dicValues[_titleContentArray[0]]) :(imageView.image = [UIImage imageNamed:@"RadarKeyboard_HL"]) ;
         return cell;
     } else if(section == 0) {
-        if (row == 1 || row == 4 || row == 5 || row == 6 || row == 8) {
+        if (row == RowName || row == RowPhoneNumber || row == RowWX_Id) {
             NSString *cellIdentifier = @"profileTextFieldCell";
             LabelAndTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
             if (!cell) {
@@ -362,9 +395,6 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
             }
             cell.titelLabel.text = _titleContentArray[row];
             cell.textField.placeholder = _titleContentArray[row];
-            if (row == 4) {
-                cell.textField.placeholder = @"身高（cm）";
-            }
              cell.textField.indexPath = indexPath;
             cell.textField.text = _dicValues[_titleContentArray[row]];
             return  cell;
@@ -446,17 +476,23 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
                 _sheetView.delegate = self;
             }
             [_sheetView show];
-        } else if (row == 3) {/////date picker
+        } else if (row == RowBirthday) {/////date picker
             [self.view endEditing:YES];
             [self hiddenDatePicker:NO];
             [self showChooseViewAnimation:YES];
-        } else if (row == 2 || row == 9 || row == 11) {////_pickView
+        } else if (row == RowSex || row == RowHeight || row == RowWorkLocation || row == RowYearIncome || row == RowState || row == RowHome || row == RowConstellation) {////_pickView
             [self.view endEditing:YES];
-            NSInteger value = [_dicPickSelectValues[indexPath] intValue];
+            NSInteger value = [_dicPickSelectValues[_titleContentArray[_selectIndexParth.row]] intValue];
             _pickerSelectRow = value;
-            [_picker selectRow:value inComponent:0 animated:NO];
+            if (row == RowHeight && value == 0 && !_isNotSelectHeight) {
+                value = 26;
+                _pickerSelectRow = 26;
+                [_dicPickSelectValues setObject:[NSNumber numberWithInt:value] forKey:_titleContentArray[_selectIndexParth.row]];
+                _isNotSelectHeight = YES;
+            }
             [self hiddenDatePicker:YES];
             [self showChooseViewAnimation:YES];
+            [_picker selectRow:value inComponent:0 animated:NO];
         }
     } else if(section == 1 || section == 3 ) {
         [self performSegueWithIdentifier:@"pushToAddInformationVC" sender:self];
@@ -527,21 +563,6 @@ typedef NS_ENUM(NSUInteger, SectonContentType) {
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - MWPhotoBrowserDelegate
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return _photos.count;
-}
-
-- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    if (index < _photos.count)
-        return [_photos objectAtIndex:index];
-    return nil;
-}
-
-- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
-    NSLog(@"110Log");
 }
 
 #pragma mark - UITextFieldDelegate

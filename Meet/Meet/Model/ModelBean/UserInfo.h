@@ -19,6 +19,16 @@ extern NSString *const k_User_sex;
 extern NSString *const k_User_eMail;
 extern NSString *const k_User_modifySex;
 
+extern NSString *const k_User_brithday;
+extern NSString *const k_User_height;
+extern NSString *const k_User_phoneNo;
+extern NSString *const k_User_WX_No;
+extern NSString *const k_User_workCity;
+extern NSString *const k_User_income;
+extern NSString *const k_User_state;
+extern NSString *const k_User_home;
+extern NSString *const k_User_constellation;
+
 @interface UserInfo : BaseModel
 
 @property (copy, nonatomic) NSString *userId;
@@ -29,9 +39,17 @@ extern NSString *const k_User_modifySex;
 @property (copy, nonatomic) NSString *headimgurl;
 @property (strong, nonatomic) NSNumber *sex;
 @property (copy, nonatomic) NSString *eMail;
-
 ////已经更改过性别 ？
 @property (assign, nonatomic) NSInteger modifySex;
+@property (copy, nonatomic) NSString *brithday;
+@property (copy, nonatomic) NSString *height;
+@property (copy, nonatomic) NSString *phoneNo;
+@property (copy, nonatomic) NSString *WX_No;
+@property (copy, nonatomic) NSString *workCity;
+@property (copy, nonatomic) NSString *income;
+@property (copy, nonatomic) NSString *state;
+@property (copy, nonatomic) NSString *home;
+@property (copy, nonatomic) NSString *constellation;
 
 
 

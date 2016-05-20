@@ -196,7 +196,6 @@
     if (columnString.length > 2) {
         [columnString deleteCharactersInRange:NSMakeRange(columnString.length - 2, 2)];
     }
-    
     NSMutableString *sql = [NSMutableString stringWithFormat:@"UPDATE %@ SET %@ WHERE %@ = '%@'", self.tableName, columnString, kBeanIdKey, bean.idKey];
 //    NSLog(@"%@", sql);
 //    NSLog(@"%@", bean.valueArray);

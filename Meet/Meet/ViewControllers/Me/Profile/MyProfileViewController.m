@@ -94,7 +94,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
     _titleContentArray = @[@"头像",@"真实姓名",@"性别",@"出生日期",@"身高",@"手机号",@"微信号",@"工作生活城市",@"年收入",@"情感状态",@"家乡",@"星座"];
     _dicValues = [NSMutableDictionary dictionary];
     _dicPickSelectValues = [NSMutableDictionary dictionary];
-//    _arrayWorkExper = [NSMutableArray array];
+    
     _arrayWorkExper = [NSMutableArray arrayWithArray:@[@"产品总监 - 面包旅行",@"产品经理 - 百度"]];
     _arrayOccupationLable = [NSMutableArray arrayWithArray:@[@"产品总监, 产品经理 "]];
     _arrayEducateExper = [NSMutableArray arrayWithArray:@[@"哈尔滨工业大学 - 电子商务 - 本科 ",@"光山县第三高级中学 - 高中"]];
@@ -123,11 +123,33 @@ typedef NS_ENUM(NSUInteger, RowType) {
 }
 
 - (void)mappingDicValue{
- 
     UIImage *image = [UIImage imageWithContentsOfFile:[self imageSaveParth]];
-    _dicValues[_titleContentArray[0]] = image;
-    _dicValues[_titleContentArray[1]] = [UserInfo shareInstance].name;
-    _dicValues[_titleContentArray[2]] = [UserInfo shareInstance].sex.intValue == 1 ? @"男":@"女" ;
+    _dicValues[_titleContentArray[RowHeadImage]] = image;
+    _dicValues[_titleContentArray[RowName]] = [UserInfo shareInstance].name;
+    _dicValues[_titleContentArray[RowSex]] = [UserInfo shareInstance].sex.intValue == 1 ? @"男":@"女" ;
+    _dicValues[_titleContentArray[RowBirthday]] = [UserInfo shareInstance].brithday;
+    _dicValues[_titleContentArray[RowHeight]] = [UserInfo shareInstance].height;
+    _dicValues[_titleContentArray[RowPhoneNumber]] = [UserInfo shareInstance].phoneNo;
+    _dicValues[_titleContentArray[RowWX_Id]] = [UserInfo shareInstance].WX_No;
+    _dicValues[_titleContentArray[RowWorkLocation]] = [UserInfo shareInstance].workCity;
+    _dicValues[_titleContentArray[RowYearIncome]] = [UserInfo shareInstance].income;
+    _dicValues[_titleContentArray[RowState]] = [UserInfo shareInstance].state;
+    _dicValues[_titleContentArray[RowHome]] = [UserInfo shareInstance].home;
+    _dicValues[_titleContentArray[RowConstellation]] = [UserInfo shareInstance].constellation;
+}
+
+- (void)mappingUserInfoWithDicValues {
+    ////图像URL 服务器返回后待加入
+    [UserInfo shareInstance].name = _dicValues[_titleContentArray[RowName]];
+    [UserInfo shareInstance].brithday = _dicValues[_titleContentArray[RowBirthday]];
+    [UserInfo shareInstance].height = _dicValues[_titleContentArray[RowHeight]];
+    [UserInfo shareInstance].phoneNo = _dicValues[_titleContentArray[RowPhoneNumber]];
+    [UserInfo shareInstance].WX_No = _dicValues[_titleContentArray[RowWX_Id]];
+    [UserInfo shareInstance].workCity = _dicValues[_titleContentArray[RowWorkLocation]];
+    [UserInfo shareInstance].income = _dicValues[_titleContentArray[RowYearIncome]];
+    [UserInfo shareInstance].state = _dicValues[_titleContentArray[RowState]];
+    [UserInfo shareInstance].home = _dicValues[_titleContentArray[RowHome]];
+    [UserInfo shareInstance].constellation = _dicValues[_titleContentArray[RowConstellation]];
 }
 
 - (NSString *)imageSaveParth {
@@ -208,10 +230,13 @@ typedef NS_ENUM(NSUInteger, RowType) {
 }
 
 - (void)saveAction:(id)sender {
-    if (_selectIndexParth.section == 0 && _selectIndexParth.row == 2) {////Sex Item
+    if (_selectIndexParth.section == 0 && _selectIndexParth.row == 2 && !_chooseView.hidden) {////Sex Item alert
         [self sexItemModify];
         return ;
     }
+    /////保存到服务器返回后再保存到本地
+    [self mappingUserInfoWithDicValues];
+    [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
 }
 
 - (IBAction)tapGestureRecognizer:(UITapGestureRecognizer *)sender {
@@ -221,6 +246,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
     }
     [self mappingPickContentInDic];
     [self showChooseViewAnimation:NO];
+    
 }
 
 - (IBAction)cancelAction:(id)sender {
@@ -292,6 +318,8 @@ typedef NS_ENUM(NSUInteger, RowType) {
     if (alertView == _sexAlertView) {
         if (buttonIndex == 1) {
             [UserInfo shareInstance].modifySex = 1;
+            NSNumber *value = _dicPickSelectValues[_titleContentArray[RowSex]];
+            [UserInfo shareInstance].sex = value;
             [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
             [self mappingPickContentInDic];
             [self showChooseViewAnimation:NO];

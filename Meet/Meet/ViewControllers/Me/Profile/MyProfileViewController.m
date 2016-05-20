@@ -109,7 +109,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
     if (_isFristLogin) {
         [self downLoadUserWeChatImage];
     }
-    [self mappingDicValue];
+    [self mappingContentDicValue];
 }
 
 - (void)loadPickViewData {
@@ -217,7 +217,21 @@ typedef NS_ENUM(NSUInteger, RowType) {
     return dtPostDate;
 }
 
-- (void)mappingDicValue{
+//得到星座的算法
+-(NSString *)getAstroWithDateString:(NSString *)YYYYMMDD{
+    NSString *mStr = [YYYYMMDD substringWithRange:NSMakeRange(5, 2)];
+    NSString *dStr = [YYYYMMDD substringWithRange:NSMakeRange(8, 2)];
+    
+    NSInteger m = mStr.intValue;
+    NSInteger d = dStr.intValue;
+    NSString *astroString = @"魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯";
+    NSString *astroFormat = @"102123444543";
+    NSString *result;
+    result=[NSString stringWithFormat:@"%@",[astroString substringWithRange:NSMakeRange(m*2-(d < [[astroFormat substringWithRange:NSMakeRange((m-1), 1)] intValue] - (-19))*2,2)]];
+    return [result stringByAppendingString:@"座"];
+}
+
+- (void)mappingContentDicValue{
     UIImage *image = [UIImage imageWithContentsOfFile:[self imageSaveParth]];
     _dicValues[_titleContentArray[RowHeadImage]] = image;
     _dicValues[_titleContentArray[RowName]] = [UserInfo shareInstance].name;
@@ -375,6 +389,11 @@ typedef NS_ENUM(NSUInteger, RowType) {
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
         NSString *strDate = [dateFormat stringFromDate:date];
         _dicValues[key] = strDate;
+        NSString *constellatinString = [self getAstroWithDateString:strDate];
+        NSInteger constellationRow = [_arrayConstellationPick indexOfObject:constellatinString];
+        [_dicPickSelectValues setObject:[NSNumber numberWithInteger:constellationRow] forKey:_titleContentArray[RowConstellation]];
+        _dicValues[_titleContentArray[RowConstellation]] = constellatinString;
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:RowConstellation inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
@@ -508,8 +527,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
         return  @"您的个人亮点";
     } if (section == 5) {
         return  @"更多个人介绍";
-    } 
-    
+    }
     return @"";
 }
 

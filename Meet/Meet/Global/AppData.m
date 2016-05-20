@@ -222,4 +222,12 @@ NSString *const UserInfoDatabaseName = @"MeetUserDB.db";
     return localeDate;
 }
 
++ (NSDate *)getDateFromString:(NSString *)pstrDate
+{
+    NSDateFormatter *df1 = [[NSDateFormatter alloc] init];
+    [df1 setDateFormat:@"yyyy-MM-dd"];
+    NSDate *dtPostDate = [df1 dateFromString:pstrDate];
+    return dtPostDate;
+}
+
 @end

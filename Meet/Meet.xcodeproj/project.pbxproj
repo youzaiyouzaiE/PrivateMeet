@@ -20,6 +20,7 @@
 		DA018F521CD4DAFB0051D2D7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA018F541CD4DAFB0051D2D7 /* Localizable.strings */; };
 		DA018F591CD78E9C0051D2D7 /* ImageAndTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F581CD78E9C0051D2D7 /* ImageAndTitleView.m */; };
 		DA018F5E1CD79D4A0051D2D7 /* RemindImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F5D1CD79D4A0051D2D7 /* RemindImageCell.m */; };
+		DA1A67EC1CEF107C00F9CC9D /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA1A67EB1CEF107C00F9CC9D /* area.plist */; };
 		DA3626591CD1A75C00A8AE39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3626581CD1A75C00A8AE39 /* main.m */; };
 		DA36265C1CD1A75C00A8AE39 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA36265B1CD1A75C00A8AE39 /* AppDelegate.m */; };
 		DA3626621CD1A75C00A8AE39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA3626601CD1A75C00A8AE39 /* Main.storyboard */; };
@@ -141,6 +142,7 @@
 		DA018F581CD78E9C0051D2D7 /* ImageAndTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndTitleView.m; sourceTree = "<group>"; };
 		DA018F5C1CD79D4A0051D2D7 /* RemindImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindImageCell.h; sourceTree = "<group>"; };
 		DA018F5D1CD79D4A0051D2D7 /* RemindImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindImageCell.m; sourceTree = "<group>"; };
+		DA1A67EB1CEF107C00F9CC9D /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		DA3626541CD1A75C00A8AE39 /* Meet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA3626581CD1A75C00A8AE39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA36265A1CD1A75C00A8AE39 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 		DA3626561CD1A75C00A8AE39 /* Meet */ = {
 			isa = PBXGroup;
 			children = (
+				DA1A67EB1CEF107C00F9CC9D /* area.plist */,
 				DA36265A1CD1A75C00A8AE39 /* AppDelegate.h */,
 				DA36265B1CD1A75C00A8AE39 /* AppDelegate.m */,
 				DA3626601CD1A75C00A8AE39 /* Main.storyboard */,
@@ -889,6 +892,7 @@
 				DAF5C8C21CE6D6AD00DA7901 /* README.txt in Resources */,
 				DA018F2F1CD39D570051D2D7 /* ManListCell.xib in Resources */,
 				DA6CEEEA1CD97E9A00EEABFF /* Me.storyboard in Resources */,
+				DA1A67EC1CEF107C00F9CC9D /* area.plist in Resources */,
 				DA3626671CD1A75C00A8AE39 /* LaunchScreen.storyboard in Resources */,
 				DABF8AF41CEAC0DC00CA2A1D /* Seting.storyboard in Resources */,
 				DAF5C8471CE2DA6E00DA7901 /* LabelTableViewCell.xib in Resources */,

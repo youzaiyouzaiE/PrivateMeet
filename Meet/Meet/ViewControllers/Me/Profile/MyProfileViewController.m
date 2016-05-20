@@ -57,7 +57,8 @@ typedef NS_ENUM(NSUInteger, RowType) {
     NSArray *_arrayIncomePick;/////8
     NSArray *_arrayLovedPick;/////9
     NSArray *_arrayConstellationPick;////10
-    
+    NSMutableArray *_arrayStatesPick;/////省
+    NSMutableDictionary *_dicCityPick;////区市 key为省
     
     
     NSIndexPath *_selectIndexParth;////当前选择的位置
@@ -65,7 +66,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
     
     NSMutableDictionary *_dicValues;////////tableView内容数据缓存 Key为对应的Title Value为用户填入的结果
     NSMutableDictionary *_dicPickSelectValues;////保存pickView对应的位置 ，value为pickView所选的位置，key为对应的title字符串
-    
+    NSMutableDictionary *_dicPickLocationValue;/////工作地点 和 家乡pick 值 （key为对应的title字符串 value为pickView所选的位置数组（） ）
     
     NSMutableArray *_arrayWorkExper;///工作经历
     NSMutableArray *_arrayOccupationLable;///职业标签
@@ -73,7 +74,6 @@ typedef NS_ENUM(NSUInteger, RowType) {
     
     UISheetView *_sheetView;
     UIAlertView *_sexAlertView;
-    
     BOOL _isNotSelectHeight;
 }
 
@@ -93,33 +93,64 @@ typedef NS_ENUM(NSUInteger, RowType) {
     [UITools navigationRightBarButtonForController:self action:@selector(saveAction:) normalTitle:@"保存" selectedTitle:nil];
     _titleContentArray = @[@"头像",@"真实姓名",@"性别",@"出生日期",@"身高",@"手机号",@"微信号",@"工作生活城市",@"年收入",@"情感状态",@"家乡",@"星座"];
     _dicValues = [NSMutableDictionary dictionary];
-    _dicPickSelectValues = [NSMutableDictionary dictionary];
+    
     
     _arrayWorkExper = [NSMutableArray arrayWithArray:@[@"产品总监 - 面包旅行",@"产品经理 - 百度"]];
     _arrayOccupationLable = [NSMutableArray arrayWithArray:@[@"产品总监, 产品经理 "]];
     _arrayEducateExper = [NSMutableArray arrayWithArray:@[@"哈尔滨工业大学 - 电子商务 - 本科 ",@"光山县第三高级中学 - 高中"]];
-    
-    _arraySexPick = @[@"男",@"女"];
-    _arrayHeightPick = [NSMutableArray arrayWithObject:@"150CM以下"];
-    for (int i = 150; i <= 190; i++) {
-      NSString *str = FORMAT(@"%dcm",i);
-        [_arrayHeightPick addObject:str];
-    }
-    [_arrayHeightPick addObject:@"190以上"];
-    _arrayIncomePick = @[@"10W以下",@"10W-20w",@"20W-30w",@"30W-50w",@"50W-100w",@"100W以上"];
-    _arrayLovedPick = @[@"单身并享受单身的状态",@"单身但渴望找到另一半",@"已有男女朋友，但未婚",@"已婚",@"离异，寻觅中",@"丧偶，寻觅中"];
-    _arrayConstellationPick = @[@"水平座",@"双鱼座",@"白羊座",@"金牛座",@"双子座",@"巨蟹座",@"狮子座",@"处女座",@"天秤座",@"天蝎座",@"射手座",@"摩羯座"];
+    [self loadPickViewData];
     
     _chooseView.hidden = YES;
     _datePicker.backgroundColor = [UIColor whiteColor];
     _datePicker.maximumDate = [NSDate  date];
     _picker.backgroundColor = [UIColor whiteColor];
     
-    
     if (_isFristLogin) {
         [self downLoadUserWeChatImage];
     }
     [self mappingDicValue];
+}
+
+- (void)loadPickViewData {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        ///pickView cache
+        _dicPickSelectValues = [NSMutableDictionary dictionary];
+        _dicPickLocationValue = [NSMutableDictionary dictionary];
+        [_dicPickLocationValue setObject:@[@0,@0] forKey:_titleContentArray[RowWorkLocation]];
+        [_dicPickLocationValue setObject:@[@0,@0] forKey:_titleContentArray[RowHome]];
+        
+        _arraySexPick = @[@"男",@"女"];
+        _arrayHeightPick = [NSMutableArray arrayWithObject:@"150CM以下"];
+        for (int i = 150; i <= 190; i++) {
+            NSString *str = FORMAT(@"%dcm",i);
+            [_arrayHeightPick addObject:str];
+        }
+        [_arrayHeightPick addObject:@"190以上"];
+        _arrayIncomePick = @[@"10W以下",@"10W-20w",@"20W-30w",@"30W-50w",@"50W-100w",@"100W以上"];
+        _arrayLovedPick = @[@"单身并享受单身的状态",@"单身但渴望找到另一半",@"已有男女朋友，但未婚",@"已婚",@"离异，寻觅中",@"丧偶，寻觅中"];
+        _arrayConstellationPick = @[@"水平座",@"双鱼座",@"白羊座",@"金牛座",@"双子座",@"巨蟹座",@"狮子座",@"处女座",@"天秤座",@"天蝎座",@"射手座",@"摩羯座"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"area" ofType:@"plist"];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        if (![fm fileExistsAtPath:path]) {
+            [NSException raise:@"File not found" format:@"Couldn't find the file at path: %@", path];
+        }
+        NSArray *array = [NSArray arrayWithContentsOfFile:path];
+        if (array.count >1) {
+            _arrayStatesPick = [NSMutableArray arrayWithCapacity:28];
+            _dicCityPick = [NSMutableDictionary dictionaryWithCapacity:28];
+        }
+        [array enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL * stop) {
+            NSString *stateName = dic[@"State"];
+            [_arrayStatesPick addObject:stateName];
+            NSArray *cities = dic[@"Cities"];
+            NSMutableArray *temp = [NSMutableArray array];
+            [cities enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * stop) {
+                NSString *cityName = obj[@"city"];
+                [temp addObject:cityName];
+            }];
+            [_dicCityPick setObject:temp forKey:stateName];
+        }];
+    });
 }
 
 - (void)mappingDicValue{
@@ -337,20 +368,56 @@ typedef NS_ENUM(NSUInteger, RowType) {
 
 #pragma mark - UIPickerViewDataSource
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
+    if (_selectIndexParth.row == RowWorkLocation || _selectIndexParth.row == RowHome) {
+        return 2;
+    } else
+        return 1;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [self setPickerViewContentArray:_selectIndexParth].count;
+    if (_selectIndexParth.row == RowWorkLocation || _selectIndexParth.row == RowHome) {
+        if (component == 0) {
+            return  _arrayStatesPick.count;
+        } else {
+            NSArray *citiesArray = [self pickViewComponest2Content];
+            return citiesArray.count;
+        }
+    } else
+        return [self setPickerViewContentArray:_selectIndexParth].count;
 }
 
 #pragma mark - UIPickerViewDelegate
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return (NSString *)[self setPickerViewContentArray:_selectIndexParth][row];
+    if (_selectIndexParth.row == RowWorkLocation || _selectIndexParth.row == RowHome) {
+        if (component == 0) {
+            return  _arrayStatesPick[row];
+        } else {
+            NSArray *citiesArray = [self pickViewComponest2Content];
+            return citiesArray[row];
+        }
+    } else
+        return (NSString *)[self setPickerViewContentArray:_selectIndexParth][row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    _pickerSelectRow = row;
+    if (_selectIndexParth.row == RowWorkLocation && component == 0) {
+        [_dicPickLocationValue setObject:@[[NSNumber numberWithInteger:row],@0] forKey:_titleContentArray[RowWorkLocation]];
+        [pickerView reloadComponent:1];
+        return ;
+    } else if (_selectIndexParth.row == RowHome && component == 0){
+        [_dicPickLocationValue setObject:@[[NSNumber numberWithInteger:row],@0] forKey:_titleContentArray[RowHome]];
+        [pickerView reloadComponent:1];
+        return ;
+    }  else
+        _pickerSelectRow = row;
+}
+
+- (NSArray *)pickViewComponest2Content {
+    NSArray *cacheValueArry = _dicPickLocationValue[_titleContentArray[_selectIndexParth.row]];
+    NSInteger component0Value = [cacheValueArry.firstObject intValue];
+    NSString *stateName = _arrayStatesPick[component0Value];
+    NSArray *citiesArray = _dicCityPick[stateName];
+    return citiesArray;
 }
 
 #pragma mark - UITableViewDataSource

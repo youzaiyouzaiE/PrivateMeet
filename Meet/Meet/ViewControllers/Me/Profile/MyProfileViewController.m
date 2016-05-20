@@ -155,7 +155,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
 }
 
 - (void)mappingCacheData {
-    if (![AppData shareInstance].isLogin) {
+    if (![AppData shareInstance].isLogin || _isFristLogin) {
         return ;
     }
     NSString *height = [UserInfo shareInstance].height;
@@ -254,6 +254,9 @@ typedef NS_ENUM(NSUInteger, RowType) {
     _dicValues[_titleContentArray[RowHeadImage]] = image;
     _dicValues[_titleContentArray[RowName]] = [UserInfo shareInstance].name;
     _dicValues[_titleContentArray[RowSex]] = [UserInfo shareInstance].sex.intValue == 1 ? @"男":@"女";
+    if (_isFristLogin) {
+        return ;
+    }
     _dicValues[_titleContentArray[RowBirthday]] = [UserInfo shareInstance].brithday;
     _dicValues[_titleContentArray[RowHeight]] = [UserInfo shareInstance].height;
     _dicValues[_titleContentArray[RowPhoneNumber]] = [UserInfo shareInstance].phoneNo;

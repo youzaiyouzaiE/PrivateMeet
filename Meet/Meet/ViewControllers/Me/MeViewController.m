@@ -35,7 +35,8 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.barTintColor = NAVIGATION_BAR_COLOR;
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logoutAction:) name:@"UserLogoutNotification" object:nil];
+    
     if (IOS_7LAST) {
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     }
@@ -56,6 +57,7 @@
 }
 
 - (void )loadHeadImageView {
+    _headImage = nil;
     if (![AppData shareInstance].isLogin) {
         return ;
     }
@@ -64,8 +66,17 @@
     _headImage = [UIImage imageWithContentsOfFile:saveImagePath];
 }
 
+- (void)logoutAction:(NSNotification *)notification {
+    [self loadHeadImageView];
+    [self checkDocumentGetSmallImagesAndUpdate];
+    [self.tableView reloadData];
+}
+
 - (void)checkDocumentGetSmallImagesAndUpdate {////获取cell 2里的image
     [_imagesArray removeAllObjects];
+    if (![AppData shareInstance].isLogin) {
+        return ;
+    }
     NSMutableArray *array = [NSMutableArray array];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSString *mostContetPath = [[AppData shareInstance] getCacheMostContetnImagePath];

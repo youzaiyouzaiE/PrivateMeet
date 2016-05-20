@@ -147,7 +147,7 @@
         [AppData shareInstance].isLogin = NO;
         [UserInfo shareInstance].loginType = [NSNumber numberWithInteger:0];
         [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
-        
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
     
     [_sheetView hidden];

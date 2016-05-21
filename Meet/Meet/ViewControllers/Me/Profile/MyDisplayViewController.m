@@ -18,7 +18,7 @@
 #import "MoreDescriptionModel.h"
 
 @interface MyDisplayViewController () {
-    __weak IBOutlet UIScrollView *scrollView;
+    __weak IBOutlet UIScrollView *_scrollView;
     NSInteger _scrollViewContentHeight;
     NSMutableDictionary *_dicContentImages;
     NSMutableArray *_arrayContentModels;
@@ -65,7 +65,7 @@
 }
 
 - (void)loadCoreTextViewAndImageViews {
-    NSArray *array = [scrollView subviews];
+    NSArray *array = [_scrollView subviews];
     for (UIView *subView in array) {
         if ([subView isKindOfClass:[CTTextView class]] || [subView isKindOfClass:[UIImageView class]]) {
             [subView removeFromSuperview];
@@ -96,7 +96,7 @@
         coreTextView.data = data;
         coreTextView.backgroundColor = [UIColor whiteColor];
         coreTextView.frame = CGRectMake(IMAGEVIEW_X, _scrollViewContentHeight, IMAGAVIEW_W, data.height);
-        [scrollView addSubview:coreTextView];
+        [_scrollView addSubview:coreTextView];
         _scrollViewContentHeight += data.height;
         [self loadImageViewsWithSection:i];
     }
@@ -112,7 +112,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(IMAGEVIEW_X, _scrollViewContentHeight + VIEW_MARGIN, IMAGAVIEW_W, h)];
         imageView.image = image;
         [imageView setupImageViewer];
-        [scrollView addSubview:imageView];
+        [_scrollView addSubview:imageView];
         _scrollViewContentHeight += (imageView.height + VIEW_MARGIN);
     }];
 }
@@ -123,6 +123,7 @@
     _scrollViewContentHeight = 10;
     [self moreDescriptionModelsFromDB];
     [self loadCoreTextViewAndImageViews];
+    [self.view needsUpdateConstraints];
 }
 
 - (void)updateViewConstraints {
@@ -178,8 +179,7 @@
         [self reloadScrollView];
     };
     moreVC.modifyTextBlock = ^(){
-        [self moreDescriptionModelsFromDB];
-        [self loadCoreTextViewAndImageViews];
+        [self reloadScrollView];
     };
     moreVC.editType = 1;
     [self.navigationController pushViewController:moreVC animated:YES];

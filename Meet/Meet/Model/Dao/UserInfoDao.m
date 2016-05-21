@@ -83,9 +83,15 @@ static NSString *const tableName = @"UserInfoTable";
     return [UserInfo shareInstance];
 }
 
-- (NSArray *)selectUserInfoWithUserId:(NSString *)userId {
+- (UserInfo *)selectUserInfoWithUserId:(NSString *)userId {
     NSString *whereSql = [NSString stringWithFormat:@"%@ = '%@' ", k_User_userId,userId];
-    return [self selectWithWhere:whereSql];
+    NSArray *loginUsers = [self selectWithWhere:whereSql];
+    UserInfo *info = loginUsers.firstObject;
+    if (!info) {
+        return nil;
+    }
+    [[UserInfo shareInstance] mappingValuesFormUserInfo:info];
+    return [UserInfo shareInstance];
 }
 
 

@@ -346,7 +346,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l7B-Vk-ACb" id="45b-TE-jp4">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="84"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="83.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sr6-ba-Ohc">
@@ -401,7 +401,7 @@
                                         <rect key="frame" x="0.0" y="176" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xty-Ls-wzp" id="w8H-bR-N8J">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFd-sI-CBP">
@@ -519,7 +519,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="sbD-9S-AKR"/>
                     <connections>
-                        <outlet property="scrollView" destination="pRR-rX-1Al" id="tSP-8g-f9Q"/>
+                        <outlet property="_scrollView" destination="pRR-rX-1Al" id="lhZ-o0-TFL"/>
                         <outlet property="scrollViewConstraintH" destination="ZW1-gQ-Yii" id="yhS-ic-xZP"/>
                     </connections>
                 </viewController>

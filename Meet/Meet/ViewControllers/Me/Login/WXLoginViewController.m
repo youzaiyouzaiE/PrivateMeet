@@ -67,15 +67,9 @@
     if (state.intValue) {
         [[UserInfo shareInstance] mappingValuesFormWXUserInfo:[WXUserInfo shareInstance]];
         [AppData shareInstance].isLogin = YES;
-        NSArray *users = [[UserInfoDao shareInstance] selectUserInfoWithUserId:[WXUserInfo shareInstance].unionid];
-        if (users.count > 0) {
-            UserInfo *user = users[0];
-            user.loginType = [NSNumber numberWithInteger:1];
-            [[UserInfo shareInstance] mappingValuesFormUserInfo:user];
-            [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
-        } else
-            [[UserInfoDao shareInstance] insertBean:[UserInfo shareInstance]];
         
+        [[UserInfoDao shareInstance] insertBean:[UserInfo shareInstance]];
+        [[UserInfoDao shareInstance] selectUserInfoWithUserId:[WXUserInfo shareInstance].unionid];/////获取到 [UserInfo shareInstance]的idKye 以后保存需要
         UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
         MyProfileViewController *myProfileVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
         myProfileVC.isFristLogin = YES;

@@ -379,7 +379,6 @@ typedef NS_ENUM(NSUInteger, RowType) {
         [self dismissViewControllerAnimated:YES completion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:FRIST_LOGIN_NOTIFICATION_Key object:nil];
         }];
-        
     } else
         [self.navigationController popViewControllerAnimated:YES];
 }
@@ -393,6 +392,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
     [self mappingUserInfoWithDicValues];
     [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
     [[UITools shareInstance] showMessageToView:self.view message:@"保存成功" autoHide:YES];
+    [self backAction:nil];
 }
 
 - (IBAction)tapGestureRecognizer:(UITapGestureRecognizer *)sender {

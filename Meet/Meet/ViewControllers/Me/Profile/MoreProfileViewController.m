@@ -184,7 +184,6 @@
 #pragma mark - action
 - (void)cancelButtonAction:(UIButton *)button {
     [self dismissViewControllerAnimated:YES completion:^{
-        
     }];
 }
 
@@ -208,8 +207,14 @@
     if (isModifyImages) {
         self.modifyBlock();
     }
-    if (isModifyText) {
-        self.modifyTextBlock();
+    if (_editType == 0){
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    } else {
+        if (isModifyText) {
+            self.modifyTextBlock();
+        }
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

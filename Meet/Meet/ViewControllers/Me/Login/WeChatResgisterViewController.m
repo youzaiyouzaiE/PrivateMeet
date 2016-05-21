@@ -87,20 +87,9 @@
         if (unionid) {/////是老用户，退出登陆页面 isLogin YES
 #warning  是老用户 从网获取用户信息 并保存本地 退出登陆页面
             
-            NSArray *users = [[UserInfoDao shareInstance] selectUserInfoWithUserId:[WXUserInfo shareInstance].unionid];
-            if (users.count > 0) {
-                UserInfo *user = users[0];
-                user.loginType = [NSNumber numberWithInteger:1];
-                [[UserInfo shareInstance] mappingValuesFormUserInfo:user];
-                //然后用从网络得到的User mapping 给[UserInfo shareInstance]
-                ///保存更新本地数据
-                [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
-            } else {
-                ///// //用从网络得到的User mapping 给[UserInfo shareInstance]
-                /////然后保存本地数据
-               ///// [[UserInfoDao shareInstance] insertBean:[UserInfo shareInstance]];
-            }
-            
+            [[UserInfoDao shareInstance] insertBean:[UserInfo shareInstance]];
+            [[UserInfoDao shareInstance] selectUserInfoWithUserId:[UserInfo shareInstance].userId];/////重新获取到 [UserInfo shareInstance]主要是为了得到idKye
+         
             [self dismissViewControllerAnimated:YES completion:^{
                 [AppData shareInstance].isLogin = YES;
             }];

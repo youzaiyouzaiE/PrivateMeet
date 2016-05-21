@@ -7,7 +7,6 @@
 //
 
 #import "WeChatResgisterViewController.h"
-#import "WeChatLonginViewController.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
 #import "WXAccessModel.h"

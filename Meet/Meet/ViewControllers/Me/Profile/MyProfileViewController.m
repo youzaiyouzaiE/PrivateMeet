@@ -158,6 +158,11 @@ typedef NS_ENUM(NSUInteger, RowType) {
     if (![AppData shareInstance].isLogin) {
         return ;
     }
+    NSNumber *sexNum = [UserInfo shareInstance].sex;
+    if (sexNum && ![sexNum isKindOfClass:[NSNull class]]) {
+        _dicPickSelectValues[_titleContentArray[RowSex]] = [NSNumber numberWithInt:sexNum.intValue - 1];
+    }
+    
     NSString *height = [UserInfo shareInstance].height;
     if (![height isKindOfClass:[NSNull class]] && height != nil && height.length >2) {
         NSInteger heightRow = [_arrayHeightPick indexOfObject:height];
@@ -263,33 +268,33 @@ typedef NS_ENUM(NSUInteger, RowType) {
     UIImage *image = [UIImage imageWithContentsOfFile:[self imageSaveParth]];
     _dicValues[_titleContentArray[RowHeadImage]] = image;
     _dicValues[_titleContentArray[RowName]] = [UserInfo shareInstance].name;
-    _dicValues[_titleContentArray[RowSex]] = [UserInfo shareInstance].sex.intValue == 1 ? @"男":@"女";
+    _dicValues[_titleContentArray[RowSex]] = [UserInfo shareInstance].sex.intValue == 0 ? @"男":@"女";
     
-    if (![[UserInfo shareInstance].brithday isKindOfClass:[NSNull class]] && [UserInfo shareInstance].brithday && [UserInfo shareInstance].brithday.length > 2) {
+    if (![[UserInfo shareInstance].brithday isKindOfClass:[NSNull class]]) {
         _dicValues[_titleContentArray[RowBirthday]] = [UserInfo shareInstance].brithday;
     }
-    if (![[UserInfo shareInstance].height isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].height && [UserInfo shareInstance].height.length > 2) {
+    if (![[UserInfo shareInstance].height isKindOfClass:[NSNull class]]) {
         _dicValues[_titleContentArray[RowHeight]] = [UserInfo shareInstance].height;
     }
-    if (![[UserInfo shareInstance].phoneNo isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].phoneNo && [UserInfo shareInstance].phoneNo.length > 0) {
+    if (![[UserInfo shareInstance].phoneNo isKindOfClass:[NSNull class]]) {
         _dicValues[_titleContentArray[RowPhoneNumber]] = [UserInfo shareInstance].phoneNo;
     }
-    if (![[UserInfo shareInstance].WX_No isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].WX_No && [UserInfo shareInstance].WX_No.length > 0) {
+    if (![[UserInfo shareInstance].WX_No isKindOfClass:[NSNull class]]) {
         _dicValues[_titleContentArray[RowWX_Id]] = [UserInfo shareInstance].WX_No;
     }
-    if (![[UserInfo shareInstance].workCity isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].workCity && [UserInfo shareInstance].workCity.length > 0) {
+    if (![[UserInfo shareInstance].workCity isKindOfClass:[NSNull class]]) {
         _dicValues[_titleContentArray[RowWorkLocation]] = [UserInfo shareInstance].workCity;
     }
-    if (![[UserInfo shareInstance].income isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].income && [UserInfo shareInstance].income.length > 0) {
+    if (![[UserInfo shareInstance].income isKindOfClass:[NSNull class]]) {
         _dicValues[_titleContentArray[RowIncome]] = [UserInfo shareInstance].income;
     }
-    if (![[UserInfo shareInstance].state isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].state && [UserInfo shareInstance].state.length > 0) {
+    if (![[UserInfo shareInstance].state isKindOfClass:[NSNull class]]) {
         _dicValues[_titleContentArray[RowState]] = [UserInfo shareInstance].state;
     }
-    if (![[UserInfo shareInstance].home isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].home && [UserInfo shareInstance].home.length > 0) {
+    if (![[UserInfo shareInstance].home isKindOfClass:[NSNull class]]) {
         _dicValues[_titleContentArray[RowHome]] = [UserInfo shareInstance].home;
     }
-    if (![[UserInfo shareInstance].constellation isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].constellation && [UserInfo shareInstance].constellation.length > 0) {
+    if (![[UserInfo shareInstance].constellation isKindOfClass:[NSNull class]]) {
         _dicValues[_titleContentArray[RowConstellation]] = [UserInfo shareInstance].constellation;
     }
 }
@@ -489,7 +494,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
         if (buttonIndex == 1) {
             [UserInfo shareInstance].modifySex = 1;
             NSNumber *value = _dicPickSelectValues[_titleContentArray[RowSex]];
-            [UserInfo shareInstance].sex = value;
+            [UserInfo shareInstance].sex = [NSNumber numberWithInt:value.intValue + 1];
             [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
             [self mappingPickContentInDic];
             [self showChooseViewAnimation:NO];
@@ -626,7 +631,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
             }
             cell.titelLabel.text = _titleContentArray[row];
             cell.textField.placeholder = _titleContentArray[row];
-             cell.textField.indexPath = indexPath;
+            cell.textField.indexPath = indexPath;
             cell.textField.text = _dicValues[_titleContentArray[row]];
             return  cell;
         } else {

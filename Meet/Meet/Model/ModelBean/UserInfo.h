@@ -37,7 +37,7 @@ extern NSString *const k_User_constellation;
 @property (copy, nonatomic) NSString *city;
 @property (copy, nonatomic) NSString *country;
 @property (copy, nonatomic) NSString *headimgurl;
-@property (strong, nonatomic) NSNumber *sex;
+@property (strong, nonatomic) NSNumber *sex;/////1为男  2为女(因为是和微信同步，所以也这样设置了，)
 @property (copy, nonatomic) NSString *eMail;
 ////已经更改过性别 ？
 @property (assign, nonatomic) NSInteger modifySex;

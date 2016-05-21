@@ -38,7 +38,6 @@
 		DA4A89021CDC388B00649983 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA4A89011CDC388B00649983 /* Login.storyboard */; };
 		DA4A89051CDC473700649983 /* LoginMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4A89041CDC473700649983 /* LoginMainViewController.m */; };
 		DA4A89081CDC9A3200649983 /* GetCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4A89071CDC9A3200649983 /* GetCodeViewController.m */; };
-		DA4A890B1CDCA0C000649983 /* WeChatLonginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4A890A1CDCA0C000649983 /* WeChatLonginViewController.m */; };
 		DA4A890E1CDCA8D000649983 /* WeChatResgisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4A890D1CDCA8D000649983 /* WeChatResgisterViewController.m */; };
 		DA4A89181CDD91B300649983 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA4A89171CDD91B300649983 /* SystemConfiguration.framework */; };
 		DA4A891A1CDD91EB00649983 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA4A89191CDD91EB00649983 /* libz.tbd */; };
@@ -176,8 +175,6 @@
 		DA4A89041CDC473700649983 /* LoginMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginMainViewController.m; sourceTree = "<group>"; };
 		DA4A89061CDC9A3200649983 /* GetCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCodeViewController.h; sourceTree = "<group>"; };
 		DA4A89071CDC9A3200649983 /* GetCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCodeViewController.m; sourceTree = "<group>"; };
-		DA4A89091CDCA0C000649983 /* WeChatLonginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatLonginViewController.h; sourceTree = "<group>"; };
-		DA4A890A1CDCA0C000649983 /* WeChatLonginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatLonginViewController.m; sourceTree = "<group>"; };
 		DA4A890C1CDCA8D000649983 /* WeChatResgisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatResgisterViewController.h; sourceTree = "<group>"; };
 		DA4A890D1CDCA8D000649983 /* WeChatResgisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatResgisterViewController.m; sourceTree = "<group>"; };
 		DA4A89171CDD91B300649983 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -533,8 +530,6 @@
 			children = (
 				DA4A890C1CDCA8D000649983 /* WeChatResgisterViewController.h */,
 				DA4A890D1CDCA8D000649983 /* WeChatResgisterViewController.m */,
-				DA4A89091CDCA0C000649983 /* WeChatLonginViewController.h */,
-				DA4A890A1CDCA0C000649983 /* WeChatLonginViewController.m */,
 				DA1A67ED1CEFD81D00F9CC9D /* WXLoginViewController.h */,
 				DA1A67EE1CEFD81D00F9CC9D /* WXLoginViewController.m */,
 				DA4A89031CDC473700649983 /* LoginMainViewController.h */,
@@ -1015,7 +1010,6 @@
 				DABF8AF21CE9D41100CA2A1D /* BaseMeetViewController.m in Sources */,
 				DAF5C8BE1CE6D6AD00DA7901 /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				DAF5C81E1CE0D0ED00DA7901 /* BaseModel.m in Sources */,
-				DA4A890B1CDCA0C000649983 /* WeChatLonginViewController.m in Sources */,
 				DA6B1C581CEC4DAC0020021D /* HomeMoreViewController.m in Sources */,
 				DAF5C7F91CDF479C00DA7901 /* NetWorkObject.m in Sources */,
 				DA41592B1CECA057006970DF /* MoreDescriptionModel.m in Sources */,

@@ -1,12 +1,13 @@
 //
-//  WeChatLonginViewController.m
+//  WXLoginViewController.m
 //  Meet
 //
-//  Created by jiahui on 16/5/6.
+//  Created by jiahui on 16/5/21.
 //  Copyright © 2016年 Meet. All rights reserved.
 //
 
-#import "WeChatLonginViewController.h"
+#import "WXLoginViewController.h"
+
 #import "MyProfileViewController.h"
 #import "WXApi.h"
 
@@ -14,18 +15,18 @@
 #import "UserInfoDao.h"
 #import "UserInfo.h"
 
-@interface WeChatLonginViewController ()
+@interface WXLoginViewController ()
 
 @property (assign, nonatomic) BOOL isNewUser;
 
 @end
 
-@implementation WeChatLonginViewController
+@implementation WXLoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   
+    
     [UITools customNavigationLeftBarButtonForController:self action:@selector(backAction:)];
     [UITools navigationRightBarButtonForController:self action:@selector(cancelAction:) normalTitle:@"取消" selectedTitle:nil];
     
@@ -51,15 +52,15 @@
 
 - (IBAction)loginButtonAction:(id)sender {
     if (_isNewUser) {
-    [self sendAuthRequest];
-//////判断是否真实存在用户
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginState:) name:@"NewUserLoginWihtWechat" object:nil];
-//        loading View start
+        [self sendAuthRequest];
+        //////判断是否真实存在用户
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginState:) name:@"NewUserLoginWihtWechat" object:nil];
+        //        loading View start
     }
 }
 
-#pragma mark - notification 
+#pragma mark - notification
 - (void)loginState:(NSNotification *)notification {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NewUserLoginWihtWechat" object:nil];
     NSNumber *state = [notification object];
@@ -69,6 +70,7 @@
         NSArray *users = [[UserInfoDao shareInstance] selectUserInfoWithUserId:[WXUserInfo shareInstance].unionid];
         if (users.count > 0) {
             UserInfo *user = users[0];
+            user.loginType = [NSNumber numberWithInteger:1];
             [[UserInfo shareInstance] mappingValuesFormUserInfo:user];
             [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
         } else
@@ -91,21 +93,22 @@
     //第三方向微信终端发送一个SendAuthReq消息结构
     if (![WXApi sendReq:req]) {
         [[UITools shareInstance] showMessageToView:self.view message:@"请安装WeChart" autoHide:YES];
-         NSLog(@"未安装WeChart");
+        NSLog(@"未安装WeChart");
     };
 }
 
 - (void)dealloc {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    //    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

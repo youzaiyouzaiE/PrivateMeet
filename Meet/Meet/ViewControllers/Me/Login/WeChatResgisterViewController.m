@@ -57,7 +57,7 @@
 
 - (IBAction)checkCodeButtonAction:(id)sender {
 #warning check code and into WeChat Longin
-    [self performSegueWithIdentifier:@"pushToWeChatLogin" sender:self];
+    [self performSegueWithIdentifier:@"pushToWXLogin" sender:self];
     
 }
 

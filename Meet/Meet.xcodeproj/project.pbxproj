@@ -21,6 +21,7 @@
 		DA018F591CD78E9C0051D2D7 /* ImageAndTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F581CD78E9C0051D2D7 /* ImageAndTitleView.m */; };
 		DA018F5E1CD79D4A0051D2D7 /* RemindImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA018F5D1CD79D4A0051D2D7 /* RemindImageCell.m */; };
 		DA1A67EC1CEF107C00F9CC9D /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA1A67EB1CEF107C00F9CC9D /* area.plist */; };
+		DA1A67EF1CEFD81D00F9CC9D /* WXLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1A67EE1CEFD81D00F9CC9D /* WXLoginViewController.m */; };
 		DA3626591CD1A75C00A8AE39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3626581CD1A75C00A8AE39 /* main.m */; };
 		DA36265C1CD1A75C00A8AE39 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA36265B1CD1A75C00A8AE39 /* AppDelegate.m */; };
 		DA3626621CD1A75C00A8AE39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA3626601CD1A75C00A8AE39 /* Main.storyboard */; };
@@ -143,6 +144,8 @@
 		DA018F5C1CD79D4A0051D2D7 /* RemindImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindImageCell.h; sourceTree = "<group>"; };
 		DA018F5D1CD79D4A0051D2D7 /* RemindImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindImageCell.m; sourceTree = "<group>"; };
 		DA1A67EB1CEF107C00F9CC9D /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		DA1A67ED1CEFD81D00F9CC9D /* WXLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXLoginViewController.h; sourceTree = "<group>"; };
+		DA1A67EE1CEFD81D00F9CC9D /* WXLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXLoginViewController.m; sourceTree = "<group>"; };
 		DA3626541CD1A75C00A8AE39 /* Meet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA3626581CD1A75C00A8AE39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA36265A1CD1A75C00A8AE39 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -532,6 +535,8 @@
 				DA4A890D1CDCA8D000649983 /* WeChatResgisterViewController.m */,
 				DA4A89091CDCA0C000649983 /* WeChatLonginViewController.h */,
 				DA4A890A1CDCA0C000649983 /* WeChatLonginViewController.m */,
+				DA1A67ED1CEFD81D00F9CC9D /* WXLoginViewController.h */,
+				DA1A67EE1CEFD81D00F9CC9D /* WXLoginViewController.m */,
 				DA4A89031CDC473700649983 /* LoginMainViewController.h */,
 				DA4A89041CDC473700649983 /* LoginMainViewController.m */,
 				DA4A89061CDC9A3200649983 /* GetCodeViewController.h */,
@@ -972,6 +977,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA6B1C551CEC4DAC0020021D /* EatViewController.m in Sources */,
+				DA1A67EF1CEFD81D00F9CC9D /* WXLoginViewController.m in Sources */,
 				DA6CEF131CDAF42300EEABFF /* AddInformationViewController.m in Sources */,
 				DA4A88FB1CDB5CB700649983 /* UITextView+Placeholder.m in Sources */,
 				DAF5C8271CE0D1B500DA7901 /* SuperDao.m in Sources */,

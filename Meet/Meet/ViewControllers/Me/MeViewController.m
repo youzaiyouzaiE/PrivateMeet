@@ -67,8 +67,8 @@
 }
 
 - (void)logoutAction:(NSNotification *)notification {
-    [self loadHeadImageView];
-    [self checkDocumentGetSmallImagesAndUpdate];
+    _headImage = nil;
+    [_imagesArray removeAllObjects];
     [self.tableView reloadData];
 }
 

@@ -155,27 +155,37 @@ typedef NS_ENUM(NSUInteger, RowType) {
 }
 
 - (void)mappingCacheData {
-    if (![AppData shareInstance].isLogin || _isFristLogin) {
+    if (![AppData shareInstance].isLogin) {
         return ;
     }
     NSString *height = [UserInfo shareInstance].height;
-    NSInteger heightRow = [_arrayHeightPick indexOfObject:height];
-    [_dicPickSelectValues setObject:[NSNumber numberWithInteger:heightRow] forKey:_titleContentArray[RowHeight]];
+    if (![height isKindOfClass:[NSNull class]] && height != nil && height.length >2) {
+        NSInteger heightRow = [_arrayHeightPick indexOfObject:height];
+        [_dicPickSelectValues setObject:[NSNumber numberWithInteger:heightRow] forKey:_titleContentArray[RowHeight]];
+    }
     
     [self locationRowMappingForRow:RowWorkLocation];
     [self locationRowMappingForRow:RowHome];
     
     NSString *income = [UserInfo shareInstance].income;
-    NSInteger incomRow = [_arrayIncomePick indexOfObject:income];
-    [_dicPickSelectValues setObject:[NSNumber numberWithInteger:incomRow] forKey:_titleContentArray[RowIncome]];
+    if (![income isKindOfClass:[NSNull class]] && income != nil && income.length >2) {
+        NSInteger incomRow = [_arrayIncomePick indexOfObject:income];
+        [_dicPickSelectValues setObject:[NSNumber numberWithInteger:incomRow] forKey:_titleContentArray[RowIncome]];
+    }
+   
     
     NSString *state = [UserInfo shareInstance].state;
-    NSInteger stateRow = [_arrayStatesPick indexOfObject:state];
-    [_dicPickSelectValues setObject:[NSNumber numberWithInteger:stateRow] forKey:_titleContentArray[RowState]];
+    if (![state isKindOfClass:[NSNull class]] && state != nil && state.length >2) {
+        NSInteger stateRow = [_arrayStatesPick indexOfObject:state];
+        [_dicPickSelectValues setObject:[NSNumber numberWithInteger:stateRow] forKey:_titleContentArray[RowState]];
+    }
+ 
     
     NSString *constellation = [UserInfo shareInstance].constellation;
-    NSInteger constellationRow = [_arrayConstellationPick indexOfObject:constellation];
-    [_dicPickSelectValues setObject:[NSNumber numberWithInteger:constellationRow] forKey:_titleContentArray[RowConstellation]];
+    if (![constellation isKindOfClass:[NSNull class]] && constellation != nil && constellation.length >2) {
+        NSInteger constellationRow = [_arrayConstellationPick indexOfObject:constellation];
+        [_dicPickSelectValues setObject:[NSNumber numberWithInteger:constellationRow] forKey:_titleContentArray[RowConstellation]];
+    }
 }
 
 - (void)locationRowMappingForRow:(NSInteger)row {
@@ -185,7 +195,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
     } else if (row == RowHome) {
         locationCity = [UserInfo shareInstance].home;
     }
-    if (locationCity.length > 2) {
+    if (![locationCity isKindOfClass:[NSNull class]] && locationCity != nil && locationCity.length > 2) {
         NSArray *stateAndCity = [locationCity componentsSeparatedByString:@","];
         __block NSInteger stateRow = 0;
         __block NSInteger cityRow = 0;
@@ -254,18 +264,34 @@ typedef NS_ENUM(NSUInteger, RowType) {
     _dicValues[_titleContentArray[RowHeadImage]] = image;
     _dicValues[_titleContentArray[RowName]] = [UserInfo shareInstance].name;
     _dicValues[_titleContentArray[RowSex]] = [UserInfo shareInstance].sex.intValue == 1 ? @"男":@"女";
-    if (_isFristLogin) {
-        return ;
+    
+    if (![[UserInfo shareInstance].brithday isKindOfClass:[NSNull class]] && [UserInfo shareInstance].brithday && [UserInfo shareInstance].brithday.length > 2) {
+        _dicValues[_titleContentArray[RowBirthday]] = [UserInfo shareInstance].brithday;
     }
-    _dicValues[_titleContentArray[RowBirthday]] = [UserInfo shareInstance].brithday;
-    _dicValues[_titleContentArray[RowHeight]] = [UserInfo shareInstance].height;
-    _dicValues[_titleContentArray[RowPhoneNumber]] = [UserInfo shareInstance].phoneNo;
-    _dicValues[_titleContentArray[RowWX_Id]] = [UserInfo shareInstance].WX_No;
-    _dicValues[_titleContentArray[RowWorkLocation]] = [UserInfo shareInstance].workCity;
-    _dicValues[_titleContentArray[RowIncome]] = [UserInfo shareInstance].income;
-    _dicValues[_titleContentArray[RowState]] = [UserInfo shareInstance].state;
-    _dicValues[_titleContentArray[RowHome]] = [UserInfo shareInstance].home;
-    _dicValues[_titleContentArray[RowConstellation]] = [UserInfo shareInstance].constellation;
+    if (![[UserInfo shareInstance].height isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].height && [UserInfo shareInstance].height.length > 2) {
+        _dicValues[_titleContentArray[RowHeight]] = [UserInfo shareInstance].height;
+    }
+    if (![[UserInfo shareInstance].phoneNo isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].phoneNo && [UserInfo shareInstance].phoneNo.length > 0) {
+        _dicValues[_titleContentArray[RowPhoneNumber]] = [UserInfo shareInstance].phoneNo;
+    }
+    if (![[UserInfo shareInstance].WX_No isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].WX_No && [UserInfo shareInstance].WX_No.length > 0) {
+        _dicValues[_titleContentArray[RowWX_Id]] = [UserInfo shareInstance].WX_No;
+    }
+    if (![[UserInfo shareInstance].workCity isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].workCity && [UserInfo shareInstance].workCity.length > 0) {
+        _dicValues[_titleContentArray[RowWorkLocation]] = [UserInfo shareInstance].workCity;
+    }
+    if (![[UserInfo shareInstance].income isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].income && [UserInfo shareInstance].income.length > 0) {
+        _dicValues[_titleContentArray[RowIncome]] = [UserInfo shareInstance].income;
+    }
+    if (![[UserInfo shareInstance].state isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].state && [UserInfo shareInstance].state.length > 0) {
+        _dicValues[_titleContentArray[RowState]] = [UserInfo shareInstance].state;
+    }
+    if (![[UserInfo shareInstance].home isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].home && [UserInfo shareInstance].home.length > 0) {
+        _dicValues[_titleContentArray[RowHome]] = [UserInfo shareInstance].home;
+    }
+    if (![[UserInfo shareInstance].constellation isKindOfClass:[NSNull class]] &&[UserInfo shareInstance].constellation && [UserInfo shareInstance].constellation.length > 0) {
+        _dicValues[_titleContentArray[RowConstellation]] = [UserInfo shareInstance].constellation;
+    }
 }
 
 - (void)mappingUserInfoWithDicValues {

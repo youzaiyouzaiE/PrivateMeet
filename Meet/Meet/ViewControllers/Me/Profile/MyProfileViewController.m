@@ -268,7 +268,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
     UIImage *image = [UIImage imageWithContentsOfFile:[self imageSaveParth]];
     _dicValues[_titleContentArray[RowHeadImage]] = image;
     _dicValues[_titleContentArray[RowName]] = [UserInfo shareInstance].name;
-    _dicValues[_titleContentArray[RowSex]] = [UserInfo shareInstance].sex.intValue == 0 ? @"男":@"女";
+    _dicValues[_titleContentArray[RowSex]] = [UserInfo shareInstance].sex.intValue == 1 ? @"男":@"女";
     
     if (![[UserInfo shareInstance].brithday isKindOfClass:[NSNull class]]) {
         _dicValues[_titleContentArray[RowBirthday]] = [UserInfo shareInstance].brithday;

@@ -226,39 +226,39 @@
     _isChangedImage = YES;
     UIImage *imageSmall = [UITools imageWithImageSimple:image scaledToSize:[self smallSize]];
     [_imageItemsArray addObject:imageSmall];
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        NSString *bigImageSavePath = [_bigImageDocumetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",name]];
-//        NSString *smallImageSavePath = [_smallImageDocumetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",name]];
-//        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-//        if ([imageData writeToFile:bigImageSavePath atomically:NO]) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *bigImageSavePath = [_bigImageDocumetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",name]];
+        NSString *smallImageSavePath = [_smallImageDocumetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",name]];
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        if ([imageData writeToFile:bigImageSavePath atomically:NO]) {
             [_imagesNameArray addObject:[NSString stringWithFormat:@"%@.JPG",name]];
+                         NSLog(@"存入文件 成功！");
+        } else {
+            NSLog(@"图片未能存入");
+        }
+        NSData *smallImageData = UIImageJPEGRepresentation(imageSmall, 1);
+        if ([smallImageData writeToFile:smallImageSavePath atomically:NO]) {
             //             NSLog(@"存入文件 成功！");
-//        } else {
-//            NSLog(@"图片未能存入");
-//        }
-//        NSData *smallImageData = UIImageJPEGRepresentation(imageSmall, 1);
-//        if ([smallImageData writeToFile:smallImageSavePath atomically:NO]) {
-//            //             NSLog(@"存入文件 成功！");
-//        } else {
-//            NSLog(@"图片未能存入");
-//        }
-//    });
+        } else {
+            NSLog(@"图片未能存入");
+        }
+    });
 }
 
 - (void)deleteImageWithName:(NSString *)imageName atItemsArrayLocation:(NSInteger)loc {
     _isChangedImage = YES;
-//    NSString *bigImagePath = [_bigImageDocumetPath stringByAppendingPathComponent:imageName];
-//    NSError *error = nil;
-//    NSString *smallImagePath = [_smallImageDocumetPath stringByAppendingPathComponent:imageName];
-//    NSError *smallError = nil;
-//    if ([[NSFileManager defaultManager] removeItemAtPath:smallImagePath error:&smallError] && [[NSFileManager defaultManager] removeItemAtPath:bigImagePath error:&error]) {
+    NSString *bigImagePath = [_bigImageDocumetPath stringByAppendingPathComponent:imageName];
+    NSError *error = nil;
+    NSString *smallImagePath = [_smallImageDocumetPath stringByAppendingPathComponent:imageName];
+    NSError *smallError = nil;
+    if ([[NSFileManager defaultManager] removeItemAtPath:smallImagePath error:&smallError] && [[NSFileManager defaultManager] removeItemAtPath:bigImagePath error:&error]) {
         [_imageItemsArray removeObjectAtIndex:loc];
         [_imagesNameArray removeObject:imageName];
         [self.collectionView reloadData];
-//    } else {
-//        NSLog(@"remove small %@.JPG Error :%@",imageName,smallError.localizedDescription);
-//        NSLog(@"remove %@.JPG error :%@",imageName,error.localizedDescription);
-//    }
+    } else {
+        NSLog(@"remove small %@.JPG Error :%@",imageName,smallError.localizedDescription);
+        NSLog(@"remove %@.JPG error :%@",imageName,error.localizedDescription);
+    }
 }
 
 - (CGSize)imageAssetSize:(PHAsset *)asset {

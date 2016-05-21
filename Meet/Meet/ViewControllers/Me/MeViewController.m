@@ -40,10 +40,8 @@
     if (IOS_7LAST) {
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     }
-    
-    if (![AppData shareInstance].isLogin) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHeadTableViewCell:) name:FRIST_LOGIN_NOTIFICATION_Key object:nil];
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHeadTableViewCell:) name:FRIST_LOGIN_NOTIFICATION_Key object:nil];
+
     _imagesArray = [NSMutableArray array];
     
     [self loadHeadImageView];
@@ -185,12 +183,15 @@
             imageView.image = _headImage;
         } else
             imageView.image = [UIImage imageNamed:@"RadarKeyboard_HL"];
-        
         UILabel *nameLabel = (UILabel *)[cell viewWithTag:2];
         nameLabel.text = [UserInfo shareInstance].name;
         
         UILabel *detailLabel = (UILabel *)[cell viewWithTag:3];
         detailLabel.text = @"68%完成度";
+        if (![AppData shareInstance].isLogin) {
+            nameLabel.text = @"未登录";
+            detailLabel.text = @"";
+        }
         return cell;
     } else if(indexPath.row == 1){
         NSString *const imageCellIdentifier = @"threeImageIdentifierCell";

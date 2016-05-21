@@ -120,7 +120,7 @@
         _constellation = (NSString *)[NSNull null];
     }
     
-    return @[_userId,k_User_loginType,_name,_city,_country,_headimgurl,_sex,_eMail,[NSNumber numberWithInt:_modifySex],_brithday,_height,_phoneNo,_WX_No,_workCity,_income,_state,_home,_constellation];
+    return @[_userId,_loginType,_name,_city,_country,_headimgurl,_sex,_eMail,[NSNumber numberWithInt:_modifySex],_brithday,_height,_phoneNo,_WX_No,_workCity,_income,_state,_home,_constellation];
 }
 
 - (BOOL)deleteBean {

@@ -336,7 +336,11 @@
             cell.textView.placeholder = _dicPlaceHolder[_arraySection[indexPath.section]];
             cell.textView.indexPath = indexPath;
             MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%ld",(long)indexPath.section)];
-            cell.textView.text = model.content;
+            NSString *modelContent = model.content;
+            if (modelContent == nil) {
+                modelContent = @"";
+            }
+            cell.textView.text = modelContent;
             return cell;
         }
     } else if (indexPath.row == 1){

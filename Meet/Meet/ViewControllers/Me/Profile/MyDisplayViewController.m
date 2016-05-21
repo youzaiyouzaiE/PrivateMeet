@@ -77,8 +77,16 @@
         CTTextView *coreTextView = [[CTTextView alloc] init];//
         CTFrameParserConfig *config = [[CTFrameParserConfig alloc] init];
         config.width = IMAGAVIEW_W;
+        NSString *modelTitle = model.title;
+        if (modelTitle == nil) {
+            modelTitle = @"";
+        }
         NSString *titlStr = [model.title stringByAppendingString:@"\n"];
-        NSString *contentStr= [titlStr stringByAppendingString:model.content];
+        NSString *modelContent = model.content;
+        if (modelContent == nil) {
+            modelContent = @"";
+        }
+        NSString *contentStr= [titlStr stringByAppendingString:modelContent];
         NSDictionary *attr = [CTFrameParser attributesWithConfig:config];
         NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:contentStr attributes:attr];
         [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:NSMakeRange(0, titlStr.length)];

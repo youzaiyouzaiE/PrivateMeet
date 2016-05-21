@@ -154,6 +154,7 @@
     }
 }
 
+/////tock 未超时时直接使用本地tock
 - (void)wechatLoginByRequestForUserInfo {
     [NetWorkObject GET:GETUser_info_FromWX_URLStr parameters:nil progress:^(NSProgress *downloadProgress) {
         
@@ -175,6 +176,7 @@
     }];
 }
 
+//// 刷新 tock
 - (void)weChatRefreshAccess_Token {
     [NetWorkObject GET:WXRefresh_access_tokenURL_str([WXAccessModel shareInstance].refresh_token) parameters:nil progress:^(NSProgress *downloadProgress) {
         

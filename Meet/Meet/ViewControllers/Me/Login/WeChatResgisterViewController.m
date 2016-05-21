@@ -13,6 +13,7 @@
 #import "WXUserInfo.h"
 //#import <Fabric/Fabric.h>
 //#import <Crashlytics/Crashlytics.h>
+#import "UserInfoDao.h"
 
 @interface WeChatResgisterViewController ()<UIGestureRecognizerDelegate>
 
@@ -62,19 +63,22 @@
 
 - (IBAction)useWeChatLogin:(id)sender {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oldUerLoginState:) name:@"OldUserLoginWihtWechat" object:nil];
-    if (![WXAccessModel shareInstance].isLostAccess_token) {
-        [SHARE_APPDELEGATE wechatLoginByRequestForUserInfo];
-        return ;
-    }
-    if (![WXAccessModel shareInstance].isLostRefresh_token) {
-        [SHARE_APPDELEGATE weChatRefreshAccess_Token];
-        return ;
-    }
+//    if (![WXAccessModel shareInstance].isLostAccess_token) {
+//        [SHARE_APPDELEGATE wechatLoginByRequestForUserInfo];
+//        return ;
+//    }
+//    if (![WXAccessModel shareInstance].isLostRefresh_token) {
+//        [SHARE_APPDELEGATE weChatRefreshAccess_Token];
+//        return ;
+//    }
         [self sendAuthRequest];
 }
 
 #pragma mark - NSNotificationCenter
 - (void)oldUerLoginState:(NSNotification *)notification {
+    ////可按提示添加内容
+    return ;
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"OldUserLoginWihtWechat" object:nil];
      NSNumber *state = [notification object];
     if (state) {
@@ -82,6 +86,21 @@
         ////判断是不是真的是老用户，此微信号是否真的注册过！！
         if (unionid) {/////是老用户，退出登陆页面 isLogin YES
 #warning  是老用户 从网获取用户信息 并保存本地 退出登陆页面
+            
+            NSArray *users = [[UserInfoDao shareInstance] selectUserInfoWithUserId:[WXUserInfo shareInstance].unionid];
+            if (users.count > 0) {
+                UserInfo *user = users[0];
+                user.loginType = [NSNumber numberWithInteger:1];
+                [[UserInfo shareInstance] mappingValuesFormUserInfo:user];
+                //然后用从网络得到的User mapping 给[UserInfo shareInstance]
+                ///保存更新本地数据
+                [[UserInfoDao shareInstance] updateBean:[UserInfo shareInstance]];
+            } else {
+                ///// //用从网络得到的User mapping 给[UserInfo shareInstance]
+                /////然后保存本地数据
+               ///// [[UserInfoDao shareInstance] insertBean:[UserInfo shareInstance]];
+            }
+            
             [self dismissViewControllerAnimated:YES completion:^{
                 [AppData shareInstance].isLogin = YES;
             }];

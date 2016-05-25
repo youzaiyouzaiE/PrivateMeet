@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -427,7 +427,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="a4u-DQ-J0v"/>
                     <connections>
-                        <segue destination="OmV-lt-3zT" kind="push" identifier="pushToWeChatLogin" id="Z4x-vO-Bea"/>
+                        <segue destination="OmV-lt-3zT" kind="push" identifier="pushToWXLogin" id="Z4x-vO-Bea"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYu-Hj-B5o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -439,10 +439,10 @@
             </objects>
             <point key="canvasLocation" x="1874" y="1206"/>
         </scene>
-        <!--We Chat Longin View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="abU-S0-sr2">
             <objects>
-                <viewController id="OmV-lt-3zT" customClass="WeChatLonginViewController" sceneMemberID="viewController">
+                <viewController id="OmV-lt-3zT" customClass="WXLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4pP-sE-VRp"/>
                         <viewControllerLayoutGuide type="bottom" id="1sD-xg-aPT"/>
@@ -477,7 +477,7 @@
                                     <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButtonAction:" destination="OmV-lt-3zT" eventType="touchUpInside" id="Wmo-YX-tX0"/>
+                                    <action selector="loginButtonAction:" destination="OmV-lt-3zT" eventType="touchUpInside" id="w93-cH-l4q"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录即代表您同意Meet用户协议" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAh-eP-75a">

@@ -16,10 +16,10 @@
 - (CGFloat)y;
 - (void)setY:(CGFloat)y;
 
-- (CGFloat)w;
-- (void)setW:(CGFloat)w;
+- (CGFloat)width;
+- (void)setWidth:(CGFloat)width;
 
-- (CGFloat)h;
-- (void)setH:(CGFloat)h;
+- (CGFloat)height;
+- (void)setHeight:(CGFloat)height;
 
 @end

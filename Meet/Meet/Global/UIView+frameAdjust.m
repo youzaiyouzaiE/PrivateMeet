@@ -16,7 +16,7 @@
 }
 
 - (void)setX:(CGFloat)x {
-    self.frame = CGRectMake(x, self.y, self.w, self.h);
+    self.frame = CGRectMake(x, self.y, self.width, self.height);
 }
 
 - (CGFloat)y {
@@ -24,23 +24,23 @@
 }
 
 - (void)setY:(CGFloat)y {
-    self.frame = CGRectMake(self.x, y, self.w, self.h);
+    self.frame = CGRectMake(self.x, y, self.width, self.height);
 }
   
-- (CGFloat)w {
+- (CGFloat)width {
     return self.frame.size.width;
 }
 
-- (void)setW:(CGFloat)w {
-    self.frame = CGRectMake(self.x, self.y, w, self.h);
+- (void)setWidth:(CGFloat)width {
+    self.frame = CGRectMake(self.x, self.y, width, self.height);
 }
 
-- (CGFloat)h {
+- (CGFloat)height {
     return self.frame.size.height;
 }
 
-- (void)setH:(CGFloat)h {
-    self.frame = CGRectMake(self.x, self.y, self.w, h);
+- (void)setHeight:(CGFloat)height {
+    self.frame = CGRectMake(self.x, self.y, self.width, height);
 }
 
 @end

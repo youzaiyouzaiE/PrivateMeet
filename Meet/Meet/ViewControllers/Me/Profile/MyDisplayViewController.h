@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^NeedUpdateSectondImages)(void);
+
 @interface MyDisplayViewController : UIViewController
+@property (copy, nonatomic) NeedUpdateSectondImages block;
 
 @end

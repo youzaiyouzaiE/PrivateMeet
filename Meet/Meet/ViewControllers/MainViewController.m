@@ -11,7 +11,7 @@
 @interface MainViewController ()
 
 @end
-
+//NSLocalizedString
 @implementation MainViewController
 
 - (void)viewDidLoad {
@@ -19,8 +19,8 @@
     // Do any additional setup after loading the view.
 //    self.tabBar.barTintColor = [UIColor whiteColor];
     self.tabBar.tintColor = [UIColor whiteColor];
-    
 //    [self setNeedsStatusBarAppearanceUpdate];
+    
     
 }
 

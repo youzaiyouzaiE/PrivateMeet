@@ -10,4 +10,9 @@
 
 @interface UserInfoDao : SuperDao
 
++ (instancetype)shareInstance;
+
+- (UserInfo *)selectUserWithUserLoginType;
+- (UserInfo *)selectUserInfoWithUserId:(NSString *)userId;
+
 @end

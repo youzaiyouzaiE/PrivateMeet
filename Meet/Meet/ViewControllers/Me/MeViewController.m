@@ -13,6 +13,9 @@
 #import "RemindImageCell.h"
 #import "MoreProfileViewController.h"
 #import "MyDisplayViewController.h"
+#import "SendInviteViewController.h"
+#import "SetingViewController.h"
+#import "WeChatResgisterViewController.h"
 
 @interface MeViewController () <UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource> {
     NSMutableArray *_imagesArray;
@@ -32,37 +35,46 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.barTintColor = NAVIGATION_BAR_COLOR;
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logoutAction:) name:@"UserLogoutNotification" object:nil];
+    
     if (IOS_7LAST) {
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     }
-    
-    if ([[UserInfo shareInstance].userId isEqualToString:@"1234567890"]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView:) name:FRIST_LOGIN_NOTIFICATION_Key object:nil];
-    }
-//    [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context: nil];
-//    [self setNeedsStatusBarAppearanceUpdate];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHeadTableViewCell:) name:FRIST_LOGIN_NOTIFICATION_Key object:nil];
+
     _imagesArray = [NSMutableArray array];
     
     [self loadHeadImageView];
-    [self checkDocumentGetSmallImages];
+    [self checkDocumentGetSmallImagesAndUpdate];
 }
 
-- (void)updateTableView:(NSNotification *)notification {
+- (void)updateHeadTableViewCell:(NSNotification *)notification {
     [self loadHeadImageView];
-    [self checkDocumentGetSmallImages];
-    [_tableView reloadData];
+    [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:FRIST_LOGIN_NOTIFICATION_Key object:nil];
 }
 
 - (void )loadHeadImageView {
+    _headImage = nil;
+    if (![AppData shareInstance].isLogin) {
+        return ;
+    }
     NSString *saveFilePath = [AppData getCachesDirectoryUserInfoDocumetPathDocument:@"headimg"];
     NSString *saveImagePath = [saveFilePath stringByAppendingPathComponent:[NSString stringWithFormat:@"0.JPG"]];
     _headImage = [UIImage imageWithContentsOfFile:saveImagePath];
 }
 
-- (void)checkDocumentGetSmallImages {////获取cell 2里的image
+- (void)logoutAction:(NSNotification *)notification {
+    _headImage = nil;
     [_imagesArray removeAllObjects];
+    [self.tableView reloadData];
+}
+
+- (void)checkDocumentGetSmallImagesAndUpdate {////获取cell 2里的image
+    [_imagesArray removeAllObjects];
+    if (![AppData shareInstance].isLogin) {
+        return ;
+    }
     NSMutableArray *array = [NSMutableArray array];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSString *mostContetPath = [[AppData shareInstance] getCacheMostContetnImagePath];
@@ -141,7 +153,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+    return 7;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -171,12 +183,15 @@
             imageView.image = _headImage;
         } else
             imageView.image = [UIImage imageNamed:@"RadarKeyboard_HL"];
-        
         UILabel *nameLabel = (UILabel *)[cell viewWithTag:2];
         nameLabel.text = [UserInfo shareInstance].name;
         
         UILabel *detailLabel = (UILabel *)[cell viewWithTag:3];
         detailLabel.text = @"68%完成度";
+        if (![AppData shareInstance].isLogin) {
+            nameLabel.text = @"未登录";
+            detailLabel.text = @"";
+        }
         return cell;
     } else if(indexPath.row == 1){
         NSString *const imageCellIdentifier = @"threeImageIdentifierCell";
@@ -222,7 +237,14 @@
             tableCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         tableCell.imageView.image = [UIImage imageNamed:@"unLike"];
-        tableCell.textLabel.text = @"xxxxxxxxxx";
+        if (indexPath.row == 4) {
+            tableCell.textLabel.text = @"我的邀约";
+        } else if (indexPath.row == 5) {
+            tableCell.textLabel.text = @"邀请朋友";
+        } else if (indexPath.row == 6) {
+            tableCell.textLabel.text = @"设置";
+        } else
+            tableCell.textLabel.text = @"xxxxx";
     }
     return tableCell;
 }
@@ -236,9 +258,18 @@
         [cell setSubViewsFrame];
     }
 }
+
 #pragma mark - tableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (![AppData shareInstance].isLogin) {
+        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:[NSBundle mainBundle]];
+        WeChatResgisterViewController *resgisterVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"WeChatResgisterNavigation"];
+        [self presentViewController:resgisterVC animated:YES completion:^{
+            
+        }];
+        return ;
+    }
      if (indexPath.row == 0) {
         UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
         MyProfileViewController *myProfileVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MyProfileViewController"];
@@ -248,22 +279,21 @@
              }
              [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
              if (updateInfo) {
-                 [self checkDocumentGetSmallImages];
+                 [self checkDocumentGetSmallImagesAndUpdate];
              }
          };
         [self.navigationController pushViewController:myProfileVC animated:YES];
-    } else  if (indexPath.row == 1) {
+    } else if (indexPath.row == 1) {
         //////展示更多个人信息
         [self performSegueWithIdentifier:@"pushToMyDisplayVC" sender:self];
-        
-        /////填写更多个人信息
-//        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
-//        MoreProfileViewController *moreVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"MoreProfileViewController"];
-//        moreVC.modifyBlock = ^(){
-//            [self checkDocumentGetSmallImages];
-//        };
-//        moreVC.editType = 1;
-//        [self.navigationController pushViewController:moreVC animated:YES];
+    } else  if (indexPath.row == 4) {
+        UIStoryboard *meStoryBoard = [UIStoryboard storyboardWithName:@"Me" bundle:[NSBundle mainBundle]];
+        SendInviteViewController *sendInviteVC = [meStoryBoard instantiateViewControllerWithIdentifier:@"SendInviteViewController"];
+        [self.navigationController pushViewController:sendInviteVC animated:YES];
+    } else if (indexPath.row == 6) {///////设置
+        UIStoryboard *setingStoryBoard = [UIStoryboard storyboardWithName:@"Seting" bundle:[NSBundle mainBundle]];
+        SetingViewController *setingVC = [setingStoryBoard instantiateViewControllerWithIdentifier:@"SetingViewController"];
+        [self.navigationController pushViewController:setingVC animated:YES];
     }
 }
 
@@ -271,7 +301,10 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"pushToMyDisplayVC"]) {
-        
+        MyDisplayViewController *disPlayVC = (MyDisplayViewController *)segue.destinationViewController;
+        disPlayVC.block = ^{
+            [self checkDocumentGetSmallImagesAndUpdate];
+        };
     }
 }
 

@@ -13,26 +13,32 @@
 #import "UITextView+Placeholder.h"
 #import "CellTextView.h"
 #import "MyPhotosViewController.h"
+#import "MoreDescriptionDao.h"
+#import "MoreDescriptionModel.h"
 
 #define TABLE_HEADER_VIEW_H         49
 
 @interface MoreProfileViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UIGestureRecognizerDelegate,UITextViewDelegate> {
-    
+    NSMutableArray *_arrayModel;
     NSMutableArray *_arraySection;
     NSMutableDictionary *_dicHeaderContent;
     NSMutableDictionary *_dicPlaceHolder;
+    NSMutableDictionary *_dicContentModels;
     NSCache *_cacheImages;
     NSMutableArray *_arrayHaveImageIndex;/////那些位置有图片 得到本地图片用
     NSMutableArray *_arrayCacheImgaeKeys;
+    
+    
     
     BOOL keyboardShow;
     CGRect tableViewFrame;
     
     NSIndexPath *_editingIndexPath;
     BOOL isEditSectionTitle;
-    NSUInteger *_editingSection;
+    NSUInteger _editingSection;
     
     BOOL isModifyImages;
+    BOOL isModifyText;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -52,20 +58,57 @@
     self.view.backgroundColor = [UIColor whiteColor];
 //    self.hidesBottomBarWhenPushed = YES;
     [UITools navigationRightBarButtonForController:self action:@selector(saveAction:) normalTitle:@"保存" selectedTitle:nil];
-    
+    _arrayModel = [NSMutableArray array];
     _arraySection = [NSMutableArray arrayWithArray:@[@"lifeAndJob",@"interset",@"custom0",@"hopeFriends",@"last"]];
     _dicHeaderContent = [NSMutableDictionary dictionaryWithDictionary:@{_arraySection[0]:@"您的工作、生活情况",_arraySection[1]:@"您的兴趣及爱好",_arraySection[2]:@"给您增加的内容起个标题吧",_arraySection[3]:@"您希望认识什么样的朋友",_arraySection[4]:@""}];
     _dicPlaceHolder = [NSMutableDictionary dictionaryWithDictionary:@{_arraySection[0]:@"包括但不限于：你的工作内容、工作状态及工作中的收获；你的生活方式、对生活要求及对未来生活的期待。",_arraySection[1]:@"可以分享下你的兴趣爱好都有哪些，为什么会喜欢，以及有什么期待",_arraySection[2]:@"再分享一些其他的故事",_arraySection[3]:@"可以说说你希望认识什么样的朋友",_arraySection[4]:@""}];
     _cacheImages = [[NSCache alloc] init];
-    
+    _arrayModel = [NSMutableArray array];
     _arrayHaveImageIndex = [NSMutableArray array];
     _arrayCacheImgaeKeys = [NSMutableArray array];
+    _dicContentModels = [NSMutableDictionary dictionary];
+    
+    [self moreDescriptionModelsFromDB];
+    [self cacheMoreDescriptionModelInDicContent];
     
     [self getImagesInTableLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShowAction:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHideAction:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)cacheMoreDescriptionModelInDicContent {
+    for (int i = 0; i < _arraySection.count -1; i++) {
+        NSString *key = FORMAT(@"%d",i);
+        MoreDescriptionModel *model;
+        if (_arrayModel.count == 0) {
+            model = [self createDescriptionModelForIndex:i];
+        } else {
+            model = [[MoreDescriptionDao shareInstance] selectMoreDescriptionByUserID:[UserInfo shareInstance].userId andIndex:i];
+            if (!model) {
+                model = [self createDescriptionModelForIndex:i];
+            }
+        }
+        [_dicContentModels setObject:model forKey:key];
+    }
+}
+
+- (MoreDescriptionModel *)createDescriptionModelForIndex:(NSInteger) index {
+    MoreDescriptionModel *model = [[MoreDescriptionModel alloc] init];
+    model.userId = [UserInfo shareInstance].userId;
+    model.index = index;
+    model.title = _dicHeaderContent[_arraySection[index]];
+    return model;
+}
+
+- (void)moreDescriptionModelsFromDB {
+    NSString *userId = [UserInfo shareInstance].userId;
+    NSArray *array = [[MoreDescriptionDao shareInstance] selectMoreDescriptionByUserID:userId];
+    if (array.count > 0) {
+        [_arrayModel addObjectsFromArray:array];
+    }
+}
+
+#pragma mark - read Images
 - (void)getImagesInTableLocation {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSString *mostContetPath = [[AppData shareInstance] getCacheMostContetnImagePath];
@@ -76,7 +119,6 @@
             [rowConttArray enumerateObjectsUsingBlock:^(NSString *row, NSUInteger idx, BOOL *stop) {
 //                NSLog(@"indePath Section :%@, row :%@",section, row);
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row.intValue inSection:section.intValue];
-//                NSLog(@"path indePath Section :%d, row :%d",indexPath.section, indexPath.row);
                 [_arrayHaveImageIndex addObject:indexPath];
             }];
         }];
@@ -91,7 +133,6 @@
 }
 
 - (void)loadSmallImagesInCachWithIndexPath:(NSIndexPath *)indexPath isReload:(BOOL)isReload{
-//    NSLog(@"SmallImages indePath Section :%d, row :%d",indexPath.section, indexPath.row);
     if (isReload) {////删除之前 对应indexPath里缓存的内容
         NSString *head = FORMAT(@"%ld-%ld-",(long)indexPath.section,(long)indexPath.row);
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF BEGINSWITH[cd] %@",head];
@@ -143,7 +184,6 @@
 #pragma mark - action
 - (void)cancelButtonAction:(UIButton *)button {
     [self dismissViewControllerAnimated:YES completion:^{
-        
     }];
 }
 
@@ -151,11 +191,76 @@
     if (isModifyImages) {
         self.modifyBlock();
     }
+    if (isModifyText) {
+        self.modifyTextBlock();
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)saveAction:(id)sender {
-     NSLog(@" ");
+    for (MoreDescriptionModel *model in _dicContentModels.allValues) {
+        if (model.idKey.length > 0) {
+            [[MoreDescriptionDao shareInstance] updateBean:model];
+        } else
+            [[MoreDescriptionDao shareInstance] insertBean:model];
+    }
+    if (isModifyImages) {
+        self.modifyBlock();
+    }
+    if (_editType == 0){
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    } else {
+        if (isModifyText) {
+            self.modifyTextBlock();
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark - Image File Writ
+- (void)saveImageToDocument:(UIImage *)image location:(NSIndexPath *)indexPath {
+    NSString *_smallImageDocumetPath = [[AppData shareInstance] getCachesSmallImageWithImageIndexPath:indexPath];
+    NSString *_bigImageDocumetPath = [[AppData shareInstance] getCachesBigImageWithImageIndexPath:indexPath];
+    UIImage *imageSmall = [UITools imageWithImageSimple:image scaledToSize:[self smallSize]];
+    NSString *imageName = [AppData random_uuid];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *bigImageSavePath = [_bigImageDocumetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",imageName]];
+        NSString *smallImageSavePath = [_smallImageDocumetPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.JPG",imageName]];
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        if ([imageData writeToFile:bigImageSavePath atomically:NO]) {
+            //             NSLog(@"存入文件 成功！");
+        } else {
+            NSLog(@"图片未能存入");
+        }
+        NSData *smallImageData = UIImageJPEGRepresentation(imageSmall, 1);
+        if ([smallImageData writeToFile:smallImageSavePath atomically:NO]) {
+            //             NSLog(@"存入文件 成功！");
+        } else {
+            NSLog(@"图片未能存入");
+        }
+    });
+}
+
+- (void)deleteImageWithName:(NSString *)imageName location:(NSIndexPath *)indexPath {
+    NSString *_smallImageDocumetPath = [[AppData shareInstance] getCachesSmallImageWithImageIndexPath:indexPath];
+    NSString *_bigImageDocumetPath = [[AppData shareInstance] getCachesBigImageWithImageIndexPath:indexPath];
+    NSString *bigImagePath = [_bigImageDocumetPath stringByAppendingPathComponent:imageName];
+    NSError *error = nil;
+    NSString *smallImagePath = [_smallImageDocumetPath stringByAppendingPathComponent:imageName];
+    NSError *smallError = nil;
+    if ([[NSFileManager defaultManager] removeItemAtPath:smallImagePath error:&smallError] && [[NSFileManager defaultManager] removeItemAtPath:bigImagePath error:&error]) {
+
+    } else {
+        NSLog(@"remove small %@.JPG Error :%@",imageName,smallError.localizedDescription);
+        NSLog(@"remove %@.JPG error :%@",imageName,error.localizedDescription);
+    }
+}
+
+- (CGSize)smallSize {
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGSize size = CGSizeMake((self.view.bounds.size.width) * scale/3, (self.view.bounds.size.width) * scale/3);
+    return size;
 }
 
 #pragma mark - NSNotificationCenter
@@ -234,8 +339,13 @@
                 cell.textView.delegate = self;
             }
             cell.textView.placeholder = _dicPlaceHolder[_arraySection[indexPath.section]];
-//             cell.textView.text = @"暗渡陈仓右脚喂奶呇油烟机滥勋进为因肖没录偿为暴僘/n\n彛溃烂油烟机1是呀舅派\n/n烤日光灯炒股烛烟消云散中华\n人民共和国国炽虽";
             cell.textView.indexPath = indexPath;
+            MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%ld",(long)indexPath.section)];
+            NSString *modelContent = model.content;
+            if (modelContent == nil) {
+                modelContent = @"";
+            }
+            cell.textView.text = modelContent;
             return cell;
         }
     } else if (indexPath.row == 1){
@@ -287,6 +397,18 @@
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if ([textField isKindOfClass:[CellTextField class]]) {
+        CellTextField *cellTextField = (CellTextField *)textField;
+        _editingSection = cellTextField.section;
+        MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%d",_editingSection)];
+        if (![model.title isEqualToString:textField.text]) {
+            isModifyText = YES;
+            model.title = textField.text;
+        }
+    }
+}
+
 #pragma mark -  UITextViewDelegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
     isEditSectionTitle = NO;
@@ -303,13 +425,13 @@
     if ([textView isKindOfClass:[CellTextView class]]) {
         CellTextView *cellText = (CellTextView *)textView;
         _editingIndexPath = cellText.indexPath;
-         NSLog(@"textView text:%@",textView.text);
-//        NSString *string = textView.text;
-//        NSArray *arry = [string componentsSeparatedByString:@"\n"];
-//        NSLog(@"array %@",arry);
+        MoreDescriptionModel *model = _dicContentModels[FORMAT(@"%d",_editingIndexPath.section)];
+        if (![model.content isEqualToString:textView.text]) {
+            isModifyText = YES;
+            model.content = textView.text;
+        }
     }
 }
-
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([textView isKindOfClass:[CellTextView class]]) {

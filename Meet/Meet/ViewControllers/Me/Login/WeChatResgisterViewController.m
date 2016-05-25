@@ -7,13 +7,13 @@
 //
 
 #import "WeChatResgisterViewController.h"
-#import "WeChatLonginViewController.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
 #import "WXAccessModel.h"
 #import "WXUserInfo.h"
 //#import <Fabric/Fabric.h>
 //#import <Crashlytics/Crashlytics.h>
+#import "UserInfoDao.h"
 
 @interface WeChatResgisterViewController ()<UIGestureRecognizerDelegate>
 
@@ -57,27 +57,28 @@
 
 - (IBAction)checkCodeButtonAction:(id)sender {
 #warning check code and into WeChat Longin
-    [self performSegueWithIdentifier:@"pushToWeChatLogin" sender:self];
+    [self performSegueWithIdentifier:@"pushToWXLogin" sender:self];
     
 }
 
 - (IBAction)useWeChatLogin:(id)sender {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oldUerLoginState:) name:@"OldUserLoginWihtWechat" object:nil];
-    if (![WXAccessModel shareInstance].isLostAccess_token) {
-        [SHARE_APPDELEGATE wechatLoginByRequestForUserInfo];
-        return ;
-    }
-    if (![WXAccessModel shareInstance].isLostRefresh_token) {
-        [SHARE_APPDELEGATE weChatRefreshAccess_Token];
-        return ;
-    }
-//    if ([WXAccessModel shareInstance].isLostRefresh_token && [WXAccessModel shareInstance].isLostAccess_token) {
-        [self sendAuthRequest];
+//    if (![WXAccessModel shareInstance].isLostAccess_token) {
+//        [SHARE_APPDELEGATE wechatLoginByRequestForUserInfo];
+//        return ;
 //    }
+//    if (![WXAccessModel shareInstance].isLostRefresh_token) {
+//        [SHARE_APPDELEGATE weChatRefreshAccess_Token];
+//        return ;
+//    }
+        [self sendAuthRequest];
 }
 
 #pragma mark - NSNotificationCenter
 - (void)oldUerLoginState:(NSNotification *)notification {
+    ////可按提示添加内容
+    return ;
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"OldUserLoginWihtWechat" object:nil];
      NSNumber *state = [notification object];
     if (state) {
@@ -85,8 +86,12 @@
         ////判断是不是真的是老用户，此微信号是否真的注册过！！
         if (unionid) {/////是老用户，退出登陆页面 isLogin YES
 #warning  是老用户 从网获取用户信息 并保存本地 退出登陆页面
+            
+            [[UserInfoDao shareInstance] insertBean:[UserInfo shareInstance]];
+            [[UserInfoDao shareInstance] selectUserInfoWithUserId:[UserInfo shareInstance].userId];/////重新获取到 [UserInfo shareInstance]主要是为了得到idKye
+         
             [self dismissViewControllerAnimated:YES completion:^{
-                
+                [AppData shareInstance].isLogin = YES;
             }];
         } else {
             [[UITools shareInstance] showMessageToView:self.view message:@"请求出错" autoHide:YES];

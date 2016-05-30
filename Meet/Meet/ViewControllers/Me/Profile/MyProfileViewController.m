@@ -389,7 +389,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
 }
 
 - (void)saveAction:(id)sender {
-    if (_selectRow == 2 && !_chooseView.hidden) {////Sex Item alert
+    if (_selectRow == 2) {////Sex Item alert
         [self sexItemModify];
         return ;
     }
@@ -736,7 +736,7 @@ typedef NS_ENUM(NSUInteger, RowType) {
                 _pickerSelectRow = value;
                 [self hiddenDatePicker:YES];
                 [self showChooseViewAnimation:YES];
-                [self setPickView:RowHeight inRowAtValue:26 inTableViewRow:row];
+//                [self setPickView:RowHeight inRowAtValue:26 inTableViewRow:row];
                 [_picker selectRow:_pickerSelectRow inComponent:0 animated:NO];
             }
         }

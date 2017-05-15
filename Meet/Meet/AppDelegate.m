@@ -46,7 +46,6 @@
 //    [TalkingData sessionStarted:@"7244A450FDAFB46FFEF7C1B68FBA93D3" withChannelId:@"app store"];
     
     if ([[AppData shareInstance] initUserDataBaseToDocument]) {
-//        NSLog(@" 数据库 规划成功");
         [[UserInfoDao shareInstance] selectUserWithUserLoginType];
         if ([UserInfo shareInstance].userId && [UserInfo shareInstance].userId.length > 1 && ![[UserInfo shareInstance].userId isEqualToString:@""]) {
             [AppData shareInstance].isLogin = YES;
